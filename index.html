@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Node eXecution Tree, A python layering and sequential execution tool for Animation and VFX">
+        
+        
+        <link rel="shortcut icon" href="img/favicon.ico">
+        <title>NXT User Docs</title>
+        <link href="css/bootstrap.css" rel="stylesheet">
+        <link href="css/font-awesome.css" rel="stylesheet">
+        <link href="css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow-night.min.css">
+
+        <script src="js/jquery-1.10.2.min.js" defer></script>
+        <script src="js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/json.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body class="homepage">
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href=".">NXT User Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem active">
+                                <a href="." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="concepts/" class="nav-link">Concepts</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="tutorials/" class="nav-link">Tutorials</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="install/" class="nav-link">Installation</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="reference/" class="nav-link">Reference</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="extensions/" class="nav-link">Extensions</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="api/index.html" class="nav-link">API</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="license/" class="nav-link">License</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="about/" class="nav-link">About</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" class="nav-link disabled">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="concepts/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#nxt-node-execution-tree" class="nav-link">NXT - Node eXecution Tree</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#introduction" class="nav-link">Introduction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#why-use-nxt" class="nav-link">Why use nxt?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#what-does-nxt-do" class="nav-link">What does nxt do?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#limitations" class="nav-link">Limitations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="nxt-node-execution-tree">NXT - Node eXecution Tree</h1>
+<p>nxt (/ɛn·ɛks·ti/) is a general purpose code compositor designed for rigging, 
+scene assembly, and automation.</p>
+<p><em>It’s code with layers with a nice way to see and change data.</em></p>
+<h2 id="introduction">Introduction</h2>
+<p>The primary function of nxt is to visualize and automate programming tasks 
+related to computer graphics and linear processing. The intent is to bridge 
+the gap between one-off scripting and general purpose tools through the use of 
+inheritance, layering, and string tokens.</p>
+<h2 id="why-use-nxt">Why use nxt?</h2>
+<p>The core functionality of nxt was built with insights from industry veterans 
+of various technical and artistic backgrounds. We set out to bring to the
+ table a simple set of principles:</p>
+<ul>
+<li>Visualize a map of what a complex script is actually doing. 
+<a href="reference/#node">Nodes</a>, <a href="concepts/#inheritance">inheritance</a>, and
+connection lines are easy to understand. However, we've gone a step further 
+and added string <a href="reference/#tokens">tokens</a>. An instant visualization 
+of what an attribute value <em>actually</em> is. Our tokens can be used <em>almost</em>
+anywhere inside nxt and are dynamically "resolved" during execution. Allowing the
+user to see exactly what data is flowing around without the use of an
+external debugger.</li>
+<li>Encourage collaboration though <a href="reference/#layers">layering</a> and multi context graphs. 
+With our layering system it is easy for departments to share base workflows and
+utility nodes. Since layering is non-destructive graphs can referenced built on 
+without worrying about breaking someone else's graph. With <a href="extensions/#creating-custom-contexts">multi context</a> 
+graphs a Maya user, for example, can directly call a Houdini graph from inside Maya. 
+Alternatively, graphs can call other graphs in the same context, allowing 
+interdependent graphs to be developed simultaneously.</li>
+<li>Make code accessible to everyone. Artists can modify attributes like their
+used to and learn to make simple code changes that normally would require a 
+TD to intervene. We're not visual programming, but rather a friendly visual
+portal into code.</li>
+</ul>
+<h2 id="what-does-nxt-do">What does nxt do?</h2>
+<p>In the simplest of terms nxt combines multiple layers of nodes into a single 
+composite layer that is then executable. Something like Photoshop layers for
+your code, you're able to mute, solo, override, and extend layers of code. 
+The resulting composite of the code clearly visualizes where attributes and
+their values came from. Colors, node paths, and conveniently placed buttons/links 
+allow users to quickly jump to and correct erroneous values.</p>
+<p><em>Example character rig with a general to specific layer structure</em>
+<img alt="layers" src="images/nxt_layers01.gif" /></p>
+<h2 id="limitations">Limitations</h2>
+<ul>
+<li>We currently do not support asynchronous execution in a single graph. Our 
+current focus is on lineal scripts.</li>
+<li>We are <a href="reference/#design-philosophy">not visual programming</a>, no for loop nodes sorry.</li>
+<li>We currently do not support Python 3, however it is on the top of our
+priority list.</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Concepts</td>
+<td align="center">Tutorials</td>
+</tr>
+<tr>
+<td align="center">See <a href="concepts/">concepts</a> for a quick overview of nxt's core concepts.</td>
+<td align="center">See the <a href="tutorials/">tutorials</a> for a step by step walkthroughs</td>
+</tr>
+</tbody>
+</table></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>2020 NXT authors</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = ".",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="js/base.js" defer></script>
+        <script src="search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
+
+<!--
+MkDocs version : 1.1.2
+Build Date UTC : 2020-11-30 20:37:54.802705+00:00
+-->

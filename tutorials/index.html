@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Tutorials - NXT User Docs</title>
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/font-awesome.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow-night.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/json.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">NXT User Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../concepts/" class="nav-link">Concepts</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Tutorials</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../install/" class="nav-link">Installation</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../reference/" class="nav-link">Reference</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../extensions/" class="nav-link">Extensions</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../api/index.html" class="nav-link">API</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../license/" class="nav-link">License</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../about/" class="nav-link">About</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../concepts/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../install/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#examples" class="nav-link">Examples</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#tutorials" class="nav-link">Tutorials</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#introduction-to-tokens" class="nav-link">Introduction to tokens</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#execution-and-inheritance" class="nav-link">Execution and Inheritance</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#instances" class="nav-link">Instances</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#more-on-attributes" class="nav-link">More on attributes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#layers" class="nav-link">Layers</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#example-graph-walkthroughs" class="nav-link">Example Graph Walkthroughs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="examples">Examples</h1>
+<p>Checkout our example content <a href="https://github.com/nxt-dev/nxt_editor/tree/release/examples">here</a>, you'll find <code>.nxt</code> graphs demonstrating these same topics.</p>
+<p>If you're not quite sure how nxt fits into your workflow checkout our workflow and transition map <a href="../workflows/">here</a>.
+Over there we explain nxt from different vantage points to help illuminate how nxt can work for you.</p>
+<h1 id="tutorials">Tutorials</h1>
+<ul>
+<li><a href="https://www.youtube.com/playlist?list=PL1rrB33w2Z6XJLjK0MU613euB06Z0xMuC" target=blank>Getting started YouTube Playlist</a></li>
+</ul>
+<h2 id="introduction-to-tokens">Introduction to tokens</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/L-0UGm0tPzc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h5 id="01-making-and-executing-a-node-hello-world">01 Making and executing a node. Hello world.</h5>
+<ul>
+<li>Make a node</li>
+<li>Add code</li>
+<li>Setup a token</li>
+<li>Use the output log</li>
+</ul>
+<hr />
+<p><br/><br/></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XtPhOZmI76o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h5 id="02-adding-and-using-attributes-and-tokens-in-code">02 Adding and using attributes and tokens in code</h5>
+<ul>
+<li>Naming</li>
+<li>Attribute types</li>
+<li>More on substitution</li>
+</ul>
+<hr />
+<p><br/><br/></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oyyPS7LtLE0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h2 id="execution-and-inheritance">Execution and Inheritance</h2>
+<h5 id="03-making-and-executing-a-series-of-nodes">03 Making and executing a series of nodes</h5>
+<ul>
+<li>Executing nodes in sequence</li>
+<li>Pathing to nodes and attributes</li>
+<li>Execution options</li>
+</ul>
+<hr />
+<p><br/><br/></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SdkpeSXYD8o" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h5 id="04-inheriting-within-a-stack">04 Inheriting within a stack</h5>
+<ul>
+<li>Stacks execution</li>
+<li>Inheritance within stacks</li>
+<li>Parent / unparent nodes</li>
+<li>Changing attribute display</li>
+</ul>
+<hr />
+<p><br/><br/></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wjhsDYKHbHI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h5 id="additional-notes-on-execution-history-build-view">Additional notes on execution, history, build view</h5>
+<ul>
+<li>Start points</li>
+<li>Break points</li>
+<li>Build view</li>
+<li>History view</li>
+</ul>
+<hr />
+<p><br/><br/></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BeCY2fNhw4c" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h5 id="05-using-attributes-from-other-nodes">05 Using attributes from other nodes</h5>
+<ul>
+<li>Linking to other attrs</li>
+<li>Pathing to other attrs</li>
+</ul>
+<hr />
+<p><br/><br/></p>
+<h2 id="instances">Instances</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VHbzbiSaLds" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h5 id="06-node-instances">06 Node instances</h5>
+<ul>
+<li>Instances</li>
+<li>Instance path</li>
+<li>Local vs instanced attributes</li>
+<li>Instances of instances</li>
+</ul>
+<hr />
+<p><br/><br/></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/hSrVzjS7N38" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h2 id="more-on-attributes">More on attributes</h2>
+<h5 id="07-notes-on-renaming">07 Notes on renaming</h5>
+<ul>
+<li>NXT doesn't rename anything automatically</li>
+<li>But it will recomp based on name</li>
+</ul>
+<hr />
+<p><br/><br/></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/FAMVE24e6mw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h5 id="08-attribute-overloading-and-reverting">08 Attribute overloading and reverting</h5>
+<ul>
+<li>Resolution order</li>
+<li>Node, parent, instance</li>
+</ul>
+<hr />
+<p><br/><br/></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/DXhKfTv2Ai0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h5 id="09-writing-data-to-attributes-from-code">09 Writing data to attributes from code</h5>
+<ul>
+<li>Using <code>self.attr</code></li>
+<li>Usign raw, resolved, cached view</li>
+</ul>
+<hr />
+<p><br/><br/></p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XlXfue-7oQk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<h2 id="layers">Layers</h2>
+<h5 id="10-layering-and-compositing">10 Layering and compositing</h5>
+<ul>
+<li>Adding layers</li>
+<li>Layer display state</li>
+<li>Active layer</li>
+<li>Executing part of a layer</li>
+<li>Adding new attrs and overrides on a layer</li>
+</ul>
+<hr />
+<p><br/><br/></p>
+<h5 id="use-of-the-layer-object-and-stage-object">Use of the layer object and stage object</h5>
+<h1 id="example-graph-walkthroughs">Example Graph Walkthroughs</h1>
+<p>Still pending</p>
+<h5 id="example-mgear-pre-post-build">Example: Mgear pre-post build</h5>
+<h5 id="example-maya-hand-rig">Example: Maya hand rig</h5>
+<h5 id="example-nuke-resize-image-sequence">Example: Nuke resize image sequence</h5>
+<h5 id="example-maya-cloth-attribute-wedge-and-playblast">Example: Maya cloth attribute wedge and playblast</h5></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>2020 NXT authors</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

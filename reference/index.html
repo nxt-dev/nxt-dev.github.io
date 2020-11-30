@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Reference - NXT User Docs</title>
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/font-awesome.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow-night.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/json.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">NXT User Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../concepts/" class="nav-link">Concepts</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../tutorials/" class="nav-link">Tutorials</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../install/" class="nav-link">Installation</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Reference</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../extensions/" class="nav-link">Extensions</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../api/index.html" class="nav-link">API</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../license/" class="nav-link">License</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../about/" class="nav-link">About</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../install/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../extensions/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#example-graphs" class="nav-link">Example Graphs</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#editors" class="nav-link">Editors</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#terms-and-definitions" class="nav-link">Terms and Definitions</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#stage" class="nav-link">Stage</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#node" class="nav-link">Node</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#attributes" class="nav-link">Attributes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#tokens" class="nav-link">Tokens</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#compute" class="nav-link">Compute</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#execution-order" class="nav-link">Execution Order</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#stage-composition" class="nav-link">Stage Composition</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#instancing" class="nav-link">Instancing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#nxt-file-spec" class="nav-link">NXT file spec</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#design-philosophy" class="nav-link">Design Philosophy</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#application-structure" class="nav-link">Application structure</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="example-graphs">Example Graphs</h1>
+<p>Checkout our example graphs <a href="https://github.com/nxt-dev/nxt_editor/tree/release/examples">here</a>.</p>
+<p><em>If you're looking for workflow checkout our workflow and transition map <a href="../workflows/">here</a>.</em></p>
+<h1 id="editors">Editors</h1>
+<p>Stage</p>
+<p>Node Properties</p>
+<p>Code Editor</p>
+<p>Layer manager</p>
+<p>Tool Bar</p>
+<p>Output Log</p>
+<p>Build View</p>
+<p>History View</p>
+<p><a href="../hotkeys/">Hotkey Editor</a></p>
+<h1 id="terms-and-definitions">Terms and Definitions</h1>
+<h2 id="stage">Stage</h2>
+<p>The stage is a collection of graphs, trees, and layers of nxt <a href="#node">nodes </a>that set the <a href="#stagecomposition">composition structure</a> and <a href="#executionorder">execution order</a> for an nxt file.</p>
+<div class="admonition note">
+<p class="admonition-title">Stage attributes and composition</p>
+<p>Note that each layer is also a node, and those nodes get composited to the master STAGE. Each node that is parented to a layer inherits the attributes of the layer/stage. This can be useful for defining global variables, or a state that needs to propogate into the entire graph.</p>
+</div>
+<h2 id="node">Node</h2>
+<p>A node is a container for code (or compute) and a collection of attributes. Every node contains a single <a href="#compute">code block</a> that is executed when a node is run. <a href="#executionorder">Execution order</a> is defined both by hierarchy and connections to execution plugs on the nodes.</p>
+<h2 id="attributes">Attributes</h2>
+<p><a href="#node">Nodes</a> contain <a href="#attributes">attributes </a>that are read from and written to from inside a node’s <a href="#compute">code block</a>. Attributes can also be connected to inputs and outputs of other nodes via <a href="#tokens">tokens </a>in  attributes, token paths within the code block, or dragging and dropping attribute connections between nodes.</p>
+<p>At editor time (before the graph has begun <a href="#executionorder">executing</a>) attribute values can be composited into other attribute’s values or into the text of a code block via <code>${path/to/node.otherattr}_rest_of_attr_value</code>. </p>
+<p>A node’s local attributes can be resolved by name alone via <code>${attrname}</code></p>
+<div class="admonition note">
+<p class="admonition-title">Hotkeys</p>
+<p>The raw/composited state can be visualized by toggling editor resolution on and off using <code>Q</code>, <code>W</code>, <code>E</code>.
+NXT includes a full hot key editor. (Window &gt; <a href="../hotkeys/">Hotkey </a>Editor)</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>The node at <code>/path/to/node</code> has the attribute <code>otherattr</code> with the value <code>simple_stupid</code>, and our local node has an attribute named <code>myattr</code> with the value <code>never_eat</code></p>
+<table>
+<thead>
+<tr>
+<th>Unresolved</th>
+<th>Resolved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keep_it_${path/to/node.attrname}</td>
+<td>keep_it_simple_stupid</td>
+</tr>
+<tr>
+<td>${myattr}_shredded_wheat</td>
+<td>never_eat_shredded_wheat</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Cached view</p>
+<p>Cached view should only be used to inspect and debug your data. It should not be considered accurate, <em>especially</em> if you are changing the data via the <code>self.attribute</code> paridigm. Any data that NXT is not confident in will be drawn with red hashes.</p>
+</div>
+<p>A node’s local attributes can be changed inside a node’s code block following python convention as seen below.</p>
+<pre><code>self.attr_name = 'example code'
+print(self.attr_name + ' is always boring.')
+</code></pre>
+<p>While executing, the <a href="#stage">Stage</a> can have arbitrary attributes add/set/retrieved on it, that will be available to all nodes, as seen below. Note: Inside a node’s codeblock the stage is accessed via all caps STAGE</p>
+<pre><code>STAGE.anyattr = 'anything you want'
+print(Stage.anyattr)
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Attribute connections</p>
+<p>It is best practice to display inter-node dependencies via hierarchy or connections of attributes, rather than hide that dependency in the code. This will make your layers more portable and friendly to other users. Despite this best practice, other nodes and their attributes can be accessed inside a code <code>block using STAGE.lookup('path/to/node')</code> and <code>STAGE.lookup('path/to/node.otherattr')</code>.</p>
+</div>
+<h2 id="tokens">Tokens</h2>
+<p>A token is like a <a href="../workflows/#transitionguide">reference or pointer</a> to another token or value. <a href="../workflows/#transitionmap">OS </a>style pathing is used to resolve attribute and file tokens.</p>
+<p>Attribute token syntax is <code>${}</code>: if it can resolve, it substitutes the attribute, if not it will be empty</p>
+<pre><code>        ${attribute}
+        ${/absolute_node_path.attribute}
+        ${../relative_nodepath.attribute}
+</code></pre>
+<p>File validation syntax <code>${file::}</code>: this will always resolve to a real file, and will return an empty string if the file doesn't exist. Used to validate files for reading.</p>
+<pre><code>        ${file::file.nxt}
+        ${file::C:/absolute_path/file.nxt}
+        ${file::../relative_path/file.nxt}
+</code></pre>
+<p>File path token syntax <code>${path::}</code>this will  attempt to resolve to a valid path. If not, it will be empty. Used to expand paths for writing.</p>
+<p>File path token syntax <code>${contents::}</code> will include the contents of an external file. For example, <code>${contents::${file::external.py}}</code> will include the contents of <code>external.py</code> in the attribute, compute, <em>and</em> it will resolve tokens written within this file.</p>
+<div class="admonition note">
+<p class="admonition-title">Relative file resolution</p>
+<p>The <code>${file::}</code> and <code>${path::}</code> tokens will resolve relative paths based on the parent folder of the current display layer.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Using an external IDE</p>
+<p>The <code>${contents::}</code> token allows the use of an external IDE for authoring your compute blocks.</p>
+</div>
+<p>Tokens are <em>not</em> python template strings, even though they share the syntax.</p>
+<div class="admonition note">
+<p class="admonition-title">Quote behavior in tokens</p>
+<p>Since all attribute values are stored and processed as strings in NXT before they are composed as python objects, you have do manually manage string attributes. The value will <em>substitute as written</em>. In some cases, it makes sense to have string attributes in quotes, in other cases, it makes sense to add quotes in the code block. 
+For example if you had an attribute <code>side</code> set to a value of <code>L</code></p>
+<p><code>foot_${side}</code> and <code>'foot_' + '${side}'</code> are equally valid. This really comes down to convention.</p>
+<p>There is a simple <code>w()</code> convivence function to assist with adding quotes when using a python string object as a string.</p>
+<p><code>my_attr = 'quotes go away when it becomes a string object'
+self.attribute = w(my_attr)</code></p>
+<p><code>my_attr</code> can now be used by downstream nodes as a string</p>
+</div>
+<h2 id="compute">Compute</h2>
+<p>The compute block/code block  is standard python code, with the exception that it will deep-resolve tokens over 1000 levels deep. (should this be a preference?)</p>
+<p><img alt="code_editor.PNG" src="../images/code_editor.PNG" /></p>
+<div class="admonition note">
+<p class="admonition-title">Hotkeys</p>
+<p>The raw/composited state can be visualized by toggling editor resolution on and off using <code>Q</code>, <code>W</code>, <code>E</code>.</p>
+<p><code>numreturn</code> or <code>ctrl+enter</code> or clicking off the code will accept your edit</p>
+<p><code>tab</code> and <code>shift+tab</code> handle multi-line indents</p>
+<p>NXT includes a full hot key editor.(Window &gt; <a href="../hotkeys/">Hotkey </a>Editor)</p>
+</div>
+<h2 id="execution-order">Execution Order</h2>
+<h3 id="stagelayer-node">Stage/Layer Node</h3>
+<p><em>Stub for this feature once new layer editor arrives</em></p>
+<h3 id="execution-root">Execution Root</h3>
+<p>A stage can have root nodes with no parent node and no node connected to it’s input execution plug. Use execute tags to define the order</p>
+<p><img alt="execution_tag.PNG" src="../images/execution_tag.PNG" /></p>
+<h3 id="execution-plugs">Execution Plugs</h3>
+<p>Nodes have execution plugs on their left and right to determine execution order. Nodes are executed from left to right along the execution chain specified by these connections.</p>
+<p><img alt="graph_intro.PNG" src="../images/graph_intro.PNG" /></p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>We don't have checks for circular dependencies yet. So don't setup loops.</p>
+</div>
+<h3 id="hierarchiesstacks">Hierarchies/Stacks</h3>
+<p>Nodes have relationships we refer to as “parent”, “child”, and “sibling” to describe their relationship to one another inside the stage to influence composition and execution order. </p>
+<p><img alt="hierarchy.PNG" src="../images/hierarchy.PNG" /></p>
+<p>To begin execution from a given node, the first node is run, followed by a depth first execution of each of it’s descendants. Following the execution of the descendants, the root node whose input <a href="#executionplugs">execution plug</a> is connected to the current node’s output execution plug will be run following the same logic.</p>
+<h2 id="stage-composition">Stage Composition</h2>
+<h3 id="layers">Layers</h3>
+<p><a href="#stage">Stages </a>are designed to be combined together to create a hierarchy of instructions that can be reused and repurposed by several NXT users for use on several assets or workflows. When a stage is referenced into another stage, it is a “layer” within that stage.
+<img alt="nxt_layers" src="../images/layers_concept.png" />
+<img alt="layers.PNG" src="../images/layers.PNG" /></p>
+<p>All of the layers in your file are composited together to produce final code to execute. Each layer has the power to change as much or as little as is needed to customize the composited node’s attributes and code block. These changes are stored in the file they are made on, keeping referenced files safe to use for many purposes.</p>
+<p>Layer color propagates into nodes an also attributes.</p>
+<p><img alt="attribute_color.PNG" src="../images/attribute_color.PNG" /></p>
+<h3 id="composition-inside-node-hierarchies">Composition Inside Node Hierarchies</h3>
+<p>When a <a href="#node">node </a>is a child of another node, it <a href="../concepts/#Inheritance">inherits </a>its <a href="#attributes">attributes </a>from that node which can be overwritten locally on the node.</p>
+<h2 id="instancing">Instancing</h2>
+<p>Instancing allows you to reuse nodes from other parts of the graph with specific overrides. </p>
+<p>Instances in NXT can be simple and powerful. But they can also be extremely complicated with mind-bending edge cases. In simple terms, you can think about an  instance as a clone of another node. It's like a live copy. But it's a bit more nuanced to think about an instance like an additional parent that's outside the hierarchy.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<ul>
+<li>If you create a node, don't add any attributes or code, it will just look like a clone of the instance source.</li>
+</ul>
+<p><img alt="simple" src="../images/instance_simple.PNG" /></p>
+<ul>
+<li>If you create a node with unique attributes it will look like the instance source is another parent. All the attributes will composite from the instance source, and the local attributes will be visible as well.</li>
+</ul>
+<p><img alt="local" src="../images/instance_local.PNG" />
+- If you create a node with attributes named the same as the instance source, the local attributes will have a stronger opinion and overwrite the instance values. In this case, <code>cat</code> exists on <code>custom_node</code> so it's value wins.
+<img alt="overwrite" src="../images/instance_overwrite.PNG" /></p>
+</div>
+<p>The children of the instance node get inserted into the hierarchy as proxy children. This data exists only as a result of the composite. The are not local saved data. Proxy children are drawn in a hashed style to make it clear you haven't touched the data.</p>
+<p><img alt="proxy_children.PNG" src="../images/proxy_children.PNG" /></p>
+<p>As soon as you begin to edit proxy children, the are converted into real editable nodes and exist in the hierarchy</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The hierarchy has the final opinion in the composite. <em>UNLESS</em> the node has an local opinion on the data.</p>
+<ul>
+<li>Layer stage</li>
+<li>Node parent</li>
+<li>Node</li>
+<li>Instance parent</li>
+<li>Instance</li>
+</ul>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Build a base arm. Instance it twice. Change L to R, done.
+<img alt="proxy_children.PNG" src="../images/inheritance_arm.gif" /></p>
+</div>
+<p>An instance of a node inherits data like a child. It creates proxy children of the instance source’s children, and can be arranged into a separate parent-child relationship as it’s instance source. </p>
+<p>Most instance attributes are carried over. Execution input is never inherited. Child order is inherited by instances but not by children.</p>
+<p>Data comes from the hierarchical parent as well as the instance source, with hierarchical parent  having final word. Instance execution order is defined by the hierarchical parent.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>If a node instances itself, or any ancestor or descendants, it will crash. It's best (because that's all thats possible) to only instance from other hierarchies or sibling nodes</p>
+</div>
+<h1 id="nxt-file-spec">NXT file spec</h1>
+<p>NXT files follow standard <code>.json</code> file specifications with a few specific keys in the root dictionary. </p>
+<p>---TODO: Figure out what these keys are.</p>
+<h1 id="design-philosophy">Design Philosophy</h1>
+<p>Nobody will ever read this pretentious wall of text, but it was an important part of the development process. We hope you find it interesting, and you may find your way here if your start to dig deeper and wonder why things are the way they are.</p>
+<h3 id="discovery">Discovery</h3>
+<p>Nxt provides a visual map/model of user facing attributes that can be understood at a glance, and presents the code in context. This invites the user to extend and modify the functionality. </p>
+<p>Nxt is designed around making processes and code as accessible as possible with low overhead. </p>
+<ul>
+<li>
+<p>Artists can modify attributes on code templates and learn to make code changes that would normally require a TD.</p>
+</li>
+<li>
+<p>TD’s can establish layered templates for processes and write nodes and graphs.</p>
+</li>
+<li>
+<p>Developers can provide Nxt ‘factory nodes’ for using their tools without writing a custom UI.</p>
+</li>
+</ul>
+<h3 id="functionalprocedural">Functional/Procedural</h3>
+<p>Nxt follows a functional model. It eschews object oriented inheritance with a layer model. This allows data to be inspected on the fly and easily read.</p>
+<h5 id="why-not-visual-programming">Why not visual programming?</h5>
+<p>Nxt differs from a visual programming environment where every function (math, concatenation, data, flow control) is wrapped up in a node. Fully visual programming environments result in sprawling graphs. While the functions are readable, they are not dense. Nxt displays code standard text notation but creates a visualization for the data.</p>
+<ul>
+<li>
+<p>VP graphs can be tedious to construct. A simple operation can often require a dozen nodes but could be represented in 3 lines of code.</p>
+</li>
+<li>
+<p>VP graphs are code under the surface anyway, so to extend the functionality, you need to write code, or construct graphs of graphs.</p>
+</li>
+<li>
+<p>VP is a great tool for visualization of your data and flow, readability, experimentation, and discovery.</p>
+</li>
+<li>
+<p>NXT is half visual. Half code. Seeks to keep the best parts and remove the friction for more seasoned developers.</p>
+</li>
+</ul>
+<h5 id="why-not-houdini">Why not Houdini?</h5>
+<p>Houdini is a tool for building tools. It’s a visual processing engine. Can’t it do all of this already?</p>
+<ul>
+<li>
+<p>Houdini doesn’t do layering</p>
+</li>
+<li>
+<p>Houdini is great, but maybe not the best at everything</p>
+</li>
+<li>
+<p>Artists have decades of experience in other tools</p>
+</li>
+<li>
+<p>Large segments of production already built around need to be built around Maya, Nuke, Unreal</p>
+</li>
+<li>
+<p>HDA’s are black boxes and can be slow in host applications</p>
+</li>
+<li>
+<p>PDG is great, and expensive.</p>
+</li>
+</ul>
+<h1 id="application-structure">Application structure</h1>
+<p><img alt="nxt_structure" src="../images/nxt_structure.png" /></p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>2020 NXT authors</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

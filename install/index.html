@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Installation - NXT User Docs</title>
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/font-awesome.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow-night.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/json.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">NXT User Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../concepts/" class="nav-link">Concepts</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../tutorials/" class="nav-link">Tutorials</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">Installation</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../reference/" class="nav-link">Reference</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../extensions/" class="nav-link">Extensions</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../api/index.html" class="nav-link">API</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../license/" class="nav-link">License</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../about/" class="nav-link">About</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../tutorials/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../reference/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#standalone-installation" class="nav-link">Standalone Installation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#maya-plugin" class="nav-link">Maya Plugin</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#developer-installation" class="nav-link">Developer Installation</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="standalone-installation">Standalone Installation</h1>
+<h3 id="linuxosx">Linux/OSX</h3>
+<p><em>The following also works for Windows Python 3.7, if you're trying to install on Windows in a Python 2 environment see <a href="#windows-python-27">here</a></em></p>
+<p>To install the latest release directly from <a href="https://pypi.org/project/nxt-editor/">PyPi</a> follow the following steps.</p>
+<ul>
+<li>First time install<ul>
+<li><code>pip install nxt-core</code></li>
+<li><code>pip install nxt-editor</code></li>
+</ul>
+</li>
+<li>Update<ul>
+<li><code>pip install -U nxt-core</code></li>
+<li><code>pip install -U nxt-editor</code></li>
+</ul>
+</li>
+</ul>
+<p>If you would like to install directly from GitHub use the following command. </p>
+<pre><code>pip install git+https://github.com/nxt-dev/nxt.git@{ tag name }
+</code></pre>
+<p>Assuming you wanted to install API version <code>0.7.1</code> the command would look like:</p>
+<pre><code>pip install git+https://github.com/nxt-dev/nxt.git@api_v0.7.1
+</code></pre>
+<p>Omit <code>@{ tag name}</code> if you want the latest from the <code>release</code> branch.</p>
+<ul>
+<li>First time install<ul>
+<li><code>pip install git+https://github.com/nxt-dev/nxt.git</code></li>
+</ul>
+</li>
+<li>Update<ul>
+<li><code>pip install -U git+https://github.com/nxt-dev/nxt.git</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="windows-python-27">Windows (Python 2.7)</h3>
+<p><em>If you're installing into a Python 3.7.x environment you can use the above <a href="#linuxosx">steps</a></em></p>
+<p>Due to the limited availability of PySide2 on Windows for Python 2.7 the steps to install on Windows are slightly more involved.
+The following steps are a simplified version of those found in our
+ <a href="https://github.com/SunriseProductions/nxt/blob/master/CONTRIBUTING.md">contributing documentation</a>.
+If you're comfortable working in and IDE and using git we suggest you follow 
+the contributing documentation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These steps are only necessary if you want to use the nxt <strong>editor</strong> outside
+ of Maya. The core will pip install on Windows without issue.</p>
+</div>
+<h4 id="python-environment-miniconda">Python Environment (Miniconda)</h4>
+<p>To get the correct Python environment setup on your Windows machine you will 
+need to follow these steps. 
+The nxt environment is specified in our <code>nxt_env.yml</code>.</p>
+<ul>
+<li>Conda is best installed via <a href="https://docs.conda.io/en/latest/miniconda.html">miniconda</a>. 
+We recommend <strong>not</strong> adding conda python to your system path and <strong>not</strong> making it your system python.</li>
+<li>You can either clone the nxt source from <a href="https://github.com/SunriseProductions/nxt">our repo</a> or download the desired
+ <a href="https://github.com/SunriseProductions/nxt/releases">release</a> source code zip and extract it.</li>
+<li>Lets assume you place the source code at <code>C:/Projects/nxt</code></li>
+<li>Launch the <strong>Anaconda Prompt</strong> and install dependencies:
+    <code>conda env create -f C:/Projects/nxt/nxt_env.yml</code></li>
+</ul>
+<h4 id="launching-the-nxt-editor">Launching the nxt editor</h4>
+<ul>
+<li>From Anaconda Prompt<ul>
+<li><code>conda activate nxt</code></li>
+<li><code>cd C:/Projects/nxt</code></li>
+<li><code>python -m nxt.cli ui</code></li>
+</ul>
+</li>
+</ul>
+<hr />
+<h1 id="maya-plugin">Maya Plugin</h1>
+<p>Install the editor and core for Maya.</p>
+<h3 id="automated">Automated</h3>
+<ul>
+<li>Place this nxt module folder somewhere you'd like to keep it, and will be
+ easy to find when you're ready to install a newer version.</li>
+<li>When your folder is in place, drag the file <code>drag_into_maya.py</code> into maya.<ul>
+<li>A file browser will appear. Please select the folder you'd like the nxt
+ module file to go in. Ensure the location you choose is in your maya modules path. This will replace any existing nxt.mod in that directory. If you're confused, the default should work."</li>
+</ul>
+</li>
+<li>Restart maya</li>
+<li>Now <code>nxt_maya.py</code> should be available for you to activate in the plugin
+ browser.</li>
+</ul>
+<p><strong>Remember</strong> not to delete this folder after installing in maya. This is where maya loads nxt from. When there is an update to nxt, you can replace this folder, and your nxt plugin will continue to work with the updated code.</p>
+<h3 id="by-hand-if-youre-familiar-with-maya-modules">By hand (if you're familiar with Maya modules)</h3>
+<p>We provide an example <code>nxt.mod</code> file with the <code>nxt_maya</code> plugin. Simply
+populate the mod path with the path to your extracted <code>nxt_maya.zip</code> and
+ place the <code>nxt.mod</code> where Maya can find it.</p>
+<h3 id="maya-plugin-usage">Maya plugin usage</h3>
+<ul>
+<li>When the nxt plugin is loaded, there is an "nxt" menu at the top of maya where you can select "Open Editor" and get started.</li>
+<li></li>
+</ul>
+<h4 id="planned-plugins">Planned plugins:</h4>
+<ul>
+<li>Houdini </li>
+<li>Nuke</li>
+</ul>
+<hr />
+<h1 id="developer-installation">Developer Installation</h1>
+<p>See our <a href="https://github.com/SunriseProductions/nxt/blob/master/CONTRIBUTING.md">contributing documentation</a></p>
+<h4 id="bootstrapping-nxt">Bootstrapping nxt</h4>
+<p>Tested with Maya2018/19/20, Houdini18, Nuke11,12</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This setup is temporary, and will eventually be replaced with a command
+ port connections with host plugins. There is also lack of support in
+  apps like photoshop, UE4 (qt library issues).</p>
+</div>
+<p>Find your conda env with this command in the Anaconda Prompt: <code>conda info --envs</code> 
+Copy the following code into Maya and edit  <code>NXT_PATH</code> and <code>ENV_PATH</code> to reflect your environment. You can then drag it to your shelf or save it to a file, up to you.</p>
+<pre><code>import sys
+import os
+# path to your nxt clone
+NXT_PATH = '~/Projects/Sun/nxt'
+# path to conda env
+ENV_PATH = 'C:/ProgramData/Miniconda2/envs/nxt/Lib/site-packages'
+# Default file to open, can be None
+LAUNCH_FILE = '~/Projects/SomeGraph.nxt'
+if ENV_PATH not in sys.path:
+    sys.path.append(os.path.expanduser(ENV_PATH))
+if NXT_PATH not in sys.path:
+    sys.path.append(os.path.expanduser(NXT_PATH))
+from Qt import QtCore
+import nxt_editor.main_window
+instance = nxt_editor.main_window.main_window.MainWindow(filepath=LAUNCH_FILE)
+if sys.platform == 'win32':
+    instance.setWindowFlags(QtCore.Qt.Window)
+instance.show()
+# To force close the instance run this line:
+# instance.close()
+</code></pre>
+<h5 id="optional-window-attach">Optional window attach</h5>
+<p>To attach to the main window in Nuke</p>
+<pre><code>def _nuke_main_window():
+    """Returns Nuke's main window"""
+    for obj in QtWidgets.QApplication.topLevelWidgets():
+        if (obj.inherits('QMainWindow') and
+                obj.metaObject().className() == 'Foundry::UI::DockMainWindow'):
+            return obj
+    else:
+        raise RuntimeError('Could not find DockMainWindow instance')
+nuke_window = _nuke_main_window()
+instance = nxt_editor.main_window.MainWindow(parent=nuke_window, filepath=LAUNCH_FILE)
+</code></pre>
+<p>To Attach to the main window in Houdini</p>
+<pre><code>from hutil.Qt import QtCore
+instance = nxt_editor.main_window.MainWindow()
+instance.setParent(hou.qt.mainWindow(), QtCore.Qt.Window)
+</code></pre>
+<p>To Attach to the main window in Maya</p>
+<pre><code>import maya.OpenMayaUI as mui
+pointer = mui.MQtUtil.mainWindow()
+maya_window = QtCompat.wrapInstance(long(pointer), QtWidgets.QWidget)
+instance = nxt_editor.main_window.MainWindow(parent=maya_window)
+</code></pre></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>2020 NXT authors</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

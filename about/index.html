@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>About - NXT User Docs</title>
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/font-awesome.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow-night.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/json.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">NXT User Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../concepts/" class="nav-link">Concepts</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../tutorials/" class="nav-link">Tutorials</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../install/" class="nav-link">Installation</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../reference/" class="nav-link">Reference</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../extensions/" class="nav-link">Extensions</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../api/index.html" class="nav-link">API</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../license/" class="nav-link">License</a>
+                            </li>
+                            <li class="navitem active">
+                                <a href="./" class="nav-link">About</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../license/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" class="nav-link disabled">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<div style="text-align: center;">
+<h4>A brief history & acknowledgment</h4>
+</div>
+
+<div class="admonition note">
+<p class="admonition-title">Sunrise Productions</p>
+<p>We would like to acknowledge <a href="https://sunriseproductions.tv/">Sunrise Productions</a> for providing us a studio incubator for 2019 and 2020. 
+Sunrise kept food on the table and believed in nxt before it was fully realized. Without their support we would never have made it this far.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">SVAD Productions</p>
+<p>We would like to acknowledge the <a href="https://www.southern.edu/visualartanddesign/">School of Visual Art and Design</a> NXT began in 2017 as a research project at SVAD. 
+Originally with the goal to make it the core rigging framework, nxt quickly grew into the backbone of pipeline.
+We are grateful for SVAD providing the resources, education, and sponsorship to get us started.</p>
+</div>
+<div style="text-align: center;">
+<h4>Special Thanks</h4>
+</div>
+
+<table style="text-align: center">
+<tr>
+<th>Walt Yoder</th>
+<th>mGear (Miquel Campos)</th>
+</tr>
+<tr>
+<th>Matt Schiller</th>
+<th></th>
+</tr>
+</table>
+
+<hr />
+<div style="text-align: center;">
+<h1>The open nxt project</h1>
+</div>
+
+<p>In simple terms, we want nxt to be too good to hide. If we can deliver on the potential we, the contributors, know is contained in nxt, we can provide great wins across 
+many parts of the computer graphics pipeline. The full realization of nxt can only come at the scale of a public release.</p>
+<p>Some of the most important technologies in our industry are open source, including <a href="https://www.unrealengine.com/en-US/">unreal engine</a>, 
+<a href="https://www.python.org/">python</a>, <a href="https://www.qt.io/">qt</a>, <a href="https://wiki.centos.org/FrontPage">centos</a>, 
+and the newest and perhaps biggest upcoming technology in the industry <a href="http://graphics.pixar.com/usd/docs/index.html">pixar usd</a>. 
+What all these tools have in common (excepting the newcomer usd) is how ubiquitous and wide reaching they are. Open source tools invite developers to bend them, tweak them, 
+and customize them to fit the exact needs of their users. The entertainment industry is full of amazing developers who are excited to build great things. 
+We believe nxt will become a stronger and better tool because it is open source.</p>
+<p>We invite and will seek out opportunities to refine and hone this vision with the help and partnership of everyone who wants nxt to be great.</p>
+<hr />
+<div style="text-align: center;">
+<h1>The nxt contributors</h1>
+</div>
+
+<table style="text-align: left;">
+<tr>
+<th><img src="../images/lucas_bw.png" style="width:100px;" alt="Lucas"/> <b>Lucas Brown</b> - Developer</th>
+<th><img src="../images/michael_bw.png" style="width:100px;" alt="Michael"/> <b>Michael Aldrich</b> - Developer</th>
+</tr>
+<tr>
+<th><img src="../images/aaron_bw.png" style="width:100px;" alt="Aaron"/> <b>Aaron Adams</b> - Visionary & Founder</th>
+<th><img src="../images/zach_bw.png" style="width:100px;" alt="Zach"/> <b>Zach Gray</b> - Contributor</th>
+</tr>
+</table></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>2020 NXT authors</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

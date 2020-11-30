@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Hotkeys - NXT User Docs</title>
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/font-awesome.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow-night.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/json.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">NXT User Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../concepts/" class="nav-link">Concepts</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../tutorials/" class="nav-link">Tutorials</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../install/" class="nav-link">Installation</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../reference/" class="nav-link">Reference</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../extensions/" class="nav-link">Extensions</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../api/index.html" class="nav-link">API</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../license/" class="nav-link">License</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../about/" class="nav-link">About</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#application-actions" class="nav-link">Application Actions</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#alignment" class="nav-link">Alignment</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#display" class="nav-link">Display</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#graph" class="nav-link">Graph</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#layers" class="nav-link">Layers</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#nodes" class="nav-link">Nodes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#property-editor" class="nav-link">Property Editor</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#node-comment" class="nav-link">Node Comment</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#graph-execution" class="nav-link">Graph Execution</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#code-editor" class="nav-link">Code Editor</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h2 id="application-actions">Application Actions</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="center">What's this</th>
+<th align="left">Tool tip</th>
+<th align="center">Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Find Node</td>
+<td align="center">Search for, select, and focus nodes in the view</td>
+<td align="left">Find Node</td>
+<td align="center">/</td>
+</tr>
+<tr>
+<td align="left">New Graph</td>
+<td align="center">New empty graph.</td>
+<td align="left">New Graph</td>
+<td align="center">Ctrl+N</td>
+</tr>
+<tr>
+<td align="left">Open Graph</td>
+<td align="center">Open nxt file.</td>
+<td align="left">Open Graph</td>
+<td align="center">Ctrl+O</td>
+</tr>
+<tr>
+<td align="left">Undo</td>
+<td align="center">Undo last command.</td>
+<td align="left">Undo</td>
+<td align="center">Ctrl+Z</td>
+</tr>
+<tr>
+<td align="left">Redo</td>
+<td align="center">Redo last command.</td>
+<td align="left">Redo</td>
+<td align="center">Ctrl+Shift+Z</td>
+</tr>
+<tr>
+<td align="left">Layer Manager</td>
+<td align="center">Toggle the layer manager widget.</td>
+<td align="left">Layer Manager</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Property Editor</td>
+<td align="center">Toggle the property editor widget.</td>
+<td align="left">Property Editor</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Code Editor</td>
+<td align="center">Toggle the code editor widget.</td>
+<td align="left">Code Editor</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">History View</td>
+<td align="center">Toggle the history view widget.</td>
+<td align="left">History View</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Build View</td>
+<td align="center">Toggle the build view widget.</td>
+<td align="left">Build View</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Output Log</td>
+<td align="center">Toggle the output log widget.</td>
+<td align="left">Output Log</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Hotkey Editor</td>
+<td align="center">Toggle the hotkey editor widget.</td>
+<td align="left">Hotkey Editor</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Workflow Tools</td>
+<td align="center">Workflow tools dock widget.</td>
+<td align="left">Workflow Tools</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Exit</td>
+<td align="center">Close nxt.</td>
+<td align="left">Exit</td>
+<td align="center">Alt+F4</td>
+</tr>
+<tr>
+<td align="left">Open Last Closed</td>
+<td align="center">Open previously closed file(s)</td>
+<td align="left">Open Last Closed</td>
+<td align="center">Ctrl+Shift+T</td>
+</tr>
+<tr>
+<td align="left">Close Tab</td>
+<td align="center">Close active tab</td>
+<td align="left">Close Tab</td>
+<td align="center">Ctrl+W</td>
+</tr>
+<tr>
+<td align="left">Find and Open Graph</td>
+<td align="center"></td>
+<td align="left">Find and Open Graph</td>
+<td align="center">Ctrl+P</td>
+</tr>
+</tbody>
+</table>
+<h2 id="alignment">Alignment</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="center">What's this</th>
+<th align="left">Tool tip</th>
+<th align="center">Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Toggle Grid Snapping</td>
+<td align="center">Toggles grid snapping while moving nodes.</td>
+<td align="left">Toggle snap to grid</td>
+<td align="center">Ctrl+G</td>
+</tr>
+</tbody>
+</table>
+<h2 id="display">Display</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="center">What's this</th>
+<th align="left">Tool tip</th>
+<th align="center">Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Raw View</td>
+<td align="center">Displays raw editor values for this tab.</td>
+<td align="left">Toggle editor view</td>
+<td align="center">Q</td>
+</tr>
+<tr>
+<td align="left">Resolved View</td>
+<td align="center">Displays resolved values for this tab.</td>
+<td align="left">Toggle resolved view</td>
+<td align="center">W</td>
+</tr>
+<tr>
+<td align="left">Cached View</td>
+<td align="center">Displays cached values for this tab.</td>
+<td align="left">Toggle cached view</td>
+<td align="center">E</td>
+</tr>
+</tbody>
+</table>
+<h2 id="graph">Graph</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="center">What's this</th>
+<th align="left">Tool tip</th>
+<th align="center">Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Display Node Tooltips</td>
+<td align="center"></td>
+<td align="left">Display Node Tooltips</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Frame All</td>
+<td align="center">Frames all nodes so they are visible.</td>
+<td align="left">Frame all nodes</td>
+<td align="center">A</td>
+</tr>
+<tr>
+<td align="left">Frame Selection</td>
+<td align="center">Frames the selected node.</td>
+<td align="left">Frame selected node</td>
+<td align="center">F</td>
+</tr>
+<tr>
+<td align="left">Display No Attrs</td>
+<td align="center">Display no attributes</td>
+<td align="left">Display No Attrs</td>
+<td align="center">0</td>
+</tr>
+<tr>
+<td align="left">Display Local Attrs</td>
+<td align="center">Display local attributes only</td>
+<td align="left">Display Local Attrs</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td align="left">Display Local+Inst Attrs</td>
+<td align="center">Display local and instanced attributes</td>
+<td align="left">Display Local+Inst Attrs</td>
+<td align="center">2</td>
+</tr>
+<tr>
+<td align="left">Display All Attrs</td>
+<td align="center">Display local, instanced, and inherited attributes</td>
+<td align="left">Display All Attrs</td>
+<td align="center">3</td>
+</tr>
+<tr>
+<td align="left">Toggle Grid</td>
+<td align="center">Shows or hides the grid for all tabs.</td>
+<td align="left">Show / Hide the Grid</td>
+<td align="center">Ctrl+;</td>
+</tr>
+<tr>
+<td align="left">Toggle Implicit Connections</td>
+<td align="center">Shows or hides the implicit connections for this tab.</td>
+<td align="left">Show / Hide Implicit Connections</td>
+<td align="center">Ctrl+L</td>
+</tr>
+<tr>
+<td align="left">Pick walk up</td>
+<td align="center"></td>
+<td align="left">Pick walk up</td>
+<td align="center">Up</td>
+</tr>
+<tr>
+<td align="left">Pick walk down</td>
+<td align="center"></td>
+<td align="left">Pick walk down</td>
+<td align="center">Down</td>
+</tr>
+<tr>
+<td align="left">Pick walk left</td>
+<td align="center"></td>
+<td align="left">Pick walk left</td>
+<td align="center">Left</td>
+</tr>
+<tr>
+<td align="left">Pick walk right</td>
+<td align="center"></td>
+<td align="left">Pick walk right</td>
+<td align="center">Right</td>
+</tr>
+<tr>
+<td align="left">Nudge up</td>
+<td align="center"></td>
+<td align="left">Nudge up</td>
+<td align="center">Shift+Up</td>
+</tr>
+<tr>
+<td align="left">Nudge down</td>
+<td align="center"></td>
+<td align="left">Nudge down</td>
+<td align="center">Shift+Down</td>
+</tr>
+<tr>
+<td align="left">Nudge up</td>
+<td align="center"></td>
+<td align="left">Nudge up</td>
+<td align="center">Shift+Up</td>
+</tr>
+<tr>
+<td align="left">Nudge left</td>
+<td align="center"></td>
+<td align="left">Nudge left</td>
+<td align="center">Shift+Left</td>
+</tr>
+<tr>
+<td align="left">Nudge right</td>
+<td align="center"></td>
+<td align="left">Nudge right</td>
+<td align="center">Shift+Right</td>
+</tr>
+</tbody>
+</table>
+<h2 id="layers">Layers</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="center">What's this</th>
+<th align="left">Tool tip</th>
+<th align="center">Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Save Layer</td>
+<td align="center">Saves the current layer to disc</td>
+<td align="left">Save Layer</td>
+<td align="center">Ctrl+S</td>
+</tr>
+<tr>
+<td align="left">Save Layer As</td>
+<td align="center"></td>
+<td align="left">Save Layer As</td>
+<td align="center">Ctrl+Shift+S</td>
+</tr>
+<tr>
+<td align="left">Save All Layers</td>
+<td align="center"></td>
+<td align="left">Save All Layers</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Open Source</td>
+<td align="center">Open target layer in new tab.</td>
+<td align="left">Open Source</td>
+<td align="center">Ctrl+Shift+O</td>
+</tr>
+<tr>
+<td align="left">Toggle Layer Mute</td>
+<td align="center"></td>
+<td align="left">Toggle Layer Mute</td>
+<td align="center">M</td>
+</tr>
+<tr>
+<td align="left">Toggle Layer Solo</td>
+<td align="center"></td>
+<td align="left">Toggle Layer Solo</td>
+<td align="center">S</td>
+</tr>
+<tr>
+<td align="left">Change Color</td>
+<td align="center"></td>
+<td align="left">Change Color</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Change Alias</td>
+<td align="center"></td>
+<td align="left">Change Alias</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Create Layer Above</td>
+<td align="center"></td>
+<td align="left">Create Layer Above</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Create Layer Below</td>
+<td align="center"></td>
+<td align="left">Create Layer Below</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Reference Layer Above</td>
+<td align="center"></td>
+<td align="left">Reference Layer Above</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Reference Layer Below</td>
+<td align="center"></td>
+<td align="left">Reference Layer Below</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Remove Layer</td>
+<td align="center"></td>
+<td align="left">Remove Layer</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Layer Manager as Table</td>
+<td align="center"></td>
+<td align="left">Layer Manager as Table</td>
+<td align="center">V</td>
+</tr>
+</tbody>
+</table>
+<h2 id="nodes">Nodes</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="center">What's this</th>
+<th align="left">Tool tip</th>
+<th align="center">Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Select All Nodes</td>
+<td align="center"></td>
+<td align="left">Select All Nodes</td>
+<td align="center">Ctrl+A</td>
+</tr>
+<tr>
+<td align="left">Add Node</td>
+<td align="center">Add a new node to the current graph</td>
+<td align="left">Add Node</td>
+<td align="center">N</td>
+</tr>
+<tr>
+<td align="left">Delete Node</td>
+<td align="center">Delete the selected node(s).</td>
+<td align="left">Delete Node</td>
+<td align="center">Del</td>
+</tr>
+<tr>
+<td align="left">Recursive Delete Node</td>
+<td align="center">Delete selected node and all of its descendants recursively.</td>
+<td align="left">Recursive Delete Node</td>
+<td align="center">Shift+Del</td>
+</tr>
+<tr>
+<td align="left">Cut</td>
+<td align="center"></td>
+<td align="left">Cut</td>
+<td align="center">Ctrl+X</td>
+</tr>
+<tr>
+<td align="left">Copy</td>
+<td align="center"></td>
+<td align="left">Copy</td>
+<td align="center">Ctrl+C</td>
+</tr>
+<tr>
+<td align="left">Paste</td>
+<td align="center"></td>
+<td align="left">Paste</td>
+<td align="center">Ctrl+V</td>
+</tr>
+<tr>
+<td align="left">Duplicate Node</td>
+<td align="center"></td>
+<td align="left">Duplicate Node</td>
+<td align="center">Ctrl+D</td>
+</tr>
+<tr>
+<td align="left">Instance Node</td>
+<td align="center"></td>
+<td align="left">Instance Node</td>
+<td align="center">Ctrl+I</td>
+</tr>
+<tr>
+<td align="left">Remove Instance</td>
+<td align="center">Removes instance path from node overloading weaker layer instance opinions.</td>
+<td align="left">Removes Instance</td>
+<td align="center">Ctrl+Shift+I</td>
+</tr>
+<tr>
+<td align="left">Localize Node</td>
+<td align="center"></td>
+<td align="left">Localize Node</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Revert Node</td>
+<td align="center"></td>
+<td align="left">Revert Node</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Enable/Disable Node</td>
+<td align="center"></td>
+<td align="left">Enable/Disable Node</td>
+<td align="center">D</td>
+</tr>
+<tr>
+<td align="left">Parent</td>
+<td align="center">Parent node(s).</td>
+<td align="left">Parent</td>
+<td align="center">P</td>
+</tr>
+<tr>
+<td align="left">Un-Parent</td>
+<td align="center">Un-parent node(s).</td>
+<td align="left">Un-Parent</td>
+<td align="center">Shift+P</td>
+</tr>
+<tr>
+<td align="left">Move up in child order</td>
+<td align="center"></td>
+<td align="left">Move up in child order</td>
+<td align="center">Ctrl+Up</td>
+</tr>
+<tr>
+<td align="left">Move down in child order</td>
+<td align="center"></td>
+<td align="left">Move down in child order</td>
+<td align="center">Ctrl+Down</td>
+</tr>
+<tr>
+<td align="left">Toggle Node Collapse</td>
+<td align="center">Toggle the collapse state for the selected node(s).</td>
+<td align="left">Toggle Node Collapse</td>
+<td align="center">Alt+C</td>
+</tr>
+<tr>
+<td align="left">Recursive Toggle Node Collapse</td>
+<td align="center">Recursively toggle the collapse state for the selected node(s).</td>
+<td align="left">Recursive Toggle Node Collapse</td>
+<td align="center">Alt+Shift+C</td>
+</tr>
+<tr>
+<td align="left">Rename Node</td>
+<td align="center"></td>
+<td align="left">Rename Node</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Revert child order</td>
+<td align="center"></td>
+<td align="left">Revert child order</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="property-editor">Property Editor</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="center">What's this</th>
+<th align="left">Tool tip</th>
+<th align="center">Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Localize Instance Path</td>
+<td align="center"></td>
+<td align="left">Localize Instance Path</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Revert Instance Path</td>
+<td align="center"></td>
+<td align="left">Revert Instance Path</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Localize Exec Path</td>
+<td align="center"></td>
+<td align="left">Localize Exec Path</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Revert Exec Path</td>
+<td align="center"></td>
+<td align="left">Revert Exec Path</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Add Attribute</td>
+<td align="center"></td>
+<td align="left">Add Attribute</td>
+<td align="center">Ctrl+A</td>
+</tr>
+<tr>
+<td align="left">Remove Attribute</td>
+<td align="center"></td>
+<td align="left">Remove Attribute</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Localize Attribute</td>
+<td align="center"></td>
+<td align="left">Localize Attribute</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Revert Attribute</td>
+<td align="center"></td>
+<td align="left">Revert Attribute</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="node-comment">Node Comment</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="center">What's this</th>
+<th align="left">Tool tip</th>
+<th align="center">Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Accept Node Comment</td>
+<td align="center">Accepts the current text in the comment box as the node comment.</td>
+<td align="left">Accept Node Comment</td>
+<td align="center">Ctrl+Return</td>
+</tr>
+<tr>
+<td align="left">Cancel Node Comment</td>
+<td align="center">Cancels the edit of the node comment.</td>
+<td align="left">Cancel Node Comment</td>
+<td align="center">Esc</td>
+</tr>
+</tbody>
+</table>
+<h2 id="graph-execution">Graph Execution</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="center">What's this</th>
+<th align="left">Tool tip</th>
+<th align="center">Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Run Build</td>
+<td align="center">Runs build specified by the current value of build view.</td>
+<td align="left">Run Build</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Execute Graph</td>
+<td align="center"></td>
+<td align="left">Execute Graph</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Execute Selected</td>
+<td align="center"></td>
+<td align="left">Execute Selected</td>
+<td align="center">Enter</td>
+</tr>
+<tr>
+<td align="left">Execute From Selected</td>
+<td align="center">Execute from the currently selected node and continue down the exec chain.</td>
+<td align="left">Execute</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Execute Hierarchy</td>
+<td align="center"></td>
+<td align="left">Execute Hierarchy</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Add Start Point</td>
+<td align="center"></td>
+<td align="left">Add Start Point</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Remove Start Point</td>
+<td align="center"></td>
+<td align="left">Remove Start Point</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Revert Start Point</td>
+<td align="center"></td>
+<td align="left">Revert Start Point</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Find Startpoint</td>
+<td align="center">Cycles the node focus through all start points.</td>
+<td align="left">Find Startpoint(s)</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Add Breakpoint</td>
+<td align="center">Adds the breakpoint on the selected node(s).</td>
+<td align="left">Add Breakpoint</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Remove Breakpoint</td>
+<td align="center">Removes the breakpoint on the selected node(s).</td>
+<td align="left">Remove Breakpoint</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Clear All Breakpoints</td>
+<td align="center"></td>
+<td align="left">Clear All Breakpoints</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Clear Cache</td>
+<td align="center">Clears the Python interpreter and cached data.</td>
+<td align="left">Clear Cache Now</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Workflow Tools Always Recomp</td>
+<td align="center"></td>
+<td align="left">Workflow Tools Always Recomp</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Toggle Start Point</td>
+<td align="center">Toggles a startpoint on the selected node.</td>
+<td align="left">Toggle Start Point</td>
+<td align="center">S</td>
+</tr>
+<tr>
+<td align="left">Toggle Breakpoint</td>
+<td align="center">Toggles a breakpoint on the selected node(s).</td>
+<td align="left">Toggle Breakpoint</td>
+<td align="center">B</td>
+</tr>
+<tr>
+<td align="left">Stop Execution</td>
+<td align="center"></td>
+<td align="left">Stop Execution</td>
+<td align="center">Esc</td>
+</tr>
+<tr>
+<td align="left">Pause Execution</td>
+<td align="center"></td>
+<td align="left">Pause Execution</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Step Build</td>
+<td align="center"></td>
+<td align="left">Step Build</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<h2 id="code-editor">Code Editor</h2>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="center">What's this</th>
+<th align="left">Tool tip</th>
+<th align="center">Shortcut</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Copy Resolved Code</td>
+<td align="center">Copy the entire (resolved) contents of the code editor.</td>
+<td align="left">Copy Resolved Code</td>
+<td align="center">Ctrl+Shift+C</td>
+</tr>
+<tr>
+<td align="left">Localize Code</td>
+<td align="center">Localize the code to the target layer's node.</td>
+<td align="left">Localize Code</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Revert Code</td>
+<td align="center">Revert the code to the next strongest opinion.</td>
+<td align="left">Revert Code</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Increase Font Size</td>
+<td align="center">Increase the code editor font size.</td>
+<td align="left">Increase Font Size</td>
+<td align="center">Ctrl+=</td>
+</tr>
+<tr>
+<td align="left">Decrease Font Size</td>
+<td align="center">Decrease the code editor font size.</td>
+<td align="left">Decrease Font Size</td>
+<td align="center">Ctrl+-</td>
+</tr>
+<tr>
+<td align="left">Revert Font Size</td>
+<td align="center">Revert the code editor font size to default.</td>
+<td align="left">Revert Font Size</td>
+<td align="center">Ctrl+0</td>
+</tr>
+<tr>
+<td align="left">New Line</td>
+<td align="center">Insert a new line.</td>
+<td align="left">New Line</td>
+<td align="center">Return</td>
+</tr>
+<tr>
+<td align="left">Indent Line</td>
+<td align="center">Indent selected line(s).</td>
+<td align="left">Indent Line</td>
+<td align="center">Tab</td>
+</tr>
+<tr>
+<td align="left">Un-Indent Line</td>
+<td align="center">Un-indent selected line(s).</td>
+<td align="left">Un-Indent Line</td>
+<td align="center">Shift+Tab</td>
+</tr>
+<tr>
+<td align="left">Execute Selection Globally</td>
+<td align="center">Execute selected line(s)All declared variable will be globally available.</td>
+<td align="left">Execute Selection Globally</td>
+<td align="center">Ctrl+Shift+Return</td>
+</tr>
+<tr>
+<td align="left">Execute Selection Locally</td>
+<td align="center">Execute selected line(s) Locally declared variables fall out of scope after execution.</td>
+<td align="left">Execute Selection Locally</td>
+<td align="center">Shift+Return</td>
+</tr>
+<tr>
+<td align="left">Comment Line</td>
+<td align="center">Comment the selected line(s).</td>
+<td align="left">Comment Line</td>
+<td align="center">Ctrl+/</td>
+</tr>
+<tr>
+<td align="left">Accept Code Edit</td>
+<td align="center">Accept changes and commit them to the node.</td>
+<td align="left">Accept Code Edit</td>
+<td align="center">Enter</td>
+</tr>
+<tr>
+<td align="left">Cancel Code Edit</td>
+<td align="center">Discard changes to the code.</td>
+<td align="left">Cancel Code Edit</td>
+<td align="center">Esc</td>
+</tr>
+</tbody>
+</table></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>2020 NXT authors</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

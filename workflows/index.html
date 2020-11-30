@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Workflows - NXT User Docs</title>
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/font-awesome.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow-night.min.css">
+
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/json.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">NXT User Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../concepts/" class="nav-link">Concepts</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../tutorials/" class="nav-link">Tutorials</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../install/" class="nav-link">Installation</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../reference/" class="nav-link">Reference</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../extensions/" class="nav-link">Extensions</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../api/index.html" class="nav-link">API</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../license/" class="nav-link">License</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../about/" class="nav-link">About</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#workflows" class="nav-link">Workflows</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#transition-map" class="nav-link">Transition Map</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#_1" class="nav-link"></a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#_2" class="nav-link"></a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="workflows">Workflows</h1>
+<p>Nxt supports a particularly diverse cross-section of users with  very different needs and working methods. </p>
+<h5 id="artist">Artist</h5>
+<p>Code is just a click away for artists who know some scripting. Artists can tweak code written by a TD, and build on that example. Artists can also build their own graphs if a project doesn't require a TD.</p>
+<p>For example, they could change the height of a rig, or the image size for a render callback, or the directory where an asset is loaded.</p>
+<h5 id="td">TD</h5>
+<p>A TD’s workflow bridges the gap between artists and developers. TD will need most of the deep functionality that a developer needs, but need to focus on speed when  when it’s time to solve problems for artists.  </p>
+<h5 id="black-box">Black Box</h5>
+<p>A Nxt graph can be packaged up as a pipeline tool and run in the background or on the farm. This might include:</p>
+<ul>
+<li>Rig build</li>
+<li>Asset publish</li>
+<li>Asset QC</li>
+<li>Farm submission</li>
+<li>Post render image processing</li>
+<li>VFX wedge</li>
+<li>Scene assembly</li>
+</ul>
+<h5 id="developer">Developer</h5>
+<p>If nxt can provide a accessible front end to software and processes, developers can spend more time on lower level tools. </p>
+<h1 id="transition-map">Transition Map</h1>
+<p>This table will take concepts you are familiar with in other products and draw paralells to nxt concepts.</p>
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>NXT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>You refer to a directory and file by a path. For example, <code>/projects/images/image.png</code> This path points your program to the data in that file.</td>
+<td>You refer to a node and attribute by a path. For example <code>/node/node2.attr</code>  This points NXT to the data in that source attribute.</td>
+</tr>
+<tr>
+<td>You can create a shortcut to another file. We know that it isn’t the file, but a pointer to quickly work with that file.</td>
+<td>A token is a little like that shortcut. The token syntax is <code>${path}</code>.<br/> A instance is also notionally similar to a shortcut in the most simple case.</td>
+</tr>
+<tr>
+<td>You can use relative paths, like <code>../scenes/object.obj</code>.</td>
+<td>You can use relative node paths, like, <code>${../node2.attr}</code></td>
+</tr>
+<tr>
+<td>You refer to the drive root with <code>/</code></td>
+<td>You refer to the stage root with <code>/</code></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>NXT node hierarchies process in a tree structure very similar to a directory structure. It starts at the root, executes any code in that node, then crawls through child nodes, compositing and executing any code it finds.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Photoshop/ NLE</th>
+<th>NXT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A basic photoshop layer contains an image. Add a new layer and you can see everything below until you paint on the higher layer in an area where there is already an image. Then the base layers become overridden.</td>
+<td>A NXT layer contains a set of nodes. Add a new layer and you can see everything below until you add a node on the higher layer that shares a name with a layer. Then the node on the lower layer is overridden.</td>
+</tr>
+<tr>
+<td>You can mute and solo layers to change what you see.</td>
+<td>You can mute and solo layers to change what is composited and executed</td>
+</tr>
+<tr>
+<td>You can overwrite a small portion of the image with a higher layer, or cover the entire layer.</td>
+<td>You can overwrite a single attribute, or overwrite the entire node.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Maya</th>
+<th>NXT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Maya nodes have attributes that hold data or connections to other nodes.</td>
+<td>NXT nodes have properties that hold data or pointers to other nodes or properties</td>
+</tr>
+<tr>
+<td>Maya draws connections between connected attributes.</td>
+<td>NXT draws two types of connections. 1. Node execution 2. Attribute connections</td>
+</tr>
+<tr>
+<td>Maya transform nodes exist in a hierarchy and inherit the transforms of their parent.</td>
+<td>NXT nodes inherit properties and values of parent nodes.</td>
+</tr>
+<tr>
+<td>Maya executes using a DAG.</td>
+<td>NXT executes using a DAG and then a tree.</td>
+</tr>
+<tr>
+<td>A Maya instance is a pointer to a shape, but that shape can have any transform. Any change to the shape propagates to all the instances.</td>
+<td>A NXT instance is a pointer to a node, and any attributes on that node can be selectively overridden. A change to the original node propagates to all the instances</td>
+</tr>
+<tr>
+<td>A Maya reference loads an external file, and then attributes and connections can be overridden or added ( but not deleted ), leaving the source file untouched.</td>
+<td>A  NXT layer loads an external file, and then attributes and connections can be overridden or added ( but not deleted ), leaving the source file untouched.</td>
+</tr>
+<tr>
+<td>To make substantial changes to a Maya reference, you would change the original file, or import the file and ‘own’ it in your scene.</td>
+<td>A NXT node can be localized and similar to importing.</td>
+</tr>
+<tr>
+<td>Values are edited via channel box or attribute editor</td>
+<td>Values are edited via property editor</td>
+</tr>
+<tr>
+<td>UI: navigation, renaming, node connections, 123 hotkeys, qwer hotkeys,</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Nuke</th>
+<th>NXT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nuke processes a graph of nodes. Each node can manipulate, add, or remove image data in specific channels.</td>
+<td>NXT processes a graph of node trees. Any node can access or overwrite an inherited attribute.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h1 id="_1"></h1>
+<table>
+<thead>
+<tr>
+<th>Houdini</th>
+<th>NXT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Houdini SOP nodes pass a table of attributes to subsequent nodes that can be modified, added or deleted.</td>
+<td>NXT works in a similar way with it’s inheritance tree.</td>
+</tr>
+<tr>
+<td>Any child node can access an inherited attribute, visualized via spreadsheet.</td>
+<td>Any child node can access an inherited attribute, visualized via resolved/cached view.</td>
+</tr>
+<tr>
+<td>Node paths follow OS conventions</td>
+<td>Node paths follow OS conventions</td>
+</tr>
+</tbody>
+</table>
+<h1 id="_2"></h1>
+<table>
+<thead>
+<tr>
+<th>Blueprint/Bifrost/Ice/VEX</th>
+<th>NXT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VP has a node for every function; type conversion, flow control, random generation.</td>
+<td>NXT uses nodes and graphs to represent the data and tree execution, but the logic, flow control, and execution is all code.</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>2020 NXT authors</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
