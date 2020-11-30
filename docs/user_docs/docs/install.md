@@ -1,22 +1,27 @@
-# Standalone Installation
+<h1>Standalone Installation</h1>
 
-### Linux/OSX
+## Linux or Mac
 
 *The following also works for Windows Python 3.7, if you're trying to install on Windows in a Python 2 environment see [here](#windows-python-27)*
 
 To install the latest release directly from [PyPi](https://pypi.org/project/nxt-editor/) follow the following steps.
 
 - First time install
-    - `pip install nxt-core`
-    - `pip install nxt-editor`
+    - For just the cli and backend: `pip install nxt-core`
+    - For the backend and the visual editor: `pip install nxt-editor`
 - Update
     - `pip install -U nxt-core`
     - `pip install -U nxt-editor`
 
 If you would like to install directly from GitHub use the following command. 
 
+*Core*
 ```
 pip install git+https://github.com/nxt-dev/nxt.git@{ tag name }
+``` 
+*Editor*
+```
+pip install git+https://github.com/nxt-dev/nxt_editor.git@{ tag name }
 ``` 
 
 Assuming you wanted to install API version `0.7.1` the command would look like:
@@ -33,7 +38,7 @@ Omit `@{ tag name}` if you want the latest from the `release` branch.
     - `pip install -U git+https://github.com/nxt-dev/nxt.git`
 
 
-### Windows (Python 2.7)
+## Windows (Python 2.7)
 *If you're installing into a Python 3.7.x environment you can use the above [steps](#linuxosx)*
 
 Due to the limited availability of PySide2 on Windows for Python 2.7 the steps to install on Windows are slightly more involved.

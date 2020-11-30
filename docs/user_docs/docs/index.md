@@ -5,56 +5,53 @@ scene assembly, and automation.
 
 *It’s code with layers with a nice way to see and change data.*
 
-## Introduction
+## What is nxt?
+NXT is a layered code compositing application. Enabling visualization of complex scripts and easy cross discipline collaboration.
 
-The primary function of nxt is to visualize and automate programming tasks 
-related to computer graphics and linear processing. The intent is to bridge 
-the gap between one-off scripting and general purpose tools through the use of 
-inheritance, layering, and string tokens.
-## Why use nxt?
-The core functionality of nxt was built with insights from industry veterans 
-of various technical and artistic backgrounds. We set out to bring to the
- table a simple set of principles:
+## How do I get it?
+- **pip**
+    - `pip install nxt-editor`
+- **zip**
+    - Download the latest `nxt_<dccName>.zip` from our GitHub <a href="https://github.com/nxt-dev/nxt_editor/releases/latest" target="_blank">releases page</a>.
+    - Follow the instruction in the `README` inside that zip.
+- **special**
+    - See [here](install#windows-python-27)
+#### Standalone App
+<div style="text-align: center">
+<table>
+<tr><th><h2>Platform</h2></th><th><h2>Python 2</h2></th><th><h2>Python 3</h2></th></tr>
+<tr><th><h5><a href="install#linux-or-osx">Linux</a></h5></th><th><h6><b>pip</b></h6></th><th><h6><b>pip</b></h6></th></tr>
+<tr><th><h5><a href="install#linux-or-osx">Mac</a></h5></th><th><h6><b>pip</b></h6></th><th><h6><b>pip</b></h6></th></tr>
+<tr><th><h5><a href="install#windows-python-27">Windows</a></h5></th><th><h6><b>special</b></h6></th><th><h6><b>pip</b></h6></tr>
+</table>
+</div>
 
-- Visualize a map of what a complex script is actually doing. 
-[Nodes](reference.md#node), [inheritance](concepts.md#inheritance), and
-connection lines are easy to understand. However, we've gone a step further 
-and added string [tokens](reference.md#tokens). An instant visualization 
-of what an attribute value _actually_ is. Our tokens can be used _almost_
-anywhere inside nxt and are dynamically "resolved" during execution. Allowing the
-user to see exactly what data is flowing around without the use of an
-external debugger.
-- Encourage collaboration though [layering](reference.md#layers) and multi context graphs. 
-With our layering system it is easy for departments to share base workflows and
-utility nodes. Since layering is non-destructive graphs can referenced built on 
-without worrying about breaking someone else's graph. With [multi context](extensions.md#creating-custom-contexts) 
-graphs a Maya user, for example, can directly call a Houdini graph from inside Maya. 
-Alternatively, graphs can call other graphs in the same context, allowing 
-interdependent graphs to be developed simultaneously.
-- Make code accessible to everyone. Artists can modify attributes like their
-used to and learn to make simple code changes that normally would require a 
-TD to intervene. We're not visual programming, but rather a friendly visual
-portal into code.
+#### DCC Plugin/Editor
 
-## What does nxt do?
-In the simplest of terms nxt combines multiple layers of nodes into a single 
-composite layer that is then executable. Something like Photoshop layers for
-your code, you're able to mute, solo, override, and extend layers of code. 
-The resulting composite of the code clearly visualizes where attributes and
-their values came from. Colors, node paths, and conveniently placed buttons/links 
-allow users to quickly jump to and correct erroneous values.
+<div style="text-align: center">
+<table>
+<tr><th><h2>DCC</h2></th><th><h2>Install</h2></th></tr>
+<tr><th><h6><a href="install#maya-plugin">Maya</a></h6></th><th><h6><b>zip</b></h6></th></tr>
+</table>
+</div>
 
-*Example character rig with a general to specific layer structure*
-![layers](images/nxt_layers01.gif)
+## Where do I ask questions or report a bug?
+Head over to our <a href="https://groups.google.com/g/opennxt" target="_blank">Google Group</a> to ask questions, get help, or report a bug.
 
-## Limitations
-- We currently do not support asynchronous execution in a single graph. Our 
-current focus is on lineal scripts.
-- We are [not visual programming](reference.md#design-philosophy), no for loop nodes sorry.
-- We currently do not support Python 3, however it is on the top of our
-priority list.
+If you're confident you found a bug and are familur with GitHub you can report a <a href="https://github.com/nxt-dev/nxt/issues" target="_blank">core bug here</a> or an <a href="https://github.com/nxt-dev/nxt_editor/issues" target="_blank">editor bug here</a>.
 
-|  |  |
-| :---: | :---: |
-| Concepts | Tutorials |
-| See [concepts](concepts.md) for a quick overview of nxt's core concepts. | See the [tutorials](tutorials.md) for a step by step walkthroughs |
+<br>
+
+---
+
+<div style="text-align: center">
+<table>
+<tr><th><h2>Concepts</h2></th><th><h2>Tutorials</h2></th></tr>
+<tr><th><h6>See <a href="concepts">concepts</a> for a quick overview of nxt's core concepts.</h6></th>
+<th><h6>See the <a href="tutorials">tutorials</a> for a step by step walkthroughs.</h6></th></tr>
+<tr><th><h2>Questions</h2></th><th><h2>Contributing</h2></th></tr>
+<tr><th><h6>Ask questions on our <a href="https://groups.google.com/g/opennxt" target="_blank">Google Group</a>.</h6></th>
+<th><h6>See the contributing documentation for <a href="https://github.com/nxt-dev/nxt/blob/release/CONTRIBUTING.md" target="_blank">nxt</a> or 
+<a href="https://github.com/nxt-dev/nxt_editor/blob/release/CONTRIBUTING.md" target="_blank">nxt editor</a>.</h6></th></tr>
+</table>
+</div>

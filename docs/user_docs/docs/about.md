@@ -1,6 +1,56 @@
-<div style="text-align: center;">
-<h4>A brief history & acknowledgment</h4>
-</div>
+## Introduction
+
+The primary function of nxt is to visualize and automate programming tasks 
+related to computer graphics and linear processing. The intent is to bridge 
+the gap between one-off scripting and general purpose tools through the use of 
+inheritance, layering, and string tokens.
+## Why use nxt?
+The core functionality of nxt was built with insights from industry veterans 
+of various technical and artistic backgrounds. We set out to bring to the
+ table a simple set of principles:
+
+- Visualize a map of what a complex script is actually doing. 
+[Nodes](reference.md#node), [inheritance](concepts.md#inheritance), and
+connection lines are easy to understand. However, we've gone a step further 
+and added string [tokens](reference.md#tokens). An instant visualization 
+of what an attribute value _actually_ is. Our tokens can be used _almost_
+anywhere inside nxt and are dynamically "resolved" during execution. Allowing the
+user to see exactly what data is flowing around without the use of an
+external debugger.
+- Encourage collaboration though [layering](reference.md#layers) and multi context graphs. 
+With our layering system it is easy for departments to share base workflows and
+utility nodes. Since layering is non-destructive graphs can referenced built on 
+without worrying about breaking someone else's graph. With [multi context](extensions.md#creating-custom-contexts) 
+graphs a Maya user, for example, can directly call a Houdini graph from inside Maya. 
+Alternatively, graphs can call other graphs in the same context, allowing 
+interdependent graphs to be developed simultaneously.
+- Make code accessible to everyone. Artists can modify attributes like their
+used to and learn to make simple code changes that normally would require a 
+TD to intervene. We're not visual programming, but rather a friendly visual
+portal into code.
+
+## What does nxt do?
+In the simplest of terms nxt combines multiple layers of nodes into a single 
+composite layer that is then executable. Something like Photoshop layers for
+your code, you're able to mute, solo, override, and extend layers of code. 
+The resulting composite of the code clearly visualizes where attributes and
+their values came from. Colors, node paths, and conveniently placed buttons/links 
+allow users to quickly jump to and correct erroneous values.
+
+*Example character rig with a general to specific layer structure*
+![layers](images/nxt_layers01.gif)
+
+## Limitations
+- We currently do not support asynchronous execution in a single graph. Our 
+current focus is on lineal scripts.
+- We are [not visual programming](reference.md#design-philosophy), no for loop nodes sorry.
+- We currently experimentally support Python 3, it is possible to lose layout and break point preferences 
+by switching back and forth between Py2/3.
+
+---
+
+#### A brief history & acknowledgment
+
 
 !!! Note "Sunrise Productions"
     We would like to acknowledge [Sunrise Productions](https://sunriseproductions.tv/) for providing us a studio incubator for 2019 and 2020. 
@@ -25,24 +75,6 @@
 <th></th>
 </tr>
 </table>
-
----
-
-<div style="text-align: center;">
-<h1>The open nxt project</h1>
-</div>
-
-In simple terms, we want nxt to be too good to hide. If we can deliver on the potential we, the contributors, know is contained in nxt, we can provide great wins across 
-many parts of the computer graphics pipeline. The full realization of nxt can only come at the scale of a public release.
-
-Some of the most important technologies in our industry are open source, including [unreal engine](https://www.unrealengine.com/en-US/), 
-[python](https://www.python.org/), [qt](https://www.qt.io/), [centos](https://wiki.centos.org/FrontPage), 
-and the newest and perhaps biggest upcoming technology in the industry [pixar usd](http://graphics.pixar.com/usd/docs/index.html). 
-What all these tools have in common (excepting the newcomer usd) is how ubiquitous and wide reaching they are. Open source tools invite developers to bend them, tweak them, 
-and customize them to fit the exact needs of their users. The entertainment industry is full of amazing developers who are excited to build great things. 
-We believe nxt will become a stronger and better tool because it is open source.
-
-We invite and will seek out opportunities to refine and hone this vision with the help and partnership of everyone who wants nxt to be great.
 
 ---
 
