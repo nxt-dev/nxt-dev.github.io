@@ -99,7 +99,12 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#standalone-installation" class="nav-link">Standalone Installation</a>
+            <li class="nav-item" data-level="2"><a href="#linux-or-mac" class="nav-link">Linux or Mac</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#windows-python-27" class="nav-link">Windows (Python 2.7)</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -118,14 +123,15 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="standalone-installation">Standalone Installation</h1>
-<h3 id="linuxosx">Linux/OSX</h3>
+<h1>Standalone Installation</h1>
+
+<h2 id="linux-or-mac">Linux or Mac</h2>
 <p><em>The following also works for Windows Python 3.7, if you're trying to install on Windows in a Python 2 environment see <a href="#windows-python-27">here</a></em></p>
 <p>To install the latest release directly from <a href="https://pypi.org/project/nxt-editor/">PyPi</a> follow the following steps.</p>
 <ul>
 <li>First time install<ul>
-<li><code>pip install nxt-core</code></li>
-<li><code>pip install nxt-editor</code></li>
+<li>For just the cli and backend: <code>pip install nxt-core</code></li>
+<li>For the backend and the visual editor: <code>pip install nxt-editor</code></li>
 </ul>
 </li>
 <li>Update<ul>
@@ -135,7 +141,11 @@
 </li>
 </ul>
 <p>If you would like to install directly from GitHub use the following command. </p>
+<p><em>Core</em></p>
 <pre><code>pip install git+https://github.com/nxt-dev/nxt.git@{ tag name }
+</code></pre>
+<p><em>Editor</em></p>
+<pre><code>pip install git+https://github.com/nxt-dev/nxt_editor.git@{ tag name }
 </code></pre>
 <p>Assuming you wanted to install API version <code>0.7.1</code> the command would look like:</p>
 <pre><code>pip install git+https://github.com/nxt-dev/nxt.git@api_v0.7.1
@@ -151,7 +161,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="windows-python-27">Windows (Python 2.7)</h3>
+<h2 id="windows-python-27">Windows (Python 2.7)</h2>
 <p><em>If you're installing into a Python 3.7.x environment you can use the above <a href="#linuxosx">steps</a></em></p>
 <p>Due to the limited availability of PySide2 on Windows for Python 2.7 the steps to install on Windows are slightly more involved.
 The following steps are a simplified version of those found in our

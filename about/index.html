@@ -98,15 +98,80 @@
     
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="2"><a href="#introduction" class="nav-link">Introduction</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#why-use-nxt" class="nav-link">Why use nxt?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#what-does-nxt-do" class="nav-link">What does nxt do?</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="2"><a href="#limitations" class="nav-link">Limitations</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-<div style="text-align: center;">
-<h4>A brief history & acknowledgment</h4>
-</div>
-
+<h2 id="introduction">Introduction</h2>
+<p>The primary function of nxt is to visualize and automate programming tasks 
+related to computer graphics and linear processing. The intent is to bridge 
+the gap between one-off scripting and general purpose tools through the use of 
+inheritance, layering, and string tokens.</p>
+<h2 id="why-use-nxt">Why use nxt?</h2>
+<p>The core functionality of nxt was built with insights from industry veterans 
+of various technical and artistic backgrounds. We set out to bring to the
+ table a simple set of principles:</p>
+<ul>
+<li>Visualize a map of what a complex script is actually doing. 
+<a href="../reference/#node">Nodes</a>, <a href="../concepts/#inheritance">inheritance</a>, and
+connection lines are easy to understand. However, we've gone a step further 
+and added string <a href="../reference/#tokens">tokens</a>. An instant visualization 
+of what an attribute value <em>actually</em> is. Our tokens can be used <em>almost</em>
+anywhere inside nxt and are dynamically "resolved" during execution. Allowing the
+user to see exactly what data is flowing around without the use of an
+external debugger.</li>
+<li>Encourage collaboration though <a href="../reference/#layers">layering</a> and multi context graphs. 
+With our layering system it is easy for departments to share base workflows and
+utility nodes. Since layering is non-destructive graphs can referenced built on 
+without worrying about breaking someone else's graph. With <a href="../extensions/#creating-custom-contexts">multi context</a> 
+graphs a Maya user, for example, can directly call a Houdini graph from inside Maya. 
+Alternatively, graphs can call other graphs in the same context, allowing 
+interdependent graphs to be developed simultaneously.</li>
+<li>Make code accessible to everyone. Artists can modify attributes like their
+used to and learn to make simple code changes that normally would require a 
+TD to intervene. We're not visual programming, but rather a friendly visual
+portal into code.</li>
+</ul>
+<h2 id="what-does-nxt-do">What does nxt do?</h2>
+<p>In the simplest of terms nxt combines multiple layers of nodes into a single 
+composite layer that is then executable. Something like Photoshop layers for
+your code, you're able to mute, solo, override, and extend layers of code. 
+The resulting composite of the code clearly visualizes where attributes and
+their values came from. Colors, node paths, and conveniently placed buttons/links 
+allow users to quickly jump to and correct erroneous values.</p>
+<p><em>Example character rig with a general to specific layer structure</em>
+<img alt="layers" src="../images/nxt_layers01.gif" /></p>
+<h2 id="limitations">Limitations</h2>
+<ul>
+<li>We currently do not support asynchronous execution in a single graph. Our 
+current focus is on lineal scripts.</li>
+<li>We are <a href="../reference/#design-philosophy">not visual programming</a>, no for loop nodes sorry.</li>
+<li>We currently experimentally support Python 3, it is possible to lose layout and break point preferences 
+by switching back and forth between Py2/3.</li>
+</ul>
+<hr />
+<h4 id="a-brief-history-acknowledgment">A brief history &amp; acknowledgment</h4>
 <div class="admonition note">
 <p class="admonition-title">Sunrise Productions</p>
 <p>We would like to acknowledge <a href="https://sunriseproductions.tv/">Sunrise Productions</a> for providing us a studio incubator for 2019 and 2020. 
@@ -133,20 +198,6 @@ We are grateful for SVAD providing the resources, education, and sponsorship to 
 </tr>
 </table>
 
-<hr />
-<div style="text-align: center;">
-<h1>The open nxt project</h1>
-</div>
-
-<p>In simple terms, we want nxt to be too good to hide. If we can deliver on the potential we, the contributors, know is contained in nxt, we can provide great wins across 
-many parts of the computer graphics pipeline. The full realization of nxt can only come at the scale of a public release.</p>
-<p>Some of the most important technologies in our industry are open source, including <a href="https://www.unrealengine.com/en-US/">unreal engine</a>, 
-<a href="https://www.python.org/">python</a>, <a href="https://www.qt.io/">qt</a>, <a href="https://wiki.centos.org/FrontPage">centos</a>, 
-and the newest and perhaps biggest upcoming technology in the industry <a href="http://graphics.pixar.com/usd/docs/index.html">pixar usd</a>. 
-What all these tools have in common (excepting the newcomer usd) is how ubiquitous and wide reaching they are. Open source tools invite developers to bend them, tweak them, 
-and customize them to fit the exact needs of their users. The entertainment industry is full of amazing developers who are excited to build great things. 
-We believe nxt will become a stronger and better tool because it is open source.</p>
-<p>We invite and will seek out opportunities to refine and hone this vision with the help and partnership of everyone who wants nxt to be great.</p>
 <hr />
 <div style="text-align: center;">
 <h1>The nxt contributors</h1>
