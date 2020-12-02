@@ -49,21 +49,19 @@ by switching back and forth between Py2/3.
 
 ---
 
-#### A brief history & acknowledgment
-
-
-!!! Note "Sunrise Productions"
-    We would like to acknowledge [Sunrise Productions](https://sunriseproductions.tv/) for providing us a studio incubator for 2019 and 2020. 
-    Sunrise kept food on the table and believed in nxt before it was fully realized. Without their support we would never have made it this far.
-
-!!! Note "SVAD Productions"
-    We would like to acknowledge the [School of Visual Art and Design](https://www.southern.edu/visualartanddesign/) NXT began in 2017 as a research project at SVAD. 
-    Originally with the goal to make it the core rigging framework, nxt quickly grew into the backbone of pipeline.
-    We are grateful for SVAD providing the resources, education, and sponsorship to get us started.
-
 <div style="text-align: center;">
 <h4>Special Thanks</h4>
 </div>
+
+!!! Note "Sunrise Productions"
+    We would like to thank [Sunrise Productions](https://sunriseproductions.tv/) for providing us a studio incubator for 2019 and 2020. 
+    Sunrise kept food on the table and believed in nxt before it was fully realized. Without their support we would never have made it this far.
+
+!!! Note "SVAD Productions"
+    We would like to thank the [School of Visual Art and Design](https://www.southern.edu/visualartanddesign/) NXT began in 2017 as a research project at SVAD. 
+    Originally with the goal to make it the core rigging framework, nxt quickly grew into the backbone of pipeline.
+    We are grateful for SVAD providing the resources, education, and sponsorship to get us started.
+
 
 <table style="text-align: center">
 <tr>
