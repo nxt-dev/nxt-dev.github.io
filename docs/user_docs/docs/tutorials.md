@@ -115,7 +115,12 @@ Over there we explain nxt from different vantage points to help illuminate how n
 ---
 <br/><br/>
 
-##### Use of the layer object and stage object
+## Contexts
+##### Sub-graphs
+Coming soon...
+
+##### Remote graphs
+Coming soon...
 
 # Example Graph Walkthroughs
 Still pending

@@ -1,12 +1,7 @@
-# NXT - Node eXecution Tree
-
-nxt (/ɛn·ɛks·ti/) is a general purpose code compositor designed for rigging, 
-scene assembly, and automation.
-
-*It’s code with layers with a nice way to see and change data.*
-
+<img src="images/NxtBanner.png", alt="NXT - Node eXecution Tree">
 ## What is nxt?
-NXT is a layered code compositing application. Enabling visualization of complex scripts and easy cross discipline collaboration.
+NXT, pronounced ɛn·ɛks·ti, is a layered code compositing application. Enabling visualization of complex scripts and easy cross discipline collaboration.
+*It’s code with layers with a nice way to see and change data.*
 
 ## How do I get it?
 - **pip**
@@ -16,8 +11,9 @@ NXT is a layered code compositing application. Enabling visualization of complex
     - Follow the instruction in the `README` inside that zip.
 - **special**
     - See [here](install#windows-python-27)
-#### Standalone App
+
 <div style="text-align: center">
+<h4>Standalone App</h4>
 <table>
 <tr><th><h2>Platform</h2></th><th><h2>Python 2</h2></th><th><h2>Python 3</h2></th></tr>
 <tr><th><h5><a href="install#linux-or-osx">Linux</a></h5></th><th><h6><b>pip</b></h6></th><th><h6><b>pip</b></h6></th></tr>
@@ -26,9 +22,9 @@ NXT is a layered code compositing application. Enabling visualization of complex
 </table>
 </div>
 
-#### DCC Plugin/Editor
 
 <div style="text-align: center">
+<h4>DCC Plugin/Editor</h4>
 <table>
 <tr><th><h2>DCC</h2></th><th><h2>Install</h2></th></tr>
 <tr><th><h6><a href="install#maya-plugin">Maya</a></h6></th><th><h6><b>zip</b></h6></th></tr>
