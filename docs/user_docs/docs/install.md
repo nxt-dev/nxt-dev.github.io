@@ -73,7 +73,7 @@ We recommend **not** adding conda python to your system path and **not** making 
 
 # Maya Plugin
 
-Install the editor and core for Maya.
+Download the latest nxt Maya plugin from our [releases page](https://github.com/nxt-dev/nxt_editor/releases/latest).
 
 ### Automated
 
