@@ -1,57 +1,92 @@
 <h1>Standalone Installation</h1>
 
-## Linux or Mac
+## Linux, Mac, Windows
 
-*The following also works for Windows Python 3.7, if you're trying to install on Windows in a Python 2 environment see [here](#windows-python-27)*
+*If you're trying to install on Windows in a Python 2 environment see [here](#windows-python-27)*
 
 To install the latest release directly from [PyPi](https://pypi.org/project/nxt-editor/) follow the following steps.
+
+!!! Note
+    The `nxt-core` is *just* the Python backend of NXT, it does not include the visual editor.  
+    The core will automatically install with the `nxt-editor`.
+
+#### Video
+
+<iframe width="400" height="270" src="https://www.youtube.com/embed/yaSjF_IKMRY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="400" height="270" src="https://www.youtube.com/embed/gyaR7YgfulE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+#### Written
 
 - First time install
     - For just the cli and backend: `pip install nxt-core`
     - For the backend and the visual editor: `pip install nxt-editor`
+- Launch (nxt editor)
+    - `nxt ui`
 - Update
     - `pip install -U nxt-core`
     - `pip install -U nxt-editor`
 
-If you would like to install directly from GitHub use the following command. 
-
-*Core*
-```
-pip install git+https://github.com/nxt-dev/nxt.git@{ tag name }
-``` 
-*Editor*
-```
-pip install git+https://github.com/nxt-dev/nxt_editor.git@{ tag name }
+To execute a graph with the nxt Python core, use the following:
+```python
+import nxt
+nxt.execute_graph('path/to/graph.nxt')
 ``` 
 
-Assuming you wanted to install API version `0.7.1` the command would look like:
-```
-pip install git+https://github.com/nxt-dev/nxt.git@api_v0.7.1
-``` 
+<br>
 
-Omit `@{ tag name}` if you want the latest from the `release` branch.
-
-
-- First time install
-    - `pip install git+https://github.com/nxt-dev/nxt.git`
-- Update
-    - `pip install -U git+https://github.com/nxt-dev/nxt.git`
-
+---
 
 ## Windows (Python 2.7)
-*If you're installing into a Python 3.7.x environment you can use the above [steps](#linuxosx)*
-
-Due to the limited availability of PySide2 on Windows for Python 2.7 the steps to install on Windows are slightly more involved.
-The following steps are a simplified version of those found in our
- [contributing documentation](https://github.com/SunriseProductions/nxt/blob/master/CONTRIBUTING.md).
-If you're comfortable working in and IDE and using git we suggest you follow 
-the contributing documentation.
+*If you're installing into a Python 3.7.x environment you can use the above [steps](#linux-mac-windows)*
 
 !!! Note
-    These steps are only necessary if you want to use the nxt **editor** outside
-     of Maya. The core will pip install on Windows without issue.
+    These steps are *only* necessary if you want to use the nxt **standalone editor** outside of Maya.  
+    The `nxt-core` will pip install on Windows Python 2.7 without issue.
 
-#### Python Environment (Miniconda)
+Due to the limited availability of PySide2 on Windows for Python 2.7 the steps to install on Windows are slightly more involved.
+For the simplest instructions, please follow the [developer installation steps](#developer-installation).  
+If you're comfortable working in and IDE and using git we suggest you follow 
+the [contributing documentation](https://github.com/nxt-dev/nxt_editor/blob/releases/CONTRIBUTING.md).
+
+<br>
+
+---
+
+## Maya plugin
+Our Maya plugin comes with both a visual editor and the core. We've tested Maya 2018-20 on all platforms.
+
+#### Video
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/VoEz0oyTwzU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+#### Written
+
+- Install:
+    1. Download the maya module(`nxt_maya.zip`) from the [latest release](https://github.com/nxt-dev/nxt_editor/releases/latest)
+    2. Follow the `nxt_maya` <a href="https://github.com/nxt-dev/nxt_editor/blob/release/integration/maya/README.md" target="_blank">README</a> instructions (also included in the download)
+- Launch:
+    1. Load `nxt_maya` plugin in Maya
+    2. Select the `nxt` menu from the menus at the top of Maya
+    3. Click `Open Editor`
+- Update:
+    1. Download the `nxt_maya` zip from the [latest release](https://github.com/nxt-dev/nxt_editor/releases/latest)
+    2. Extract the zip and replace the existing `nxt_maya` files with the newly extracted files.
+    3. Re-launch Maya
+
+#### Planned plugins:
+- Houdini 
+- Nuke
+
+<br>
+
+---
+
+# Developer Installation
+See our [contributing documentation](https://github.com/SunriseProductions/nxt/blob/master/CONTRIBUTING.md)
+
+
+#### NXT Python Dev Environment (Miniconda)
+The following steps are only needed if you intend on contributing to the NXT codebase or you are trying to install NXT standalone on Windows Python 2.7.
 To get the correct Python environment setup on your Windows machine you will 
 need to follow these steps. 
 The nxt environment is specified in our `nxt_env.yml`.
@@ -69,44 +104,7 @@ We recommend **not** adding conda python to your system path and **not** making 
     - `cd C:/Projects/nxt`
     - `python -m nxt.cli ui`
 
----
-
-# Maya Plugin
-
-Download and extract the latest nxt Maya plugin from our [releases page](https://github.com/nxt-dev/nxt_editor/releases/latest).
-
-### Automated
-
-- Place the extracted `nxt_maya` folder somewhere you'd like to keep it, and will be
- easy to find when you're ready to install a newer version.
-- When your folder is in place, drag the file `drag_into_maya.py` into maya.
-    - A file browser will appear. The default location should be fine. Note that this will replace _any_ existing nxt.mod in that directory.
-- Restart maya
-- Now `nxt_maya.py` should be available for you to activate in the plugin
- browser.
- 
-If you encounter an issue where Maya doesn't see the `nxt_maya.py` plugin ensure the location you choose is in your maya modules path.
-
-**Remember** not to delete this folder after installing in maya. This is where maya loads nxt from. When there is an update to nxt, you can replace this folder, and your nxt plugin will continue to work with the updated code.
-
-### By hand (if you're familiar with Maya modules)
-We provide an example `nxt.mod` file with the `nxt_maya` plugin. Simply
-populate the mod path with the path to your extracted `nxt_maya.zip` and
- place the `nxt.mod` where Maya can find it.
-
-### Maya plugin usage
-
-* When the nxt plugin is loaded, there is an "nxt" menu at the top of maya where you can select "Open Editor" and get started.
-* 
-
-#### Planned plugins:
-- Houdini 
-- Nuke
-
----
-
-# Developer Installation
-See our [contributing documentation](https://github.com/SunriseProductions/nxt/blob/master/CONTRIBUTING.md)
+<br>
 
 #### Bootstrapping nxt
 
