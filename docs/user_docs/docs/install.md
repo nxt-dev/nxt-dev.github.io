@@ -82,7 +82,7 @@ Our Maya plugin comes with both a visual editor and the core. We've tested Maya 
 ---
 
 # Developer Installation
-See our [contributing documentation](https://github.com/SunriseProductions/nxt/blob/master/CONTRIBUTING.md)
+See our [contributing documentation](https://github.com/nxt-dev/nxt_editor/blob/release/CONTRIBUTING.md)
 
 
 #### NXT Python Dev Environment (Miniconda)
@@ -93,8 +93,8 @@ The nxt environment is specified in our `nxt_env.yml`.
  
 - Conda is best installed via [miniconda](https://docs.conda.io/en/latest/miniconda.html). 
 We recommend **not** adding conda python to your system path and **not** making it your system python.
-- You can either clone the nxt source from [our repo](https://github.com/SunriseProductions/nxt) or download the desired
- [release](https://github.com/SunriseProductions/nxt/releases) source code zip and extract it.
+- You can either clone the nxt source from our [core repo](https://github.com/nxt-dev/nxt) / [editor repo](https://github.com/nxt-dev/nxt_editor) or download the desired
+ [core release](https://github.com/nxt-dev/nxt/releases) / [editor release](https://github.com/nxt-dev/nxt_editor/releases) source code zip and extract it.
 - Lets assume you place the source code at `C:/Projects/nxt`
 - Launch the **Anaconda Prompt** and install dependencies:
     `conda env create -f C:/Projects/nxt/nxt_env.yml`

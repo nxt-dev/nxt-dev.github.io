@@ -8,7 +8,7 @@ Welcome to the nxt api documentation!
 
 .. toctree::
 
-   User Docs <https://sunriseproductions.github.io/nxt/>
+   User Docs <https://nxt-dev.github.io/>
    :maxdepth: 2
    modules.rst
    :caption: Contents:
