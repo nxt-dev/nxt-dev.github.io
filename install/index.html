@@ -197,20 +197,20 @@ We recommend <strong>not</strong> adding conda python to your system path and <s
 </ul>
 <hr />
 <h1 id="maya-plugin">Maya Plugin</h1>
-<p>Download the latest nxt Maya plugin from our <a href="https://github.com/nxt-dev/nxt_editor/releases/latest">releases page</a>.</p>
+<p>Download and extract the latest nxt Maya plugin from our <a href="https://github.com/nxt-dev/nxt_editor/releases/latest">releases page</a>.</p>
 <h3 id="automated">Automated</h3>
 <ul>
-<li>Place this nxt module folder somewhere you'd like to keep it, and will be
+<li>Place the extracted <code>nxt_maya</code> folder somewhere you'd like to keep it, and will be
  easy to find when you're ready to install a newer version.</li>
 <li>When your folder is in place, drag the file <code>drag_into_maya.py</code> into maya.<ul>
-<li>A file browser will appear. Please select the folder you'd like the nxt
- module file to go in. Ensure the location you choose is in your maya modules path. This will replace any existing nxt.mod in that directory. If you're confused, the default should work."</li>
+<li>A file browser will appear. The default location should be fine. Note that this will replace <em>any</em> existing nxt.mod in that directory.</li>
 </ul>
 </li>
 <li>Restart maya</li>
 <li>Now <code>nxt_maya.py</code> should be available for you to activate in the plugin
  browser.</li>
 </ul>
+<p>If you encounter an issue where Maya doesn't see the <code>nxt_maya.py</code> plugin ensure the location you choose is in your maya modules path.</p>
 <p><strong>Remember</strong> not to delete this folder after installing in maya. This is where maya loads nxt from. When there is an update to nxt, you can replace this folder, and your nxt plugin will continue to work with the updated code.</p>
 <h3 id="by-hand-if-youre-familiar-with-maya-modules">By hand (if you're familiar with Maya modules)</h3>
 <p>We provide an example <code>nxt.mod</code> file with the <code>nxt_maya</code> plugin. Simply
