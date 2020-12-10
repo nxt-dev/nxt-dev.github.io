@@ -255,7 +255,7 @@ if NXT_PATH not in sys.path:
     sys.path.append(os.path.expanduser(NXT_PATH))
 from Qt import QtCore
 import nxt_editor.main_window
-instance = nxt_editor.main_window.main_window.MainWindow(filepath=LAUNCH_FILE)
+instance = nxt_editor.main_window.MainWindow(filepath=LAUNCH_FILE)
 if sys.platform == 'win32':
     instance.setWindowFlags(QtCore.Qt.Window)
 instance.show()
