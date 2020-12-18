@@ -27,14 +27,14 @@ History View
 
 ## Stage
 
-The stage is a collection of graphs, trees, and layers of nxt [nodes ](#node)that set the [composition structure](#stagecomposition) and [execution order](#executionorder) for an nxt file.
+The stage is a collection of graphs, trees, and layers of nxt [nodes ](#node)that set the [composition structure](#stage-composition) and [execution order](#execution-order) for an nxt file.
 
 !!! note "Stage attributes and composition"
-    Note that each layer is also a node, and those nodes get composited to the master STAGE. Each node that is parented to a layer inherits the attributes of the layer/stage. This can be useful for defining global variables, or a state that needs to propogate into the entire graph.
+    Note that each layer is also a node, and those nodes get composited to the master STAGE. Each node that is parented to a layer inherits the attributes of the layer/stage. This can be useful for defining global variables, or a state that needs to propagate into the entire graph.
 
 ## Node
 
-A node is a container for code (or compute) and a collection of attributes. Every node contains a single [code block](#compute) that is executed when a node is run. [Execution order](#executionorder) is defined both by hierarchy and connections to execution plugs on the nodes.
+A node is a container for code (or compute) and a collection of attributes. Every node contains a single [code block](#compute) that is executed when a node is run. [Execution order](#execution-order) is defined both by hierarchy and connections to execution plugs on the nodes.
 
 ## Attributes
 
@@ -78,7 +78,7 @@ While executing, the [Stage](#stage) can have arbitrary attributes add/set/retri
 
 A token is like a [reference or pointer](workflows.md#transitionguide) to another token or value. [OS ](workflows.md#transitionmap)style pathing is used to resolve attribute and file tokens.
 
-Attribute token syntax is `${}`: if it can resolve, it substitutes the attribute, if not it will be empty
+Attribute token syntax is `${}`: if it can resolve, it substitutes the attribute, if not it will be empty.
 
 ```
         ${attribute}
@@ -107,19 +107,19 @@ File path token syntax `${contents::}` will include the contents of an external 
 Tokens are _not_ python template strings, even though they share the syntax.
 
 !!! note "Quote behavior in tokens"
-    Since all attribute values are stored and processed as strings in NXT before they are composed as python objects, you have do manually manage string attributes. The value will _substitute as written_. In some cases, it makes sense to have string attributes in quotes, in other cases, it makes sense to add quotes in the code block. 
+    Since all attribute values are stored and processed as strings in NXT before they are composed as python objects, you have to manually manage string attributes. The value will _substitute as written_. In some cases, it makes sense to have string attributes in quotes, in other cases, it makes sense to add quotes in the code block. 
     For example if you had an attribute `side` set to a value of `L`
 
     `foot_${side}` and `'foot_' + '${side}'` are equally valid. This really comes down to convention.
     
-    There is a simple `w()` convivence function to assist with adding quotes when using a python string object as a string.
+    There is a simple `w()` convenience function to assist with adding quotes when using a python string object as a string.
     
     ```
     my_attr = 'quotes go away when it becomes a string object'
     self.attribute = w(my_attr)
     ```
     
-    `my_attr` can now be used by downstream nodes as a string
+    `my_attr` can now be used by downstream nodes as a string.
 
 ## Compute
 
@@ -145,7 +145,7 @@ _Stub for this feature once new layer editor arrives_
 
 A stage can have root nodes with no parent node and no node connected to it’s input execution plug. Use execute tags to define the order
 
-![execution_tag.PNG](../images/execution_tag.PNG)
+![execution_tag.PNG](../images/execution_tag.PNG).
 
 ### Execution Plugs
 
@@ -204,7 +204,7 @@ The children of the instance node get inserted into the hierarchy as proxy child
 
 ![proxy_children.PNG](../images/proxy_children.PNG)
 
-As soon as you begin to edit proxy children, the are converted into real editable nodes and exist in the hierarchy
+As soon as you begin to edit proxy children, the are converted into real editable nodes and exist in the hierarchy.
 
 !!! note
     The hierarchy has the final opinion in the composite. _UNLESS_ the node has an local opinion on the data.
