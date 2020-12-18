@@ -6,12 +6,12 @@ NXT can easily extended to better meet a user's/studio's needs. In this section 
 
 ## Simple Remote Context
 In Maya simply navigate to the nxt menu and select "Create Maya Context". You'll be prompted to enter a name, the name you enter will be how you call your custom Maya context.
-For more on using custom contexts [see here](tutorials.md#contexts)
+For more on using custom contexts [see here](tutorials.md#contexts).
 
 # In depth explanations:
 ### Config dir
 
-Custom configurations are graphs and code that extends or alters the functionality of nxt. Cofigs are not to be confused with preferences which are soley UX related.
+Custom configurations are graphs and code that extends or alters the functionality of nxt. Cofigs are not to be confused with preferences which are solely UX related.
 
 To add a config there are two approaches, both of which are compatible with eachother.
 
@@ -44,7 +44,7 @@ nxt.create_context('MyContext',
 
 ### Creating Custom Contexts (Manually)
 
-It is possible to execute graphs in "remote contexts", for example it one may want to execute a graph in a headless Maya session. These remote contexts can easilly be configured by users and TDs, this section will provide some examples on how to go about writing your own custom context plugin.
+It is possible to execute graphs in "remote contexts," for example it one may want to execute a graph in a headless Maya session. These remote contexts can easilly be configured by users and TDs, this section will provide some examples on how to go about writing your own custom context plugin.
 
 Below is an exmaple of creating a custom Maya context. This code is an example to get you started, its not the _only_ way to do things.
 
@@ -131,7 +131,7 @@ os.chdir(STAGE.old_cwd)
 
 3. Set your new node's instance path to `/_remote_sub_graph`
 
-4. Set the `_context` attr to the raw **context name** you have access to or just created
+4. Set the `_context` attr to the raw **context name** you have access to or just created.
 
 5. Set the `_graph_path` attr to the path to a graph that you wish to run in the remote context.
 
