@@ -46,7 +46,7 @@ nxt.execute_graph('path/to/graph.nxt')
 Due to the limited availability of PySide2 on Windows for Python 2.7 the steps to install on Windows are slightly more involved.
 For the simplest instructions, please follow the [developer installation steps](#developer-installation).  
 If you're comfortable working in an IDE and using git we suggest you follow 
-the [contributing documentation](https://github.com/nxt-dev/nxt_editor/blob/release/CONTRIBUTING.md).
+the <a href="https://github.com/nxt-dev/nxt_editor/blob/release/CONTRIBUTING.md", target="_blank">contributing documentation</a>.
 
 <br>
 
