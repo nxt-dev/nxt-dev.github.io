@@ -180,13 +180,13 @@
 <p><a href="../hotkeys/">Hotkey Editor</a></p>
 <h1 id="terms-and-definitions">Terms and Definitions</h1>
 <h2 id="stage">Stage</h2>
-<p>The stage is a collection of graphs, trees, and layers of nxt <a href="#node">nodes </a>that set the <a href="#stagecomposition">composition structure</a> and <a href="#executionorder">execution order</a> for an nxt file.</p>
+<p>The stage is a collection of graphs, trees, and layers of nxt <a href="#node">nodes </a>that set the <a href="#stage-composition">composition structure</a> and <a href="#execution-order">execution order</a> for an nxt file.</p>
 <div class="admonition note">
 <p class="admonition-title">Stage attributes and composition</p>
-<p>Note that each layer is also a node, and those nodes get composited to the master STAGE. Each node that is parented to a layer inherits the attributes of the layer/stage. This can be useful for defining global variables, or a state that needs to propogate into the entire graph.</p>
+<p>Note that each layer is also a node, and those nodes get composited to the master STAGE. Each node that is parented to a layer inherits the attributes of the layer/stage. This can be useful for defining global variables, or a state that needs to propagate into the entire graph.</p>
 </div>
 <h2 id="node">Node</h2>
-<p>A node is a container for code (or compute) and a collection of attributes. Every node contains a single <a href="#compute">code block</a> that is executed when a node is run. <a href="#executionorder">Execution order</a> is defined both by hierarchy and connections to execution plugs on the nodes.</p>
+<p>A node is a container for code (or compute) and a collection of attributes. Every node contains a single <a href="#compute">code block</a> that is executed when a node is run. <a href="#execution-order">Execution order</a> is defined both by hierarchy and connections to execution plugs on the nodes.</p>
 <h2 id="attributes">Attributes</h2>
 <p><a href="#node">Nodes</a> contain <a href="#attributes">attributes </a>that are read from and written to from inside a node’s <a href="#compute">code block</a>. Attributes can also be connected to inputs and outputs of other nodes via <a href="#tokens">tokens </a>in  attributes, token paths within the code block, or dragging and dropping attribute connections between nodes.</p>
 <p>At editor time (before the graph has begun <a href="#executionorder">executing</a>) attribute values can be composited into other attribute’s values or into the text of a code block via <code>${path/to/node.otherattr}_rest_of_attr_value</code>. </p>
@@ -236,7 +236,8 @@ print(Stage.anyattr)
 </div>
 <h2 id="tokens">Tokens</h2>
 <p>A token is like a <a href="../workflows/#transitionguide">reference or pointer</a> to another token or value. <a href="../workflows/#transitionmap">OS </a>style pathing is used to resolve attribute and file tokens.</p>
-<p>Attribute token syntax is <code>${}</code>: if it can resolve, it substitutes the attribute, if not it will be empty</p>
+<p>Attribute token syntax is <code>${}</code>: if it can resolve, it substitutes the attribute, if not it will be empty.<br />
+<em>If a token is empty it will resolve to <code>BADRESOLVE</code>.</em></p>
 <pre><code>        ${attribute}
         ${/absolute_node_path.attribute}
         ${../relative_nodepath.attribute}
@@ -248,6 +249,18 @@ print(Stage.anyattr)
 </code></pre>
 <p>File path token syntax <code>${path::}</code>this will  attempt to resolve to a valid path. If not, it will be empty. Used to expand paths for writing.</p>
 <p>File path token syntax <code>${contents::}</code> will include the contents of an external file. For example, <code>${contents::${file::external.py}}</code> will include the contents of <code>external.py</code> in the attribute, compute, <em>and</em> it will resolve tokens written within this file.</p>
+<p>File list token syntax <code>${fileslist::}</code> will list valid historical filepaths at the same path.<br />
+Imagine you have <code>/node.my_file</code> = <code>${file::weights.json}</code> on several layers in different directories, all saved in different folders.
+If you then used a token like <code>${filelist::/node.weiths_file}</code> you would get a list of file paths to the <code>weights.json</code> file in each of the layer's save folder.<br />
+This would allow you to collete and parse data from multiple reference layers:</p>
+<pre><code>all_the_data = {}
+for filepath in ${filelist::/node.weiths_file}:
+    all_the_data.update(json.load(filepath))
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">File list validation</p>
+<p>The <code>filelist::</code> token only returns valid filepaths to existing files. </p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Relative file resolution</p>
 <p>The <code>${file::}</code> and <code>${path::}</code> tokens will resolve relative paths based on the parent folder of the current display layer.</p>
@@ -259,13 +272,13 @@ print(Stage.anyattr)
 <p>Tokens are <em>not</em> python template strings, even though they share the syntax.</p>
 <div class="admonition note">
 <p class="admonition-title">Quote behavior in tokens</p>
-<p>Since all attribute values are stored and processed as strings in NXT before they are composed as python objects, you have do manually manage string attributes. The value will <em>substitute as written</em>. In some cases, it makes sense to have string attributes in quotes, in other cases, it makes sense to add quotes in the code block. 
+<p>Since all attribute values are stored and processed as strings in NXT before they are composed as python objects, you have to manually manage string attributes. The value will <em>substitute as written</em>. In some cases, it makes sense to have string attributes in quotes, in other cases, it makes sense to add quotes in the code block. 
 For example if you had an attribute <code>side</code> set to a value of <code>L</code></p>
 <p><code>foot_${side}</code> and <code>'foot_' + '${side}'</code> are equally valid. This really comes down to convention.</p>
-<p>There is a simple <code>w()</code> convivence function to assist with adding quotes when using a python string object as a string.</p>
+<p>There is a simple <code>w()</code> convenience function to assist with adding quotes when using a python string object as a string.</p>
 <p><code>my_attr = 'quotes go away when it becomes a string object'
 self.attribute = w(my_attr)</code></p>
-<p><code>my_attr</code> can now be used by downstream nodes as a string</p>
+<p><code>my_attr</code> can now be used by downstream nodes as a string.</p>
 </div>
 <h2 id="compute">Compute</h2>
 <p>The compute block/code block  is standard python code, with the exception that it will deep-resolve tokens over 1000 levels deep. (should this be a preference?)</p>
@@ -322,7 +335,7 @@ self.attribute = w(my_attr)</code></p>
 </div>
 <p>The children of the instance node get inserted into the hierarchy as proxy children. This data exists only as a result of the composite. The are not local saved data. Proxy children are drawn in a hashed style to make it clear you haven't touched the data.</p>
 <p><img alt="proxy_children.PNG" src="../images/proxy_children.PNG" /></p>
-<p>As soon as you begin to edit proxy children, the are converted into real editable nodes and exist in the hierarchy</p>
+<p>As soon as you begin to edit proxy children, they are converted into real editable nodes and exist in the hierarchy.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The hierarchy has the final opinion in the composite. <em>UNLESS</em> the node has an local opinion on the data.</p>

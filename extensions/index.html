@@ -127,10 +127,10 @@
 <p><strong>If you're looking for a quick test and not trying to dive too deep, we have an <em>almost</em> drag and drop example Maya context <a href="https://github.com/nxt-dev/nxt_editor/tree/release/examples/quick_start_graphs">here</a>.</strong> </p>
 <h2 id="simple-remote-context">Simple Remote Context</h2>
 <p>In Maya simply navigate to the nxt menu and select "Create Maya Context". You'll be prompted to enter a name, the name you enter will be how you call your custom Maya context.
-For more on using custom contexts <a href="../tutorials/#contexts">see here</a></p>
+For more on using custom contexts <a href="../tutorials/#contexts">see here</a>.</p>
 <h1 id="in-depth-explanations">In depth explanations:</h1>
 <h3 id="config-dir">Config dir</h3>
-<p>Custom configurations are graphs and code that extends or alters the functionality of nxt. Cofigs are not to be confused with preferences which are soley UX related.</p>
+<p>Custom configurations are graphs and code that extends or alters the functionality of nxt. Cofigs are not to be confused with preferences which are solely UX related.</p>
 <p>To add a config there are two approaches, both of which are compatible with eachother.</p>
 <ol>
 <li>
@@ -158,7 +158,7 @@ nxt.create_context('MyContext',
                    context_graph='SpecialPython_context.nxt')
 </code></pre>
 <h3 id="creating-custom-contexts-manually">Creating Custom Contexts (Manually)</h3>
-<p>It is possible to execute graphs in "remote contexts", for example it one may want to execute a graph in a headless Maya session. These remote contexts can easilly be configured by users and TDs, this section will provide some examples on how to go about writing your own custom context plugin.</p>
+<p>It is possible to execute graphs in "remote contexts," for example it one may want to execute a graph in a headless Maya session. These remote contexts can easilly be configured by users and TDs, this section will provide some examples on how to go about writing your own custom context plugin.</p>
 <p>Below is an exmaple of creating a custom Maya context. This code is an example to get you started, its not the <em>only</em> way to do things.</p>
 <p>Files we'll be creating:</p>
 <pre><code>Plugins
@@ -224,7 +224,7 @@ os.chdir(STAGE.old_cwd)
 <p>Set your new node's instance path to <code>/_remote_sub_graph</code></p>
 </li>
 <li>
-<p>Set the <code>_context</code> attr to the raw <strong>context name</strong> you have access to or just created</p>
+<p>Set the <code>_context</code> attr to the raw <strong>context name</strong> you have access to or just created.</p>
 </li>
 <li>
 <p>Set the <code>_graph_path</code> attr to the path to a graph that you wish to run in the remote context.</p>
