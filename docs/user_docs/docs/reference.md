@@ -78,7 +78,8 @@ While executing, the [Stage](#stage) can have arbitrary attributes add/set/retri
 
 A token is like a [reference or pointer](workflows.md#transitionguide) to another token or value. [OS ](workflows.md#transitionmap)style pathing is used to resolve attribute and file tokens.
 
-Attribute token syntax is `${}`: if it can resolve, it substitutes the attribute, if not it will be empty.
+Attribute token syntax is `${}`: if it can resolve, it substitutes the attribute, if not it will be empty.  
+*If a token is empty it will resolve to `BADRESOLVE`.*
 
 ```
         ${attribute}
@@ -97,6 +98,20 @@ File validation syntax `${file::}`: this will always resolve to a real file, and
 File path token syntax `${path::}`this will  attempt to resolve to a valid path. If not, it will be empty. Used to expand paths for writing.
 
 File path token syntax `${contents::}` will include the contents of an external file. For example, `${contents::${file::external.py}}` will include the contents of `external.py` in the attribute, compute, _and_ it will resolve tokens written within this file.
+
+File list token syntax `${fileslist::}` will list valid historical filepaths at the same path.  
+Imagine you have `/node.my_file` = `${file::weights.json}` on several layers in different directories, all saved in different folders.
+If you then used a token like `${filelist::/node.weiths_file}` you would get a list of file paths to the `weights.json` file in each of the layer's save folder.  
+This would allow you to collete and parse data from multiple reference layers:
+```
+all_the_data = {}
+for filepath in ${filelist::/node.weiths_file}:
+    all_the_data.update(json.load(filepath))
+```
+
+
+!!! note "File list validation"
+    The `filelist::` token only returns valid filepaths to existing files. 
 
 !!! note "Relative file resolution"
     The `${file::}` and `${path::}` tokens will resolve relative paths based on the parent folder of the current display layer.
@@ -145,7 +160,7 @@ _Stub for this feature once new layer editor arrives_
 
 A stage can have root nodes with no parent node and no node connected to it’s input execution plug. Use execute tags to define the order
 
-![execution_tag.PNG](../images/execution_tag.PNG).
+![execution_tag.PNG](../images/execution_tag.PNG)
 
 ### Execution Plugs
 
@@ -204,7 +219,7 @@ The children of the instance node get inserted into the hierarchy as proxy child
 
 ![proxy_children.PNG](../images/proxy_children.PNG)
 
-As soon as you begin to edit proxy children, the are converted into real editable nodes and exist in the hierarchy.
+As soon as you begin to edit proxy children, they are converted into real editable nodes and exist in the hierarchy.
 
 !!! note
     The hierarchy has the final opinion in the composite. _UNLESS_ the node has an local opinion on the data.
