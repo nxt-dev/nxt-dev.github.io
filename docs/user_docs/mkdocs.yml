@@ -1,6 +1,6 @@
 site_name: NXT User Docs
 site_description: Node eXecution Tree, A python layering and sequential execution tool for Animation and VFX
-copyright: 2020 NXT authors
+copyright: 2021 NXT Authors
 
 nav:
     - Home: index.md
