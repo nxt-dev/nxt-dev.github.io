@@ -5,7 +5,7 @@ Checkout our example graphs [here](https://github.com/nxt-dev/nxt_editor/tree/re
 
 # Editors
 
-Stage
+Stage View
 
 Node Properties
 
@@ -27,10 +27,20 @@ History View
 
 ## Stage
 
-The stage is a collection of graphs, trees, and layers of nxt [nodes ](#node)that set the [composition structure](#stage-composition) and [execution order](#execution-order) for an nxt file.
+The stage is a collection of graphs, trees, and layers of nxt [nodes ](#node)that set the [composition structure](#stage-composition) and [execution order](#execution-order) for an nxt file.  
+Every node has access to the `STAGE` object. When working with Python classes (besides the builtins) it is best to store those objects on the `STAGE`.  
+An example of how you would do that in a node's code is as follows:
+```python
+my_object = ComplexData()
+STAGE.complex_data = my_object
+```
+Another node later in the execution can access that object as follows:
+```python
+STAGE.complex_data.a_method()
+```
 
 !!! note "Stage attributes and composition"
-    Note that each layer is also a node, and those nodes get composited to the master STAGE. Each node that is parented to a layer inherits the attributes of the layer/stage. This can be useful for defining global variables, or a state that needs to propagate into the entire graph.
+    Note that each layer is also a node, and those nodes get composited to the `STAGE` object. Each node is parented to that object and inherit the attributes of it. This can be useful for defining "global" variables, or a state that needs to propagate into the entire graph.
 
 ## Node
 
@@ -183,7 +193,7 @@ To begin execution from a given node, the first node is run, followed by a depth
 
 ### Layers
 
-[Stages ](#stage)are designed to be combined together to create a hierarchy of instructions that can be reused and repurposed by several NXT users for use on several assets or workflows. When a stage is referenced into another stage, it is a “layer” within that stage.
+Layers are designed to be composited (combined) to create a hierarchy of instructions that can be reused and repurposed by several NXT users for use on several assets or workflows. Multiple layers can be referenced and nxt seamlessly combines them into a single composite layer.
 ![nxt_layers](images/layers_concept.png)
 ![layers.PNG](../images/layers.PNG)
 
@@ -224,7 +234,7 @@ As soon as you begin to edit proxy children, they are converted into real editab
 !!! note
     The hierarchy has the final opinion in the composite. _UNLESS_ the node has an local opinion on the data.
 
-    - Layer stage
+    - Layer
     - Node parent
     - Node
     - Instance parent
@@ -245,9 +255,30 @@ Data comes from the hierarchical parent as well as the instance source, with hie
 
 # NXT file spec
 
-NXT files follow standard `.json` file specifications with a few specific keys in the root dictionary. 
+NXT files follow standard `.json` file specifications with a few specific keys in the root dictionary.  
 
----TODO: Figure out what these keys are.
+- Required:  
+    `version` - str, graph version number
+- Optional:  
+    `alias` - str, nice name for layer.  
+    `color` - str, hex color.  
+    `mute` - bool, mute layer when loaded as top layer.  
+    `solo` - bool, solo layer when loaded as top layer.  
+    `references` - list, string file paths to reference layers, ordered top to bottom (strong to weak). *File paths can be relative.*
+    `meta_data` - dict, data about the graph **not** affecting its execution or composition.  
+    `nodes` - dict, key of `/full/node/path` and value of a [node dict](#node-dict).
+
+### Node Dict
+The node dict is what holds all the local opinions (values) about a node. All the keys are optional, however we recommend having at least 1 key and value, otherwise it is best to _just_ delete the node.
+
+- `child_order` - list, strings of children node names in the order they should be executed.  
+- `comment` - string, think of this like a node's docstring.  
+- `code` - list, string lines of code that the node will run when it is executed.  
+- `enabled` - bool, if `false` the node will not execute. Should be omitted from the dict unless explicitly needed as nodes with no key are assumed enabled.  
+- `execute_in` - str, path to root node whose hierarchy executes directly before this node's hierarchy. *Only applicable on root nodes.*  
+- `instance` - str, full or partial node path of node this node should derive its instance data from. *This path should **not** be an ancestor, descendant, of this node nor the path of this node.*  
+- `start_point` - bool, if `true` the node will be treated as a start node. *Only applicable on root nodes.*  
+
 
 # Design Philosophy
 

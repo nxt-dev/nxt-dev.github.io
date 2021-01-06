@@ -102,9 +102,8 @@ Over there we explain nxt from different vantage points to help illuminate how n
 ---
 <br/><br/>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/XlXfue-7oQk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 ## Layers
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XlXfue-7oQk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ##### 10 Layering and compositing
 - Adding layers
@@ -116,8 +115,11 @@ Over there we explain nxt from different vantage points to help illuminate how n
 <br/><br/>
 
 ## Contexts
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xpVkEMWyTao" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 ##### Sub-graphs
-Coming soon...
+- Referencing builtin layers
+- Calling sub-graphs
+- Getting and using returns from sub-graphs
 
 ##### Remote graphs
 Coming soon...

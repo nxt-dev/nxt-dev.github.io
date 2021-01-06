@@ -1,16 +1,16 @@
 # Workflows
 
-Nxt supports a particularly diverse cross-section of users with  very different needs and working methods. 
+Nxt supports a particularly diverse cross-section of users with very different needs and working methods. 
 
 ##### Artist
 
 Code is just a click away for artists who know some scripting. Artists can tweak code written by a TD, and build on that example. Artists can also build their own graphs if a project doesn't require a TD.
 
-For example, they could change the height of a rig, or the image size for a render callback, or the directory where an asset is loaded.
+For example, they could change the height of a rig, or the image size for a render callback, or the directory where an asset is loaded. All without getting into the weeds on how the graph does the work.
 
 ##### TD
 
-A TD’s workflow bridges the gap between artists and developers. TD will need most of the deep functionality that a developer needs, but need to focus on speed when  when it’s time to solve problems for artists.  
+A TD’s workflow bridges the gap between artists and developers. TDs need most of the deep functionality that a developer needs, but are also focused on speed when it’s time to solve problems for artists.  
 
 ##### Black Box
 
@@ -26,7 +26,7 @@ A Nxt graph can be packaged up as a pipeline tool and run in the background or o
 
 ##### Developer
 
-If nxt can provide a accessible front end to software and processes, developers can spend more time on lower level tools. 
+NXT provides an accessible front end to software and processes, allowing developers to spend more time on lower level tools. 
 
 # Transition Map
 
@@ -77,6 +77,6 @@ This table will take concepts you are familiar with in other products and draw p
 
 | Blueprint/Bifrost/Ice/VEX                                                           | NXT                                                                                                                         |
 | ----------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| VP has a node for every function; type conversion, flow control, random generation. | NXT uses nodes and graphs to represent the data and tree execution, but the logic, flow control, and execution is all code. |
+| These have a node for every function; type conversion, flow control, random generation. | NXT uses nodes and graphs to represent the data and tree execution, but the logic, flow control, and execution is all code. |
 |                                                                                     |                                                                                                                             |
 |                                                                                     |                                                                                                                             |

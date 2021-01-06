@@ -76,6 +76,7 @@ Our Maya plugin comes with both a visual editor and the core. We've tested Maya 
 #### Planned plugins:
 - Houdini 
 - Nuke
+- Blender
 
 <br>
 
@@ -99,10 +100,19 @@ We recommend **not** adding conda python to your system path and **not** making 
 - Launch the **Anaconda Prompt** and install dependencies:
     `conda env create -f C:/Projects/nxt/nxt_env.yml`
 #### Launching the nxt editor
-- From Anaconda Prompt
-    - `conda activate nxt`
-    - `cd C:/Projects/nxt`
-    - `python -m nxt.cli ui`
+**From Anaconda Prompt**
+
+- `conda activate nxt`
+- `cd C:/Projects/nxt`
+- `python -m nxt.cli ui`
+
+**From Python**
+
+```python
+import nxt_editor
+GRAPHS_TO_OPEN = ['a_graph.nxt'] or None
+nxt_editor.launch_editor(paths=GRAPHS_TO_OPEN, start_rpc=True)
+```
 
 <br>
 
@@ -112,8 +122,7 @@ Tested with Maya2018/19/20, Houdini18, Nuke11,12
 
 !!! warning
     This setup is temporary, and will eventually be replaced with a command
-     port connections with host plugins. There is also lack of support in
-      apps like photoshop, UE4 (qt library issues).
+     port connections with host plugins.
 
 Find your conda env with this command in the Anaconda Prompt: `conda info --envs` 
 Copy the following code into Maya and edit  `NXT_PATH` and `ENV_PATH` to reflect your environment. You can then drag it to your shelf or save it to a file, up to you.
@@ -124,18 +133,19 @@ Copy the following code into Maya and edit  `NXT_PATH` and `ENV_PATH` to reflect
     NXT_PATH = '~/Projects/Sun/nxt'
     # path to conda env
     ENV_PATH = 'C:/ProgramData/Miniconda2/envs/nxt/Lib/site-packages'
-    # Default file to open, can be None
-    LAUNCH_FILE = '~/Projects/SomeGraph.nxt'
+    # Default file(s) to open, can be `None`
+    LAUNCH_FILES = ['~/Projects/SomeGraph.nxt']
     if ENV_PATH not in sys.path:
         sys.path.append(os.path.expanduser(ENV_PATH))
     if NXT_PATH not in sys.path:
         sys.path.append(os.path.expanduser(NXT_PATH))
     from Qt import QtCore
-    import nxt_editor.main_window
-    instance = nxt_editor.main_window.MainWindow(filepath=LAUNCH_FILE)
+    import nxt_editor
+    # The `paths` kwarg can be omited if you don't want to open any graphs.
+    # Due to the way some thrid party Python interpeters are setup, we recommened setting `start_rpc` to `False`.
+    instance = nxt_editor.show_new_editor(paths=LAUNCH_FILES, start_rpc=False)
     if sys.platform == 'win32':
         instance.setWindowFlags(QtCore.Qt.Window)
-    instance.show()
     # To force close the instance run this line:
     # instance.close()
 
@@ -152,12 +162,13 @@ To attach to the main window in Nuke
         else:
             raise RuntimeError('Could not find DockMainWindow instance')
     nuke_window = _nuke_main_window()
-    instance = nxt_editor.main_window.MainWindow(parent=nuke_window, filepath=LAUNCH_FILE)
+    instance = nxt_editor.show_new_editor(start_rpc=False)
+    instance.setParent(nuke_window, QtCore.Qt.Window)
 
 To Attach to the main window in Houdini
 
     from hutil.Qt import QtCore
-    instance = nxt_editor.main_window.MainWindow()
+    instance = nxt_editor.show_new_editor(start_rpc=False)
     instance.setParent(hou.qt.mainWindow(), QtCore.Qt.Window)
 
 To Attach to the main window in Maya
@@ -165,4 +176,5 @@ To Attach to the main window in Maya
     import maya.OpenMayaUI as mui
     pointer = mui.MQtUtil.mainWindow()
     maya_window = QtCompat.wrapInstance(long(pointer), QtWidgets.QWidget)
-    instance = nxt_editor.main_window.MainWindow(parent=maya_window)
+    instance = nxt_editor.show_new_editor(start_rpc=False)
+    instance.setParent(hou.qt.mainWindow(), QtCore.Qt.Window)
