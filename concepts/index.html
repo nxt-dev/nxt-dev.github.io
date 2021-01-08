@@ -131,7 +131,7 @@
 <h1 id="concept-quick-start">Concept quick start</h1>
 <h2 id="nodes">Nodes</h2>
 <p>Graphs are made of node hierarchies. Node hierarchies can be collapsed by double clicking. During execution, a root node is executed, then it's descendants are executed depth first, then the next root node is begun. Execution sequencing between nodes is done via a special attribute: "Exec Input" where a node specifies the root node that is <em>before</em> it in execution.</p>
-<p><img alt="hierarchy.PNG" src="images\hierarchy.PNG" /></p>
+<p><img alt="hierarchy.PNG" src="../images/hierarchy.PNG" /></p>
 <p>In the above example, the execution order would be: <code>/parent</code>, <code>/parent/child1</code>, <code>/parent/child1/child2</code>, <code>/parent/sibling</code>, <code>/parent/sibling2</code>, <code>/node</code>, <code>/node/node</code></p>
 <h2 id="attributes">Attributes</h2>
 <p>Rather than building a custom UI to interact with code, you edit attributes on <a href="../reference/#node">nodes </a>in a familiar property editor. Nxt <a href="../reference/#stagecomposition">substitutes </a> <a href="../reference/#attributes">attributes </a>into the body of the  <a href="../reference/#compute">code </a>on the fly and generates linearly executed bespoke programs. It lets you interact via properties without writing, managing, and extracting data from a UI. </p>
@@ -149,19 +149,19 @@
 </tr>
 </tbody>
 </table>
-<p><img alt="token_intro.gif" src="images\token_intro.gif" /></p>
+<p><img alt="token_intro.gif" src="../images/token_intro.gif" /></p>
 <p>Attributes can refer to other attributes and are <a href="../reference/#stagecomposition">composited </a>on the fly, or attributes can be used directly in code. These are called <a href="../reference/#tokens">tokens</a>.</p>
-<p><img alt="token2_intro.gif" src="images\token2_intro.gif" /></p>
+<p><img alt="token2_intro.gif" src="../images/token2_intro.gif" /></p>
 <h2 id="inheritance">Inheritance</h2>
 <p>Each tree <a href="../reference/#stagecomposition">inherits </a>all the attributes of their parent nodes. (All of this can be easily hidden via <code>1,2,3</code> hotkeys) Those attributes are available to child nodes. Each child node can overwrite the value, or use the inherited value.</p>
-<p><img alt="token_intro.gif" src="images\tree_intro.gif" /></p>
+<p><img alt="token_intro.gif" src="../images/tree_intro.gif" /></p>
 <h2 id="layers">Layers</h2>
 <p>Nxt also incorporates a <a href="../reference/#layers">layering </a>model where attributes and code can be overridden by nodes on higher layers and leave the underlying structure intact.</p>
-<p><img alt="layer_intro.gif" src="images\layer_intro.gif" /></p>
+<p><img alt="layer_intro.gif" src="../images/layer_intro.gif" /></p>
 <h2 id="instances">Instances</h2>
 <p>Finally, any node can be instanced and overridden by layers or nodes.</p>
 <p><a href="../reference/#instancing">Instancing </a>allows you to reuse node trees from other parts of the graph with specific overrides.</p>
-<p><img alt="instance_intro.gif" src="images\instance_intro.gif" /></p></div>
+<p><img alt="instance_intro.gif" src="../images/instance_intro.gif" /></p></div>
             </div>
         </div>
 
