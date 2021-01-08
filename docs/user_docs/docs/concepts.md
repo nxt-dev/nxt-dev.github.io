@@ -4,7 +4,7 @@
 
 Graphs are made of node hierarchies. Node hierarchies can be collapsed by double clicking. During execution, a root node is executed, then it's descendants are executed depth first, then the next root node is begun. Execution sequencing between nodes is done via a special attribute: "Exec Input" where a node specifies the root node that is _before_ it in execution.
 
-![hierarchy.PNG](images\hierarchy.PNG)
+![hierarchy.PNG](images/hierarchy.PNG)
 
 In the above example, the execution order would be: `/parent`, `/parent/child1`, `/parent/child1/child2`, `/parent/sibling`, `/parent/sibling2`, `/node`, `/node/node`
 
