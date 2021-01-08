@@ -55,7 +55,7 @@
                                 <a href="../extensions/" class="nav-link">Extensions</a>
                             </li>
                             <li class="navitem">
-                                <a href="../api/index.html" class="nav-link">API</a>
+                                <a href="../api/" class="nav-link">API</a>
                             </li>
                             <li class="navitem">
                                 <a href="../license/" class="nav-link">License</a>
@@ -135,6 +135,7 @@ The core will automatically install with the <code>nxt-editor</code>.</p>
 </div>
 <h4 id="video">Video</h4>
 <iframe width="400" height="270" src="https://www.youtube.com/embed/yaSjF_IKMRY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 <iframe width="400" height="270" src="https://www.youtube.com/embed/gyaR7YgfulE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <h4 id="written">Written</h4>
@@ -155,9 +156,10 @@ The core will automatically install with the <code>nxt-editor</code>.</p>
 </li>
 </ul>
 <p>To execute a graph with the nxt Python core, use the following:</p>
-<pre><code class="language-python">import nxt
+<pre><code class="python">import nxt
 nxt.execute_graph('path/to/graph.nxt')
 </code></pre>
+
 <p><br></p>
 <hr />
 <h2 id="windows-python-27">Windows (Python 2.7)</h2>
@@ -202,6 +204,7 @@ the <a href="https://github.com/nxt-dev/nxt_editor/blob/release/CONTRIBUTING.md"
 <ul>
 <li>Houdini </li>
 <li>Nuke</li>
+<li>Blender</li>
 </ul>
 <p><br></p>
 <hr />
@@ -222,22 +225,25 @@ We recommend <strong>not</strong> adding conda python to your system path and <s
     <code>conda env create -f C:/Projects/nxt/nxt_env.yml</code></li>
 </ul>
 <h4 id="launching-the-nxt-editor">Launching the nxt editor</h4>
+<p><strong>From Anaconda Prompt</strong></p>
 <ul>
-<li>From Anaconda Prompt<ul>
 <li><code>conda activate nxt</code></li>
 <li><code>cd C:/Projects/nxt</code></li>
 <li><code>python -m nxt.cli ui</code></li>
 </ul>
-</li>
-</ul>
+<p><strong>From Python</strong></p>
+<pre><code class="python">import nxt_editor
+GRAPHS_TO_OPEN = ['a_graph.nxt'] or None
+nxt_editor.launch_editor(paths=GRAPHS_TO_OPEN, start_rpc=True)
+</code></pre>
+
 <p><br></p>
 <h4 id="bootstrapping-nxt">Bootstrapping nxt</h4>
 <p>Tested with Maya2018/19/20, Houdini18, Nuke11,12</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>This setup is temporary, and will eventually be replaced with a command
- port connections with host plugins. There is also lack of support in
-  apps like photoshop, UE4 (qt library issues).</p>
+ port connections with host plugins.</p>
 </div>
 <p>Find your conda env with this command in the Anaconda Prompt: <code>conda info --envs</code> 
 Copy the following code into Maya and edit  <code>NXT_PATH</code> and <code>ENV_PATH</code> to reflect your environment. You can then drag it to your shelf or save it to a file, up to you.</p>
@@ -247,18 +253,19 @@ import os
 NXT_PATH = '~/Projects/Sun/nxt'
 # path to conda env
 ENV_PATH = 'C:/ProgramData/Miniconda2/envs/nxt/Lib/site-packages'
-# Default file to open, can be None
-LAUNCH_FILE = '~/Projects/SomeGraph.nxt'
+# Default file(s) to open, can be `None`
+LAUNCH_FILES = ['~/Projects/SomeGraph.nxt']
 if ENV_PATH not in sys.path:
     sys.path.append(os.path.expanduser(ENV_PATH))
 if NXT_PATH not in sys.path:
     sys.path.append(os.path.expanduser(NXT_PATH))
 from Qt import QtCore
-import nxt_editor.main_window
-instance = nxt_editor.main_window.MainWindow(filepath=LAUNCH_FILE)
+import nxt_editor
+# The `paths` kwarg can be omited if you don't want to open any graphs.
+# Due to the way some thrid party Python interpeters are setup, we recommened setting `start_rpc` to `False`.
+instance = nxt_editor.show_new_editor(paths=LAUNCH_FILES, start_rpc=False)
 if sys.platform == 'win32':
     instance.setWindowFlags(QtCore.Qt.Window)
-instance.show()
 # To force close the instance run this line:
 # instance.close()
 </code></pre>
@@ -273,25 +280,27 @@ instance.show()
     else:
         raise RuntimeError('Could not find DockMainWindow instance')
 nuke_window = _nuke_main_window()
-instance = nxt_editor.main_window.MainWindow(parent=nuke_window, filepath=LAUNCH_FILE)
+instance = nxt_editor.show_new_editor(start_rpc=False)
+instance.setParent(nuke_window, QtCore.Qt.Window)
 </code></pre>
 <p>To Attach to the main window in Houdini</p>
 <pre><code>from hutil.Qt import QtCore
-instance = nxt_editor.main_window.MainWindow()
+instance = nxt_editor.show_new_editor(start_rpc=False)
 instance.setParent(hou.qt.mainWindow(), QtCore.Qt.Window)
 </code></pre>
 <p>To Attach to the main window in Maya</p>
 <pre><code>import maya.OpenMayaUI as mui
 pointer = mui.MQtUtil.mainWindow()
 maya_window = QtCompat.wrapInstance(long(pointer), QtWidgets.QWidget)
-instance = nxt_editor.main_window.MainWindow(parent=maya_window)
+instance = nxt_editor.show_new_editor(start_rpc=False)
+instance.setParent(hou.qt.mainWindow(), QtCore.Qt.Window)
 </code></pre></div>
             </div>
         </div>
 
         <footer class="col-md-12">
             <hr>
-                <p>2020 NXT authors</p>
+                <p>2021 NXT Authors</p>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>

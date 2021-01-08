@@ -1,0 +1,336 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tokens module &mdash; NXT  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="runtime module" href="nxt.runtime.html" />
+    <link rel="prev" title="nxt_log module" href="nxt.nxt_log.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> NXT
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="https://nxt-dev.github.io/">User Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nxt.html">nxt package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="nxt.html#modules">modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_io.html">nxt_io</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_layer.html">nxt_layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_path.html">nxt_path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_log.html">nxt_log</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">tokens</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxt.runtime.html">runtime</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NXT</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="nxt.html">nxt package</a> &raquo;</li>
+        
+      <li>tokens module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/nxt.tokens.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-nxt.tokens">
+<span id="tokens-module"></span><h1>tokens module<a class="headerlink" href="#module-nxt.tokens" title="Permalink to this headline">¶</a></h1>
+<p>Utitiles for parsing and create nxt token strings.</p>
+<dl class="py function">
+<dt id="nxt.tokens.register_token">
+<code class="sig-name descname">register_token</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">prefix</span></em>, <em class="sig-param"><span class="n">detect</span></em>, <em class="sig-param"><span class="n">resolve</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/tokens.html#register_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.tokens.register_token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a token to be expandable by resolve. Requires 3 components, a         prefix, a detect callable, and a resolve callable.</p>
+<p>For an example token see the example plugin in the nxt plugins directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>prefix</strong> (<em>str</em>) – prefix of token</p></li>
+<li><p><strong>detect</strong> (<em>callable</em>) – callable that takes a single argument and returns True if         given input can be resolved by this token type.</p></li>
+<li><p><strong>resolve</strong> (<em>callable</em>) – callable that resolves token content</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="nxt.tokens.get_token_content">
+<code class="sig-name descname">get_token_content</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">token_str</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/tokens.html#get_token_content"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.tokens.get_token_content" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes token prefix and suffix from given token_str</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>token_str</strong> (<em>str</em>) – string to remove token syntax from</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>given token_str with token syntax removed</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="nxt.tokens.make_token_str">
+<code class="sig-name descname">make_token_str</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">token_content</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/tokens.html#make_token_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.tokens.make_token_str" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a token around given token_content.
+The opposite of <cite>get_token_content</cite></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>token_content</strong> (<em>str</em>) – token content to wrap</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>token content wrapped in token syntax</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="nxt.tokens.get_standalone_tokens">
+<code class="sig-name descname">get_standalone_tokens</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">raw_value</span></em>, <em class="sig-param"><span class="n">token_types</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/tokens.html#get_standalone_tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.tokens.get_standalone_tokens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get tokens in the given value that are not nested within another token.
+If none are found, an empty list is returned.
+If the token syntax is malformed(extra starts or ends), return empty list.
+Returns list including outer token syntax</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>raw_value</strong> (<em>str</em>) – value to find standalone tokens in.</p></li>
+<li><p><strong>token_types</strong> (<em>list</em><em>, </em><em>tuple</em><em>, or </em><em>None</em>) – Optionally a list of specific token types can be     provided, only standalone tokens that look like those token type(s) will     be returned.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of standalone tokens, if found.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="nxt.tokens.atomic_token_partition">
+<code class="sig-name descname">atomic_token_partition</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/tokens.html#atomic_token_partition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.tokens.atomic_token_partition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Partition given value on a token that appears resolvable(contains no
+sub tokens). Returns in a tuple: (before_token, token, after_token).
+Returned token includes token syntax. If no tokens are found, returned
+tuple contains None in all values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – text to find a token from, and partition</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>before_token, token, after_token</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple(str, str, str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="nxt.tokens.get_atomic_tokens">
+<code class="sig-name descname">get_atomic_tokens</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/tokens.html#get_atomic_tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.tokens.get_atomic_tokens" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all tokens that appear ready to resolve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – string to find tokens in</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tokens found</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="nxt.runtime.html" class="btn btn-neutral float-right" title="runtime module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="nxt.nxt_log.html" class="btn btn-neutral float-left" title="nxt_log module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, The nxt authors
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

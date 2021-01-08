@@ -55,7 +55,7 @@
                                 <a href="../extensions/" class="nav-link">Extensions</a>
                             </li>
                             <li class="navitem">
-                                <a href="../api/index.html" class="nav-link">API</a>
+                                <a href="../api/" class="nav-link">API</a>
                             </li>
                             <li class="navitem">
                                 <a href="../license/" class="nav-link">License</a>
@@ -169,7 +169,7 @@
 <p>Checkout our example graphs <a href="https://github.com/nxt-dev/nxt_editor/tree/release/examples">here</a>.</p>
 <p><em>If you're looking for workflow checkout our workflow and transition map <a href="../workflows/">here</a>.</em></p>
 <h1 id="editors">Editors</h1>
-<p>Stage</p>
+<p>Stage View</p>
 <p>Node Properties</p>
 <p>Code Editor</p>
 <p>Layer manager</p>
@@ -180,10 +180,20 @@
 <p><a href="../hotkeys/">Hotkey Editor</a></p>
 <h1 id="terms-and-definitions">Terms and Definitions</h1>
 <h2 id="stage">Stage</h2>
-<p>The stage is a collection of graphs, trees, and layers of nxt <a href="#node">nodes </a>that set the <a href="#stage-composition">composition structure</a> and <a href="#execution-order">execution order</a> for an nxt file.</p>
+<p>The stage is a collection of graphs, trees, and layers of nxt <a href="#node">nodes </a>that set the <a href="#stage-composition">composition structure</a> and <a href="#execution-order">execution order</a> for an nxt file.<br />
+Every node has access to the <code>STAGE</code> object. When working with Python classes (besides the builtins) it is best to store those objects on the <code>STAGE</code>.<br />
+An example of how you would do that in a node's code is as follows:</p>
+<pre><code class="python">my_object = ComplexData()
+STAGE.complex_data = my_object
+</code></pre>
+
+<p>Another node later in the execution can access that object as follows:</p>
+<pre><code class="python">STAGE.complex_data.a_method()
+</code></pre>
+
 <div class="admonition note">
 <p class="admonition-title">Stage attributes and composition</p>
-<p>Note that each layer is also a node, and those nodes get composited to the master STAGE. Each node that is parented to a layer inherits the attributes of the layer/stage. This can be useful for defining global variables, or a state that needs to propagate into the entire graph.</p>
+<p>Note that each layer is also a node, and those nodes get composited to the <code>STAGE</code> object. Each node is parented to that object and inherit the attributes of it. This can be useful for defining "global" variables, or a state that needs to propagate into the entire graph.</p>
 </div>
 <h2 id="node">Node</h2>
 <p>A node is a container for code (or compute) and a collection of attributes. Every node contains a single <a href="#compute">code block</a> that is executed when a node is run. <a href="#execution-order">Execution order</a> is defined both by hierarchy and connections to execution plugs on the nodes.</p>
@@ -242,11 +252,13 @@ print(Stage.anyattr)
         ${/absolute_node_path.attribute}
         ${../relative_nodepath.attribute}
 </code></pre>
+
 <p>File validation syntax <code>${file::}</code>: this will always resolve to a real file, and will return an empty string if the file doesn't exist. Used to validate files for reading.</p>
 <pre><code>        ${file::file.nxt}
         ${file::C:/absolute_path/file.nxt}
         ${file::../relative_path/file.nxt}
 </code></pre>
+
 <p>File path token syntax <code>${path::}</code>this will  attempt to resolve to a valid path. If not, it will be empty. Used to expand paths for writing.</p>
 <p>File path token syntax <code>${contents::}</code> will include the contents of an external file. For example, <code>${contents::${file::external.py}}</code> will include the contents of <code>external.py</code> in the attribute, compute, <em>and</em> it will resolve tokens written within this file.</p>
 <p>File list token syntax <code>${fileslist::}</code> will list valid historical filepaths at the same path.<br />
@@ -257,6 +269,7 @@ This would allow you to collete and parse data from multiple reference layers:</
 for filepath in ${filelist::/node.weiths_file}:
     all_the_data.update(json.load(filepath))
 </code></pre>
+
 <div class="admonition note">
 <p class="admonition-title">File list validation</p>
 <p>The <code>filelist::</code> token only returns valid filepaths to existing files. </p>
@@ -309,7 +322,7 @@ self.attribute = w(my_attr)</code></p>
 <p>To begin execution from a given node, the first node is run, followed by a depth first execution of each of it’s descendants. Following the execution of the descendants, the root node whose input <a href="#executionplugs">execution plug</a> is connected to the current node’s output execution plug will be run following the same logic.</p>
 <h2 id="stage-composition">Stage Composition</h2>
 <h3 id="layers">Layers</h3>
-<p><a href="#stage">Stages </a>are designed to be combined together to create a hierarchy of instructions that can be reused and repurposed by several NXT users for use on several assets or workflows. When a stage is referenced into another stage, it is a “layer” within that stage.
+<p>Layers are designed to be composited (combined) to create a hierarchy of instructions that can be reused and repurposed by several NXT users for use on several assets or workflows. Multiple layers can be referenced and nxt seamlessly combines them into a single composite layer.
 <img alt="nxt_layers" src="../images/layers_concept.png" />
 <img alt="layers.PNG" src="../images/layers.PNG" /></p>
 <p>All of the layers in your file are composited together to produce final code to execute. Each layer has the power to change as much or as little as is needed to customize the composited node’s attributes and code block. These changes are stored in the file they are made on, keeping referenced files safe to use for many purposes.</p>
@@ -340,7 +353,7 @@ self.attribute = w(my_attr)</code></p>
 <p class="admonition-title">Note</p>
 <p>The hierarchy has the final opinion in the composite. <em>UNLESS</em> the node has an local opinion on the data.</p>
 <ul>
-<li>Layer stage</li>
+<li>Layer</li>
 <li>Node parent</li>
 <li>Node</li>
 <li>Instance parent</li>
@@ -360,8 +373,30 @@ self.attribute = w(my_attr)</code></p>
 <p>If a node instances itself, or any ancestor or descendants, it will crash. It's best (because that's all thats possible) to only instance from other hierarchies or sibling nodes</p>
 </div>
 <h1 id="nxt-file-spec">NXT file spec</h1>
-<p>NXT files follow standard <code>.json</code> file specifications with a few specific keys in the root dictionary. </p>
-<p>---TODO: Figure out what these keys are.</p>
+<p>NXT files follow standard <code>.json</code> file specifications with a few specific keys in the root dictionary.  </p>
+<ul>
+<li>Required:<br />
+<code>version</code> - str, graph version number</li>
+<li>Optional:<br />
+<code>alias</code> - str, nice name for layer.<br />
+<code>color</code> - str, hex color.<br />
+<code>mute</code> - bool, mute layer when loaded as top layer.<br />
+<code>solo</code> - bool, solo layer when loaded as top layer.<br />
+<code>references</code> - list, string file paths to reference layers, ordered top to bottom (strong to weak). <em>File paths can be relative.</em>
+    <code>meta_data</code> - dict, data about the graph <strong>not</strong> affecting its execution or composition.<br />
+<code>nodes</code> - dict, key of <code>/full/node/path</code> and value of a <a href="#node-dict">node dict</a>.</li>
+</ul>
+<h3 id="node-dict">Node Dict</h3>
+<p>The node dict is what holds all the local opinions (values) about a node. All the keys are optional, however we recommend having at least 1 key and value, otherwise it is best to <em>just</em> delete the node.</p>
+<ul>
+<li><code>child_order</code> - list, strings of children node names in the order they should be executed.  </li>
+<li><code>comment</code> - string, think of this like a node's docstring.  </li>
+<li><code>code</code> - list, string lines of code that the node will run when it is executed.  </li>
+<li><code>enabled</code> - bool, if <code>false</code> the node will not execute. Should be omitted from the dict unless explicitly needed as nodes with no key are assumed enabled.  </li>
+<li><code>execute_in</code> - str, path to root node whose hierarchy executes directly before this node's hierarchy. <em>Only applicable on root nodes.</em>  </li>
+<li><code>instance</code> - str, full or partial node path of node this node should derive its instance data from. <em>This path should </em><em>not</em><em> be an ancestor, descendant, of this node nor the path of this node.</em>  </li>
+<li><code>start_point</code> - bool, if <code>true</code> the node will be treated as a start node. <em>Only applicable on root nodes.</em>  </li>
+</ul>
 <h1 id="design-philosophy">Design Philosophy</h1>
 <p>Nobody will ever read this pretentious wall of text, but it was an important part of the development process. We hope you find it interesting, and you may find your way here if your start to dig deeper and wonder why things are the way they are.</p>
 <h3 id="discovery">Discovery</h3>
@@ -425,7 +460,7 @@ self.attribute = w(my_attr)</code></p>
 
         <footer class="col-md-12">
             <hr>
-                <p>2020 NXT authors</p>
+                <p>2021 NXT Authors</p>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>

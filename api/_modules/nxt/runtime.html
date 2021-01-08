@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>nxt.runtime &mdash; NXT  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> NXT
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference external" href="https://nxt-dev.github.io/">User Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nxt.html">nxt package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nxt.html#modules">modules</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NXT</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../nxt.html">nxt</a> &raquo;</li>
+        
+      <li>nxt.runtime</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for nxt.runtime</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Code used while a graph is running.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># Built-in</span>
+<span class="kn">import</span> <span class="nn">code</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">traceback</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="c1"># Internal</span>
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">IGNORE</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<div class="viewcode-block" id="w"><a class="viewcode-back" href="../../nxt.runtime.html#nxt.runtime.w">[docs]</a><span class="k">def</span> <span class="nf">w</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">quote_type</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Wraps given string in quotes.</span>
+
+<span class="sd">    :param string: Input string to be wrapped</span>
+<span class="sd">    :type string: str</span>
+<span class="sd">    :param quote_type: Int 1: &#39;, 2: &quot;, 3: &#39;&#39;&#39;, 4: \&quot;\&quot;\&quot; Default is 1, any \</span>
+<span class="sd">        string can also be provided and we will wrap the string arg in that \</span>
+<span class="sd">        string ie w(&#39;Hello World&#39;, &#39;$&#39;) returns &#39;$Hello World$&#39;.</span>
+<span class="sd">    :type quote_type: int or str</span>
+<span class="sd">    :return: String wrapped in quote marks or custom string</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Written here for documentation, real &quot;</span>
+                              <span class="s2">&quot;implementation in stage.py&quot;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="execute"><a class="viewcode-back" href="../../nxt.runtime.html#nxt.runtime.execute">[docs]</a><span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="n">paths</span><span class="o">=</span><span class="p">(),</span> <span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;While within node code, this method runs other parts of the graph, \</span>
+<span class="sd">        allowing non-linear execution.</span>
+
+<span class="sd">    :param paths: iterable of paths to execute, defaults to ()</span>
+<span class="sd">    :type paths: iterable, optional</span>
+<span class="sd">    :param start: node path to start from, defaults to None. \</span>
+<span class="sd">        NOTE must give *either* paths or start, both is invalid input.</span>
+<span class="sd">    :type start: str, optional</span>
+<span class="sd">    :param parameters: parameters dictionary to apply before exectuion, \</span>
+<span class="sd">        defaults to None</span>
+<span class="sd">    :type parameters: dict, optional</span>
+<span class="sd">    :raises GraphError: When there is a problem with execution.</span>
+<span class="sd">    :raises ValueError: When not given either node paths or a start path.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Written here for documentation, real &quot;</span>
+                              <span class="s2">&quot;implementation in stage.py&quot;</span><span class="p">)</span></div>
+
+<span class="k">class</span> <span class="nc">Console</span><span class="p">(</span><span class="n">code</span><span class="o">.</span><span class="n">InteractiveConsole</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_globals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">_locals</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="n">IGNORE</span><span class="p">,</span>
+                 <span class="n">node_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">layer_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">locals</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_locals</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="nb">globals</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">_globals</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">node_path</span> <span class="o">=</span> <span class="n">node_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">running_lines</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer_path</span> <span class="o">=</span> <span class="n">layer_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">locals</span> <span class="o">=</span> <span class="n">_locals</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">globals</span> <span class="o">=</span> <span class="n">_globals</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_as_global</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lineno_offset</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">code</span><span class="o">.</span><span class="n">InteractiveConsole</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">locals</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">runcode</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>  <span class="c1"># Convert to tuple for python3</span>
+            <span class="n">exec</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">globals</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">KeyboardInterrupt</span><span class="p">:</span>
+            <span class="k">raise</span>
+        <span class="k">except</span> <span class="ne">SystemExit</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">&quot;System Exit raised in </span><span class="si">{}</span><span class="s2">, &quot;</span>
+                           <span class="s2">&quot;halting execution.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_path</span><span class="p">),</span>
+                           <span class="n">links</span><span class="o">=</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">node_path</span><span class="p">])</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="n">lineno</span> <span class="o">=</span> <span class="n">get_traceback_lineno</span><span class="p">(</span><span class="n">err_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">lineno</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">bad_line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">running_lines</span><span class="p">[</span><span class="n">lineno</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
+            <span class="k">raise</span> <span class="n">GraphError</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">tb</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_path</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_path</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span>
+                             <span class="n">bad_line</span><span class="p">,</span> <span class="n">err_depth</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">get_traceback_lineno</span><span class="p">(</span><span class="n">err_depth</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get the line number of one of the errors in the current traceback.</span>
+
+<span class="sd">    :param err_depth: index of the error to get line number of. 0 is most</span>
+<span class="sd">    recent, higher values are deeper errors. Defaults to 0</span>
+<span class="sd">    :type err_depth: int, optional</span>
+<span class="sd">    :return: line number of requested error</span>
+<span class="sd">    :rtype: int</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">tb</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()</span>
+    <span class="n">_tblist</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">extract_tb</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_tblist</span><span class="p">[</span><span class="n">err_depth</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+
+
+<span class="k">class</span> <span class="nc">GraphError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">err</span><span class="p">,</span> <span class="n">tb</span><span class="p">,</span> <span class="n">layer_path</span><span class="p">,</span> <span class="n">err_path</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">bad_line</span><span class="p">,</span>
+                 <span class="n">err_depth</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="n">tb_lines</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">extract_tb</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>
+        <span class="n">tb_lines</span> <span class="o">=</span> <span class="n">tb_lines</span><span class="p">[</span><span class="n">err_depth</span><span class="p">:]</span>
+        <span class="c1"># Insert our custom graph traceback</span>
+        <span class="n">tb_lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">layer_path</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">err_path</span><span class="p">,</span> <span class="n">bad_line</span><span class="p">)</span>
+        <span class="n">print_lines</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_list</span><span class="p">(</span><span class="n">tb_lines</span><span class="p">)</span>
+        <span class="n">print_lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">print_lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">lstrip</span><span class="p">()</span>
+        <span class="n">print_lines</span> <span class="o">+=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception_only</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">err</span><span class="p">),</span> <span class="n">err</span><span class="p">)</span>
+        <span class="n">print_tb</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">print_lines</span><span class="p">)</span>
+        <span class="n">print_tb</span> <span class="o">=</span> <span class="n">print_tb</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="ne">Exception</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">print_tb</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">GraphSyntaxError</span><span class="p">(</span><span class="n">GraphError</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">error</span><span class="p">,</span> <span class="n">layer_path</span><span class="p">,</span> <span class="n">error_path</span><span class="p">,</span> <span class="n">lineno</span><span class="p">):</span>
+        <span class="n">print_lines</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exception_only</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">error</span><span class="p">),</span> <span class="n">error</span><span class="p">)</span>
+        <span class="n">top_line_fmt</span> <span class="o">=</span> <span class="s1">&#39;File &quot;</span><span class="si">{}</span><span class="s1">&quot;, line </span><span class="si">{}</span><span class="s1">, in </span><span class="si">{}</span><span class="se">\n</span><span class="s1">&#39;</span>
+        <span class="n">print_lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">top_line_fmt</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">layer_path</span><span class="p">,</span> <span class="n">lineno</span><span class="p">,</span> <span class="n">error_path</span><span class="p">)</span>
+        <span class="n">syntax_err_msg</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">print_lines</span><span class="p">)</span>
+        <span class="n">syntax_err_msg</span> <span class="o">=</span> <span class="n">syntax_err_msg</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="ne">Exception</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">syntax_err_msg</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, The nxt authors
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

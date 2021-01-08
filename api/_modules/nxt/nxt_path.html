@@ -1,0 +1,593 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>nxt.nxt_path &mdash; NXT  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> NXT
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference external" href="https://nxt-dev.github.io/">User Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nxt.html">nxt package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nxt.html#modules">modules</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NXT</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../nxt.html">nxt</a> &raquo;</li>
+        
+      <li>nxt.nxt_path</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for nxt.nxt_path</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Common nxt pathing operations. Both for file and node paths.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># Built-in</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="full_file_expand"><a class="viewcode-back" href="../../nxt.nxt_path.html#nxt.nxt_path.full_file_expand">[docs]</a><span class="k">def</span> <span class="nf">full_file_expand</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A combination of commonly used os.path functions called to completely</span>
+<span class="sd">    expand given `path`. If `start` is given, os.cwd is temporarily changed</span>
+<span class="sd">    in order to influence the start of relative path expansion.</span>
+<span class="sd">    Return value will always use forward slashes as seperator.</span>
+
+<span class="sd">    :param path: path to expand</span>
+<span class="sd">    :type path: str</span>
+<span class="sd">    :param start: base directory to expand from, defaults to os cwd</span>
+<span class="sd">    :type start: str, optional</span>
+<span class="sd">    :return: given path expanded. Relative paths, environment \</span>
+<span class="sd">    variables, and user character &quot;~&quot; are expanded.</span>
+<span class="sd">    :rtype: [type]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">orig_cwd</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">start</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+
+    <span class="n">full_path</span> <span class="o">=</span> <span class="n">unify_env_vars</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expandvars</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span>
+    <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span>
+    <span class="n">full_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">full_path</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">orig_cwd</span><span class="p">)</span>
+    <span class="n">full_path</span> <span class="o">=</span> <span class="n">full_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">sep</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span>  <span class="c1"># Thanks windows.</span>
+    <span class="k">return</span> <span class="n">full_path</span></div>
+
+
+<span class="c1"># Regex patterns for finding all env vars.</span>
+<span class="c1"># NOTE match uses platform specific identifier, returns name only in group1.</span>
+<span class="n">PLATFORM_VAR_PATTERN_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;linux&#39;</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;\$([a-zA-Z_]*)&quot;</span><span class="p">),</span>
+    <span class="s1">&#39;win32&#39;</span><span class="p">:</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;%([a-zA-Z_]*)%&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="n">PLATFORM_VAR_PATTERN_MAP</span><span class="p">[</span><span class="s1">&#39;linux2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">PLATFORM_VAR_PATTERN_MAP</span><span class="p">[</span><span class="s1">&#39;linux&#39;</span><span class="p">]</span>
+<span class="n">PLATFORM_VAR_PATTERN_MAP</span><span class="p">[</span><span class="s1">&#39;darwin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">PLATFORM_VAR_PATTERN_MAP</span><span class="p">[</span><span class="s1">&#39;linux&#39;</span><span class="p">]</span>
+
+<span class="c1"># Strings ready to format with env var name. Result is ready for os expansion.</span>
+<span class="n">PLATFORM_VAR_FORMAT_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;linux&#39;</span><span class="p">:</span> <span class="s2">&quot;$</span><span class="si">{}</span><span class="s2">&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;win32&#39;</span><span class="p">:</span> <span class="s2">&quot;%</span><span class="si">{}</span><span class="s2">%&quot;</span>
+<span class="p">}</span>
+<span class="n">PLATFORM_VAR_FORMAT_MAP</span><span class="p">[</span><span class="s1">&#39;linux2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">PLATFORM_VAR_FORMAT_MAP</span><span class="p">[</span><span class="s1">&#39;linux&#39;</span><span class="p">]</span>
+<span class="n">PLATFORM_VAR_FORMAT_MAP</span><span class="p">[</span><span class="s1">&#39;darwin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">PLATFORM_VAR_FORMAT_MAP</span><span class="p">[</span><span class="s1">&#39;linux&#39;</span><span class="p">]</span>
+
+<span class="c1"># Strings ready to format with env var name into regex pattern for var.</span>
+<span class="n">PLATFORM_FIND_VAR_FORMAT_MAP</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;linux&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;\$</span><span class="si">{}</span><span class="s2">(?![a-zA-Z_])&quot;</span><span class="p">,</span>
+    <span class="s1">&#39;win32&#39;</span><span class="p">:</span> <span class="sa">r</span><span class="s2">&quot;%</span><span class="si">{}</span><span class="s2">%&quot;</span>
+<span class="p">}</span>
+<span class="n">PLATFORM_FIND_VAR_FORMAT_MAP</span><span class="p">[</span><span class="s1">&#39;linux2&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">PLATFORM_FIND_VAR_FORMAT_MAP</span><span class="p">[</span><span class="s1">&#39;linux&#39;</span><span class="p">]</span>
+<span class="n">PLATFORM_FIND_VAR_FORMAT_MAP</span><span class="p">[</span><span class="s1">&#39;darwin&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">PLATFORM_FIND_VAR_FORMAT_MAP</span><span class="p">[</span><span class="s1">&#39;linux&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="unify_env_vars"><a class="viewcode-back" href="../../nxt.nxt_path.html#nxt.nxt_path.unify_env_vars">[docs]</a><span class="k">def</span> <span class="nf">unify_env_vars</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">target_platform</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Replace foreign platform environment variables with platform native ones</span>
+<span class="sd">    Environment variable patterns must be defined in PLATFORM_VAR_PATTERN_MAP</span>
+<span class="sd">    and PLATFORM_VAR_PATTERN_MAP to be able to find and replace.</span>
+
+<span class="sd">    In short, if you&#39;re on windows, convert linux style environment vars to</span>
+<span class="sd">    windows style. If you&#39;re on linux, the reverse.</span>
+
+<span class="sd">    Supports mixed type environment variables.</span>
+
+<span class="sd">    :param path: string to replace variables in</span>
+<span class="sd">    :type value: str</span>
+<span class="sd">    :param target_platform: platform to unify as, defaults to sys.platform</span>
+<span class="sd">    :type target_platform: str, optional</span>
+<span class="sd">    :return: given path as unified as possible</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">target_search_pattern</span> <span class="o">=</span> <span class="n">PLATFORM_VAR_PATTERN_MAP</span><span class="p">[</span><span class="n">target_platform</span><span class="p">]</span>
+    <span class="n">replaced_patterns</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># patterns we&#39;ve alreay replaced.</span>
+    <span class="c1"># replace platform vars from other platforms with vars from target platform</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">path</span>
+    <span class="k">for</span> <span class="n">platform</span><span class="p">,</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">PLATFORM_VAR_PATTERN_MAP</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="c1"># Do not replace vars from our target platform</span>
+        <span class="k">if</span> <span class="n">pattern</span> <span class="o">==</span> <span class="n">target_search_pattern</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="c1"># Do not replace a pattern more than once.</span>
+        <span class="k">if</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">replaced_patterns</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">replaced_patterns</span> <span class="o">+=</span> <span class="p">[</span><span class="n">pattern</span><span class="p">]</span>
+        <span class="n">found_vars</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">var</span> <span class="ow">in</span> <span class="n">found_vars</span><span class="p">:</span>
+            <span class="n">bad_var</span> <span class="o">=</span> <span class="n">PLATFORM_VAR_FORMAT_MAP</span><span class="p">[</span><span class="n">platform</span><span class="p">]</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+            <span class="n">new_var</span> <span class="o">=</span> <span class="n">PLATFORM_VAR_FORMAT_MAP</span><span class="p">[</span><span class="n">target_platform</span><span class="p">]</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">bad_var</span><span class="p">,</span> <span class="n">new_var</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<span class="c1"># NODE SECTION</span>
+<span class="n">NODE_SEP</span> <span class="o">=</span> <span class="s1">&#39;/&#39;</span>
+<span class="n">ATTR_SEP</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span>
+<span class="n">WORLD</span> <span class="o">=</span> <span class="n">NODE_SEP</span>
+
+
+<div class="viewcode-block" id="expand_relative_node_path"><a class="viewcode-back" href="../../nxt.nxt_path.html#nxt.nxt_path.expand_relative_node_path">[docs]</a><span class="k">def</span> <span class="nf">expand_relative_node_path</span><span class="p">(</span><span class="n">rel_path</span><span class="p">,</span> <span class="n">start_node_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Expands given node `rel_path` using `start_node_path` as root of</span>
+<span class="sd">    relative path. This function does not validate the path, it is only a</span>
+<span class="sd">    string machine.</span>
+
+<span class="sd">    :param rel_path: relative path to expand.</span>
+<span class="sd">    :type rel_path: str</span>
+<span class="sd">    :param start_node_path: node to treat as root of relative path.</span>
+<span class="sd">    :type start_node_path: str</span>
+<span class="sd">    :return: expanded node path</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">rel_path</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">rel_path</span> <span class="o">==</span> <span class="n">WORLD</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">rel_path</span>
+    <span class="n">current_path</span> <span class="o">=</span> <span class="n">start_node_path</span>
+    <span class="k">if</span> <span class="n">rel_path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">NODE_SEP</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">rel_path</span>
+    <span class="n">split_path</span> <span class="o">=</span> <span class="n">rel_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">NODE_SEP</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">directive</span> <span class="ow">in</span> <span class="n">split_path</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">directive</span> <span class="o">==</span> <span class="s1">&#39;..&#39;</span><span class="p">:</span>
+            <span class="n">current_path</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">current_path</span><span class="o">.</span><span class="n">rpartition</span><span class="p">(</span><span class="n">NODE_SEP</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">directive</span> <span class="o">==</span> <span class="s1">&#39;.&#39;</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">directive</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="c1"># If we get this far, it must be the name of something.</span>
+        <span class="n">current_path</span> <span class="o">+=</span> <span class="n">NODE_SEP</span>
+        <span class="n">current_path</span> <span class="o">+=</span> <span class="n">directive</span>
+    <span class="k">return</span> <span class="n">current_path</span></div>
+
+
+<div class="viewcode-block" id="path_attr_partition"><a class="viewcode-back" href="../../nxt.nxt_path.html#nxt.nxt_path.path_attr_partition">[docs]</a><span class="k">def</span> <span class="nf">path_attr_partition</span><span class="p">(</span><span class="n">str_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns a tuple of the node path and attribute name from the given path.</span>
+
+<span class="sd">    &gt;&gt;&gt; nxt_path.node_path_partition(&#39;somewhere/else.attr&#39;)</span>
+<span class="sd">    (&#39;somewhere/else&#39;, &#39;attr&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; nxt_path.node_path_partition(&#39;...attr&#39;)</span>
+<span class="sd">    (&#39;..&#39;, &#39;attr&#39;)</span>
+<span class="sd">    &gt;&gt;&gt; nxt_path.node_path_partition(&#39;..attr&#39;)</span>
+<span class="sd">    (&#39;.&#39;, &#39;attr&#39;)</span>
+
+<span class="sd">    :param str_path: node or attribute path</span>
+<span class="sd">    :type str_path: str</span>
+<span class="sd">    :return: tuple of node path and attr name (&#39;node/path&#39;, &#39;attr_name&#39;)</span>
+<span class="sd">    :rtype: tuple</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_attr_path</span><span class="p">(</span><span class="n">str_path</span><span class="p">):</span>
+        <span class="c1"># This is a node path.</span>
+        <span class="k">return</span> <span class="n">str_path</span><span class="p">,</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">str_path</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">is</span> <span class="n">ATTR_SEP</span><span class="p">:</span>
+        <span class="c1"># This is a node path.</span>
+        <span class="k">return</span> <span class="n">str_path</span><span class="p">,</span> <span class="kc">None</span>
+    <span class="n">node_path</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">attr_name</span> <span class="o">=</span> <span class="n">str_path</span><span class="o">.</span><span class="n">rpartition</span><span class="p">(</span><span class="n">ATTR_SEP</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">node_path</span><span class="p">,</span> <span class="n">attr_name</span></div>
+
+
+<div class="viewcode-block" id="str_path_to_node_namespace"><a class="viewcode-back" href="../../nxt.nxt_path.html#nxt.nxt_path.str_path_to_node_namespace">[docs]</a><span class="k">def</span> <span class="nf">str_path_to_node_namespace</span><span class="p">(</span><span class="n">str_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given an absolute node or attr `str_path`, split it into the</span>
+<span class="sd">    list-&quot;namespace&quot; format used by stage.</span>
+<span class="sd">    NOTE that if given an attribute path, that attribute name will not be</span>
+<span class="sd">    present in the returned path.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">node_path</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">path_attr_partition</span><span class="p">(</span><span class="n">str_path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">node_path</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">NODE_SEP</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">node_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">NODE_SEP</span><span class="p">)[</span><span class="mi">1</span><span class="p">:]</span>
+    <span class="k">return</span> <span class="n">node_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">NODE_SEP</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="node_namespace_to_str_path"><a class="viewcode-back" href="../../nxt.nxt_path.html#nxt.nxt_path.node_namespace_to_str_path">[docs]</a><span class="k">def</span> <span class="nf">node_namespace_to_str_path</span><span class="p">(</span><span class="n">namespace</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given a node namespace, return it rejoined into a full string path.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">NODE_SEP</span> <span class="o">+</span> <span class="n">NODE_SEP</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">namespace</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="node_path_from_attr_path"><a class="viewcode-back" href="../../nxt.nxt_path.html#nxt.nxt_path.node_path_from_attr_path">[docs]</a><span class="k">def</span> <span class="nf">node_path_from_attr_path</span><span class="p">(</span><span class="n">attr_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given an attribute path, return the node path contained within.</span>
+
+<span class="sd">    :param attr_path: path to attribute</span>
+<span class="sd">    :type attr_path: str</span>
+<span class="sd">    :return: node path</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">node_path</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">path_attr_partition</span><span class="p">(</span><span class="n">attr_path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">node_path</span></div>
+
+
+<div class="viewcode-block" id="attr_name_from_attr_path"><a class="viewcode-back" href="../../nxt.nxt_path.html#nxt.nxt_path.attr_name_from_attr_path">[docs]</a><span class="k">def</span> <span class="nf">attr_name_from_attr_path</span><span class="p">(</span><span class="n">attr_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given an attribute path, return the attribute name.</span>
+
+<span class="sd">    :param attr_path: path to attribute</span>
+<span class="sd">    :type attr_path: str</span>
+<span class="sd">    :return: attr name contained within input</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">attr_name</span> <span class="o">=</span> <span class="n">path_attr_partition</span><span class="p">(</span><span class="n">attr_path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">attr_name</span></div>
+
+
+<div class="viewcode-block" id="node_name_from_node_path"><a class="viewcode-back" href="../../nxt.nxt_path.html#nxt.nxt_path.node_name_from_node_path">[docs]</a><span class="k">def</span> <span class="nf">node_name_from_node_path</span><span class="p">(</span><span class="n">node_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given a node path, return the node name of specified node.</span>
+
+<span class="sd">    :param node_path: str</span>
+<span class="sd">    :type node_path: node path to get node name from</span>
+<span class="sd">    :return: node name</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">node_path</span> <span class="o">==</span> <span class="n">WORLD</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">WORLD</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">node_name</span> <span class="o">=</span> <span class="n">node_path</span><span class="o">.</span><span class="n">rpartition</span><span class="p">(</span><span class="n">NODE_SEP</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">node_name</span></div>
+
+
+<div class="viewcode-block" id="get_parent_path"><a class="viewcode-back" href="../../nxt.nxt_path.html#nxt.nxt_path.get_parent_path">[docs]</a><span class="k">def</span> <span class="nf">get_parent_path</span><span class="p">(</span><span class="n">node_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the parent path implied by given `node_path`</span>
+
+<span class="sd">    :param node_path: str</span>
+<span class="sd">    :type node_path: node path to get parent path from</span>
+<span class="sd">    :return: parent path</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">node_path</span> <span class="o">==</span> <span class="n">WORLD</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+    <span class="n">parent_path</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">node_path</span><span class="o">.</span><span class="n">rpartition</span><span class="p">(</span><span class="n">NODE_SEP</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">parent_path</span><span class="p">:</span>
+        <span class="n">parent_path</span> <span class="o">=</span> <span class="n">NODE_SEP</span>
+    <span class="k">return</span> <span class="n">parent_path</span></div>
+
+
+<div class="viewcode-block" id="get_root_path"><a class="viewcode-back" href="../../nxt.nxt_path.html#nxt.nxt_path.get_root_path">[docs]</a><span class="k">def</span> <span class="nf">get_root_path</span><span class="p">(</span><span class="n">node_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the implied &quot;root&quot; node of the given path.</span>
+<span class="sd">    A root is a node with no parent.</span>
+
+<span class="sd">    :param node_path: str</span>
+<span class="sd">    :type node_path: node path to get root path from</span>
+<span class="sd">    :return: root path</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">root_name</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">node_path</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="n">NODE_SEP</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">NODE_SEP</span> <span class="o">+</span> <span class="n">root_name</span></div>
+
+
+<div class="viewcode-block" id="is_attr_path"><a class="viewcode-back" href="../../nxt.nxt_path.html#nxt.nxt_path.is_attr_path">[docs]</a><span class="k">def</span> <span class="nf">is_attr_path</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Whether the given `path` appears to be a path to an attribute.</span>
+
+<span class="sd">    :param node_path: str</span>
+<span class="sd">    :type node_path: path to check</span>
+<span class="sd">    :return: True/False whether path appears to be an attribute path.</span>
+<span class="sd">    :rtype: bool</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">ATTR_SEP</span> <span class="ow">in</span> <span class="n">path</span></div>
+
+
+<div class="viewcode-block" id="make_attr_path"><a class="viewcode-back" href="../../nxt.nxt_path.html#nxt.nxt_path.make_attr_path">[docs]</a><span class="k">def</span> <span class="nf">make_attr_path</span><span class="p">(</span><span class="n">node_path</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given a node path and attr name, join them into an attribute path.</span>
+
+<span class="sd">    :param node_path: node path to join</span>
+<span class="sd">    :type node_path: str</span>
+<span class="sd">    :param attr_name: attr name to join</span>
+<span class="sd">    :type attr_name: str</span>
+<span class="sd">    :return: constructed attribute path</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">node_path</span> <span class="o">+</span> <span class="n">ATTR_SEP</span> <span class="o">+</span> <span class="n">attr_name</span></div>
+
+
+<div class="viewcode-block" id="join_node_paths"><a class="viewcode-back" href="../../nxt.nxt_path.html#nxt.nxt_path.join_node_paths">[docs]</a><span class="k">def</span> <span class="nf">join_node_paths</span><span class="p">(</span><span class="n">node_path1</span><span class="p">,</span> <span class="n">node_path2</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given 2 node paths, treat node_path1 as ancestor, and combine their</span>
+<span class="sd">    paths together</span>
+
+<span class="sd">    :param node_path1: intended ancestor of given paths</span>
+<span class="sd">    :type node_path1: str</span>
+<span class="sd">    :param node_path2: intended descendant of given paths</span>
+<span class="sd">    :type node_path2: str</span>
+<span class="sd">    :return: path to descendant of node_path1</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node_path2</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">)):</span>
+        <span class="n">node_path2</span> <span class="o">=</span> <span class="p">(</span><span class="n">node_path2</span><span class="p">,)</span>
+    <span class="n">extras</span> <span class="o">=</span> <span class="p">(</span><span class="n">node_path1</span><span class="p">,)</span> <span class="o">+</span> <span class="n">node_path2</span>
+    <span class="n">joined</span> <span class="o">=</span> <span class="n">NODE_SEP</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">extras</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">NODE_SEP</span><span class="o">+</span><span class="n">NODE_SEP</span><span class="p">,</span> <span class="n">NODE_SEP</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">joined</span></div>
+
+
+<div class="viewcode-block" id="replace_ancestor"><a class="viewcode-back" href="../../nxt.nxt_path.html#nxt.nxt_path.replace_ancestor">[docs]</a><span class="k">def</span> <span class="nf">replace_ancestor</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">old_ancestor</span><span class="p">,</span> <span class="n">new_ancestor</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Given a node path, replace given old ancestor path with new ancestor \</span>
+<span class="sd">        path.</span>
+
+<span class="sd">    :param path: Original path which will have its ancestor replaced</span>
+<span class="sd">    :type path: str</span>
+<span class="sd">    :param old_ancestor: Path to ancestor of `path` that will be replaced</span>
+<span class="sd">    :type old_ancestor: str</span>
+<span class="sd">    :param new_ancestor: New ancestor to replace `old_ancestor`</span>
+<span class="sd">    :type new_ancestor: str</span>
+<span class="sd">    :return: New path with `old_ancestor` replaced with `new_ancestor`</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">_add_path_terminator</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">old_ancestor</span> <span class="o">=</span> <span class="n">_add_path_terminator</span><span class="p">(</span><span class="n">old_ancestor</span><span class="p">)</span>
+    <span class="n">new_ancestor</span> <span class="o">=</span> <span class="n">_add_path_terminator</span><span class="p">(</span><span class="n">new_ancestor</span><span class="p">)</span>
+    <span class="n">new_path</span> <span class="o">=</span> <span class="n">new_ancestor</span> <span class="o">+</span> <span class="n">path</span>
+    <span class="n">old_ancestor_is_world</span> <span class="o">=</span> <span class="n">old_ancestor</span> <span class="o">==</span> <span class="n">WORLD</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">old_ancestor_is_world</span><span class="p">:</span>
+        <span class="n">new_path</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">old_ancestor</span><span class="p">,</span> <span class="n">new_ancestor</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">new_path</span> <span class="o">=</span> <span class="n">new_path</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">new_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">NODE_SEP</span><span class="o">+</span><span class="n">NODE_SEP</span><span class="p">,</span> <span class="n">NODE_SEP</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="is_ancestor"><a class="viewcode-back" href="../../nxt.nxt_path.html#nxt.nxt_path.is_ancestor">[docs]</a><span class="k">def</span> <span class="nf">is_ancestor</span><span class="p">(</span><span class="n">path_to_check</span><span class="p">,</span> <span class="n">ancestor_path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns if given ancestor_path is an ancestor path to path_to_check</span>
+
+<span class="sd">    :param path_to_check: potential descendant path</span>
+<span class="sd">    :type path_to_check: str</span>
+<span class="sd">    :param ancestor_path: potential ancestor path</span>
+<span class="sd">    :type ancestor_path: str</span>
+<span class="sd">    :return: Whether ancestor_path is ancestor of path_to_check</span>
+<span class="sd">    :rtype: bool</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">path_to_check</span> <span class="o">==</span> <span class="n">ancestor_path</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">elif</span> <span class="n">ancestor_path</span> <span class="o">==</span> <span class="n">WORLD</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="n">head</span><span class="p">,</span> <span class="n">sep</span><span class="p">,</span> <span class="n">tail</span> <span class="o">=</span> <span class="n">path_to_check</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="n">ancestor_path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="ow">not</span> <span class="n">head</span> <span class="ow">and</span> <span class="n">tail</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">NODE_SEP</span></div>
+
+
+<div class="viewcode-block" id="all_ancestor_paths"><a class="viewcode-back" href="../../nxt.nxt_path.html#nxt.nxt_path.all_ancestor_paths">[docs]</a><span class="k">def</span> <span class="nf">all_ancestor_paths</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the ancestor paths implied by given path</span>
+
+<span class="sd">    :param path: node path</span>
+<span class="sd">    :type path: str</span>
+<span class="sd">    :return: list of implied ancestor paths</span>
+<span class="sd">    :rtype: list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">ancestors</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">path</span> <span class="o">==</span> <span class="n">WORLD</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">ancestors</span>
+    <span class="n">parent_path</span> <span class="o">=</span> <span class="n">get_parent_path</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">parent_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">WORLD</span><span class="p">:</span>
+        <span class="n">ancestors</span> <span class="o">+=</span> <span class="p">[</span><span class="n">parent_path</span><span class="p">]</span>
+        <span class="n">parent_path</span> <span class="o">=</span> <span class="n">get_parent_path</span><span class="p">(</span><span class="n">parent_path</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ancestors</span></div>
+
+
+<span class="k">def</span> <span class="nf">_add_path_terminator</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="n">path</span> <span class="o">+=</span> <span class="n">NODE_SEP</span>
+    <span class="k">return</span> <span class="n">path</span>
+
+
+<div class="viewcode-block" id="get_path_depth"><a class="viewcode-back" href="../../nxt.nxt_path.html#nxt.nxt_path.get_path_depth">[docs]</a><span class="k">def</span> <span class="nf">get_path_depth</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get depth of given path. Depth is number of nodes deep from world.</span>
+<span class="sd">    World is depth 0.</span>
+
+<span class="sd">    :param path: path to check depth of.</span>
+<span class="sd">    :type path: str</span>
+<span class="sd">    :return: depth of given path.</span>
+<span class="sd">    :rtype: int</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">path</span> <span class="o">==</span> <span class="n">WORLD</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="n">path</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">NODE_SEP</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="trim_to_depth"><a class="viewcode-back" href="../../nxt.nxt_path.html#nxt.nxt_path.trim_to_depth">[docs]</a><span class="k">def</span> <span class="nf">trim_to_depth</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">trim_depth</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Trim a path to given depth. Removes nodes from the end of the path to</span>
+<span class="sd">    trim to an ancestor path of given path. If trim depth is 0, world path</span>
+<span class="sd">    is returned. If trim depth is greater than or equal to the depth of given</span>
+<span class="sd">    path, path is returned unchanged.</span>
+
+<span class="sd">    :param path: path to trim</span>
+<span class="sd">    :type path: str</span>
+<span class="sd">    :param trim_depth: depth to trim to</span>
+<span class="sd">    :type trim_depth: int</span>
+<span class="sd">    :return: path, trimmed to trim depth if possible</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">trim_depth</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">WORLD</span>
+    <span class="n">given_path_depth</span> <span class="o">=</span> <span class="n">get_path_depth</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">given_path_depth</span> <span class="o">&lt;=</span> <span class="n">trim_depth</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">path</span>
+    <span class="n">remove_count</span> <span class="o">=</span> <span class="n">given_path_depth</span> <span class="o">-</span> <span class="n">trim_depth</span>
+    <span class="k">return</span> <span class="n">path</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="n">NODE_SEP</span><span class="p">,</span> <span class="n">remove_count</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, The nxt authors
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

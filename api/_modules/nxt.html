@@ -1,0 +1,346 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>nxt &mdash; NXT  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> NXT
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference external" href="https://nxt-dev.github.io/">User Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nxt.html">nxt package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../nxt.html#modules">modules</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">NXT</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>nxt</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for nxt</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Builtin</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="c1"># Internal Logging setup</span>
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">nxt_log</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">nxt_log</span>
+<span class="n">nxt_log</span><span class="o">.</span><span class="n">initial_setup</span><span class="p">()</span>
+
+<span class="c1"># Internal</span>
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">plugin_loader</span>
+    <span class="kn">from</span> <span class="nn">constants</span> <span class="kn">import</span> <span class="p">(</span><span class="n">DATA_STATE</span><span class="p">,</span> <span class="n">NODE_ERRORS</span><span class="p">,</span> <span class="n">UNTITLED</span><span class="p">,</span> <span class="n">IGNORE</span><span class="p">,</span>
+                           <span class="n">GRID_SIZE</span><span class="p">,</span> <span class="n">USER_PLUGIN_DIR</span><span class="p">,</span> <span class="n">USER_DIR_ENV_VAR</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">session</span> <span class="kn">import</span> <span class="n">Session</span>
+    <span class="kn">import</span> <span class="nn">nxt_path</span>
+    <span class="kn">import</span> <span class="nn">nxt_layer</span>
+    <span class="kn">from</span> <span class="nn">remote</span> <span class="kn">import</span> <span class="n">contexts</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">plugin_loader</span>
+    <span class="kn">from</span> <span class="nn">.constants</span> <span class="kn">import</span> <span class="p">(</span><span class="n">DATA_STATE</span><span class="p">,</span> <span class="n">NODE_ERRORS</span><span class="p">,</span> <span class="n">UNTITLED</span><span class="p">,</span> <span class="n">IGNORE</span><span class="p">,</span>
+                            <span class="n">GRID_SIZE</span><span class="p">,</span> <span class="n">USER_PLUGIN_DIR</span><span class="p">,</span> <span class="n">USER_DIR_ENV_VAR</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">.session</span> <span class="kn">import</span> <span class="n">Session</span>
+    <span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">nxt_path</span><span class="p">,</span> <span class="n">nxt_layer</span>
+    <span class="kn">from</span> <span class="nn">.remote</span> <span class="kn">import</span> <span class="n">contexts</span>
+
+<span class="c1"># Load plugins</span>
+<span class="n">plugin_loader</span><span class="o">.</span><span class="n">load_plugins</span><span class="p">()</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;nxt&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="execute_graph"><a class="viewcode-back" href="../nxt.html#nxt.execute_graph">[docs]</a><span class="k">def</span> <span class="nf">execute_graph</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Shortest code path to executing a graph from the nxt package.</span>
+<span class="sd">    Creates a 1 off session and executes the graph within that session.</span>
+<span class="sd">    Arguments are a direct copy of Session.execute_graph, see there for full</span>
+<span class="sd">    details.</span>
+
+<span class="sd">    :param filepath: Path to the graph file.</span>
+<span class="sd">    :type filepath: str</span>
+<span class="sd">    :param start: Path to the node to begin execution from.</span>
+<span class="sd">    :type start: str</span>
+<span class="sd">    :param parameters: Dict where key is attr path and value is new attr\</span>
+<span class="sd">    value.</span>
+<span class="sd">    :type parameters: dict</span>
+<span class="sd">    :param context: Optional name of remote context to execute graph in, \</span>
+<span class="sd">    if none is passed the graph is executed in this interpreter.</span>
+<span class="sd">    :type context: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">context</span> <span class="ow">and</span> <span class="n">context</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">contexts</span><span class="o">.</span><span class="n">iter_context_names</span><span class="p">():</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Valid contexts are: &#39;</span>
+                    <span class="s1">&#39;</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">contexts</span><span class="o">.</span><span class="n">iter_context_names</span><span class="p">())))</span>
+        <span class="k">raise</span> <span class="ne">NameError</span><span class="p">(</span><span class="s1">&#39;Unknown context: &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">context</span><span class="p">))</span>
+    <span class="n">one_shot_session</span> <span class="o">=</span> <span class="n">Session</span><span class="p">()</span>
+    <span class="n">one_shot_session</span><span class="o">.</span><span class="n">execute_graph</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span>
+                                   <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">,</span>
+                                   <span class="n">context</span><span class="o">=</span><span class="n">context</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="create_context"><a class="viewcode-back" href="../nxt.html#nxt.create_context">[docs]</a><span class="k">def</span> <span class="nf">create_context</span><span class="p">(</span><span class="n">custom_name</span><span class="p">,</span> <span class="n">interpreter_exe</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span>
+                   <span class="n">context_graph</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Generate a remote context given the path to an interpreter executable,</span>
+<span class="sd">    if none is provided the current sys.executable is used. You must provide a</span>
+<span class="sd">    custom name for your context.</span>
+
+<span class="sd">    :param interpreter_exe: String path to python executable</span>
+<span class="sd">    :param custom_name: String of context name. The name users will refer to\</span>
+<span class="sd">    the context by</span>
+<span class="sd">    :param context_graph: Optional path to an existing context startup graph</span>
+<span class="sd">    :raises: IOError, NameError</span>
+<span class="sd">    :return: string of the new context name</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;win&#39;</span><span class="p">):</span>
+        <span class="n">user_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;USERPROFILE&#39;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="kn">import</span> <span class="nn">pwd</span>
+        <span class="n">user_dir</span> <span class="o">=</span> <span class="n">pwd</span><span class="o">.</span><span class="n">getpwuid</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getuid</span><span class="p">())</span><span class="o">.</span><span class="n">pw_dir</span>
+    <span class="k">if</span> <span class="n">USER_DIR_ENV_VAR</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
+        <span class="n">bad_user_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;~&#39;</span><span class="p">))</span>
+        <span class="n">bad_plugin_dir</span> <span class="o">=</span> <span class="n">USER_PLUGIN_DIR</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">plugin_dir</span> <span class="o">=</span> <span class="n">bad_plugin_dir</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="n">bad_user_dir</span><span class="p">)</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">plugin_dir</span> <span class="o">=</span> <span class="n">plugin_dir</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">plugin_dir</span> <span class="o">=</span> <span class="n">USER_PLUGIN_DIR</span>
+    <span class="n">_user_plugin_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">user_dir</span><span class="p">,</span> <span class="n">plugin_dir</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">custom_name</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">NameError</span><span class="p">(</span><span class="s1">&#39;Must provide a valid name for your context!&#39;</span><span class="p">)</span>
+    <span class="n">interpreter_exe</span> <span class="o">=</span> <span class="n">interpreter_exe</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span>
+    <span class="n">default_c_path</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;os.path.abspath(os.path.join(os.path.dirname(__file__), &quot;</span>
+                      <span class="s2">&quot;&#39;custom_</span><span class="si">{name}</span><span class="s2">_context.nxt&#39;))&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">custom_name</span><span class="p">))</span>
+    <span class="n">py_file</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2"># Builtin</span>
+<span class="s2">import os</span>
+
+<span class="s2"># External</span>
+<span class="s2">from nxt.remote.contexts import RemoteContext, register_context</span>
+
+<span class="s2"># Setup Context</span>
+<span class="s2">_name = &#39;</span><span class="si">{name}</span><span class="s2">&#39;</span>
+<span class="s2">_exe = &#39;</span><span class="si">{interpreter_exe}</span><span class="s2">&#39;</span>
+<span class="s2">_graph = </span><span class="si">{context_graph}</span><span class="s2"></span>
+<span class="s2">_context = RemoteContext(_name, _exe, _graph)</span>
+<span class="s2">register_context(_context)</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="n">context_py_file</span> <span class="o">=</span> <span class="s1">&#39;custom_</span><span class="si">{name}</span><span class="s1">_context.py&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">custom_name</span><span class="p">)</span>
+    <span class="n">context_py_filepath</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_user_plugin_dir</span><span class="p">,</span> <span class="n">context_py_file</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">context_py_filepath</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s1">&#39;The context name you selected is already taken. &#39;</span>
+                      <span class="s1">&#39;&quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">custom_name</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">context_graph</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">context_graph</span> <span class="o">=</span> <span class="n">default_c_path</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="s1">&#39;custom_</span><span class="si">{name}</span><span class="s1">_context.nxt&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">custom_name</span><span class="p">)</span>
+        <span class="n">dest_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">_user_plugin_dir</span><span class="p">,</span> <span class="n">file_name</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">,</span>
+                                                                     <span class="s1">&#39;/&#39;</span><span class="p">)</span>
+        <span class="n">exe_name</span> <span class="o">=</span> <span class="n">contexts</span><span class="o">.</span><span class="n">get_current_context_exe_name</span><span class="p">()</span>
+        <span class="n">starter_context</span> <span class="o">=</span> <span class="n">contexts</span><span class="o">.</span><span class="n">starter_contexts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">exe_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">starter_context</span><span class="p">:</span>
+            <span class="n">layer</span> <span class="o">=</span> <span class="n">nxt_layer</span><span class="o">.</span><span class="n">SpecLayer</span><span class="o">.</span><span class="n">load_from_filepath</span><span class="p">(</span><span class="n">starter_context</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">&#39;No prebuilt context was found for &quot;</span><span class="si">{exe_name}</span><span class="s1">&quot;, &#39;</span>
+                           <span class="s1">&#39;if your interpreter needs special setup/teardown &#39;</span>
+                           <span class="s1">&#39;please open &quot;</span><span class="si">{dest_path}</span><span class="s1">&quot; and edit as needed.&#39;</span>
+                           <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exe_name</span><span class="o">=</span><span class="n">exe_name</span><span class="p">,</span> <span class="n">dest_path</span><span class="o">=</span><span class="n">dest_path</span><span class="p">))</span>
+            <span class="n">layer</span> <span class="o">=</span> <span class="n">nxt_layer</span><span class="o">.</span><span class="n">SpecLayer</span><span class="p">()</span>
+            <span class="n">layer</span><span class="o">.</span><span class="n">add_reference</span><span class="p">(</span><span class="n">layer_path</span><span class="o">=</span><span class="n">contexts</span><span class="o">.</span><span class="n">_context_graph</span><span class="p">)</span>
+        <span class="n">layer</span><span class="o">.</span><span class="n">set_alias</span><span class="p">(</span><span class="s1">&#39;custom_</span><span class="si">{name}</span><span class="s1">_context&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">custom_name</span><span class="p">))</span>
+        <span class="n">layer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filepath</span><span class="o">=</span><span class="n">dest_path</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">expanded_context_graph</span> <span class="o">=</span> <span class="n">nxt_path</span><span class="o">.</span><span class="n">full_file_expand</span><span class="p">(</span><span class="n">context_graph</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">expanded_context_graph</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">IOError</span><span class="p">(</span><span class="s1">&#39;The context graph you provided does not exist! &#39;</span>
+                          <span class="s1">&#39;&quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">context_graph</span><span class="p">))</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">commonprefix</span><span class="p">((</span><span class="n">context_graph</span><span class="p">,</span> <span class="n">context_py_filepath</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">root</span><span class="p">:</span>
+            <span class="n">context_graph</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="n">context_graph</span><span class="p">,</span> <span class="n">root</span><span class="p">)</span>
+        <span class="n">context_graph</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">)</span>
+
+    <span class="n">py_file</span> <span class="o">=</span> <span class="n">py_file</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">custom_name</span><span class="p">,</span> <span class="n">interpreter_exe</span><span class="o">=</span><span class="n">interpreter_exe</span><span class="p">,</span>
+                             <span class="n">context_graph</span><span class="o">=</span><span class="n">context_graph</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">context_py_filepath</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+        <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">py_file</span><span class="p">)</span>
+    <span class="n">exec</span><span class="p">(</span><span class="n">py_file</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">custom_name</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, The nxt authors
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

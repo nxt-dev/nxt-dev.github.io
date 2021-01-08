@@ -1,0 +1,378 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>nxt_layer module &mdash; NXT  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="nxt_path module" href="nxt.nxt_path.html" />
+    <link rel="prev" title="nxt_io module" href="nxt.nxt_io.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> NXT
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="https://nxt-dev.github.io/">User Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nxt.html">nxt package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="nxt.html#modules">modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_io.html">nxt_io</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">nxt_layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_path.html">nxt_path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_log.html">nxt_log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxt.tokens.html">tokens</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxt.runtime.html">runtime</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NXT</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="nxt.html">nxt package</a> &raquo;</li>
+        
+      <li>nxt_layer module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/nxt.nxt_layer.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-nxt.nxt_layer">
+<span id="nxt-layer-module"></span><h1>nxt_layer module<a class="headerlink" href="#module-nxt.nxt_layer" title="Permalink to this headline">¶</a></h1>
+<p>Ways to operate on and ask questions of nxt layers.</p>
+<dl class="py function">
+<dt id="nxt.nxt_layer.get_active_layers">
+<code class="sig-name descname">get_active_layers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">layers</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#get_active_layers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_layer.get_active_layers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of layers, return those that should contribute to comp.</p>
+<p>If there are soloed layers, only the soloed layers that are not muted
+will be returned. If there are not soloed layers, only the non-muted
+layers will be returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>layers</strong> (<em>list</em>) – list of layers to filter</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of layers that should contribute to a comp.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="nxt.nxt_layer.get_soloed_layers">
+<code class="sig-name descname">get_soloed_layers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">layers</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#get_soloed_layers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_layer.get_soloed_layers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of layers, return only those that are soloed</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>layers</strong> (<em>list</em>) – list of layers to filter</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of layers that are soloed.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="nxt.nxt_layer.get_muted_layers">
+<code class="sig-name descname">get_muted_layers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">layers</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#get_muted_layers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_layer.get_muted_layers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a list of layers, return only those that are muted</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>layers</strong> (<em>list</em>) – list of layers to filter</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of layers that are muted.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="nxt.nxt_layer.get_node_local_attr_names">
+<code class="sig-name descname">get_node_local_attr_names</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_path</span></em>, <em class="sig-param"><span class="n">layers</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#get_node_local_attr_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_layer.get_node_local_attr_names" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get all attribute names that are local to the given node path within
+the given layers.</p>
+<p>NOTE that layers are filtered to active layers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node_path</strong> (<em>str</em>) – node path to find local attributes of</p></li>
+<li><p><strong>layers</strong> (<em>list</em>) – list of layers to look for attributes of given node within</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of local attributes found in given layers</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="nxt.nxt_layer.order_nodes_dict">
+<code class="sig-name descname">order_nodes_dict</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_dict</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#order_nodes_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_layer.order_nodes_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a dictionary mapping node paths to node data, return an ordered
+dict where the keys are sorted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node_dict</strong> (<em>dict</em>) – dictionary mapping node paths to node data</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>ordered dctionary with keys sosrted</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>OrderedDict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="nxt.nxt_layer.SpecLayer">
+<em class="property">class </em><code class="sig-name descname">SpecLayer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">layer_data</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Layer object representing layer data from disk.</p>
+<dl class="py method">
+<dt id="nxt.nxt_layer.SpecLayer.load_from_filepath">
+<em class="property">classmethod </em><code class="sig-name descname">load_from_filepath</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filepath</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.load_from_filepath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.load_from_filepath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a filepath, return a SpecLayer loaded from that path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<em>str</em>) – path to file to load</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Loaded SpecLayer</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#nxt.nxt_layer.SpecLayer" title="nxt.nxt_layer.SpecLayer">SpecLayer</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nxt.nxt_layer.SpecLayer.add_reference">
+<code class="sig-name descname">add_reference</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">layer_path</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">layer</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">insert_idx</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.add_reference"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.add_reference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a layer path, a layer object, or both, add a reference to
+specified layer on this layer, optionally at a specified insert index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>layer_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to use as reference path, defaults to None,         if None is given, defaults to given <cite>layer.real_path</cite></p></li>
+<li><p><strong>layer</strong> (<a class="reference internal" href="#nxt.nxt_layer.SpecLayer" title="nxt.nxt_layer.SpecLayer"><em>SpecLayer</em></a>) – layer to add as reference layer in this layer</p></li>
+<li><p><strong>insert_idx</strong> (<em>int</em><em>, </em><em>optional</em>) – index to insert given layer at, defaults to None,         if None is given, defaults to lowest reference layer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>index given layer was inserted at.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If not provided with a layer path or layer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="nxt.nxt_layer.SpecLayer.save">
+<code class="sig-name descname">save</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filepath</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save this layer, optionally to new, given filepath.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<em>str</em><em>, </em><em>optional</em>) – file path to save to, defaults to None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="nxt.nxt_path.html" class="btn btn-neutral float-right" title="nxt_path module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="nxt.nxt_io.html" class="btn btn-neutral float-left" title="nxt_io module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, The nxt authors
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

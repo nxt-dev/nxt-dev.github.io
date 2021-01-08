@@ -1,0 +1,272 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>nxt_io module &mdash; NXT  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="nxt_layer module" href="nxt.nxt_layer.html" />
+    <link rel="prev" title="nxt package" href="nxt.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> NXT
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="https://nxt-dev.github.io/">User Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nxt.html">nxt package</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="nxt.html#modules">modules</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">nxt_io</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_layer.html">nxt_layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_path.html">nxt_path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_log.html">nxt_log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxt.tokens.html">tokens</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxt.runtime.html">runtime</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NXT</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="nxt.html">nxt package</a> &raquo;</li>
+        
+      <li>nxt_io module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/nxt.nxt_io.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-nxt.nxt_io">
+<span id="nxt-io-module"></span><h1>nxt_io module<a class="headerlink" href="#module-nxt.nxt_io" title="Permalink to this headline">¶</a></h1>
+<p>Methods for file input and output of nxt file data.</p>
+<dl class="py function">
+<dt id="nxt.nxt_io.register_reference_path_expander">
+<code class="sig-name descname">register_reference_path_expander</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">expander</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_io.html#register_reference_path_expander"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_io.register_reference_path_expander" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a method to expand reference paths. An expander is a callable     that takes exactly 1 argument, a filepath.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>expander</strong> (<em>callable</em>) – A python callable that takes a single argument, and     returns an expanded filepath.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="nxt.nxt_io.load_file_data">
+<code class="sig-name descname">load_file_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filepath</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_io.html#load_file_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_io.load_file_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a file path this function determines if its a known nxt save
+format and attempts to open it. If the file is out of date it is passed
+to the legacy converter for conversion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<em>str</em>) – string of save file filepath</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>dict of file data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="nxt.nxt_io.save_file_data">
+<code class="sig-name descname">save_file_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">save_data</span></em>, <em class="sig-param"><span class="n">filepath</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">file_format</span><span class="o">=</span><span class="default_value">'.nxt'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_io.html#save_file_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_io.save_file_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the given file data to the given file path in the given file
+format. If no filepath is provided a temp file is generated.
+The default file format is ASCII.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save_data</strong> – dict of save data</p></li>
+<li><p><strong>filepath</strong> – string of desired output file path or None</p></li>
+<li><p><strong>file_format</strong> – FILE_FORMAT constant</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>string of output file path.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="nxt.nxt_layer.html" class="btn btn-neutral float-right" title="nxt_layer module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="nxt.html" class="btn btn-neutral float-left" title="nxt package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, The nxt authors
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

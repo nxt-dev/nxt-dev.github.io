@@ -55,7 +55,7 @@
                                 <a href="./" class="nav-link">Extensions</a>
                             </li>
                             <li class="navitem">
-                                <a href="../api/index.html" class="nav-link">API</a>
+                                <a href="../api/" class="nav-link">API</a>
                             </li>
                             <li class="navitem">
                                 <a href="../license/" class="nav-link">License</a>
@@ -77,7 +77,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../license/" class="nav-link">
+                                <a rel="next" href="../api/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -152,11 +152,12 @@ For more on using custom contexts <a href="../tutorials/#contexts">see here</a>.
 <p class="admonition-title">Note</p>
 <p>You will need to create your own <code>context_graph</code> <a href="#maya_2020_contextnxt">see below</a> for how to do that.</p>
 </div>
-<pre><code class="language-python">import nxt
+<pre><code class="python">import nxt
 nxt.create_context('MyContext', 
                    interpreter_exe='/path/to/python/executable/SpecialPython.exe', 
                    context_graph='SpecialPython_context.nxt')
 </code></pre>
+
 <h3 id="creating-custom-contexts-manually">Creating Custom Contexts (Manually)</h3>
 <p>It is possible to execute graphs in "remote contexts," for example it one may want to execute a graph in a headless Maya session. These remote contexts can easilly be configured by users and TDs, this section will provide some examples on how to go about writing your own custom context plugin.</p>
 <p>Below is an exmaple of creating a custom Maya context. This code is an example to get you started, its not the <em>only</em> way to do things.</p>
@@ -165,10 +166,11 @@ nxt.create_context('MyContext',
    |_ my_custom_contexts.py
    |_ maya_2020_context.nxt
 </code></pre>
+
 <h4 id="my_custom_contextspy">my_custom_contexts.py</h4>
 <p>The following example is for Maya 2020 running on Windows.</p>
 <p>The two imports from nxt that you'll need are the <code>RemoteContext</code> class and <code>register_context</code> function. The first arg in <code>RemoteContexts</code> is the <strong>context name</strong>, this will be used by users to call your context. Next we have the context executable, this must be a python (currently only <code>Python 2.7</code>) executable. And finally the path to your context graph.</p>
-<pre><code class="language-python"># Builtin
+<pre><code class="python"># Builtin
 import os
 # External
 from nxt.remote.contexts import RemoteContext, register_context
@@ -180,13 +182,15 @@ maya2020_graph = os.path.abspath(os.path.join(os.path.dirname(__file__),
 maya_2020_context = RemoteContext(maya2020_name, maya2020_exe, maya2020_graph)
 register_context(maya_2020_context)
 </code></pre>
+
 <h4 id="maya_2020_contextnxt">maya_2020_context.nxt</h4>
 <p>Now to write your context graph.</p>
 <p>1) Create an nxt graph and make sure to add the following reference layer:</p>
-<pre><code class="language-json">&quot;references&quot;: [
+<pre><code class="json">&quot;references&quot;: [
     &quot;$NXT_BUILTINS/_context.nxt&quot;
 ]
 </code></pre>
+
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>To add a layer like this (using the env var) right click on your layer in the layer manager and select <code>Reference Builtin Graph</code></p>
@@ -194,23 +198,26 @@ register_context(maya_2020_context)
 <p>2) On the <code>/</code> node add an attr called <code>maya_inst_name</code> and set its value to <code>nxt</code></p>
 <p>3) Also on the <code>/</code> node we're going to want to write some custom code in. Add
  the following to the code block.</p>
-<pre><code class="language-python">cwd = os.path.dirname(sys.executable)
+<pre><code class="python">cwd = os.path.dirname(sys.executable)
 python_home = os.path.abspath(os.path.join(cwd, '..', 'Python/Lib/site-packages'))
 sys.path.insert(0, python_home)
 from maya import standalone
 </code></pre>
+
 <p><em>This will add the Maya site-packages to your environment and import
  <code>maya.standalone</code>.</em></p>
 <p>4) In the <code>/enter/init</code> node you'll want to add your own custom code, something like this:</p>
-<pre><code class="language-python">STAGE.old_cwd = os.getcwd()
+<pre><code class="python">STAGE.old_cwd = os.getcwd()
 maya_cwd = os.path.dirname(sys.executable) 
 os.chdir(maya_cwd) 
 standalone.initialize(name='${maya_inst_name}')
 </code></pre>
+
 <p>5) In the <code>/enter/teardown</code> node you want to uninitialize Maya, add the following code:</p>
-<pre><code class="language-python">standalone.uninitialize(name='${maya_inst_name}')
+<pre><code class="python">standalone.uninitialize(name='${maya_inst_name}')
 os.chdir(STAGE.old_cwd)
 </code></pre>
+
 <h3 id="using-custom-contexts">Using Custom Contexts</h3>
 <h4 id="from-inside-a-graph">From inside a graph</h4>
 <ol>
@@ -232,10 +239,11 @@ os.chdir(STAGE.old_cwd)
 </ol>
 <p>Note: Any other attributes on or inherited by your node <code>/run_in_maya</code> will be inherited by the <code>/</code> node of your remote graph.</p>
 <h4 id="from-apicli">From api/cli</h4>
-<pre><code class="language-batch">nxt exe /path/to/graph.nxt --context maya2020
+<pre><code class="batch">nxt exe /path/to/graph.nxt --context maya2020
 </code></pre>
+
 <p>or</p>
-<pre><code class="language-python">import nxt
+<pre><code class="python">import nxt
 nxt.execute_graph('/path/to/graph.nxt' context='maya2020')
 </code></pre></div>
             </div>
@@ -243,7 +251,7 @@ nxt.execute_graph('/path/to/graph.nxt' context='maya2020')
 
         <footer class="col-md-12">
             <hr>
-                <p>2020 NXT authors</p>
+                <p>2021 NXT Authors</p>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>

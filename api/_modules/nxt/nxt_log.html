@@ -1,0 +1,587 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>nxt.nxt_log &mdash; NXT  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> NXT
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference external" href="https://nxt-dev.github.io/">User Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nxt.html">nxt package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nxt.html#modules">modules</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NXT</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../nxt.html">nxt</a> &raquo;</li>
+        
+      <li>nxt.nxt_log</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for nxt.nxt_log</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Logging utilities and constants.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># Built-in</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">logging.handlers</span>
+<span class="kn">import</span> <span class="nn">struct</span>
+<span class="kn">import</span> <span class="nn">threading</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">tempfile</span>
+<span class="kn">import</span> <span class="nn">errno</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="c1"># Python 2/3 compatiblity</span>
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">SocketServer</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">socketserver</span> <span class="k">as</span> <span class="nn">SocketServer</span>
+
+<span class="c1"># Internal</span>
+<span class="kn">from</span> <span class="nn">.constants</span> <span class="kn">import</span> <span class="n">USER_DIR</span>
+
+<span class="n">VERBOSE_ENV_VAR</span> <span class="o">=</span> <span class="s1">&#39;NXT_VERBOSE&#39;</span>
+
+<span class="sd">&quot;&quot;&quot;Logging levels are as follows, with custom levels marked with *</span>
+<span class="sd">CRITICAL    - 50</span>
+<span class="sd">ERROR       - 40</span>
+<span class="sd">*GRAPHERROR - 39</span>
+<span class="sd">WARNING     - 30</span>
+<span class="sd">INFO        - 20</span>
+<span class="sd">*NODEOUT    - 19</span>
+<span class="sd">*EXECINFO   - 18</span>
+<span class="sd">*COMPINFO   - 17</span>
+<span class="sd">*SOCKET     - 16</span>
+<span class="sd">DEBUG       - 10</span>
+<span class="sd">NOTSET      - 0</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="n">SOCKET</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="n">GRAPHERROR</span> <span class="o">=</span> <span class="mi">39</span>
+<span class="n">NODEOUT</span> <span class="o">=</span> <span class="mi">19</span>
+<span class="n">EXECINFO</span> <span class="o">=</span> <span class="mi">18</span>
+<span class="n">COMPINFO</span> <span class="o">=</span> <span class="mi">17</span>
+
+<span class="n">COLORS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">SOCKET</span><span class="p">:</span> <span class="s1">&#39;pink&#39;</span><span class="p">,</span>
+    <span class="n">GRAPHERROR</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span>
+    <span class="n">NODEOUT</span><span class="p">:</span> <span class="s1">&#39;light gray&#39;</span><span class="p">,</span>
+    <span class="n">EXECINFO</span><span class="p">:</span> <span class="s1">&#39;#039be5&#39;</span><span class="p">,</span>  <span class="c1"># Pale blue</span>
+    <span class="n">COMPINFO</span><span class="p">:</span> <span class="s1">&#39;light blue&#39;</span><span class="p">,</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">INFO</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">WARNING</span><span class="p">:</span> <span class="s1">&#39;orange&#39;</span><span class="p">,</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">ERROR</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">CRITICAL</span><span class="p">:</span> <span class="s1">&#39;purple&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+
+<span class="c1"># logging setup</span>
+<span class="c1"># NOTE probably neeed to be custom logger objects rather than our custom levels</span>
+<span class="k">class</span> <span class="nc">NXTLogger</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">getLoggerClass</span><span class="p">()):</span>
+    <span class="sd">&quot;&quot;&quot;Implements custom logging levels for nxt.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">NXTLogger</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">addLevelName</span><span class="p">(</span><span class="n">SOCKET</span><span class="p">,</span> <span class="s2">&quot;SOCKET&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">addLevelName</span><span class="p">(</span><span class="n">EXECINFO</span><span class="p">,</span> <span class="s2">&quot;EXECUTE&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">addLevelName</span><span class="p">(</span><span class="n">GRAPHERROR</span><span class="p">,</span> <span class="s2">&quot;GRAPH ERROR&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">addLevelName</span><span class="p">(</span><span class="n">COMPINFO</span><span class="p">,</span> <span class="s2">&quot;COMPOSITE&quot;</span><span class="p">)</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">addLevelName</span><span class="p">(</span><span class="n">NODEOUT</span><span class="p">,</span> <span class="s2">&quot;NODEOUT&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">socket</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isEnabledFor</span><span class="p">(</span><span class="n">SOCKET</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="p">(</span><span class="n">SOCKET</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">execinfo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isEnabledFor</span><span class="p">(</span><span class="n">EXECINFO</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="p">(</span><span class="n">EXECINFO</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">grapherror</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isEnabledFor</span><span class="p">(</span><span class="n">GRAPHERROR</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="p">(</span><span class="n">GRAPHERROR</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">compinfo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isEnabledFor</span><span class="p">(</span><span class="n">COMPINFO</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="p">(</span><span class="n">COMPINFO</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">nodeout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">isEnabledFor</span><span class="p">(</span><span class="n">NODEOUT</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_log</span><span class="p">(</span><span class="n">NODEOUT</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;links&#39;</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="n">kwargs</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="n">link_paths</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;links&#39;</span><span class="p">)</span>
+            <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;extra&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;links&#39;</span><span class="p">:</span> <span class="n">link_paths</span><span class="p">}</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">NXTLogger</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">_log</span><span class="p">(</span><span class="n">level</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+<span class="n">nxt_formatter</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">Formatter</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">%(levelname)s</span><span class="s2">: </span><span class="si">%(message)s</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">track_log_file</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Track given log at `path`, via meta log.</span>
+<span class="sd">    Clean up old log files tracked by meta log.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+    <span class="n">meta_log_location</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">USER_DIR</span><span class="p">,</span> <span class="s1">&#39;.nxt_meta_log&#39;</span><span class="p">)</span>
+    <span class="n">remove_age</span> <span class="o">=</span> <span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">48</span>  <span class="c1"># in seconds (currently 48 hours)</span>
+
+    <span class="n">existing_logs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">meta_log_location</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">meta_log_file</span><span class="p">:</span>
+            <span class="c1"># stripping of trailing newlines</span>
+            <span class="n">existing_logs</span> <span class="o">=</span> <span class="p">[</span><span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">meta_log_file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()]</span>
+    <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;Error tracking log file!&#39;</span><span class="p">)</span>
+        <span class="k">pass</span>
+    <span class="c1"># Remove old logs</span>
+    <span class="k">for</span> <span class="n">log_path</span> <span class="ow">in</span> <span class="n">existing_logs</span><span class="p">[:]:</span>
+        <span class="n">is_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">log_path</span><span class="p">)</span>
+        <span class="n">age</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">mod_time</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getmtime</span><span class="p">(</span><span class="n">log_path</span><span class="p">)</span>
+            <span class="n">age</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">mod_time</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">err</span><span class="o">.</span><span class="n">errno</span> <span class="ow">is</span> <span class="n">errno</span><span class="o">.</span><span class="n">ENOENT</span><span class="p">:</span>
+                    <span class="c1"># This is expected behavior. Because files log to tempdir,</span>
+                    <span class="c1"># they can be removed at any time by the OS or user.</span>
+                    <span class="n">age</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="k">if</span> <span class="n">is_file</span> <span class="ow">and</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="n">remove_age</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">log_path</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="n">err</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">is_file</span> <span class="ow">or</span> <span class="n">age</span> <span class="o">&gt;</span> <span class="n">remove_age</span><span class="p">:</span>
+            <span class="n">existing_logs</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">log_path</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Removing stale log &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">log_path</span><span class="p">))</span>
+    <span class="c1"># add given log and write meta log</span>
+    <span class="n">existing_logs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">meta_log_location</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">meta_log_file</span><span class="p">:</span>
+            <span class="c1"># add trailing newlines to make meta log human readable.</span>
+            <span class="n">meta_log_file</span><span class="o">.</span><span class="n">writelines</span><span class="p">([</span><span class="n">line</span> <span class="o">+</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">existing_logs</span><span class="p">])</span>
+    <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">&#39;Failed to track &quot;</span><span class="si">{}</span><span class="s1">&quot; log in meta_log&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+
+
+<div class="viewcode-block" id="initial_setup"><a class="viewcode-back" href="../../nxt.nxt_log.html#nxt.nxt_log.initial_setup">[docs]</a><span class="k">def</span> <span class="nf">initial_setup</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    module-wide logging boilerplate.</span>
+<span class="sd">    Sets logging level.</span>
+<span class="sd">    Builds and sets up default handlers.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLoggerClass</span><span class="p">()</span> <span class="ow">is</span> <span class="n">NXTLogger</span><span class="p">:</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;nxt logger already setup!&#39;</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">setLoggerClass</span><span class="p">(</span><span class="n">NXTLogger</span><span class="p">)</span>
+    <span class="n">root_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;nxt&#39;</span><span class="p">)</span>
+    <span class="n">root_logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">)</span>
+    <span class="n">root_logger</span><span class="o">.</span><span class="n">propagate</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">null_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">NullHandler</span><span class="p">()</span>
+    <span class="n">root_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">null_handler</span><span class="p">)</span>
+
+    <span class="n">env_verbosity</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">VERBOSE_ENV_VAR</span><span class="p">)</span>
+    <span class="k">global</span> <span class="n">verbose_handler</span>
+    <span class="n">verbose_handler</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">env_verbosity</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="n">verbose_handler</span> <span class="o">=</span> <span class="n">set_verbosity</span><span class="p">(</span><span class="n">env_verbosity</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="set_verbosity"><a class="viewcode-back" href="../../nxt.nxt_log.html#nxt.nxt_log.set_verbosity">[docs]</a><span class="k">def</span> <span class="nf">set_verbosity</span><span class="p">(</span><span class="n">level</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Set the verbosity of nxt logging. Controls what to output to stderr.</span>
+<span class="sd">    3 legal levels specified by integer. NOTE node prints are not affected.\n</span>
+<span class="sd">    0 - Nothing\n</span>
+<span class="sd">    1 - EXECINFO and higher\n</span>
+<span class="sd">    2 - Everything\n</span>
+
+<span class="sd">    :param level: level to set stderr verbosity to: 0, 1, or 2</span>
+<span class="sd">    :type level: int</span>
+<span class="sd">    :return: stderr handler, if there is one</span>
+<span class="sd">    :rtype: logging.StreamHandler or None</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO when the swap to dedicated loggers is made. Level 1 should install</span>
+    <span class="c1"># a stderr handler only to the node execution logger.</span>
+    <span class="n">root_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;nxt&#39;</span><span class="p">)</span>
+    <span class="k">global</span> <span class="n">verbose_handler</span>
+    <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="s1">&#39;socket&#39;</span><span class="p">:</span>
+        <span class="n">_log_port</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">DEFAULT_TCP_LOGGING_PORT</span>
+        <span class="n">socket_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">SocketHandler</span><span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="n">_log_port</span><span class="p">)</span>
+        <span class="c1"># Add socket handler</span>
+        <span class="n">root_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">socket_handler</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="n">level</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">verbose_handler</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">root_logger</span><span class="o">.</span><span class="n">removeHandler</span><span class="p">(</span><span class="n">verbose_handler</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="k">if</span> <span class="n">level</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">verbose_handler</span><span class="p">:</span>
+            <span class="n">stderr_handler</span> <span class="o">=</span> <span class="n">verbose_handler</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">stderr_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">StreamHandler</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+            <span class="n">stderr_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">nxt_formatter</span><span class="p">)</span>
+            <span class="n">root_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">stderr_handler</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">level</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">stderr_handler</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">EXECINFO</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">stderr_handler</span></div>
+
+
+<span class="c1"># Dictionary mapping filenames to filehandlers, allows them to be removed.</span>
+<span class="n">SESSION_LOG_HANDLERS</span> <span class="o">=</span> <span class="p">{}</span>
+
+
+<div class="viewcode-block" id="make_session_log"><a class="viewcode-back" href="../../nxt.nxt_log.html#nxt.nxt_log.make_session_log">[docs]</a><span class="k">def</span> <span class="nf">make_session_log</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Begin saving log at `filename` if given, otherwise</span>
+<span class="sd">    track to a generated file inside default temporary directory.</span>
+
+<span class="sd">    :param filename: file to log to, defaults to None</span>
+<span class="sd">    :type filename: str, optional</span>
+<span class="sd">    :return: file being logged to, `filename` if given.</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="p">:</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">get_new_session_log_filename</span><span class="p">()</span>
+    <span class="n">file_handler</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">FileHandler</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="n">file_handler</span><span class="o">.</span><span class="n">setFormatter</span><span class="p">(</span><span class="n">nxt_formatter</span><span class="p">)</span>
+    <span class="n">root_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;nxt&#39;</span><span class="p">)</span>
+    <span class="n">root_logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">file_handler</span><span class="p">)</span>
+    <span class="n">SESSION_LOG_HANDLERS</span><span class="p">[</span><span class="n">filename</span><span class="p">]</span> <span class="o">=</span> <span class="n">file_handler</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;logging to </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="mo">0o777</span><span class="p">)</span>
+    <span class="n">track_log_file</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">filename</span></div>
+
+
+<span class="k">def</span> <span class="nf">get_new_session_log_filename</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Get a new log filename for an nxt session inside the default logs directory.</span>
+<span class="sd">    Attempts to create logs directory.</span>
+
+<span class="sd">    :return: filename to use for session log.</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+    <span class="n">log_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">tempfile</span><span class="o">.</span><span class="n">gettempdir</span><span class="p">(),</span> <span class="s1">&#39;nxt_logs&#39;</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">log_dir</span><span class="p">)</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">chmod</span><span class="p">(</span><span class="n">log_dir</span><span class="p">,</span> <span class="mo">0o777</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">err</span><span class="o">.</span><span class="n">errno</span> <span class="ow">is</span> <span class="n">errno</span><span class="o">.</span><span class="n">EEXIST</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">&quot;Not creating logs directory because it exists.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span>
+    <span class="n">log_filename_template</span> <span class="o">=</span> <span class="s2">&quot;nxt_session_</span><span class="si">{time}</span><span class="s2">.log&quot;</span>
+    <span class="n">log_filename</span> <span class="o">=</span> <span class="n">log_filename_template</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">())))</span>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">log_dir</span><span class="p">,</span> <span class="n">log_filename</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">stop_session_log</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Stops outputting log to given filename.</span>
+
+<span class="sd">    :param filename: filename to stop outputting to.</span>
+<span class="sd">    :type filename: str, required</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">handler</span> <span class="o">=</span> <span class="n">SESSION_LOG_HANDLERS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">handler</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="n">root_logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;nxt&#39;</span><span class="p">)</span>
+    <span class="n">root_logger</span><span class="o">.</span><span class="n">removeHandler</span><span class="p">(</span><span class="n">handler</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">make_link</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Wrap given `value` in html href syntax.</span>
+
+<span class="sd">    :param value: value to wrap</span>
+<span class="sd">    :type value: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># TODO: Maybe someone smarter can find the answer but this thread says</span>
+    <span class="c1">#  you can not set link colors in the qss</span>
+    <span class="c1">#  https://stackoverflow.com/questions/13416183/qt-stylesheet-how-to-set-color-of-qpalettelink-and-qplattelinkvisited</span>
+    <span class="k">return</span> <span class="s1">&#39;&lt;a style=&quot;color: #039be5&quot; href=</span><span class="se">\&quot;</span><span class="si">{}</span><span class="se">\&quot;</span><span class="s1">&gt;</span><span class="si">{}</span><span class="s1">&lt;/a&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">LogRecordStreamHandler</span><span class="p">(</span><span class="n">SocketServer</span><span class="o">.</span><span class="n">StreamRequestHandler</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Lifted from: https://docs.python.org/2.7/howto/logging-cookbook.html</span>
+<span class="sd">    Handler for a streaming logging request.</span>
+
+<span class="sd">    This basically logs the record using whatever logging policy is</span>
+<span class="sd">    configured locally.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">handle</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handle multiple requests - each expected to be a 4-byte length,</span>
+<span class="sd">        followed by the LogRecord in pickle format. Logs the record</span>
+<span class="sd">        according to whatever policy is configured locally.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+            <span class="n">chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">4</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">slen</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s1">&#39;&gt;L&#39;</span><span class="p">,</span> <span class="n">chunk</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">chunk</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="n">slen</span><span class="p">)</span>
+            <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">slen</span><span class="p">:</span>
+                <span class="n">chunk</span> <span class="o">=</span> <span class="n">chunk</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">connection</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="n">slen</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">))</span>
+            <span class="n">obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">un_pickle</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+            <span class="n">level_name</span> <span class="o">=</span> <span class="n">obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;levelname&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">level_name</span><span class="p">:</span>
+                <span class="n">obj</span><span class="p">[</span><span class="s1">&#39;levelname&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;remote.&#39;</span> <span class="o">+</span> <span class="n">obj</span><span class="p">[</span><span class="s1">&#39;levelname&#39;</span><span class="p">]</span>
+            <span class="n">record</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">makeLogRecord</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">handle_log_record</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">un_pickle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">pickle</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">handle_log_record</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="c1"># if a name is specified, we use the named logger rather than the one</span>
+        <span class="c1"># implied by the record.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">logname</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">logname</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="n">record</span><span class="o">.</span><span class="n">name</span>
+        <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+        <span class="c1"># N.B. EVERY record gets logged. This is because Logger.handle</span>
+        <span class="c1"># is normally called AFTER logger-level filtering. If you want</span>
+        <span class="c1"># to do filtering, do it at the client end to save wasting</span>
+        <span class="c1"># cycles and network bandwidth!</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">handle</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+
+
+<span class="k">class</span> <span class="nc">LogRecordSocketReceiver</span><span class="p">(</span><span class="n">SocketServer</span><span class="o">.</span><span class="n">ThreadingTCPServer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Lifted from: https://docs.python.org/2.7/howto/logging-cookbook.html</span>
+<span class="sd">    Simple TCP socket-based logging receiver suitable for testing.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">allow_reuse_address</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span>
+                 <span class="n">port</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">handlers</span><span class="o">.</span><span class="n">DEFAULT_TCP_LOGGING_PORT</span><span class="p">,</span>
+                 <span class="n">handler</span><span class="o">=</span><span class="n">LogRecordStreamHandler</span><span class="p">):</span>
+        <span class="n">SocketServer</span><span class="o">.</span><span class="n">ThreadingTCPServer</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">),</span> <span class="n">handler</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">abort</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logname</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">kill</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">def</span> <span class="nf">serve_until_stopped</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="kn">import</span> <span class="nn">select</span>
+        <span class="n">abort</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">abort</span> <span class="ow">and</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">kill</span><span class="p">:</span>
+            <span class="n">rd</span><span class="p">,</span> <span class="n">wr</span><span class="p">,</span> <span class="n">ex</span> <span class="o">=</span> <span class="n">select</span><span class="o">.</span><span class="n">select</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="o">.</span><span class="n">fileno</span><span class="p">()],</span>
+                                       <span class="p">[],</span> <span class="p">[],</span>
+                                       <span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">rd</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">handle_request</span><span class="p">()</span>
+            <span class="n">abort</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">abort</span>
+
+
+<span class="n">record_receiver</span> <span class="o">=</span> <span class="kc">None</span>
+
+
+<span class="k">def</span> <span class="nf">startup_log_socket</span><span class="p">(</span><span class="n">stream_handler</span><span class="o">=</span><span class="n">LogRecordStreamHandler</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Starts threaded logging socket receiver, if using a visual app a</span>
+<span class="sd">    thread safe stream handler should be provided.</span>
+
+<span class="sd">    :param stream_handler: Logging stream handler default LogRecordStreamHandler</span>
+<span class="sd">    :return: LogRecordSocketReceiver()</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">record_receiver</span>
+    <span class="n">stream_handler</span> <span class="o">=</span> <span class="n">stream_handler</span> <span class="ow">or</span> <span class="n">LogRecordStreamHandler</span>
+    <span class="n">record_receiver</span> <span class="o">=</span> <span class="n">LogRecordSocketReceiver</span><span class="p">(</span><span class="n">handler</span><span class="o">=</span><span class="n">stream_handler</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;About to start logging TCP server...&#39;</span><span class="p">)</span>
+    <span class="n">tcp_thread</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Thread</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">record_receiver</span><span class="o">.</span><span class="n">serve_until_stopped</span><span class="p">)</span>
+    <span class="n">tcp_thread</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">shutdown_log_socket</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">record_receiver</span>
+    <span class="k">if</span> <span class="n">record_receiver</span><span class="p">:</span>
+        <span class="n">record_receiver</span><span class="o">.</span><span class="n">kill</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, The nxt authors
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

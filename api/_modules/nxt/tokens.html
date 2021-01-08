@@ -1,0 +1,382 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>nxt.tokens &mdash; NXT  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> NXT
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference external" href="https://nxt-dev.github.io/">User Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nxt.html">nxt package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../nxt.html#modules">modules</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NXT</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+          <li><a href="../nxt.html">nxt</a> &raquo;</li>
+        
+      <li>nxt.tokens</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for nxt.tokens</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;Utitiles for parsing and create nxt token strings.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># Built-in</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">&#39;nxt.tokens&#39;</span><span class="p">)</span>
+
+<span class="n">TOKEN_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;${&#39;</span>
+<span class="n">TOKEN_SUFFIX</span> <span class="o">=</span> <span class="s1">&#39;}&#39;</span>
+
+<span class="n">Token</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Token&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;prefix&#39;</span><span class="p">,</span> <span class="s1">&#39;detect&#39;</span><span class="p">,</span> <span class="s1">&#39;resolve&#39;</span><span class="p">])</span>
+
+<span class="n">plugin_tokens</span> <span class="o">=</span> <span class="p">[]</span>
+
+
+<div class="viewcode-block" id="register_token"><a class="viewcode-back" href="../../nxt.tokens.html#nxt.tokens.register_token">[docs]</a><span class="k">def</span> <span class="nf">register_token</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">detect</span><span class="p">,</span> <span class="n">resolve</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Define a token to be expandable by resolve. Requires 3 components, a \</span>
+<span class="sd">        prefix, a detect callable, and a resolve callable.</span>
+
+<span class="sd">    For an example token see the example plugin in the nxt plugins directory.</span>
+
+<span class="sd">    :param prefix: prefix of token</span>
+<span class="sd">    :type prefix: str</span>
+<span class="sd">    :param detect: callable that takes a single argument and returns True if \</span>
+<span class="sd">        given input can be resolved by this token type.</span>
+<span class="sd">    :type detect: callable</span>
+<span class="sd">    :param resolve: callable that resolves token content</span>
+<span class="sd">    :type resolve: callable</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Registered token: &#39;</span> <span class="o">+</span> <span class="n">prefix</span><span class="p">)</span>
+    <span class="n">new_token</span> <span class="o">=</span> <span class="n">Token</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">detect</span><span class="p">,</span> <span class="n">resolve</span><span class="p">)</span>
+    <span class="k">global</span> <span class="n">plugin_tokens</span>
+    <span class="n">plugin_tokens</span> <span class="o">+=</span> <span class="p">[</span><span class="n">new_token</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">new_token</span></div>
+
+
+<span class="k">class</span> <span class="nc">TOKENTYPE</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="c1"># TODO: Make these fully defined tokens, right now we&#39;re just using them</span>
+    <span class="c1">#  to unify how we get token prefixes.</span>
+    <span class="n">ATTR</span> <span class="o">=</span> <span class="n">Token</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">FILE</span> <span class="o">=</span> <span class="n">Token</span><span class="p">(</span><span class="s1">&#39;file::&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">FILEPATH</span> <span class="o">=</span> <span class="n">Token</span><span class="p">(</span><span class="s1">&#39;path::&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">PATH</span> <span class="o">=</span> <span class="n">Token</span><span class="p">(</span><span class="s1">&#39;_nxtpath&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">CONTENTS</span> <span class="o">=</span> <span class="n">Token</span><span class="p">(</span><span class="s1">&#39;contents::&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">COLOR</span> <span class="o">=</span> <span class="n">Token</span><span class="p">(</span><span class="s1">&#39;_nxtcolor&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="c1"># ATTR is at the end because it does not have a prefix</span>
+    <span class="n">ALL</span> <span class="o">=</span> <span class="p">(</span><span class="n">FILE</span><span class="p">,</span> <span class="n">FILEPATH</span><span class="p">,</span> <span class="n">PATH</span><span class="p">,</span> <span class="n">CONTENTS</span><span class="p">,</span> <span class="n">COLOR</span><span class="p">,</span> <span class="n">ATTR</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="get_token_content"><a class="viewcode-back" href="../../nxt.tokens.html#nxt.tokens.get_token_content">[docs]</a><span class="k">def</span> <span class="nf">get_token_content</span><span class="p">(</span><span class="n">token_str</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Removes token prefix and suffix from given token_str</span>
+
+<span class="sd">    :param token_str: string to remove token syntax from</span>
+<span class="sd">    :type token_str: str</span>
+<span class="sd">    :return: given token_str with token syntax removed</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">no_prefix</span> <span class="o">=</span> <span class="n">token_str</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="n">TOKEN_PREFIX</span><span class="p">)</span>
+    <span class="n">content</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">no_prefix</span><span class="o">.</span><span class="n">rpartition</span><span class="p">(</span><span class="n">TOKEN_SUFFIX</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">content</span></div>
+
+
+<div class="viewcode-block" id="make_token_str"><a class="viewcode-back" href="../../nxt.tokens.html#nxt.tokens.make_token_str">[docs]</a><span class="k">def</span> <span class="nf">make_token_str</span><span class="p">(</span><span class="n">token_content</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Build a token around given token_content.</span>
+<span class="sd">    The opposite of `get_token_content`</span>
+
+<span class="sd">    :param token_content: token content to wrap</span>
+<span class="sd">    :type token_content: str</span>
+<span class="sd">    :return: token content wrapped in token syntax</span>
+<span class="sd">    :rtype: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="s1">&#39;</span><span class="si">{}{}{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">TOKEN_PREFIX</span><span class="p">,</span> <span class="n">token_content</span><span class="p">,</span> <span class="n">TOKEN_SUFFIX</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_standalone_tokens"><a class="viewcode-back" href="../../nxt.tokens.html#nxt.tokens.get_standalone_tokens">[docs]</a><span class="k">def</span> <span class="nf">get_standalone_tokens</span><span class="p">(</span><span class="n">raw_value</span><span class="p">,</span> <span class="n">token_types</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Get tokens in the given value that are not nested within another token.</span>
+<span class="sd">    If none are found, an empty list is returned.</span>
+<span class="sd">    If the token syntax is malformed(extra starts or ends), return empty list.</span>
+<span class="sd">    Returns list including outer token syntax</span>
+
+<span class="sd">    :param raw_value: value to find standalone tokens in.</span>
+<span class="sd">    :type raw_value: str</span>
+<span class="sd">    :param token_types: Optionally a list of specific token types can be \</span>
+<span class="sd">    provided, only standalone tokens that look like those token type(s) will \</span>
+<span class="sd">    be returned.</span>
+<span class="sd">    :type token_types: list, tuple, or None</span>
+<span class="sd">    :return: list of standalone tokens, if found.</span>
+<span class="sd">    :rtype: list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Early exit if the raw value is None or not a string like object</span>
+    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">raw_value</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raw_value</span><span class="p">,</span> <span class="n">basestring</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">raw_value</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raw_value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="n">token_types</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">token_types</span> <span class="o">=</span> <span class="n">TOKENTYPE</span><span class="o">.</span><span class="n">ALL</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">bounds</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">starts</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">ends</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">outer_start_idx</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">raw_value</span><span class="p">:</span>
+        <span class="c1"># First condition verifies we&#39;re not at the end of the string, where</span>
+        <span class="c1"># it would be impossible to get second prefix character.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">raw_value</span><span class="p">)</span> <span class="ow">and</span>
+           <span class="n">char</span> <span class="o">==</span> <span class="n">TOKEN_PREFIX</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="n">raw_value</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">TOKEN_PREFIX</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="n">starts</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">outer_start_idx</span> <span class="o">=</span> <span class="n">i</span>
+            <span class="n">starts</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">starts</span> <span class="ow">and</span> <span class="n">char</span> <span class="o">==</span> <span class="n">TOKEN_SUFFIX</span><span class="p">:</span>
+            <span class="n">ends</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">starts</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">starts</span> <span class="o">==</span> <span class="n">ends</span><span class="p">:</span>
+            <span class="n">bounds</span> <span class="o">+=</span> <span class="p">[(</span><span class="n">outer_start_idx</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
+            <span class="n">starts</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">ends</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">outer_start_idx</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">starts</span> <span class="o">!=</span> <span class="n">ends</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="ow">in</span> <span class="n">bounds</span><span class="p">:</span>
+        <span class="n">skip</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">token_contents</span> <span class="o">=</span> <span class="n">raw_value</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">token_type</span> <span class="ow">in</span> <span class="n">token_types</span><span class="p">:</span>
+            <span class="n">prefix</span> <span class="o">=</span> <span class="n">token_type</span><span class="o">.</span><span class="n">prefix</span>
+            <span class="k">if</span> <span class="n">token_contents</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">TOKEN_PREFIX</span><span class="o">+</span><span class="n">prefix</span><span class="p">):</span>
+                <span class="n">skip</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">skip</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">results</span> <span class="o">+=</span> <span class="p">[</span><span class="n">token_contents</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">results</span></div>
+
+
+<div class="viewcode-block" id="atomic_token_partition"><a class="viewcode-back" href="../../nxt.tokens.html#nxt.tokens.atomic_token_partition">[docs]</a><span class="k">def</span> <span class="nf">atomic_token_partition</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Partition given value on a token that appears resolvable(contains no</span>
+<span class="sd">    sub tokens). Returns in a tuple: (before_token, token, after_token).</span>
+<span class="sd">    Returned token includes token syntax. If no tokens are found, returned</span>
+<span class="sd">    tuple contains None in all values.</span>
+
+<span class="sd">    :param value: text to find a token from, and partition</span>
+<span class="sd">    :type value: str</span>
+<span class="sd">    :return: before_token, token, after_token</span>
+<span class="sd">    :rtype: tuple(str, str, str)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">before</span><span class="p">,</span> <span class="n">sep</span><span class="p">,</span> <span class="n">after_bef</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">rpartition</span><span class="p">(</span><span class="n">TOKEN_PREFIX</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">sep</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">token</span><span class="p">,</span> <span class="n">sep</span><span class="p">,</span> <span class="n">after</span> <span class="o">=</span> <span class="n">after_bef</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="n">TOKEN_SUFFIX</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">sep</span><span class="p">:</span>
+        <span class="c1"># msg = &#39;bad resolve formatting, cannot find closer for {}&#39;</span>
+        <span class="c1"># msg = msg.format(before + tokens.TOKEN_PREFIX)</span>
+        <span class="c1"># logger.error(msg)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">before</span><span class="p">,</span> <span class="n">make_token_str</span><span class="p">(</span><span class="n">token</span><span class="p">),</span> <span class="n">after</span></div>
+
+
+<div class="viewcode-block" id="get_atomic_tokens"><a class="viewcode-back" href="../../nxt.tokens.html#nxt.tokens.get_atomic_tokens">[docs]</a><span class="k">def</span> <span class="nf">get_atomic_tokens</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a list of all tokens that appear ready to resolve.</span>
+
+<span class="sd">    :param value: string to find tokens in</span>
+<span class="sd">    :type value: str</span>
+<span class="sd">    :return: tokens found</span>
+<span class="sd">    :rtype: list</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">found</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">prefix</span><span class="p">,</span> <span class="n">content</span><span class="p">,</span> <span class="n">suffix</span> <span class="o">=</span> <span class="n">atomic_token_partition</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">content</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">found</span>
+    <span class="n">found</span> <span class="o">+=</span> <span class="p">[</span><span class="n">content</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">prefix</span><span class="p">:</span>
+        <span class="n">found</span> <span class="o">+=</span> <span class="n">get_atomic_tokens</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">suffix</span><span class="p">:</span>
+        <span class="n">found</span> <span class="o">+=</span> <span class="n">get_atomic_tokens</span><span class="p">(</span><span class="n">suffix</span><span class="p">)</span>
+    <span class="n">found</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">found</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">found</span></div>
+
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, The nxt authors
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

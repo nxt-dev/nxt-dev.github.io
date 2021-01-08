@@ -1,0 +1,277 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>nxt package &mdash; NXT  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="nxt_io module" href="nxt.nxt_io.html" />
+    <link rel="prev" title="Welcome to the nxt api documentation!" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> NXT
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="https://nxt-dev.github.io/">User Docs</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">nxt package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#modules">modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_io.html">nxt_io</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_layer.html">nxt_layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_path.html">nxt_path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_log.html">nxt_log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxt.tokens.html">tokens</a></li>
+<li class="toctree-l2"><a class="reference internal" href="nxt.runtime.html">runtime</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NXT</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>nxt package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/nxt.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-nxt">
+<span id="nxt-package"></span><h1>nxt package<a class="headerlink" href="#module-nxt" title="Permalink to this headline">¶</a></h1>
+<dl class="py function">
+<dt id="nxt.execute_graph">
+<code class="sig-name descname">execute_graph</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filepath</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">parameters</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">context</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt.html#execute_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.execute_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Shortest code path to executing a graph from the nxt package.
+Creates a 1 off session and executes the graph within that session.
+Arguments are a direct copy of Session.execute_graph, see there for full
+details.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em>) – Path to the graph file.</p></li>
+<li><p><strong>start</strong> (<em>str</em>) – Path to the node to begin execution from.</p></li>
+<li><p><strong>parameters</strong> (<em>dict</em>) – Dict where key is attr path and value is new attr    value.</p></li>
+<li><p><strong>context</strong> (<em>str</em>) – Optional name of remote context to execute graph in,     if none is passed the graph is executed in this interpreter.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="nxt.create_context">
+<code class="sig-name descname">create_context</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">custom_name</span></em>, <em class="sig-param"><span class="n">interpreter_exe</span><span class="o">=</span><span class="default_value">'/Users/Michael/miniconda3/envs/nxt/bin/python3.7'</span></em>, <em class="sig-param"><span class="n">context_graph</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt.html#create_context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.create_context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a remote context given the path to an interpreter executable,
+if none is provided the current sys.executable is used. You must provide a
+custom name for your context.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>interpreter_exe</strong> – String path to python executable</p></li>
+<li><p><strong>custom_name</strong> – String of context name. The name users will refer to    the context by</p></li>
+<li><p><strong>context_graph</strong> – Optional path to an existing context startup graph</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p>IOError, NameError</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>string of the new context name</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="modules">
+<h1>modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="nxt.nxt_io.html">nxt_io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nxt.nxt_layer.html">nxt_layer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nxt.nxt_path.html">nxt_path</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nxt.nxt_log.html">nxt_log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nxt.tokens.html">tokens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nxt.runtime.html">runtime</a></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="nxt.nxt_io.html" class="btn btn-neutral float-right" title="nxt_io module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="Welcome to the nxt api documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, The nxt authors
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
