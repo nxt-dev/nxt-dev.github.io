@@ -14,4 +14,4 @@ To deploy a total package updated docs build:
 
 6. Clean up after yourself. `git clean -f -d`
 
-For greater details on either the user or api docs, see [user_docs.md](user_docs/user_docs.md), and [api_docs.md](api_docs/api_docs.md)
+For detailed steps on either the user or api docs, see [user_docs.md](user_docs/user_docs.md), and [api_docs.md](https://github.com/nxt-dev/nxt/blob/release/docs/api_docs.md)

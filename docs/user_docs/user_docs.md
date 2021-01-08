@@ -6,7 +6,7 @@ https://www.mkdocs.org/
 # Setup
 1. Create a conda environment based on nxt_user_docs_env.yml; `nxtuserdocs`
 2. Launch anaconda shell, `conda activate nxtuserdocs`
-3. Navigate to `~/project/nxt/docs/user_docs/`, run `mkdocs serve`
+3. Navigate to `nxt-dev.github.io/docs/user_docs/`, run `mkdocs serve`
 4. point your brower to: http://127.0.0.1:8000/
 
 # Theme
