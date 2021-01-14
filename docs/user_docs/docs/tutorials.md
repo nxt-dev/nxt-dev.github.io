@@ -127,7 +127,12 @@ Coming soon...
 # Example Graph Walkthroughs
 Still pending
 
-##### Example: Mgear pre-post build
+## mGear
+<iframe width="560" height="315" src="https://www.youtube.com/embed/d3hDD5TckDk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+##### The Rigging Buddies Podcast
+*Time stamps can be found in the comments on Youtube.*  
+[Download Ball Rig Example](files/ball_rig_demo.zip)  
+<a href=https://gumroad.com/sergicaballer#fLAOI target="_blank">Download "Roller Girl" by Sergi Caballer</a>
 
 ##### Example: Maya hand rig
 
