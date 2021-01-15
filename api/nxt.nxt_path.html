@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html4" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -26,10 +26,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -164,81 +164,93 @@
   <div class="section" id="module-nxt.nxt_path">
 <span id="nxt-path-module"></span><h1>nxt_path module<a class="headerlink" href="#module-nxt.nxt_path" title="Permalink to this headline">¶</a></h1>
 <p>Common nxt pathing operations. Both for file and node paths.</p>
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.nxt_path.full_file_expand">
-<code class="sig-name descname">full_file_expand</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#full_file_expand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.full_file_expand" title="Permalink to this definition">¶</a></dt>
+<code class="descname">full_file_expand</code><span class="sig-paren">(</span><em>path</em>, <em>start=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#full_file_expand"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.full_file_expand" title="Permalink to this definition">¶</a></dt>
 <dd><p>A combination of commonly used os.path functions called to completely
 expand given <cite>path</cite>. If <cite>start</cite> is given, os.cwd is temporarily changed
 in order to influence the start of relative path expansion.
 Return value will always use forward slashes as seperator.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> (<em>str</em>) – path to expand</p></li>
-<li><p><strong>start</strong> (<em>str</em><em>, </em><em>optional</em>) – base directory to expand from, defaults to os cwd</p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>path</strong> (<em>str</em>) – path to expand</li>
+<li><strong>start</strong> (<em>str</em><em>, </em><em>optional</em>) – base directory to expand from, defaults to os cwd</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>given path expanded. Relative paths, environment     variables, and user character “~” are expanded.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>[type]</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">given path expanded. Relative paths, environment     variables, and user character “~” are expanded.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">[type]</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.nxt_path.unify_env_vars">
-<code class="sig-name descname">unify_env_vars</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">target_platform</span><span class="o">=</span><span class="default_value">'darwin'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#unify_env_vars"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.unify_env_vars" title="Permalink to this definition">¶</a></dt>
+<code class="descname">unify_env_vars</code><span class="sig-paren">(</span><em>path</em>, <em>target_platform='win32'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#unify_env_vars"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.unify_env_vars" title="Permalink to this definition">¶</a></dt>
 <dd><p>Replace foreign platform environment variables with platform native ones
 Environment variable patterns must be defined in PLATFORM_VAR_PATTERN_MAP
 and PLATFORM_VAR_PATTERN_MAP to be able to find and replace.</p>
 <p>In short, if you’re on windows, convert linux style environment vars to
 windows style. If you’re on linux, the reverse.</p>
 <p>Supports mixed type environment variables.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> – string to replace variables in</p></li>
-<li><p><strong>target_platform</strong> (<em>str</em><em>, </em><em>optional</em>) – platform to unify as, defaults to sys.platform</p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>path</strong> – string to replace variables in</li>
+<li><strong>target_platform</strong> (<em>str</em><em>, </em><em>optional</em>) – platform to unify as, defaults to sys.platform</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>given path as unified as possible</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">given path as unified as possible</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.nxt_path.expand_relative_node_path">
-<code class="sig-name descname">expand_relative_node_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rel_path</span></em>, <em class="sig-param"><span class="n">start_node_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#expand_relative_node_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.expand_relative_node_path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">expand_relative_node_path</code><span class="sig-paren">(</span><em>rel_path</em>, <em>start_node_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#expand_relative_node_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.expand_relative_node_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Expands given node <cite>rel_path</cite> using <cite>start_node_path</cite> as root of
 relative path. This function does not validate the path, it is only a
 string machine.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>rel_path</strong> (<em>str</em>) – relative path to expand.</p></li>
-<li><p><strong>start_node_path</strong> (<em>str</em>) – node to treat as root of relative path.</p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>rel_path</strong> (<em>str</em>) – relative path to expand.</li>
+<li><strong>start_node_path</strong> (<em>str</em>) – node to treat as root of relative path.</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>expanded node path</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">expanded node path</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.nxt_path.path_attr_partition">
-<code class="sig-name descname">path_attr_partition</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">str_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#path_attr_partition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.path_attr_partition" title="Permalink to this definition">¶</a></dt>
+<code class="descname">path_attr_partition</code><span class="sig-paren">(</span><em>str_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#path_attr_partition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.path_attr_partition" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a tuple of the node path and attribute name from the given path.</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nxt_path</span><span class="o">.</span><span class="n">node_path_partition</span><span class="p">(</span><span class="s1">&#39;somewhere/else.attr&#39;</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">nxt_path</span><span class="o">.</span><span class="n">node_path_partition</span><span class="p">(</span><span class="s1">&#39;somewhere/else.attr&#39;</span><span class="p">)</span>
 <span class="go">(&#39;somewhere/else&#39;, &#39;attr&#39;)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">nxt_path</span><span class="o">.</span><span class="n">node_path_partition</span><span class="p">(</span><span class="s1">&#39;...attr&#39;</span><span class="p">)</span>
 <span class="go">(&#39;..&#39;, &#39;attr&#39;)</span>
@@ -246,275 +258,304 @@ string machine.</p>
 <span class="go">(&#39;.&#39;, &#39;attr&#39;)</span>
 </pre></div>
 </div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>str_path</strong> (<em>str</em>) – node or attribute path</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>tuple of node path and attr name (‘node/path’, ‘attr_name’)</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>tuple</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>str_path</strong> (<em>str</em>) – node or attribute path</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">tuple of node path and attr name (‘node/path’, ‘attr_name’)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.nxt_path.str_path_to_node_namespace">
-<code class="sig-name descname">str_path_to_node_namespace</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">str_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#str_path_to_node_namespace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.str_path_to_node_namespace" title="Permalink to this definition">¶</a></dt>
+<code class="descname">str_path_to_node_namespace</code><span class="sig-paren">(</span><em>str_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#str_path_to_node_namespace"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.str_path_to_node_namespace" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given an absolute node or attr <cite>str_path</cite>, split it into the
 list-“namespace” format used by stage.
 NOTE that if given an attribute path, that attribute name will not be
 present in the returned path.</p>
 </dd></dl>
 
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.nxt_path.node_namespace_to_str_path">
-<code class="sig-name descname">node_namespace_to_str_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">namespace</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#node_namespace_to_str_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.node_namespace_to_str_path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">node_namespace_to_str_path</code><span class="sig-paren">(</span><em>namespace</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#node_namespace_to_str_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.node_namespace_to_str_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a node namespace, return it rejoined into a full string path.</p>
 </dd></dl>
 
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.nxt_path.node_path_from_attr_path">
-<code class="sig-name descname">node_path_from_attr_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attr_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#node_path_from_attr_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.node_path_from_attr_path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">node_path_from_attr_path</code><span class="sig-paren">(</span><em>attr_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#node_path_from_attr_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.node_path_from_attr_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given an attribute path, return the node path contained within.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>attr_path</strong> (<em>str</em>) – path to attribute</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>node path</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>attr_path</strong> (<em>str</em>) – path to attribute</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">node path</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.nxt_path.attr_name_from_attr_path">
-<code class="sig-name descname">attr_name_from_attr_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attr_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#attr_name_from_attr_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.attr_name_from_attr_path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">attr_name_from_attr_path</code><span class="sig-paren">(</span><em>attr_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#attr_name_from_attr_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.attr_name_from_attr_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given an attribute path, return the attribute name.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>attr_path</strong> (<em>str</em>) – path to attribute</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>attr name contained within input</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>attr_path</strong> (<em>str</em>) – path to attribute</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">attr name contained within input</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.nxt_path.node_name_from_node_path">
-<code class="sig-name descname">node_name_from_node_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#node_name_from_node_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.node_name_from_node_path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">node_name_from_node_path</code><span class="sig-paren">(</span><em>node_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#node_name_from_node_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.node_name_from_node_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a node path, return the node name of specified node.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>node_path</strong> (<em>node path to get node name from</em>) – str</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>node name</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>node_path</strong> (<em>node path to get node name from</em>) – str</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">node name</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.nxt_path.get_parent_path">
-<code class="sig-name descname">get_parent_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#get_parent_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.get_parent_path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_parent_path</code><span class="sig-paren">(</span><em>node_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#get_parent_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.get_parent_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the parent path implied by given <cite>node_path</cite></p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>node_path</strong> (<em>node path to get parent path from</em>) – str</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>parent path</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>node_path</strong> (<em>node path to get parent path from</em>) – str</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">parent path</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.nxt_path.get_root_path">
-<code class="sig-name descname">get_root_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#get_root_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.get_root_path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_root_path</code><span class="sig-paren">(</span><em>node_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#get_root_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.get_root_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the implied “root” node of the given path.
 A root is a node with no parent.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>node_path</strong> (<em>node path to get root path from</em>) – str</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>root path</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>node_path</strong> (<em>node path to get root path from</em>) – str</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">root path</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.nxt_path.is_attr_path">
-<code class="sig-name descname">is_attr_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#is_attr_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.is_attr_path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">is_attr_path</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#is_attr_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.is_attr_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether the given <cite>path</cite> appears to be a path to an attribute.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>node_path</strong> (<em>path to check</em>) – str</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>True/False whether path appears to be an attribute path.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>node_path</strong> (<em>path to check</em>) – str</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True/False whether path appears to be an attribute path.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">bool</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.nxt_path.make_attr_path">
-<code class="sig-name descname">make_attr_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_path</span></em>, <em class="sig-param"><span class="n">attr_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#make_attr_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.make_attr_path" title="Permalink to this definition">¶</a></dt>
+<code class="descname">make_attr_path</code><span class="sig-paren">(</span><em>node_path</em>, <em>attr_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#make_attr_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.make_attr_path" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a node path and attr name, join them into an attribute path.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>node_path</strong> (<em>str</em>) – node path to join</p></li>
-<li><p><strong>attr_name</strong> (<em>str</em>) – attr name to join</p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>node_path</strong> (<em>str</em>) – node path to join</li>
+<li><strong>attr_name</strong> (<em>str</em>) – attr name to join</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>constructed attribute path</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">constructed attribute path</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.nxt_path.join_node_paths">
-<code class="sig-name descname">join_node_paths</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">node_path1</span></em>, <em class="sig-param"><span class="n">node_path2</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#join_node_paths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.join_node_paths" title="Permalink to this definition">¶</a></dt>
+<code class="descname">join_node_paths</code><span class="sig-paren">(</span><em>node_path1</em>, <em>node_path2</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#join_node_paths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.join_node_paths" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given 2 node paths, treat node_path1 as ancestor, and combine their
 paths together</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>node_path1</strong> (<em>str</em>) – intended ancestor of given paths</p></li>
-<li><p><strong>node_path2</strong> (<em>str</em>) – intended descendant of given paths</p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>node_path1</strong> (<em>str</em>) – intended ancestor of given paths</li>
+<li><strong>node_path2</strong> (<em>str</em>) – intended descendant of given paths</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>path to descendant of node_path1</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">path to descendant of node_path1</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.nxt_path.replace_ancestor">
-<code class="sig-name descname">replace_ancestor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">old_ancestor</span></em>, <em class="sig-param"><span class="n">new_ancestor</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#replace_ancestor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.replace_ancestor" title="Permalink to this definition">¶</a></dt>
+<code class="descname">replace_ancestor</code><span class="sig-paren">(</span><em>path</em>, <em>old_ancestor</em>, <em>new_ancestor</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#replace_ancestor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.replace_ancestor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a node path, replace given old ancestor path with new ancestor         path.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> (<em>str</em>) – Original path which will have its ancestor replaced</p></li>
-<li><p><strong>old_ancestor</strong> (<em>str</em>) – Path to ancestor of <cite>path</cite> that will be replaced</p></li>
-<li><p><strong>new_ancestor</strong> (<em>str</em>) – New ancestor to replace <cite>old_ancestor</cite></p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>path</strong> (<em>str</em>) – Original path which will have its ancestor replaced</li>
+<li><strong>old_ancestor</strong> (<em>str</em>) – Path to ancestor of <cite>path</cite> that will be replaced</li>
+<li><strong>new_ancestor</strong> (<em>str</em>) – New ancestor to replace <cite>old_ancestor</cite></li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>New path with <cite>old_ancestor</cite> replaced with <cite>new_ancestor</cite></p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">New path with <cite>old_ancestor</cite> replaced with <cite>new_ancestor</cite></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.nxt_path.is_ancestor">
-<code class="sig-name descname">is_ancestor</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path_to_check</span></em>, <em class="sig-param"><span class="n">ancestor_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#is_ancestor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.is_ancestor" title="Permalink to this definition">¶</a></dt>
+<code class="descname">is_ancestor</code><span class="sig-paren">(</span><em>path_to_check</em>, <em>ancestor_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#is_ancestor"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.is_ancestor" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns if given ancestor_path is an ancestor path to path_to_check</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>path_to_check</strong> (<em>str</em>) – potential descendant path</p></li>
-<li><p><strong>ancestor_path</strong> (<em>str</em>) – potential ancestor path</p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>path_to_check</strong> (<em>str</em>) – potential descendant path</li>
+<li><strong>ancestor_path</strong> (<em>str</em>) – potential ancestor path</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Whether ancestor_path is ancestor of path_to_check</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>bool</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Whether ancestor_path is ancestor of path_to_check</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">bool</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.nxt_path.all_ancestor_paths">
-<code class="sig-name descname">all_ancestor_paths</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#all_ancestor_paths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.all_ancestor_paths" title="Permalink to this definition">¶</a></dt>
+<code class="descname">all_ancestor_paths</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#all_ancestor_paths"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.all_ancestor_paths" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the ancestor paths implied by given path</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – node path</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>list of implied ancestor paths</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>list</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>str</em>) – node path</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of implied ancestor paths</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.nxt_path.get_path_depth">
-<code class="sig-name descname">get_path_depth</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#get_path_depth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.get_path_depth" title="Permalink to this definition">¶</a></dt>
+<code class="descname">get_path_depth</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#get_path_depth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.get_path_depth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get depth of given path. Depth is number of nodes deep from world.
 World is depth 0.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – path to check depth of.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>depth of given path.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>int</p>
-</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> (<em>str</em>) – path to check depth of.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">depth of given path.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">int</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.nxt_path.trim_to_depth">
-<code class="sig-name descname">trim_to_depth</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">trim_depth</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#trim_to_depth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.trim_to_depth" title="Permalink to this definition">¶</a></dt>
+<code class="descname">trim_to_depth</code><span class="sig-paren">(</span><em>path</em>, <em>trim_depth</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_path.html#trim_to_depth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_path.trim_to_depth" title="Permalink to this definition">¶</a></dt>
 <dd><p>Trim a path to given depth. Removes nodes from the end of the path to
 trim to an ancestor path of given path. If trim depth is 0, world path
 is returned. If trim depth is greater than or equal to the depth of given
 path, path is returned unchanged.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>path</strong> (<em>str</em>) – path to trim</p></li>
-<li><p><strong>trim_depth</strong> (<em>int</em>) – depth to trim to</p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>path</strong> (<em>str</em>) – path to trim</li>
+<li><strong>trim_depth</strong> (<em>int</em>) – depth to trim to</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>path, trimmed to trim depth if possible</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>str</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">path, trimmed to trim depth if possible</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>

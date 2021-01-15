@@ -183,14 +183,12 @@
 <p>The stage is a collection of graphs, trees, and layers of nxt <a href="#node">nodes </a>that set the <a href="#stage-composition">composition structure</a> and <a href="#execution-order">execution order</a> for an nxt file.<br />
 Every node has access to the <code>STAGE</code> object. When working with Python classes (besides the builtins) it is best to store those objects on the <code>STAGE</code>.<br />
 An example of how you would do that in a node's code is as follows:</p>
-<pre><code class="python">my_object = ComplexData()
+<pre><code class="language-python">my_object = ComplexData()
 STAGE.complex_data = my_object
 </code></pre>
-
 <p>Another node later in the execution can access that object as follows:</p>
-<pre><code class="python">STAGE.complex_data.a_method()
+<pre><code class="language-python">STAGE.complex_data.a_method()
 </code></pre>
-
 <div class="admonition note">
 <p class="admonition-title">Stage attributes and composition</p>
 <p>Note that each layer is also a node, and those nodes get composited to the <code>STAGE</code> object. Each node is parented to that object and inherit the attributes of it. This can be useful for defining "global" variables, or a state that needs to propagate into the entire graph.</p>
@@ -252,13 +250,11 @@ print(Stage.anyattr)
         ${/absolute_node_path.attribute}
         ${../relative_nodepath.attribute}
 </code></pre>
-
 <p>File validation syntax <code>${file::}</code>: this will always resolve to a real file, and will return an empty string if the file doesn't exist. Used to validate files for reading.</p>
 <pre><code>        ${file::file.nxt}
         ${file::C:/absolute_path/file.nxt}
         ${file::../relative_path/file.nxt}
 </code></pre>
-
 <p>File path token syntax <code>${path::}</code>this will  attempt to resolve to a valid path. If not, it will be empty. Used to expand paths for writing.</p>
 <p>File path token syntax <code>${contents::}</code> will include the contents of an external file. For example, <code>${contents::${file::external.py}}</code> will include the contents of <code>external.py</code> in the attribute, compute, <em>and</em> it will resolve tokens written within this file.</p>
 <p>File list token syntax <code>${fileslist::}</code> will list valid historical filepaths at the same path.<br />
@@ -269,7 +265,6 @@ This would allow you to collete and parse data from multiple reference layers:</
 for filepath in ${filelist::/node.weiths_file}:
     all_the_data.update(json.load(filepath))
 </code></pre>
-
 <div class="admonition note">
 <p class="admonition-title">File list validation</p>
 <p>The <code>filelist::</code> token only returns valid filepaths to existing files. </p>

@@ -135,7 +135,6 @@ The core will automatically install with the <code>nxt-editor</code>.</p>
 </div>
 <h4 id="video">Video</h4>
 <iframe width="400" height="270" src="https://www.youtube.com/embed/yaSjF_IKMRY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 <iframe width="400" height="270" src="https://www.youtube.com/embed/gyaR7YgfulE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <h4 id="written">Written</h4>
@@ -156,10 +155,9 @@ The core will automatically install with the <code>nxt-editor</code>.</p>
 </li>
 </ul>
 <p>To execute a graph with the nxt Python core, use the following:</p>
-<pre><code class="python">import nxt
+<pre><code class="language-python">import nxt
 nxt.execute_graph('path/to/graph.nxt')
 </code></pre>
-
 <p><br></p>
 <hr />
 <h2 id="windows-python-27">Windows (Python 2.7)</h2>
@@ -232,11 +230,10 @@ We recommend <strong>not</strong> adding conda python to your system path and <s
 <li><code>python -m nxt.cli ui</code></li>
 </ul>
 <p><strong>From Python</strong></p>
-<pre><code class="python">import nxt_editor
+<pre><code class="language-python">import nxt_editor
 GRAPHS_TO_OPEN = ['a_graph.nxt'] or None
 nxt_editor.launch_editor(paths=GRAPHS_TO_OPEN, start_rpc=True)
 </code></pre>
-
 <p><br></p>
 <h4 id="bootstrapping-nxt">Bootstrapping nxt</h4>
 <p>Tested with Maya2018/19/20, Houdini18, Nuke11,12</p>

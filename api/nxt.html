@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html4" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -26,10 +26,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -161,46 +161,54 @@
             
   <div class="section" id="module-nxt">
 <span id="nxt-package"></span><h1>nxt package<a class="headerlink" href="#module-nxt" title="Permalink to this headline">¶</a></h1>
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.execute_graph">
-<code class="sig-name descname">execute_graph</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filepath</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">parameters</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">context</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt.html#execute_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.execute_graph" title="Permalink to this definition">¶</a></dt>
+<code class="descname">execute_graph</code><span class="sig-paren">(</span><em>filepath</em>, <em>start=None</em>, <em>parameters=None</em>, <em>context=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt.html#execute_graph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.execute_graph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shortest code path to executing a graph from the nxt package.
 Creates a 1 off session and executes the graph within that session.
 Arguments are a direct copy of Session.execute_graph, see there for full
 details.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>filepath</strong> (<em>str</em>) – Path to the graph file.</p></li>
-<li><p><strong>start</strong> (<em>str</em>) – Path to the node to begin execution from.</p></li>
-<li><p><strong>parameters</strong> (<em>dict</em>) – Dict where key is attr path and value is new attr    value.</p></li>
-<li><p><strong>context</strong> (<em>str</em>) – Optional name of remote context to execute graph in,     if none is passed the graph is executed in this interpreter.</p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>filepath</strong> (<em>str</em>) – Path to the graph file.</li>
+<li><strong>start</strong> (<em>str</em>) – Path to the node to begin execution from.</li>
+<li><strong>parameters</strong> (<em>dict</em>) – Dict where key is attr path and value is new attr    value.</li>
+<li><strong>context</strong> (<em>str</em>) – Optional name of remote context to execute graph in,     if none is passed the graph is executed in this interpreter.</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.create_context">
-<code class="sig-name descname">create_context</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">custom_name</span></em>, <em class="sig-param"><span class="n">interpreter_exe</span><span class="o">=</span><span class="default_value">'/Users/Michael/miniconda3/envs/nxt/bin/python3.7'</span></em>, <em class="sig-param"><span class="n">context_graph</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt.html#create_context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.create_context" title="Permalink to this definition">¶</a></dt>
+<code class="descname">create_context</code><span class="sig-paren">(</span><em>custom_name</em>, <em>interpreter_exe='c:\\users\\lucas\\miniconda2\\envs\\nxtdocs\\python.exe'</em>, <em>context_graph=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt.html#create_context"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.create_context" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a remote context given the path to an interpreter executable,
 if none is provided the current sys.executable is used. You must provide a
 custom name for your context.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>interpreter_exe</strong> – String path to python executable</p></li>
-<li><p><strong>custom_name</strong> – String of context name. The name users will refer to    the context by</p></li>
-<li><p><strong>context_graph</strong> – Optional path to an existing context startup graph</p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>interpreter_exe</strong> – String path to python executable</li>
+<li><strong>custom_name</strong> – String of context name. The name users will refer to    the context by</li>
+<li><strong>context_graph</strong> – Optional path to an existing context startup graph</li>
 </ul>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p>IOError, NameError</p>
-</dd>
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>string of the new context name</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first">IOError, NameError</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">string of the new context name</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>

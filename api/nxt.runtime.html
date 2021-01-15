@@ -1,7 +1,7 @@
 
 
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html4" lang="en" >
 <head>
   <meta charset="utf-8">
   
@@ -26,10 +26,10 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -163,42 +163,50 @@
   <div class="section" id="module-nxt.runtime">
 <span id="runtime-module"></span><h1>runtime module<a class="headerlink" href="#module-nxt.runtime" title="Permalink to this headline">¶</a></h1>
 <p>Code used while a graph is running.</p>
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.runtime.w">
-<code class="sig-name descname">w</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">string</span></em>, <em class="sig-param"><span class="n">quote_type</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/runtime.html#w"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.runtime.w" title="Permalink to this definition">¶</a></dt>
+<code class="descname">w</code><span class="sig-paren">(</span><em>string</em>, <em>quote_type=0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/runtime.html#w"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.runtime.w" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wraps given string in quotes.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>string</strong> (<em>str</em>) – Input string to be wrapped</p></li>
-<li><p><strong>quote_type</strong> (<em>int</em><em> or </em><em>str</em>) – Int 1: ‘, 2: “, 3: ‘’’, 4: “”” Default is 1, any         string can also be provided and we will wrap the string arg in that         string ie w(‘Hello World’, ‘$’) returns ‘$Hello World$’.</p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>string</strong> (<em>str</em>) – Input string to be wrapped</li>
+<li><strong>quote_type</strong> (<em>int</em><em> or </em><em>str</em>) – Int 1: ‘, 2: “, 3: ‘’’, 4: “”” Default is 1, any         string can also be provided and we will wrap the string arg in that         string ie w(‘Hello World’, ‘$’) returns ‘$Hello World$’.</li>
 </ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>String wrapped in quote marks or custom string</p>
-</dd>
-</dl>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">String wrapped in quote marks or custom string</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-<dl class="py function">
+<dl class="function">
 <dt id="nxt.runtime.execute">
-<code class="sig-name descname">execute</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">paths</span><span class="o">=</span><span class="default_value">()</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">None</span></em>, <em class="sig-param"><span class="n">parameters</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/runtime.html#execute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.runtime.execute" title="Permalink to this definition">¶</a></dt>
+<code class="descname">execute</code><span class="sig-paren">(</span><em>paths=()</em>, <em>start=None</em>, <em>parameters=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/runtime.html#execute"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.runtime.execute" title="Permalink to this definition">¶</a></dt>
 <dd><p>While within node code, this method runs other parts of the graph,         allowing non-linear execution.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>paths</strong> (<em>iterable</em><em>, </em><em>optional</em>) – iterable of paths to execute, defaults to ()</p></li>
-<li><p><strong>start</strong> (<em>str</em><em>, </em><em>optional</em>) – node path to start from, defaults to None.         NOTE must give <em>either</em> paths or start, both is invalid input.</p></li>
-<li><p><strong>parameters</strong> (<em>dict</em><em>, </em><em>optional</em>) – parameters dictionary to apply before exectuion,         defaults to None</p></li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>paths</strong> (<em>iterable</em><em>, </em><em>optional</em>) – iterable of paths to execute, defaults to ()</li>
+<li><strong>start</strong> (<em>str</em><em>, </em><em>optional</em>) – node path to start from, defaults to None.         NOTE must give <em>either</em> paths or start, both is invalid input.</li>
+<li><strong>parameters</strong> (<em>dict</em><em>, </em><em>optional</em>) – parameters dictionary to apply before exectuion,         defaults to None</li>
 </ul>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><ul class="simple">
-<li><p><strong>GraphError</strong> – When there is a problem with execution.</p></li>
-<li><p><strong>ValueError</strong> – When not given either node paths or a start path.</p></li>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><ul class="first last simple">
+<li><strong>GraphError</strong> – When there is a problem with execution.</li>
+<li><strong>ValueError</strong> – When not given either node paths or a start path.</li>
 </ul>
-</dd>
-</dl>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
