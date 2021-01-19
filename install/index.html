@@ -109,6 +109,11 @@
               </ul>
             </li>
             
+            <li class="nav-item" data-level="2"><a href="#blender-plugin" class="nav-link">Blender plugin</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            
             <li class="nav-item" data-level="2"><a href="#maya-plugin" class="nav-link">Maya plugin</a>
               <ul class="nav flex-column">
               </ul>
@@ -173,12 +178,36 @@ If you're comfortable working in an IDE and using git we suggest you follow
 the <a href="https://github.com/nxt-dev/nxt_editor/blob/release/CONTRIBUTING.md", target="_blank">contributing documentation</a>.</p>
 <p><br></p>
 <hr />
+<h2 id="blender-plugin">Blender plugin</h2>
+<p>The Blender addon relies on the pip package <code>nxt-editor</code> and its dependencies being installed into the Python environment used by Blender. We only support Blender version 2.8 and newer.  </p>
+<h4 id="video_1">Video</h4>
+<p>Coming soon...</p>
+<h4 id="written_1">Written</h4>
+<ul>
+<li>Install:<ol>
+<li>Download Blender addon (<code>nxt_blender.zip</code>) from the <a href="https://github.com/nxt-dev/nxt_editor/releases/latest">latest release</a></li>
+<li>Extract and follow <code>nxt_blender</code> <a href="nxt_editor/integration/blender/README.md">README</a> instructions (also included in the download)</li>
+</ol>
+</li>
+<li>Launch:<ol>
+<li>Load the <code>nxt_blender</code> Addon (Edit &gt; Preferences &gt; Add-ons)</li>
+<li>Navigate the newly created NXT menu and select Open Editor.</li>
+</ol>
+</li>
+<li>Update:<ul>
+<li>Automatically: NXT &gt; Update NXT</li>
+<li>By Hand: <code>/path/to/python.exe -m pip install -U nxt-editor</code></li>
+<li>Relaunch Blender after</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
 <h2 id="maya-plugin">Maya plugin</h2>
 <p>Our Maya plugin comes with both a visual editor and the core. We've tested Maya 2018-20 on all platforms.</p>
-<h4 id="video_1">Video</h4>
+<h4 id="video_2">Video</h4>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/VoEz0oyTwzU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<h4 id="written_1">Written</h4>
+<h4 id="written_2">Written</h4>
 <ul>
 <li>Install:<ol>
 <li>Download the maya module(<code>nxt_maya.zip</code>) from the <a href="https://github.com/nxt-dev/nxt_editor/releases/latest">latest release</a></li>
@@ -198,11 +227,11 @@ the <a href="https://github.com/nxt-dev/nxt_editor/blob/release/CONTRIBUTING.md"
 </ol>
 </li>
 </ul>
+<p><br></p>
 <h4 id="planned-plugins">Planned plugins:</h4>
 <ul>
 <li>Houdini </li>
 <li>Nuke</li>
-<li>Blender</li>
 </ul>
 <p><br></p>
 <hr />
