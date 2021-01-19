@@ -21,7 +21,8 @@ NXT, pronounced ɛn·ɛks·ti, is a layered code compositing application. Enabli
 <tr><th><h5><a href="install#linux-mac-windows">Linux</a></h5></th><th><h6><b>pip</b></h6></th><th><h6><b>pip</b></h6></th></tr>
 <tr><th><h5><a href="install#linux-mac-windows">Mac</a></h5></th><th><h6><b>pip</b></h6></th><th><h6><b>pip</b></h6></th></tr>
 <tr><th><h5><a href="install#windows-python-27">Windows</a></h5></th><th><h6><b><a href="install#windows-python-27">special</a></b></b></h6></th><th><h6><b>pip</b></h6></tr>
-<tr><th><h6><a href="install#maya-plugin">Maya</a></h6></th><th><h6><b>zip</b></h6></th><th></th></tr>
+<tr><th><h5><a href="install#maya-plugin">Blender</a></h5></th><th></th><th><h6><b>zip or pip</b></h6></th></tr>
+<tr><th><h5><a href="install#maya-plugin">Maya</a></h5></th><th><h6><b>zip</b></h6></th><th></th></tr>
 </table>
 </div>
 

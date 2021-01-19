@@ -51,6 +51,27 @@ the <a href="https://github.com/nxt-dev/nxt_editor/blob/release/CONTRIBUTING.md"
 <br>
 
 ---
+## Blender plugin
+The Blender addon relies on the pip package `nxt-editor` and its dependencies being installed into the Python environment used by Blender. We only support Blender version 2.8 and newer.  
+
+#### Video
+
+Coming soon...
+
+#### Written
+
+- Install:
+    1. Download Blender addon (`nxt_blender.zip`) from the [latest release](https://github.com/nxt-dev/nxt_editor/releases/latest)
+    2. Extract and follow `nxt_blender` [README](nxt_editor/integration/blender/README.md) instructions (also included in the download)
+- Launch:
+    1. Load the `nxt_blender` Addon (Edit > Preferences > Add-ons)
+    2. Navigate the newly created NXT menu and select Open Editor.
+- Update:
+    - Automatically: NXT > Update NXT
+    - By Hand: `/path/to/python.exe -m pip install -U nxt-editor`
+    - Relaunch Blender after
+
+<br>
 
 ## Maya plugin
 Our Maya plugin comes with both a visual editor and the core. We've tested Maya 2018-20 on all platforms.
@@ -73,10 +94,11 @@ Our Maya plugin comes with both a visual editor and the core. We've tested Maya 
     2. Extract the zip and replace the existing `nxt_maya` files with the newly extracted files.
     3. Re-launch Maya
 
+<br>
+
 #### Planned plugins:
 - Houdini 
 - Nuke
-- Blender
 
 <br>
 
