@@ -63,6 +63,9 @@
                             <li class="navitem">
                                 <a href="../about/" class="nav-link">About</a>
                             </li>
+                            <li class="navitem">
+                                <a href="https://github.com/nxt-dev/" target="_blank" class="nav-link">GitHub</a>
+                            </li>
                         </ul>
 
                     <ul class="nav navbar-nav ml-auto">
@@ -148,6 +151,7 @@ For more on using custom contexts <a href="../tutorials/#contexts">see here</a>.
 <h1 id="plugins">Plugins</h1>
 <p>Any <code>.py</code> files inside your plugin dir(s) will automatically be imported during nxt startup. </p>
 <h3 id="creating-custom-contexts-automatically">Creating Custom Contexts (Automatically)</h3>
+<p>If you're looking to create a context for an arbitrary Python interpreter you'll want to use our create context function.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You will need to create your own <code>context_graph</code> <a href="#maya_2020_contextnxt">see below</a> for how to do that.</p>
@@ -243,7 +247,7 @@ nxt.execute_graph('/path/to/graph.nxt' context='maya2020')
 
         <footer class="col-md-12">
             <hr>
-                <p>2021 NXT Authors</p>
+                <p>2022 NXT Authors</p>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
@@ -261,16 +265,13 @@ nxt.execute_graph('/path/to/graph.nxt' context='maya2020')
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
-                <p>
-                    From here you can search these documents. Enter
-                    your search terms below.
-                </p>
+                <p>From here you can search these documents. Enter your search terms below.</p>
                 <form>
                     <div class="form-group">
                         <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
                     </div>
                 </form>
-                <div id="mkdocs-search-results"></div>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
             </div>
             <div class="modal-footer">
             </div>
