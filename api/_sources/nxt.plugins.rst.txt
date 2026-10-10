@@ -1,0 +1,19 @@
+nxt.plugins package
+===================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   nxt.plugins.example
+   nxt.plugins.file_fallbacks
+
+Module contents
+---------------
+
+.. automodule:: nxt.plugins
+   :members:
+   :undoc-members:
+   :show-inheritance:

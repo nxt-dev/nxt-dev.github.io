@@ -1,274 +1,341 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>nxt_log module &mdash; NXT  documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
-  
-  
-  
-
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nxt.nxt_log module &mdash; NXT  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="tokens module" href="nxt.tokens.html" />
-    <link rel="prev" title="nxt_path module" href="nxt.nxt_path.html" /> 
+    <link rel="next" title="nxt.nxt_node module" href="nxt.nxt_node.html" />
+    <link rel="prev" title="nxt.nxt_layer module" href="nxt.nxt_layer.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> NXT
           
-
-          
+          <a href="index.html" class="icon icon-home">
+            NXT
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference external" href="https://nxt-dev.github.io/">User Docs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nxt.html">nxt package</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="nxt.html#modules">modules</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_io.html">nxt_io</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_layer.html">nxt_layer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_path.html">nxt_path</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">nxt_log</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nxt.tokens.html">tokens</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nxt.runtime.html">runtime</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://sunriseproductions.github.io/nxt/">User Docs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">nxt</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="nxt.html">nxt package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="nxt.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="nxt.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="nxt.clean_json.html">nxt.clean_json module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.cli.html">nxt.cli module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.constants.html">nxt.constants module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.legacy.html">nxt.legacy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_io.html">nxt.nxt_io module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_layer.html">nxt.nxt_layer module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">nxt.nxt_log module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_node.html">nxt.nxt_node module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_path.html">nxt.nxt_path module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.plugin_loader.html">nxt.plugin_loader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.runtime.html">nxt.runtime module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.session.html">nxt.session module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.stage.html">nxt.stage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.tokens.html">nxt.tokens module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nxt.html#module-nxt">Module contents</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">NXT</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="nxt.html">nxt package</a> &raquo;</li>
-        
-      <li>nxt_log module</li>
-    
-    
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">nxt</a></li>
+          <li class="breadcrumb-item"><a href="nxt.html">nxt package</a></li>
+      <li class="breadcrumb-item active">nxt.nxt_log module</li>
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="_sources/nxt.nxt_log.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="module-nxt.nxt_log">
-<span id="nxt-log-module"></span><h1>nxt_log module<a class="headerlink" href="#module-nxt.nxt_log" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="module-nxt.nxt_log">
+<span id="nxt-nxt-log-module"></span><h1>nxt.nxt_log module<a class="headerlink" href="#module-nxt.nxt_log" title="Permalink to this headline"></a></h1>
 <p>Logging utilities and constants.</p>
-<dl class="function">
-<dt id="nxt.nxt_log.initial_setup">
-<code class="descname">initial_setup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#initial_setup"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_log.initial_setup" title="Permalink to this definition">¶</a></dt>
+<dl class="py data">
+<dt class="sig sig-object py" id="nxt.nxt_log.VERBOSE_ENV_VAR">
+<span class="sig-name descname"><span class="pre">VERBOSE_ENV_VAR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'NXT_VERBOSE'</span></em><a class="headerlink" href="#nxt.nxt_log.VERBOSE_ENV_VAR" title="Permalink to this definition"></a></dt>
+<dd><p>Logging levels are as follows, with custom levels marked with *
+CRITICAL    - 50
+ERROR       - 40
+<a href="#id1"><span class="problematic" id="id2">*</span></a>GRAPHERROR - 39
+WARNING     - 30
+INFO        - 20
+<a href="#id3"><span class="problematic" id="id4">*</span></a>NODEOUT    - 19
+<a href="#id5"><span class="problematic" id="id6">*</span></a>EXECINFO   - 18
+<a href="#id7"><span class="problematic" id="id8">*</span></a>COMPINFO   - 17
+<a href="#id9"><span class="problematic" id="id10">*</span></a>SOCKET     - 16
+DEBUG       - 10
+NOTSET      - 0</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.nxt_log.NXTLogger">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NXTLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#NXTLogger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_log.NXTLogger" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">logging.Logger</span></code></p>
+<p>Implements custom logging levels for nxt.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_log.NXTLogger.socket">
+<span class="sig-name descname"><span class="pre">socket</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#NXTLogger.socket"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_log.NXTLogger.socket" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_log.NXTLogger.execinfo">
+<span class="sig-name descname"><span class="pre">execinfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#NXTLogger.execinfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_log.NXTLogger.execinfo" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_log.NXTLogger.grapherror">
+<span class="sig-name descname"><span class="pre">grapherror</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#NXTLogger.grapherror"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_log.NXTLogger.grapherror" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_log.NXTLogger.compinfo">
+<span class="sig-name descname"><span class="pre">compinfo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#NXTLogger.compinfo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_log.NXTLogger.compinfo" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_log.NXTLogger.nodeout">
+<span class="sig-name descname"><span class="pre">nodeout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">message</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#NXTLogger.nodeout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_log.NXTLogger.nodeout" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_log.track_log_file">
+<span class="sig-name descname"><span class="pre">track_log_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#track_log_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_log.track_log_file" title="Permalink to this definition"></a></dt>
+<dd><p>Track given log at <cite>path</cite>, via meta log.
+Clean up old log files tracked by meta log.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_log.initial_setup">
+<span class="sig-name descname"><span class="pre">initial_setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#initial_setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_log.initial_setup" title="Permalink to this definition"></a></dt>
 <dd><p>module-wide logging boilerplate.
 Sets logging level.
 Builds and sets up default handlers.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="nxt.nxt_log.set_verbosity">
-<code class="descname">set_verbosity</code><span class="sig-paren">(</span><em>level</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#set_verbosity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_log.set_verbosity" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_log.set_verbosity">
+<span class="sig-name descname"><span class="pre">set_verbosity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#set_verbosity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_log.set_verbosity" title="Permalink to this definition"></a></dt>
 <dd><p>Set the verbosity of nxt logging. Controls what to output to stderr.
 3 legal levels specified by integer. NOTE node prints are not affected.</p>
 <p>0 - Nothing</p>
 <p>1 - EXECINFO and higher</p>
 <p>2 - Everything</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>level</strong> (<em>int</em>) – level to set stderr verbosity to: 0, 1, or 2</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">stderr handler, if there is one</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">logging.StreamHandler or None</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>level</strong> (<em>int</em>) – level to set stderr verbosity to: 0, 1, or 2</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>stderr handler, if there is one</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>logging.StreamHandler or None</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="nxt.nxt_log.make_session_log">
-<code class="descname">make_session_log</code><span class="sig-paren">(</span><em>filename=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#make_session_log"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_log.make_session_log" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_log.make_session_log">
+<span class="sig-name descname"><span class="pre">make_session_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#make_session_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_log.make_session_log" title="Permalink to this definition"></a></dt>
 <dd><p>Begin saving log at <cite>filename</cite> if given, otherwise
 track to a generated file inside default temporary directory.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em>) – file to log to, defaults to None</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">file being logged to, <cite>filename</cite> if given.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em><em>, </em><em>optional</em>) – file to log to, defaults to None</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>file being logged to, <cite>filename</cite> if given.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
 </dd></dl>
 
-</div>
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_log.get_new_session_log_filename">
+<span class="sig-name descname"><span class="pre">get_new_session_log_filename</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#get_new_session_log_filename"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_log.get_new_session_log_filename" title="Permalink to this definition"></a></dt>
+<dd><p>Get a new log filename for an nxt session inside the default logs directory.
+Attempts to create logs directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>filename to use for session log.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_log.stop_session_log">
+<span class="sig-name descname"><span class="pre">stop_session_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#stop_session_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_log.stop_session_log" title="Permalink to this definition"></a></dt>
+<dd><p>Stops outputting log to given filename.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filename</strong> (<em>str</em><em>, </em><em>required</em>) – filename to stop outputting to.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_log.make_link">
+<span class="sig-name descname"><span class="pre">make_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#make_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_log.make_link" title="Permalink to this definition"></a></dt>
+<dd><p>Wrap given <cite>value</cite> in html href syntax.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – value to wrap</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.nxt_log.LogRecordStreamHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LogRecordStreamHandler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">client_address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">server</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#LogRecordStreamHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_log.LogRecordStreamHandler" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">socketserver.StreamRequestHandler</span></code></p>
+<p>Lifted from: <a class="reference external" href="https://docs.python.org/2.7/howto/logging-cookbook.html">https://docs.python.org/2.7/howto/logging-cookbook.html</a>
+Handler for a streaming logging request.</p>
+<p>This basically logs the record using whatever logging policy is
+configured locally.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_log.LogRecordStreamHandler.handle">
+<span class="sig-name descname"><span class="pre">handle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#LogRecordStreamHandler.handle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_log.LogRecordStreamHandler.handle" title="Permalink to this definition"></a></dt>
+<dd><p>Handle multiple requests - each expected to be a 4-byte length,
+followed by the LogRecord in pickle format. Logs the record
+according to whatever policy is configured locally.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_log.LogRecordStreamHandler.un_pickle">
+<span class="sig-name descname"><span class="pre">un_pickle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#LogRecordStreamHandler.un_pickle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_log.LogRecordStreamHandler.un_pickle" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_log.LogRecordStreamHandler.handle_log_record">
+<span class="sig-name descname"><span class="pre">handle_log_record</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#LogRecordStreamHandler.handle_log_record"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_log.LogRecordStreamHandler.handle_log_record" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.nxt_log.LogRecordSocketReceiver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LogRecordSocketReceiver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">host='localhost'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">port=9020</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">handler=&lt;class</span> <span class="pre">'nxt.nxt_log.LogRecordStreamHandler'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#LogRecordSocketReceiver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_log.LogRecordSocketReceiver" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">socketserver.ThreadingTCPServer</span></code></p>
+<p>Lifted from: <a class="reference external" href="https://docs.python.org/2.7/howto/logging-cookbook.html">https://docs.python.org/2.7/howto/logging-cookbook.html</a>
+Simple TCP socket-based logging receiver suitable for testing.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_log.LogRecordSocketReceiver.allow_reuse_address">
+<span class="sig-name descname"><span class="pre">allow_reuse_address</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#nxt.nxt_log.LogRecordSocketReceiver.allow_reuse_address" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_log.LogRecordSocketReceiver.serve_until_stopped">
+<span class="sig-name descname"><span class="pre">serve_until_stopped</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#LogRecordSocketReceiver.serve_until_stopped"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_log.LogRecordSocketReceiver.serve_until_stopped" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_log.startup_log_socket">
+<span class="sig-name descname"><span class="pre">startup_log_socket</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stream_handler=&lt;class</span> <span class="pre">'nxt.nxt_log.LogRecordStreamHandler'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#startup_log_socket"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_log.startup_log_socket" title="Permalink to this definition"></a></dt>
+<dd><p>Starts threaded logging socket receiver, if using a visual app a
+thread safe stream handler should be provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>stream_handler</strong> – Logging stream handler default LogRecordStreamHandler</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>LogRecordSocketReceiver()</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_log.shutdown_log_socket">
+<span class="sig-name descname"><span class="pre">shutdown_log_socket</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_log.html#shutdown_log_socket"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_log.shutdown_log_socket" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="nxt.tokens.html" class="btn btn-neutral float-right" title="tokens module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="nxt.nxt_path.html" class="btn btn-neutral float-left" title="nxt_path module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nxt.nxt_layer.html" class="btn btn-neutral float-left" title="nxt.nxt_layer module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nxt.nxt_node.html" class="btn btn-neutral float-right" title="nxt.nxt_node module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        
-        &copy; Copyright 2020, The nxt authors
-
-    </p>
+    <p>&#169; Copyright 2020, The nxt authors.</p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

@@ -40,6 +40,9 @@
                                 <a href=".." class="nav-link">Home</a>
                             </li>
                             <li class="navitem">
+                                <a href="../whats_new/" class="nav-link">What's New</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../concepts/" class="nav-link">Concepts</a>
                             </li>
                             <li class="navitem">
@@ -102,23 +105,38 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="2"><a href="#linux-mac-windows" class="nav-link">Linux, Mac, Windows</a>
+            <li class="nav-item" data-level="1"><a href="#requirements" class="nav-link">Requirements</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#windows-python-27" class="nav-link">Windows (Python 2.7)</a>
+            <li class="nav-item" data-level="1"><a href="#standalone-installation" class="nav-link">Standalone Installation</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#blender-plugin" class="nav-link">Blender plugin</a>
+            <li class="nav-item" data-level="1"><a href="#host-applications" class="nav-link">Host Applications</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#maya" class="nav-link">Maya</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
-            <li class="nav-item" data-level="2"><a href="#maya-plugin" class="nav-link">Maya plugin</a>
+            <li class="nav-item" data-level="2"><a href="#unreal" class="nav-link">Unreal</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#blender" class="nav-link">Blender</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#qt-for-blender-and-unreal" class="nav-link">Qt for Blender and Unreal</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#other-hosts" class="nav-link">Other hosts</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -131,176 +149,385 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1>Standalone Installation</h1>
-
-<h2 id="linux-mac-windows">Linux, Mac, Windows</h2>
-<p><em>If you're trying to install on Windows in a Python 2 environment see <a href="#windows-python-27">here</a></em></p>
-<p>To install the latest release directly from <a href="https://pypi.org/project/nxt-editor/">PyPi</a> follow the following steps.</p>
+<h1 id="requirements">Requirements</h1>
+<p>nxt comes in two packages:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Package</th>
+<th align="left">What it is</th>
+<th align="left">Python</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><a href="https://pypi.org/project/nxt-core/">nxt-core</a></td>
+<td align="left">The graph engine. Loads, composites and executes graphs, with no UI.</td>
+<td align="left">3.7 to 3.14</td>
+</tr>
+<tr>
+<td align="left"><a href="https://pypi.org/project/nxt-editor/">nxt-editor</a></td>
+<td align="left">The visual editor. Installs nxt-core with it.</td>
+<td align="left">3.9 to 3.14, with PySide6 6.x below 6.12</td>
+</tr>
+</tbody>
+</table>
+<p>The editor uses <a href="https://github.com/mottosso/Qt.py">Qt.py</a> on top of
+PySide6, both of which pip installs for you. The same release runs on
+Windows, macOS and Linux; nothing is compiled per platform.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The <code>nxt-core</code> is <em>just</em> the Python backend of NXT, it does not include the visual editor.<br />
-The core will automatically install with the <code>nxt-editor</code>.</p>
+<p class="admonition-title">PySide6 6.12</p>
+<p>nxt-editor asks pip for a PySide6 below 6.12, because the editor has not
+been tested on 6.12 yet. If another package
+in the same environment needs PySide6 6.12 or newer, give nxt an
+environment of its own.</p>
 </div>
-<h4 id="video">Video</h4>
-<iframe width="400" height="270" src="https://www.youtube.com/embed/yaSjF_IKMRY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-<iframe width="400" height="270" src="https://www.youtube.com/embed/gyaR7YgfulE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-<h4 id="written">Written</h4>
+<p>We strongly recommend installing into a Python
+<a href="https://docs.python.org/3/library/venv.html">virtual environment</a>.</p>
+<h1 id="standalone-installation">Standalone Installation</h1>
+<p>To install the latest release from <a href="https://pypi.org/project/nxt-editor/">PyPI</a>:</p>
 <ul>
-<li>First time install<ul>
-<li>For just the cli and backend: <code>pip install nxt-core</code></li>
-<li>For the backend and the visual editor: <code>pip install nxt-editor</code></li>
+<li>Install<ul>
+<li><code>pip install nxt-editor</code></li>
+<li>Optionally, for richer code completion:
+  <code>pip install nxt-editor[completion]</code>. This adds
+  <a href="https://github.com/davidhalter/jedi">jedi</a>, which the
+  <a href="../reference/#python-analysis-with-jedi">Python Analysis</a> completion
+  source uses. The editor works the same without it.</li>
 </ul>
 </li>
-<li>Launch (nxt editor)<ul>
-<li><code>nxt ui</code></li>
+<li>Launch the editor<ul>
+<li><code>nxt ui</code>, or <code>nxt ui path/to/graph.nxt</code> to open a graph</li>
 </ul>
 </li>
 <li>Update<ul>
-<li><code>pip install -U nxt-core</code></li>
 <li><code>pip install -U nxt-editor</code></li>
 </ul>
 </li>
 </ul>
-<p>To execute a graph with the nxt Python core, use the following:</p>
+<h4 id="video">Video</h4>
+<p>These walkthroughs were recorded with an earlier release, but the steps are
+the same.</p>
+<iframe width="400" height="270" src="https://www.youtube.com/embed/yaSjF_IKMRY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="400" height="270" src="https://www.youtube.com/embed/gyaR7YgfulE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<p>If you only need to run graphs, without the editor, install the core on its
+own with <code>pip install nxt-core</code>. Graphs can then be run from the command
+line with <code>nxt exec path/to/graph.nxt</code>, optionally with <code>-s /start/node</code>.</p>
+<p>Or from python:</p>
 <pre><code class="language-python">import nxt
 nxt.execute_graph('path/to/graph.nxt')
 </code></pre>
-<p><br></p>
+<p>To install a specific version, or the latest code, directly from GitHub:</p>
+<pre><code>pip install git+https://github.com/nxt-dev/nxt.git@{ tag name }
+pip install git+https://github.com/nxt-dev/nxt_editor.git@{ tag name }
+</code></pre>
+<p>Omit <code>@{ tag name }</code> to get the latest from the <code>release</code> branch.</p>
 <hr />
-<h2 id="windows-python-27">Windows (Python 2.7)</h2>
-<p><em>If you're installing into a Python 3.7.x environment you can use the above <a href="#linux-mac-windows">steps</a></em></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>These steps are <em>only</em> necessary if you want to use the nxt <strong>standalone editor</strong> outside of Maya.<br />
-The <code>nxt-core</code> will pip install on Windows Python 2.7 without issue.</p>
+<h1 id="host-applications">Host Applications</h1>
+<p>Each supported host gets a zip on the
+<a href="https://github.com/nxt-dev/nxt_editor/releases/latest">latest nxt_editor release</a>.
+Each zip also contains a <code>README.md</code> with these same steps.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Host</th>
+<th align="left">Versions</th>
+<th align="left">Qt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><a href="#maya">Maya</a></td>
+<td align="left">2025, 2026, 2027</td>
+<td align="left">Ships with Maya</td>
+</tr>
+<tr>
+<td align="left"><a href="#unreal">Unreal</a></td>
+<td align="left">5.4 to 5.8</td>
+<td align="left">Installed once from the nxt menu</td>
+</tr>
+<tr>
+<td align="left"><a href="#blender">Blender</a></td>
+<td align="left">4.2 and newer</td>
+<td align="left">Installed once from the NXT menu</td>
+</tr>
+</tbody>
+</table>
+<h2 id="maya">Maya</h2>
+<p>The Maya plugin is a Maya module folder that carries nxt, nxt_editor and
+Qt.py. Maya ships its own PySide6, so there is nothing else to install.</p>
+<h3 id="automated-install">Automated install</h3>
+<ol>
+<li>Place the nxt module folder somewhere you would like to keep it, and that
+   will be easy to find when you are ready to install a newer version.</li>
+<li>Drag the file <code>drag_into_maya.py</code> from that folder into the Maya viewport.<ul>
+<li>A file browser appears. Select the folder you would like the nxt module
+  file (<code>nxt.mod</code>) to go in. Make sure the location you choose is on your
+  Maya modules path. This replaces any existing <code>nxt.mod</code> in that folder.
+  If you are not sure, the default should work.</li>
+</ul>
+</li>
+<li>Restart Maya.</li>
+<li><code>nxt_maya.py</code> is now available to load in the Plug-in Manager.</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Keep the folder</p>
+<p>Do not delete the module folder after installing. Maya loads nxt from it.
+To update nxt, replace the folder's contents with the newer release and
+restart Maya.</p>
 </div>
-<p>Due to the limited availability of PySide2 on Windows for Python 2.7 the steps to install on Windows are slightly more involved.
-For the simplest instructions, please follow the <a href="#developer-installation">developer installation steps</a>.<br />
-If you're comfortable working in an IDE and using git we suggest you follow 
-the <a href="https://github.com/nxt-dev/nxt_editor/blob/release/CONTRIBUTING.md", target="_blank">contributing documentation</a>.</p>
-<p><br></p>
-<hr />
-<h2 id="blender-plugin">Blender plugin</h2>
-<p>The Blender addon relies on the pip package <code>nxt-editor</code> and its dependencies being installed into the Python environment used by Blender. We only support Blender version 2.8 and newer.  </p>
-<h4 id="video_1">Video</h4>
-<p>Coming soon...</p>
-<h4 id="written_1">Written</h4>
-<ul>
-<li>Install:<ol>
-<li>Download Blender addon (<code>nxt_blender.zip</code>) from the <a href="https://github.com/nxt-dev/nxt_editor/releases/latest">latest release</a></li>
-<li>Extract and follow <code>nxt_blender</code> <a href="nxt_editor/integration/blender/README.md">README</a> instructions (also included in the download)</li>
-</ol>
-</li>
-<li>Launch:<ol>
-<li>Load the <code>nxt_blender</code> Addon (Edit &gt; Preferences &gt; Add-ons)</li>
-<li>Navigate the newly created NXT menu and select Open Editor.</li>
-</ol>
-</li>
-<li>Update:<ul>
-<li>Automatically: NXT &gt; Update NXT</li>
-<li>By Hand: <code>/path/to/python.exe -m pip install -U nxt-editor</code></li>
-<li>Relaunch Blender after</li>
-</ul>
-</li>
-</ul>
-<p><br></p>
-<h2 id="maya-plugin">Maya plugin</h2>
-<p>Our Maya plugin comes with both a visual editor and the core. We've tested Maya 2018-20 on all platforms.</p>
-<h4 id="video_2">Video</h4>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/VoEz0oyTwzU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h3 id="by-hand">By hand</h3>
+<p>If you are familiar with Maya modules: the module folder contains an example
+<code>nxt.mod</code>. Fill in the module path with the path to the extracted module
+folder and put the <code>nxt.mod</code> somewhere on your Maya modules path.</p>
+<h3 id="usage">Usage</h3>
+<p>When the plugin is loaded there is an <strong>nxt</strong> menu in Maya's main menu bar.
+Choose <strong>Open Editor</strong> to get started.</p>
+<p>The plugin also adds an <code>nxt_ui</code> command, for shelf buttons and scripts.
+There is one editor at a time: when an editor is already open, <code>nxt_ui</code>
+uses it rather than opening a second one.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Flag</th>
+<th align="left">What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><em>(none)</em></td>
+<td align="left">Opens the editor, or, when one is already open, brings it to the front, restoring it if it was minimised.</td>
+</tr>
+<tr>
+<td align="left"><code>-path</code>, <code>-p</code></td>
+<td align="left">Opens a graph, as a new tab of the open editor or in a new editor. Can be given more than once.</td>
+</tr>
+<tr>
+<td align="left"><code>-reload</code>, <code>-r</code></td>
+<td align="left">Closes the editor and opens a fresh one. Closing asks about unsaved changes as usual; if you cancel, the reload stops with a warning and the editor stays open.</td>
+</tr>
+<tr>
+<td align="left"><code>-close</code>, <code>-c</code></td>
+<td align="left">Closes the editor.</td>
+</tr>
+</tbody>
+</table>
+<p>In Python:</p>
+<pre><code class="language-python">from maya import cmds
 
-<h4 id="written_2">Written</h4>
-<ul>
-<li>Install:<ol>
-<li>Download the maya module(<code>nxt_maya.zip</code>) from the <a href="https://github.com/nxt-dev/nxt_editor/releases/latest">latest release</a></li>
-<li>Follow the <code>nxt_maya</code> <a href="https://github.com/nxt-dev/nxt_editor/blob/release/integration/maya/README.md" target="_blank">README</a> instructions (also included in the download)</li>
+cmds.nxt_ui()
+cmds.nxt_ui(path=['C:/graphs/build.nxt', 'C:/graphs/publish.nxt'])
+cmds.nxt_ui(reload=True)
+cmds.nxt_ui(close=True)
+</code></pre>
+<p>In MEL:</p>
+<pre><code>nxt_ui;
+nxt_ui -p &quot;C:/graphs/build.nxt&quot; -p &quot;C:/graphs/publish.nxt&quot;;
+nxt_ui -reload;
+nxt_ui -close;
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Older scripts</p>
+<p>Before these flags, <code>nxt_ui</code> took <code>close</code> (and <code>reload</code>) as a plain
+argument: <code>cmds.nxt_ui('close')</code>. That still works, but prints a warning
+that it is deprecated. Use <code>cmds.nxt_ui(close=True)</code> and
+<code>cmds.nxt_ui(reload=True)</code> instead.</p>
+</div>
+<h3 id="running-a-graph-in-maya-standalone">Running a graph in Maya standalone</h3>
+<p>nxt_editor ships a small command line script, <code>run_maya_graph.py</code>, that runs
+a graph inside a headless Maya session (<code>maya.standalone</code>). It lives at
+<code>nxt_editor/integration/maya/run_maya_graph.py</code>, both in the Maya module
+and in a pip install of nxt-editor. Run it with Maya's own python,
+<code>mayapy</code>, which is in Maya's <code>bin</code> folder:</p>
+<pre><code>mayapy run_maya_graph.py -g path/to/graph.nxt
+mayapy run_maya_graph.py -g path/to/graph.nxt -s /start_node
+mayapy run_maya_graph.py -g path/to/graph.nxt -p &quot;{\&quot;/.name\&quot;: \&quot;test\&quot;}&quot;
+mayapy run_maya_graph.py -g path/to/graph.nxt -p path/to/parameters.json
+</code></pre>
+<table>
+<thead>
+<tr>
+<th align="left">Argument</th>
+<th align="left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left"><code>-g</code>, <code>--graph_path</code></td>
+<td align="left">The graph to run. Required.</td>
+</tr>
+<tr>
+<td align="left"><code>-s</code>, <code>--start_node</code></td>
+<td align="left">The node to start from. Without it the graph's start point is used.</td>
+</tr>
+<tr>
+<td align="left"><code>-p</code>, <code>--parameters</code></td>
+<td align="left">Values to set before the graph runs, as a JSON dictionary or the path to a JSON file. Keys are attribute paths such as <code>/node.attr</code>. A <code>/node._enabled</code> key set to <code>true</code> or <code>false</code> enables or disables that node for this run.</td>
+</tr>
+</tbody>
+</table>
+<p>The script needs nxt importable from <code>mayapy</code>, which it is when the nxt
+Maya module is installed.</p>
+<p>To launch it from inside another graph, reference the builtin
+<code>sub_graphs.nxt</code> graph (<strong>File &gt; Reference Builtin Graph</strong>) and instance its
+<code>/_maya_standalone_graph</code> node. Set <code>_graph_path</code> to the graph to run,
+<code>_maya_version</code> (or <code>_MAYA_LOCATION</code> / <code>_mayapy_exe</code> if Maya is not installed
+in the default Windows location) and, if needed, <code>_parameters</code> and
+<code>_start_node</code>. Turn on <code>_wait</code> to make the build wait for Maya to finish
+before it continues.</p>
+<p><code>_start_node</code> is passed to <code>run_maya_graph.py</code> as <code>-s</code>. Its value is used as
+python, so write the node path as a string, for example <code>'/build_rig'</code>
+(<code>_graph_path</code> is written the same way). Leave it as <code>None</code> to run from the
+graph's own start point.</p>
+<h2 id="unreal">Unreal</h2>
+<p>The Unreal plugin carries nxt, nxt_editor and Qt.py in its <code>Content/Python</code>
+folder, so it runs the nxt it was released with and does not install nxt
+from PyPI. It is experimental: save early, save often.</p>
+<ol>
+<li>Move the plugin folder into either your project's or the engine's
+   <code>Plugins</code> folder.</li>
+<li>Make sure the <strong>Python Editor Script Plugin</strong> is enabled.</li>
+<li>Enable the nxt plugin in the plugin browser and restart the editor.</li>
+<li>The first time, choose <strong>nxt &gt; Install Qt (PySide6)</strong>. Unreal ships no Qt,
+   so this downloads PySide6 with the engine's own pip. See
+   <a href="#qt-for-blender-and-unreal">Qt for Blender and Unreal</a>.</li>
 </ol>
-</li>
-<li>Launch:<ol>
-<li>Load <code>nxt_maya</code> plugin in Maya</li>
-<li>Select the <code>nxt</code> menu from the menus at the top of Maya</li>
-<li>Click <code>Open Editor</code></li>
+<p>After that, the <strong>nxt</strong> menu in the main menu bar has <strong>Open Editor</strong>. The
+editor window is parented to the Unreal editor and stays responsive while
+Unreal runs. If a menu command fails, the error is logged and shown rather
+than taking the Unreal editor down.</p>
+<p>To update, replace the plugin folder with the one from a newer release. If
+an older version of the plugin pip installed <code>nxt-editor</code> into the engine,
+the bundled copy is used ahead of it; you can remove the old one with
+<code>&lt;engine python&gt; -m pip uninstall nxt-editor nxt-core</code>. The engine's python
+is under <code>Engine/Binaries/ThirdParty/Python3</code>.</p>
+<h2 id="blender">Blender</h2>
+<p>The Blender add-on carries nxt, nxt_editor and Qt.py, so nothing else has to
+be installed or put on a path.</p>
+<ol>
+<li>In Blender, open <strong>Edit &gt; Preferences &gt; Add-ons</strong>, choose
+   <strong>Install from Disk</strong>, and pick <code>nxt_blender.zip</code> from the release.</li>
+<li>Tick the add-on to enable it.</li>
+<li>The first time, choose <strong>NXT &gt; Install Qt (PySide6)</strong>. See
+   <a href="#qt-for-blender-and-unreal">Qt for Blender and Unreal</a>.</li>
 </ol>
-</li>
-<li>Update:<ol>
-<li>Download the <code>nxt_maya</code> zip from the <a href="https://github.com/nxt-dev/nxt_editor/releases/latest">latest release</a></li>
-<li>Extract the zip and replace the existing <code>nxt_maya</code> files with the newly extracted files.</li>
-<li>Re-launch Maya</li>
-</ol>
-</li>
-</ul>
-<p><br></p>
-<h4 id="planned-plugins">Planned plugins:</h4>
-<ul>
-<li>Houdini </li>
-<li>Nuke</li>
-</ul>
+<p>The <strong>NXT</strong> menu appears in Blender's top bar, next to <strong>Help</strong>. Enabling the
+add-on does not open anything on its own.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Menu item</th>
+<th align="left">What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Open Editor</td>
+<td align="left">Opens an nxt editor window inside Blender.</td>
+</tr>
+<tr>
+<td align="left">Close Editor</td>
+<td align="left">Closes the editor windows this session opened.</td>
+</tr>
+<tr>
+<td align="left">Install Qt (PySide6)</td>
+<td align="left">Only shown while Qt is missing. Installs PySide6 for this Blender.</td>
+</tr>
+<tr>
+<td align="left">Run Graph...</td>
+<td align="left">Picks a <code>.nxt</code> file and runs it in the current scene, without opening the editor.</td>
+</tr>
+<tr>
+<td align="left">Run Last Graph</td>
+<td align="left">Runs the same graph again.</td>
+</tr>
+<tr>
+<td align="left">Reload Code</td>
+<td align="left">Forgets the nxt modules Blender has already imported, so the next run uses the files on disk.</td>
+</tr>
+</tbody>
+</table>
+<p>Only the editor window needs Qt. <strong>Run Graph</strong> works in any Blender, even
+before Qt is installed, and in background (<code>--background</code>) sessions an error
+from a graph is printed rather than shown in a dialog.</p>
+<div class="admonition note">
+<p class="admonition-title">Why Reload Code matters</p>
+<p>Blender keeps imported modules for the whole session. If you update nxt,
+or code your graph imports, and run a graph again, Blender runs what it
+had already imported, which looks like your change had no effect.
+<strong>Run Graph</strong> reloads first by default (the <strong>Reload code first</strong> option
+in its file browser), and <strong>Run Last Graph</strong> always does.</p>
+</div>
+<p>Graphs whose nodes use <code>bpy</code> can only be <em>run</em> in Blender, but they can be
+<em>edited</em> anywhere, including the standalone editor.</p>
+<h2 id="qt-for-blender-and-unreal">Qt for Blender and Unreal</h2>
+<p>Blender and Unreal ship no Qt, and the nxt editor is a Qt application, so
+both menus offer <strong>Install Qt (PySide6)</strong>. It uses the host's own pip to
+install PySide6 once, into a folder outside the host:</p>
+<pre><code>~/nxt/deps/py&lt;python version&gt;
+</code></pre>
+<p>for example <code>~/nxt/deps/py311</code> for Unreal and <code>~/nxt/deps/py313</code> for
+Blender 5. The folder is named for the python version because PySide6 only
+loads in the python it was installed for. Keeping it outside the host means
+it survives host updates and needs no write access to the host's install
+folder. The host pauses while PySide6 downloads.</p>
+<p>On Windows, Blender 4.2 to 4.5 ship an older Microsoft C++ runtime that the
+newest PySide6 crashes on, so they get PySide6 6.10 in a folder of its own,
+<code>py311-crt14.29</code>. Install Qt picks the right one by itself; the folder names
+only matter when installing by hand.</p>
+<div class="admonition note">
+<p class="admonition-title">Studio installs and machines without internet access</p>
+<p>Set the <code>NXT_QT_DEPS</code> environment variable to a shared folder, and nxt
+looks for (and installs) PySide6 under it instead of <code>~/nxt/deps</code>.
+Install it there once with each host's python:</p>
+<pre><code>&lt;unreal python&gt;    -m pip install --target &lt;shared&gt;/py311 "pyside6-essentials&gt;=6,&lt;6.12"
+&lt;blender 5 python&gt; -m pip install --target &lt;shared&gt;/py313 "pyside6-essentials&gt;=6,&lt;6.12"
+&lt;blender 4 python&gt; -m pip install --target &lt;shared&gt;/py311-crt14.29 "pyside6-essentials&gt;=6,&lt;6.11"
+</code></pre>
+<p>If <code>NXT_USER_DIR</code> is set, the default folder is <code>$NXT_USER_DIR/deps</code>
+rather than <code>~/nxt/deps</code>.</p>
+</div>
+<h2 id="other-hosts">Other hosts</h2>
+<p>nxt can run inside any host with a Python 3 interpreter that nxt-core
+supports. The editor additionally needs PySide6. Planned host plugins
+include Houdini and Nuke.</p>
 <p><br></p>
 <hr />
 <h1 id="developer-installation">Developer Installation</h1>
-<p>See our <a href="https://github.com/nxt-dev/nxt_editor/blob/release/CONTRIBUTING.md">contributing documentation</a></p>
-<h4 id="nxt-python-dev-environment-miniconda">NXT Python Dev Environment (Miniconda)</h4>
-<p>The following steps are only needed if you intend on contributing to the NXT codebase or you are trying to install NXT standalone on Windows Python 2.7.
-To get the correct Python environment setup on your Windows machine you will 
-need to follow these steps. 
-The nxt environment is specified in our <code>nxt_env.yml</code>.</p>
-<ul>
-<li>Conda is best installed via <a href="https://docs.conda.io/en/latest/miniconda.html">miniconda</a>. 
-We recommend <strong>not</strong> adding conda python to your system path and <strong>not</strong> making it your system python.</li>
-<li>You can either clone the nxt source from our <a href="https://github.com/nxt-dev/nxt">core repo</a> / <a href="https://github.com/nxt-dev/nxt_editor">editor repo</a> or download the desired
- <a href="https://github.com/nxt-dev/nxt/releases">core release</a> / <a href="https://github.com/nxt-dev/nxt_editor/releases">editor release</a> source code zip and extract it.</li>
-<li>Lets assume you place the source code at <code>C:/Projects/nxt</code></li>
-<li>Launch the <strong>Anaconda Prompt</strong> and install dependencies:
-    <code>conda env create -f C:/Projects/nxt/nxt_env.yml</code></li>
-</ul>
-<h4 id="launching-the-nxt-editor">Launching the nxt editor</h4>
-<p><strong>From Anaconda Prompt</strong></p>
-<ul>
-<li><code>conda activate nxt</code></li>
-<li><code>cd C:/Projects/nxt</code></li>
-<li><code>python -m nxt.cli ui</code></li>
-</ul>
-<p><strong>From Python</strong></p>
-<pre><code class="language-python">import nxt_editor
-GRAPHS_TO_OPEN = ['a_graph.nxt'] or None
-nxt_editor.launch_editor(paths=GRAPHS_TO_OPEN, start_rpc=True)
-</code></pre>
-<p><br></p>
-<h4 id="bootstrapping-nxt">Bootstrapping nxt</h4>
-<p>Tested with Maya2018/19/20, Houdini18, Nuke11,12</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This setup is temporary, and will eventually be replaced with a command
- port connections with host plugins.</p>
-</div>
-<p>Find your conda env with this command in the Anaconda Prompt: <code>conda info --envs</code> 
-Copy the following code into Maya and edit  <code>NXT_PATH</code> and <code>ENV_PATH</code> to reflect your environment. You can then drag it to your shelf or save it to a file, up to you.</p>
+<p>See our contributing documentation for <a href="https://github.com/nxt-dev/nxt/blob/release/CONTRIBUTING.md">nxt</a> and <a href="https://github.com/nxt-dev/nxt_editor/blob/release/CONTRIBUTING.md">nxt editor</a>.</p>
+<h3 id="bootstrapping-nxt-in-another-host">Bootstrapping nxt in another host</h3>
+<p>For a host without a plugin, you can open the editor from the host's own
+python, as long as nxt, nxt_editor and Qt.py are importable there and the
+host provides PySide6.</p>
 <pre><code>import sys
 import os
-# path to your nxt clone
-NXT_PATH = '~/Projects/Sun/nxt'
-# path to conda env
-ENV_PATH = 'C:/ProgramData/Miniconda2/envs/nxt/Lib/site-packages'
-# Default file(s) to open, can be `None`
-LAUNCH_FILES = ['~/Projects/SomeGraph.nxt']
-if ENV_PATH not in sys.path:
-    sys.path.append(os.path.expanduser(ENV_PATH))
+# Path to the folder containing the nxt and nxt_editor packages,
+# for example a virtual environment's site-packages.
+NXT_PATH = os.path.expanduser('~/nxt_env/Lib/site-packages')
+# Default file to open, can be None
+LAUNCH_FILE = None
 if NXT_PATH not in sys.path:
-    sys.path.append(os.path.expanduser(NXT_PATH))
+    sys.path.append(NXT_PATH)
 from Qt import QtCore
-import nxt_editor
-# The `paths` kwarg can be omited if you don't want to open any graphs.
-# Due to the way some thrid party Python interpeters are setup, we recommened setting `start_rpc` to `False`.
-instance = nxt_editor.show_new_editor(paths=LAUNCH_FILES, start_rpc=False)
+import nxt_editor.main_window
+instance = nxt_editor.main_window.MainWindow(filepath=LAUNCH_FILE)
 if sys.platform == 'win32':
     instance.setWindowFlags(QtCore.Qt.Window)
 # To force close the instance run this line:
 # instance.close()
 </code></pre>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The packages must have been installed for the same Python version as the
+host's python (for example 3.11), or compiled dependencies will fail to
+import.</p>
+</div>
 <h5 id="optional-window-attach">Optional window attach</h5>
 <p>To attach to the main window in Nuke</p>
-<pre><code>def _nuke_main_window():
+<pre><code>from Qt import QtWidgets
+
+def _nuke_main_window():
     """Returns Nuke's main window"""
     for obj in QtWidgets.QApplication.topLevelWidgets():
         if (obj.inherits('QMainWindow') and
@@ -312,16 +539,9 @@ nuke_window = _nuke_main_window()
 instance = nxt_editor.show_new_editor(start_rpc=False)
 instance.setParent(nuke_window, QtCore.Qt.Window)
 </code></pre>
-<p>To Attach to the main window in Houdini</p>
-<pre><code>from hutil.Qt import QtCore
-instance = nxt_editor.show_new_editor(start_rpc=False)
-instance.setParent(hou.qt.mainWindow(), QtCore.Qt.Window)
-</code></pre>
-<p>To Attach to the main window in Maya</p>
-<pre><code>import maya.OpenMayaUI as mui
-pointer = mui.MQtUtil.mainWindow()
-maya_window = QtCompat.wrapInstance(long(pointer), QtWidgets.QWidget)
-instance = nxt_editor.show_new_editor(start_rpc=False)
+<p>To attach to the main window in Houdini</p>
+<pre><code>from Qt import QtCore
+instance = nxt_editor.main_window.MainWindow()
 instance.setParent(hou.qt.mainWindow(), QtCore.Qt.Window)
 </code></pre></div>
             </div>

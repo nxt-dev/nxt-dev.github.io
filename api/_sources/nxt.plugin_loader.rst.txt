@@ -1,0 +1,7 @@
+nxt.plugin\_loader module
+=========================
+
+.. automodule:: nxt.plugin_loader
+   :members:
+   :undoc-members:
+   :show-inheritance:

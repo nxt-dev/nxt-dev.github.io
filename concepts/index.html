@@ -39,6 +39,9 @@
                             <li class="navitem">
                                 <a href=".." class="nav-link">Home</a>
                             </li>
+                            <li class="navitem">
+                                <a href="../whats_new/" class="nav-link">What's New</a>
+                            </li>
                             <li class="navitem active">
                                 <a href="./" class="nav-link">Concepts</a>
                             </li>
@@ -75,7 +78,7 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href=".." class="nav-link">
+                                <a rel="prev" href="../whats_new/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
@@ -137,7 +140,7 @@
 <p><img alt="hierarchy.PNG" src="../images/hierarchy.PNG" /></p>
 <p>In the above example, the execution order would be: <code>/parent</code>, <code>/parent/child1</code>, <code>/parent/child1/child2</code>, <code>/parent/sibling</code>, <code>/parent/sibling2</code>, <code>/node</code>, <code>/node/node</code></p>
 <h2 id="attributes">Attributes</h2>
-<p>Rather than building a custom UI to interact with code, you edit attributes on <a href="../reference/#node">nodes </a>in a familiar property editor. Nxt <a href="../reference/#stagecomposition">substitutes </a> <a href="../reference/#attributes">attributes </a>into the body of the  <a href="../reference/#compute">code </a>on the fly and generates linearly executed bespoke programs. It lets you interact via properties without writing, managing, and extracting data from a UI. </p>
+<p>Rather than building a custom UI to interact with code, you edit attributes on <a href="../reference/#node">nodes </a>in a familiar property editor. Nxt <a href="../reference/#stage-composition">substitutes </a> <a href="../reference/#attributes">attributes </a>into the body of the  <a href="../reference/#compute">code </a>on the fly and generates linearly executed bespoke programs. It lets you interact via properties without writing, managing, and extracting data from a UI. </p>
 <table>
 <thead>
 <tr>
@@ -153,10 +156,10 @@
 </tbody>
 </table>
 <p><img alt="token_intro.gif" src="../images/token_intro.gif" /></p>
-<p>Attributes can refer to other attributes and are <a href="../reference/#stagecomposition">composited </a>on the fly, or attributes can be used directly in code. These are called <a href="../reference/#tokens">tokens</a>.</p>
+<p>Attributes can refer to other attributes and are <a href="../reference/#stage-composition">composited </a>on the fly, or attributes can be used directly in code. These are called <a href="../reference/#tokens">tokens</a>.</p>
 <p><img alt="token2_intro.gif" src="../images/token2_intro.gif" /></p>
 <h2 id="inheritance">Inheritance</h2>
-<p>Each tree <a href="../reference/#stagecomposition">inherits </a>all the attributes of their parent nodes. (All of this can be easily hidden via <code>1,2,3</code> hotkeys) Those attributes are available to child nodes. Each child node can overwrite the value, or use the inherited value.</p>
+<p>Each tree <a href="../reference/#stage-composition">inherits </a>all the attributes of their parent nodes. (All of this can be easily hidden via <code>1,2,3</code> hotkeys) Those attributes are available to child nodes. Each child node can overwrite the value, or use the inherited value.</p>
 <p><img alt="token_intro.gif" src="../images/tree_intro.gif" /></p>
 <h2 id="layers">Layers</h2>
 <p>Nxt also incorporates a <a href="../reference/#layers">layering </a>model where attributes and code can be overridden by nodes on higher layers and leave the underlying structure intact.</p>

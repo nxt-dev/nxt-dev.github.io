@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nxt.remote.nxt_socket &mdash; NXT  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            NXT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference external" href="https://sunriseproductions.github.io/nxt/">User Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">nxt</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NXT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../nxt.html">nxt</a></li>
+          <li class="breadcrumb-item"><a href="../remote.html">nxt.remote</a></li>
+      <li class="breadcrumb-item active">nxt.remote.nxt_socket</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nxt.remote.nxt_socket</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Builtin</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+
+<span class="c1"># Internal</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nxt.stage</span><span class="w"> </span><span class="kn">import</span> <span class="n">Stage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nxt</span><span class="w"> </span><span class="kn">import</span> <span class="n">nxt_io</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nxt.runtime</span><span class="w"> </span><span class="kn">import</span> <span class="n">GraphError</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">'nxt'</span><span class="p">)</span>
+
+<span class="n">HOST</span> <span class="o">=</span> <span class="s1">'localhost'</span>
+<span class="n">CMD_PORT</span> <span class="o">=</span> <span class="mi">4435</span>  <span class="c1"># Command port number</span>
+<span class="n">COM_PORT</span> <span class="o">=</span> <span class="mi">4436</span>  <span class="c1"># Communication port number</span>
+
+<span class="n">HEADER_SIZE</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Fixed header len</span>
+<span class="n">HANDSHAKE_TIMEOUT</span> <span class="o">=</span> <span class="mi">60</span>  <span class="c1"># Seconds to wait before giving up on handshake</span>
+<span class="c1"># Global objects</span>
+<span class="k">global</span> <span class="n">__nxt_model__</span>
+<span class="n">__nxt_model__</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">MODEL_VAR</span> <span class="o">=</span> <span class="s1">'__nxt_model__'</span>
+<span class="k">global</span> <span class="n">__nxt_server__</span>
+<span class="n">__nxt_server__</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">SERVER_VAR</span> <span class="o">=</span> <span class="s1">'__nxt_server__'</span>
+
+
+<div class="viewcode-block" id="COM_TYPE"><a class="viewcode-back" href="../../../nxt.remote.nxt_socket.html#nxt.remote.nxt_socket.COM_TYPE">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">COM_TYPE</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Constants used as keys in the pickled message dicts sent over to the</span>
+<span class="sd">    nxt socket server."""</span>
+    <span class="n">LOG</span> <span class="o">=</span> <span class="s1">'log'</span>
+    <span class="n">CACHE</span> <span class="o">=</span> <span class="s1">'cache'</span>
+    <span class="n">SHUTDOWN</span> <span class="o">=</span> <span class="s1">'shutdown'</span>
+    <span class="n">PING</span> <span class="o">=</span> <span class="s1">'ping'</span>
+    <span class="n">WAIT</span> <span class="o">=</span> <span class="s1">'wait'</span>
+    <span class="n">ERR</span> <span class="o">=</span> <span class="s1">'error'</span></div>
+
+
+<div class="viewcode-block" id="setup"><a class="viewcode-back" href="../../../nxt.remote.nxt_socket.html#nxt.remote.nxt_socket.setup">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""Setup a connection to the nxt socket server. Sets the global variable</span>
+<span class="sd">    __nxt_server__ to the newly created socket instance.</span>
+<span class="sd">    :return: socket instance</span>
+<span class="sd">    """</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">setblocking</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">connect</span><span class="p">((</span><span class="n">HOST</span><span class="p">,</span> <span class="n">COM_PORT</span><span class="p">))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="s1">'Connected to: </span><span class="si">{}</span><span class="s1">:</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">HOST</span><span class="p">,</span> <span class="n">COM_PORT</span><span class="p">))</span>
+    <span class="k">global</span> <span class="n">__nxt_server__</span>
+    <span class="n">__nxt_server__</span> <span class="o">=</span> <span class="n">s</span>
+    <span class="k">return</span> <span class="n">s</span></div>
+
+
+<div class="viewcode-block" id="format_msg"><a class="viewcode-back" href="../../../nxt.remote.nxt_socket.html#nxt.remote.nxt_socket.format_msg">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">format_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">,</span> <span class="n">com_typ</span><span class="p">,</span> <span class="n">msg_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Formats the given msg into a dict matching the expected format used by</span>
+<span class="sd">    nxt socket servers and clients.</span>
+<span class="sd">    :param msg: Object to be formatted as a socket message</span>
+<span class="sd">    :param com_typ: COM_TYPE constant</span>
+<span class="sd">    :param msg_dict: Optionally if you are combining commands you can pass an</span>
+<span class="sd">    existing msg_dict returned from a previous call to this function.</span>
+<span class="sd">    :return: dict</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">msg_dict</span><span class="p">:</span>
+        <span class="n">msg_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">msg_dict</span><span class="p">[</span><span class="n">com_typ</span><span class="p">]</span> <span class="o">=</span> <span class="n">msg</span>
+    <span class="k">return</span> <span class="n">msg_dict</span></div>
+
+
+<div class="viewcode-block" id="get_nxt_model"><a class="viewcode-back" href="../../../nxt.remote.nxt_socket.html#nxt.remote.nxt_socket.get_nxt_model">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">get_nxt_model</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">"""Gets the existing SocketClientModel instance in global scope, if none is</span>
+<span class="sd">    found a new one is created and returned. It is stored in the global scope</span>
+<span class="sd">    to allow maximum context compatibility.</span>
+<span class="sd">    :return: SocketClientModel instance</span>
+<span class="sd">    """</span>
+    <span class="k">global</span> <span class="n">__nxt_model__</span>
+    <span class="k">if</span> <span class="n">__nxt_model__</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="n">SocketClientModel</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="n">__nxt_model__</span> <span class="o">=</span> <span class="n">m</span>
+    <span class="k">return</span> <span class="n">__nxt_model__</span></div>
+
+
+<div class="viewcode-block" id="SocketClientModel"><a class="viewcode-back" href="../../../nxt.remote.nxt_socket.html#nxt.remote.nxt_socket.SocketClientModel">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">SocketClientModel</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Simple nxt model used by remote socket clients"""</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">com_server</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filepath</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">exec_order</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">param_filepath</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_data</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stage</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">comp_layer</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">runtime_layer</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache_filepath</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">com_server</span>
+
+<div class="viewcode-block" id="SocketClientModel.load"><a class="viewcode-back" href="../../../nxt.remote.nxt_socket.html#nxt.remote.nxt_socket.SocketClientModel.load">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">load</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Loads the given file path and builds a comp layer ready to be</span>
+<span class="sd">        executed.</span>
+<span class="sd">        :param filepath: string of nxt save filepath.</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        """</span>
+        <span class="k">with</span> <span class="n">IPCWait</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="s1">'Loading file data from </span><span class="si">{}</span><span class="s1">...'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filepath</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">filepath</span> <span class="o">=</span> <span class="n">filepath</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">file_data</span> <span class="o">=</span> <span class="n">nxt_io</span><span class="o">.</span><span class="n">load_file_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filepath</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="s1">'Building stage...'</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stage</span> <span class="o">=</span> <span class="n">Stage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_data</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rebuild_comp</span><span class="p">()</span></div>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exec_order</span><span class="o">=</span><span class="p">()):</span>
+<span class="w">        </span><span class="sd">"""Private method for executing nodes, not meant to be called outside</span>
+<span class="sd">        of a IPCWait context manager.</span>
+<span class="sd">        :param exec_order: Optional list of node paths to execute.</span>
+<span class="sd">        :raises GraphError</span>
+<span class="sd">        :return: True if no errors were detected.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="n">exec_order</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">exec_order</span> <span class="o">=</span> <span class="n">exec_order</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">'No stage built, cannot run!'</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">param_filepath</span> <span class="ow">or</span> <span class="s1">''</span><span class="p">):</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">param_filepath</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+                <span class="n">parameters</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">runtime_layer</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rebuild_comp</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">runtime_layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage</span><span class="o">.</span><span class="n">execute_nodes</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">exec_order</span><span class="p">,</span>
+                                                      <span class="bp">self</span><span class="o">.</span><span class="n">runtime_layer</span><span class="p">,</span>
+                                                      <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+<div class="viewcode-block" id="SocketClientModel.run"><a class="viewcode-back" href="../../../nxt.remote.nxt_socket.html#nxt.remote.nxt_socket.SocketClientModel.run">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exec_order</span><span class="o">=</span><span class="p">()):</span>
+<span class="w">        </span><span class="sd">"""General purpose run function meant to be called over a socket</span>
+<span class="sd">        command port. If a GraphError is raised the internal nxt ERR message</span>
+<span class="sd">        is sent over the socket to the server.</span>
+<span class="sd">        :param exec_order: Optional list of node paths to execute.</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        """</span>
+        <span class="k">with</span> <span class="n">IPCWait</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_run</span><span class="p">(</span><span class="n">exec_order</span><span class="p">)</span>
+            <span class="k">except</span> <span class="n">GraphError</span><span class="p">:</span>
+                <span class="n">send_to_server</span><span class="p">(</span><span class="n">format_msg</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">COM_TYPE</span><span class="o">.</span><span class="n">ERR</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="SocketClientModel.refresh"><a class="viewcode-back" href="../../../nxt.remote.nxt_socket.html#nxt.remote.nxt_socket.SocketClientModel.refresh">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Refresh (rebuild) stage and comp objects.</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        """</span>
+        <span class="k">with</span> <span class="n">IPCWait</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">filepath</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">'No filepath, cannot refresh!'</span><span class="p">)</span>
+                <span class="k">return</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">file_data</span> <span class="o">=</span> <span class="n">nxt_io</span><span class="o">.</span><span class="n">load_file_data</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filepath</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">stage</span> <span class="o">=</span> <span class="n">Stage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_data</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rebuild_comp</span><span class="p">()</span></div>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_rebuild_comp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Private method for rebuilding comp layer. Not meant to be called</span>
+<span class="sd">        oustide of a IPCWait context manger.</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        """</span>
+        <span class="k">with</span> <span class="n">IPCWait</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">'No data loaded, cannot re-build!'</span><span class="p">)</span>
+                <span class="k">return</span>
+
+            <span class="n">logger</span><span class="o">.</span><span class="n">compinfo</span><span class="p">(</span><span class="s1">'Rebuilding comp...'</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">comp_layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage</span><span class="o">.</span><span class="n">build_stage</span><span class="p">()</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">compinfo</span><span class="p">(</span><span class="s1">'Rebuilding runtime layer...'</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">runtime_layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">stage</span><span class="o">.</span><span class="n">setup_runtime_layer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">comp_layer</span><span class="p">)</span>
+
+<div class="viewcode-block" id="SocketClientModel.close"><a class="viewcode-back" href="../../../nxt.remote.nxt_socket.html#nxt.remote.nxt_socket.SocketClientModel.close">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">close</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">notify_server</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Attempts to gracefully close connection to nxt socket server."""</span>
+        <span class="c1"># with IPCWait(self):</span>
+        <span class="k">for</span> <span class="n">log_handler</span> <span class="ow">in</span> <span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">log_handler</span><span class="p">,</span> <span class="n">NXTSocketLogHandler</span><span class="p">):</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">removeHandler</span><span class="p">(</span><span class="n">log_handler</span><span class="p">)</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'Removed nxt log handler'</span><span class="p">)</span>
+                <span class="k">break</span>
+        <span class="k">if</span> <span class="n">notify_server</span><span class="p">:</span>
+            <span class="n">send_to_server</span><span class="p">(</span><span class="n">format_msg</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">COM_TYPE</span><span class="o">.</span><span class="n">SHUTDOWN</span><span class="p">))</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="s1">'Telling nxt server to close connection!'</span><span class="p">)</span>
+        <span class="k">global</span> <span class="n">__nxt_server__</span>
+        <span class="k">if</span> <span class="n">__nxt_server__</span><span class="p">:</span>
+            <span class="n">__nxt_server__</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">__nxt_server__</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">__nxt_server__</span></div>
+
+<div class="viewcode-block" id="SocketClientModel.open"><a class="viewcode-back" href="../../../nxt.remote.nxt_socket.html#nxt.remote.nxt_socket.SocketClientModel.open">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">open</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Opens connection to nxt socket server. Installs</span>
+<span class="sd">        NXTSocketLogHandler logging handler if none is installed.</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        """</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="s1">'Connecting to listener...'</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">setup</span><span class="p">()</span>
+        <span class="k">global</span> <span class="n">__nxt_server__</span>
+        <span class="n">__nxt_server__</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span>
+        <span class="n">setup_socket_log</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">log_handler</span> <span class="ow">in</span> <span class="n">logger</span><span class="o">.</span><span class="n">handlers</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">log_handler</span><span class="p">,</span> <span class="n">NXTSocketLogHandler</span><span class="p">):</span>
+                <span class="n">setup_socket_log</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">break</span>
+        <span class="k">if</span> <span class="n">setup_socket_log</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'Making new log handler!'</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">NXTSocketLogHandler</span><span class="p">())</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="s1">'Successfully connected to listener!'</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SocketClientModel.ping"><a class="viewcode-back" href="../../../nxt.remote.nxt_socket.html#nxt.remote.nxt_socket.SocketClientModel.ping">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">ping</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Debug function for testing 2 way communication from the nxt socket</span>
+<span class="sd">        server to this client.</span>
+<span class="sd">        :return:</span>
+<span class="sd">        """</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="s1">'Pinging...'</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">IPCWait</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="n">send_to_server</span><span class="p">(</span><span class="n">format_msg</span><span class="p">(</span><span class="s1">''</span><span class="p">,</span> <span class="n">COM_TYPE</span><span class="o">.</span><span class="n">PING</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="s1">'Pinged!'</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="SocketClientModel.get_cache"><a class="viewcode-back" href="../../../nxt.remote.nxt_socket.html#nxt.remote.nxt_socket.SocketClientModel.get_cache">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_cache</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Method for the nxt socket server to request cache data from this</span>
+<span class="sd">        client model.</span>
+<span class="sd">        :return: Save data dict</span>
+<span class="sd">        """</span>
+        <span class="k">with</span> <span class="n">IPCWait</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="n">save_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">runtime_layer</span><span class="o">.</span><span class="n">cache_layer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cache_filepath</span><span class="p">)</span>
+            <span class="n">send_to_server</span><span class="p">(</span><span class="n">format_msg</span><span class="p">(</span><span class="n">save_data</span><span class="p">,</span> <span class="n">COM_TYPE</span><span class="o">.</span><span class="n">CACHE</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">save_data</span></div></div>
+
+
+<div class="viewcode-block" id="send_log"><a class="viewcode-back" href="../../../nxt.remote.nxt_socket.html#nxt.remote.nxt_socket.send_log">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">send_log</span><span class="p">(</span><span class="n">record</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Simple method for sending log records to an nxt socket server.</span>
+<span class="sd">    :param record: logging record</span>
+<span class="sd">    :return: None</span>
+<span class="sd">    """</span>
+    <span class="n">links</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="s1">'links'</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+    <span class="n">data_dict</span> <span class="o">=</span> <span class="n">format_msg</span><span class="p">([</span><span class="n">record</span><span class="o">.</span><span class="n">levelno</span><span class="p">,</span> <span class="n">record</span><span class="o">.</span><span class="n">message</span><span class="p">,</span> <span class="n">links</span><span class="p">],</span>
+                           <span class="n">COM_TYPE</span><span class="o">.</span><span class="n">LOG</span><span class="p">)</span>
+    <span class="n">send_to_server</span><span class="p">(</span><span class="n">data_dict</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="send_to_server"><a class="viewcode-back" href="../../../nxt.remote.nxt_socket.html#nxt.remote.nxt_socket.send_to_server">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">send_to_server</span><span class="p">(</span><span class="n">data_dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Pickles the given data, assembles fixed length header, casts to bytes</span>
+<span class="sd">    and sends to the nxt socket server.</span>
+<span class="sd">    NOTE: This function catches ALL exceptions raised by the socket instance!</span>
+<span class="sd">    :param data_dict: Dict formatted by format_msg</span>
+<span class="sd">    :return: None</span>
+<span class="sd">    """</span>
+    <span class="c1"># Don't use logging in here as it can cause in infinite loop. The logging</span>
+    <span class="c1"># handler calls this function.</span>
+    <span class="k">global</span> <span class="n">__nxt_server__</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">__nxt_server__</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"No server! Try toggling the command port."</span><span class="p">)</span>
+        <span class="k">return</span>
+    <span class="n">msg</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data_dict</span><span class="p">)</span>
+    <span class="n">header</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="s2">"{:&lt;</span><span class="si">{}</span><span class="s2">}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">msg</span><span class="p">),</span> <span class="n">HEADER_SIZE</span><span class="p">))</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">header</span> <span class="o">+</span> <span class="n">msg</span>
+    <span class="c1"># logger.debug('Size of data: {}'.format(sys.getsizeof(data)))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">__nxt_server__</span><span class="o">.</span><span class="n">sendall</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">e</span><span class="o">.</span><span class="n">errno</span> <span class="o">==</span> <span class="mi">10053</span><span class="p">:</span>  <span class="c1"># Stale socket</span>
+            <span class="n">__nxt_server__</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">'Failed to send data to socket server!'</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="IPCWait"><a class="viewcode-back" href="../../../nxt.remote.nxt_socket.html#nxt.remote.nxt_socket.IPCWait">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">IPCWait</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Simple context manager for telling the server to wait while a command</span>
+<span class="sd">    is being processed by the client interpreter.</span>
+<span class="sd">    """</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="k">global</span> <span class="n">__nxt_server__</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span> <span class="o">=</span> <span class="n">__nxt_server__</span>
+
+<div class="viewcode-block" id="IPCWait.send_wait_msg"><a class="viewcode-back" href="../../../nxt.remote.nxt_socket.html#nxt.remote.nxt_socket.IPCWait.send_wait_msg">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">send_wait_msg</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">"No server, context manager doesn't know what to do!"</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="c1"># logger.debug('Telling nxt to wait {}'.format(state))</span>
+        <span class="n">send_to_server</span><span class="p">(</span><span class="n">format_msg</span><span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">COM_TYPE</span><span class="o">.</span><span class="n">WAIT</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">settimeout</span><span class="p">(</span><span class="n">HANDSHAKE_TIMEOUT</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">okay</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">recv</span><span class="p">(</span><span class="mi">1024</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">'Failed to receive data from server! Try '</span>
+                             <span class="s1">'toggling the command port.'</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server</span><span class="o">.</span><span class="n">settimeout</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+        <span class="c1"># logger.debug('Server gave okay msg: {}'.format(okay))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">okay</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">'Failed to handshake!'</span><span class="p">)</span>
+            <span class="n">send_to_server</span><span class="p">(</span><span class="n">format_msg</span><span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="n">COM_TYPE</span><span class="o">.</span><span class="n">WAIT</span><span class="p">))</span>
+            <span class="k">return</span></div>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send_wait_msg</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_val</span><span class="p">,</span> <span class="n">exc_tb</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">send_wait_msg</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="NXTSocketLogHandler"><a class="viewcode-back" href="../../../nxt.remote.nxt_socket.html#nxt.remote.nxt_socket.NXTSocketLogHandler">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">NXTSocketLogHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Handler</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Simple logging handler for emitting log records to the nxt socket</span>
+<span class="sd">    server.</span>
+<span class="sd">    """</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">logging</span><span class="o">.</span><span class="n">Handler</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+
+<div class="viewcode-block" id="NXTSocketLogHandler.emit"><a class="viewcode-back" href="../../../nxt.remote.nxt_socket.html#nxt.remote.nxt_socket.NXTSocketLogHandler.emit">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">emit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+        <span class="n">send_log</span><span class="p">(</span><span class="n">record</span><span class="p">)</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, The nxt authors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

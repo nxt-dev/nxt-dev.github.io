@@ -1,0 +1,7 @@
+nxt.legacy module
+=================
+
+.. automodule:: nxt.legacy
+   :members:
+   :undoc-members:
+   :show-inheritance:

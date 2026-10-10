@@ -1,20 +1,40 @@
 nxt package
 ===========
 
-.. automodule:: nxt
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-modules
-=======
+Subpackages
+-----------
 
 .. toctree::
    :maxdepth: 4
 
-   nxt_io<nxt.nxt_io>
-   nxt_layer<nxt.nxt_layer>
-   nxt_path<nxt.nxt_path>
-   nxt_log<nxt.nxt_log>
-   tokens<nxt.tokens>
-   runtime<nxt.runtime>
+   nxt.plugins
+   nxt.remote
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   nxt.clean_json
+   nxt.cli
+   nxt.constants
+   nxt.legacy
+   nxt.nxt_io
+   nxt.nxt_layer
+   nxt.nxt_log
+   nxt.nxt_node
+   nxt.nxt_path
+   nxt.plugin_loader
+   nxt.runtime
+   nxt.session
+   nxt.stage
+   nxt.tokens
+
+Module contents
+---------------
+
+.. automodule:: nxt
+   :members:
+   :undoc-members:
+   :show-inheritance:

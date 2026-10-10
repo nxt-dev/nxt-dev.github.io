@@ -1,0 +1,7 @@
+nxt.stage module
+================
+
+.. automodule:: nxt.stage
+   :members:
+   :undoc-members:
+   :show-inheritance:

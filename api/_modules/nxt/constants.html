@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nxt.constants &mdash; NXT  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            NXT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference external" href="https://sunriseproductions.github.io/nxt/">User Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">nxt</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NXT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../nxt.html">nxt</a></li>
+      <li class="breadcrumb-item active">nxt.constants</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nxt.constants</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Built-in</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="n">version_file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">'version.json'</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="API_VERSION"><a class="viewcode-back" href="../../nxt.constants.html#nxt.constants.API_VERSION">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">API_VERSION</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">version_file</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">version_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">api_v_data</span> <span class="o">=</span> <span class="n">version_data</span><span class="p">[</span><span class="s1">'API'</span><span class="p">]</span>
+    <span class="n">MAJOR</span> <span class="o">=</span> <span class="n">api_v_data</span><span class="p">[</span><span class="s1">'MAJOR'</span><span class="p">]</span>
+    <span class="n">MINOR</span> <span class="o">=</span> <span class="n">api_v_data</span><span class="p">[</span><span class="s1">'MINOR'</span><span class="p">]</span>
+    <span class="n">PATCH</span> <span class="o">=</span> <span class="n">api_v_data</span><span class="p">[</span><span class="s1">'PATCH'</span><span class="p">]</span>
+    <span class="n">VERSION_TUPLE</span> <span class="o">=</span> <span class="p">(</span><span class="n">MAJOR</span><span class="p">,</span> <span class="n">MINOR</span><span class="p">,</span> <span class="n">PATCH</span><span class="p">)</span>
+    <span class="n">VERSION_STR</span> <span class="o">=</span> <span class="s1">'.'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">VERSION_TUPLE</span><span class="p">)</span>
+    <span class="n">VERSION</span> <span class="o">=</span> <span class="n">VERSION_STR</span></div>
+
+
+<div class="viewcode-block" id="GRAPH_VERSION"><a class="viewcode-back" href="../../nxt.constants.html#nxt.constants.GRAPH_VERSION">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">GRAPH_VERSION</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">version_file</span><span class="p">,</span> <span class="s1">'r'</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">version_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">api_v_data</span> <span class="o">=</span> <span class="n">version_data</span><span class="p">[</span><span class="s1">'GRAPH'</span><span class="p">]</span>
+    <span class="n">MAJOR</span> <span class="o">=</span> <span class="n">api_v_data</span><span class="p">[</span><span class="s1">'MAJOR'</span><span class="p">]</span>
+    <span class="n">MINOR</span> <span class="o">=</span> <span class="n">api_v_data</span><span class="p">[</span><span class="s1">'MINOR'</span><span class="p">]</span>
+    <span class="n">VERSION_TUPLE</span> <span class="o">=</span> <span class="p">(</span><span class="n">MAJOR</span><span class="p">,</span> <span class="n">MINOR</span><span class="p">)</span>
+    <span class="n">VERSION_STR</span> <span class="o">=</span> <span class="s1">'.'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">VERSION_TUPLE</span><span class="p">)</span>
+    <span class="n">VERSION</span> <span class="o">=</span> <span class="n">VERSION_STR</span></div>
+
+
+<span class="c1"># User and Site Dirs</span>
+<span class="n">USER_DIR_ENV_VAR</span> <span class="o">=</span> <span class="s1">'NXT_USER_DIR'</span>
+<span class="n">SITE_DIR_ENV_VAR</span> <span class="o">=</span> <span class="s1">'NXT_SITE_DIR'</span>
+
+<span class="k">if</span> <span class="n">USER_DIR_ENV_VAR</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
+    <span class="n">USER_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">USER_DIR_ENV_VAR</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">USER_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">'~'</span><span class="p">,</span> <span class="s1">'nxt'</span><span class="p">))</span>
+
+<span class="n">SITE_DIR</span> <span class="o">=</span> <span class="n">USER_DIR</span>
+<span class="k">if</span> <span class="n">SITE_DIR_ENV_VAR</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">:</span>
+    <span class="n">SITE_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">SITE_DIR_ENV_VAR</span><span class="p">)</span>
+<span class="c1"># Configs</span>
+<span class="n">CONFIG_VERSION</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">API_VERSION</span><span class="o">.</span><span class="n">MAJOR</span><span class="p">)</span>
+<span class="n">USER_CONFIG_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">USER_DIR</span><span class="p">,</span> <span class="s1">'config'</span><span class="p">,</span> <span class="n">CONFIG_VERSION</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">USER_CONFIG_DIR</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">USER_CONFIG_DIR</span><span class="p">)</span>
+<span class="n">SITE_CONFIG_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">SITE_DIR</span><span class="p">,</span> <span class="s1">'config'</span><span class="p">,</span> <span class="n">CONFIG_VERSION</span><span class="p">)</span>
+<span class="c1"># Plugins</span>
+<span class="n">PLUGIN_DIR_NAME</span> <span class="o">=</span> <span class="s1">'plugins'</span>
+<span class="n">BUILTIN_PLUGIN_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="n">PLUGIN_DIR_NAME</span><span class="p">)</span>
+<span class="n">USER_PLUGIN_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">USER_CONFIG_DIR</span><span class="p">,</span> <span class="n">PLUGIN_DIR_NAME</span><span class="p">)</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">USER_PLUGIN_DIR</span><span class="p">):</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">USER_PLUGIN_DIR</span><span class="p">)</span>
+<span class="n">SITE_PLUGIN_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">SITE_CONFIG_DIR</span><span class="p">,</span> <span class="n">PLUGIN_DIR_NAME</span><span class="p">)</span>
+<span class="n">PLUGIN_DIRS</span> <span class="o">=</span> <span class="p">[</span><span class="n">USER_PLUGIN_DIR</span><span class="p">,</span> <span class="n">SITE_PLUGIN_DIR</span><span class="p">,</span> <span class="n">BUILTIN_PLUGIN_DIR</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="DATA_STATE"><a class="viewcode-back" href="../../nxt.constants.html#nxt.constants.DATA_STATE">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">DATA_STATE</span><span class="p">:</span>
+    <span class="n">RAW</span> <span class="o">=</span> <span class="s1">'raw'</span>
+    <span class="n">RESOLVED</span> <span class="o">=</span> <span class="s1">'resolved'</span>
+    <span class="n">CACHED</span> <span class="o">=</span> <span class="s1">'cached'</span></div>
+
+
+<div class="viewcode-block" id="NODE_ERRORS"><a class="viewcode-back" href="../../nxt.constants.html#nxt.constants.NODE_ERRORS">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">NODE_ERRORS</span><span class="p">:</span>
+    <span class="n">INSTANCE</span> <span class="o">=</span> <span class="s1">'Broken instance'</span>
+    <span class="n">EXEC</span> <span class="o">=</span> <span class="s1">'Broken exec in'</span>
+    <span class="n">ORPHANS</span> <span class="o">=</span> <span class="s1">'Orphan children'</span></div>
+
+
+<div class="viewcode-block" id="FILE_FORMAT"><a class="viewcode-back" href="../../nxt.constants.html#nxt.constants.FILE_FORMAT">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">FILE_FORMAT</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">ASCII</span> <span class="o">=</span> <span class="s1">'.nxt'</span>
+    <span class="n">BINARY</span> <span class="o">=</span> <span class="s1">'.nxtb'</span>
+    <span class="n">_ALL</span> <span class="o">=</span> <span class="p">(</span><span class="n">ASCII</span><span class="p">,</span> <span class="n">BINARY</span><span class="p">)</span></div>
+
+
+<span class="n">UNTITLED</span> <span class="o">=</span> <span class="s1">'untitled'</span>
+<span class="n">IGNORE</span> <span class="o">=</span> <span class="s1">'&lt;!ignore!&gt;'</span>
+<span class="n">GRID_SIZE</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># Must be int</span>
+<span class="n">NXT_DCC_ENV_VAR</span> <span class="o">=</span> <span class="s1">'NXT_DCC'</span>
+<span class="n">STANDALONE</span> <span class="o">=</span> <span class="s1">'standalone'</span>
+
+
+<div class="viewcode-block" id="is_standalone"><a class="viewcode-back" href="../../nxt.constants.html#nxt.constants.is_standalone">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">is_standalone</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">NXT_DCC_ENV_VAR</span><span class="p">)</span> <span class="o">==</span> <span class="n">STANDALONE</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, The nxt authors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

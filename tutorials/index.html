@@ -40,6 +40,9 @@
                                 <a href=".." class="nav-link">Home</a>
                             </li>
                             <li class="navitem">
+                                <a href="../whats_new/" class="nav-link">What's New</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../concepts/" class="nav-link">Concepts</a>
                             </li>
                             <li class="navitem active">
@@ -133,6 +136,11 @@
               <ul class="nav flex-column">
               </ul>
             </li>
+              </ul>
+            </li>
+            
+            <li class="nav-item" data-level="1"><a href="#walkthrough-references-and-reloading" class="nav-link">Walkthrough: references and reloading</a>
+              <ul class="nav flex-column">
               </ul>
             </li>
             
@@ -284,6 +292,64 @@ Over there we explain nxt from different vantage points to help illuminate how n
 </ul>
 <h5 id="remote-graphs">Remote graphs</h5>
 <p>Coming soon...</p>
+<h1 id="walkthrough-references-and-reloading">Walkthrough: references and reloading</h1>
+<p>This walkthrough uses the example graphs from the
+<a href="https://github.com/nxt-dev/nxt_editor/tree/release/examples">examples folder</a>.
+<code>layering.nxt</code> references <code>the_basics.nxt</code>, so opening it gives you a graph
+built from two files.</p>
+<h5 id="add-a-reference">Add a reference</h5>
+<ol>
+<li>Open <code>layering.nxt</code> with <strong>File &gt; Open Graph</strong> (<code>Ctrl+O</code>).</li>
+<li>In the Layer Manager, right click the <strong>layering</strong> layer and choose
+   <strong>Edit References...</strong>. The list shows <code>the_basics.nxt</code>, the one reference
+   this layer has.</li>
+<li>Press <strong>+</strong>. An empty row is added and the cursor goes to the field under
+   the list.</li>
+<li>Type <code>file_list.nxt</code>, or press the folder button and pick the file.
+   The new row is drawn normally because the file is found next to the layer.
+   (Had a folder in <code>NXT_FILE_ROOTS</code> held a <code>file_list.nxt</code>, that one would
+   be used instead: roots are looked in before the layer's own folder. See
+   <a href="../reference/#how-references-are-found">How references are found</a>.)
+   Type a path to a file that does not exist and the row turns red, with
+   <code>1 could not be found</code> under the list.</li>
+<li>Press <strong>OK</strong>. The referenced layers are loaded and the graph is
+   composited again. The layer is now marked unsaved; <strong>Save Layer</strong>
+   (<code>Ctrl+S</code>) writes the new reference into <code>layering.nxt</code>. <strong>Undo</strong>
+   (<code>Ctrl+Z</code>) takes the change back.</li>
+</ol>
+<p><img alt="The Reference Editor, here on a layer with one reference that cannot be found" src="../images/reference_editor.png" /></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Order matters: a reference higher in the list is stronger than the ones
+below it. Drag rows to change the order. Toggle the resolved view to see
+where each reference lands on this machine.</p>
+</div>
+<h5 id="pick-up-somebody-elses-changes">Pick up somebody else's changes</h5>
+<ol>
+<li>Change <code>the_basics.nxt</code> outside this session, for example by opening it in
+   a second editor, editing a node and saving.</li>
+<li>Back in the first session, right click the <strong>layering</strong> layer and choose
+   <strong>Reload Source...</strong>.</li>
+<li>Every file the layer is built from is listed and checked. Uncheck any you
+   do not want read again, then press <strong>Reload Checked</strong>.</li>
+</ol>
+<p><img alt="Reload Source" src="../images/reload_source.png" /></p>
+<p>The graph now shows the saved changes. Rows marked <code>(unsaved changes)</code> lose
+those changes when reloaded, but <strong>Undo</strong> puts them back.</p>
+<h5 id="find-your-way-around-a-big-compute">Find your way around a big compute</h5>
+<p>Select a node with code, double click into the code editor, and try:</p>
+<ul>
+<li><code>Ctrl+F</code> to find a word, <code>F3</code> to step through the matches, and the
+  chevron to replace them.</li>
+<li><code>Ctrl+G</code> to jump to a line.</li>
+<li><code>Ctrl+Space</code> after <code>os.</code> in a compute that imports <code>os</code>, or after <code>${</code>,
+  to see what completion offers. After <code>${/</code> it offers the graph's node
+  paths, and after <code>${/some_node.</code> that node's attributes.</li>
+<li>Leave editing (<code>Esc</code>), press <code>Q</code> for Raw View, and hover a <code>${}</code> token to
+  see its value. Hold <code>Ctrl</code> and click a token that reads another node's
+  attribute to jump to that node.</li>
+</ul>
+<p>See <a href="../reference/#code-editor">Code Editor</a> for every shortcut.</p>
 <h1 id="example-graph-walkthroughs">Example Graph Walkthroughs</h1>
 <p>Still pending</p>
 <h2 id="mgear">mGear</h2>

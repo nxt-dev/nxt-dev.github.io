@@ -1,348 +1,309 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>tokens module &mdash; NXT  documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
-  
-  
-  
-
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nxt.tokens module &mdash; NXT  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="runtime module" href="nxt.runtime.html" />
-    <link rel="prev" title="nxt_log module" href="nxt.nxt_log.html" /> 
+    <link rel="prev" title="nxt.stage module" href="nxt.stage.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> NXT
           
-
-          
+          <a href="index.html" class="icon icon-home">
+            NXT
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference external" href="https://nxt-dev.github.io/">User Docs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nxt.html">nxt package</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="nxt.html#modules">modules</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_io.html">nxt_io</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_layer.html">nxt_layer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_path.html">nxt_path</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_log.html">nxt_log</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">tokens</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nxt.runtime.html">runtime</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://sunriseproductions.github.io/nxt/">User Docs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">nxt</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="nxt.html">nxt package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="nxt.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="nxt.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="nxt.clean_json.html">nxt.clean_json module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.cli.html">nxt.cli module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.constants.html">nxt.constants module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.legacy.html">nxt.legacy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_io.html">nxt.nxt_io module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_layer.html">nxt.nxt_layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_log.html">nxt.nxt_log module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_node.html">nxt.nxt_node module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_path.html">nxt.nxt_path module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.plugin_loader.html">nxt.plugin_loader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.runtime.html">nxt.runtime module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.session.html">nxt.session module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.stage.html">nxt.stage module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">nxt.tokens module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nxt.html#module-nxt">Module contents</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">NXT</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="nxt.html">nxt package</a> &raquo;</li>
-        
-      <li>tokens module</li>
-    
-    
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">nxt</a></li>
+          <li class="breadcrumb-item"><a href="nxt.html">nxt package</a></li>
+      <li class="breadcrumb-item active">nxt.tokens module</li>
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="_sources/nxt.tokens.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="module-nxt.tokens">
-<span id="tokens-module"></span><h1>tokens module<a class="headerlink" href="#module-nxt.tokens" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="module-nxt.tokens">
+<span id="nxt-tokens-module"></span><h1>nxt.tokens module<a class="headerlink" href="#module-nxt.tokens" title="Permalink to this headline"></a></h1>
 <p>Utitiles for parsing and create nxt token strings.</p>
-<dl class="function">
-<dt id="nxt.tokens.register_token">
-<code class="descname">register_token</code><span class="sig-paren">(</span><em>prefix</em>, <em>detect</em>, <em>resolve</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/tokens.html#register_token"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.tokens.register_token" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.tokens.Token">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detect</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolve</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#nxt.tokens.Token" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.tokens.Token.detect">
+<span class="sig-name descname"><span class="pre">detect</span></span><a class="headerlink" href="#nxt.tokens.Token.detect" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.tokens.Token.prefix">
+<span class="sig-name descname"><span class="pre">prefix</span></span><a class="headerlink" href="#nxt.tokens.Token.prefix" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.tokens.Token.resolve">
+<span class="sig-name descname"><span class="pre">resolve</span></span><a class="headerlink" href="#nxt.tokens.Token.resolve" title="Permalink to this definition"></a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.tokens.register_token">
+<span class="sig-name descname"><span class="pre">register_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prefix</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detect</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolve</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/tokens.html#register_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.tokens.register_token" title="Permalink to this definition"></a></dt>
 <dd><p>Define a token to be expandable by resolve. Requires 3 components, a         prefix, a detect callable, and a resolve callable.</p>
 <p>For an example token see the example plugin in the nxt plugins directory.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>prefix</strong> (<em>str</em>) – prefix of token</li>
-<li><strong>detect</strong> (<em>callable</em>) – callable that takes a single argument and returns True if         given input can be resolved by this token type.</li>
-<li><strong>resolve</strong> (<em>callable</em>) – callable that resolves token content</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>prefix</strong> (<em>str</em>) – prefix of token</p></li>
+<li><p><strong>detect</strong> (<em>callable</em>) – callable that takes a single argument and returns True if         given input can be resolved by this token type.</p></li>
+<li><p><strong>resolve</strong> (<em>callable</em>) – callable that resolves token content</p></li>
 </ul>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="nxt.tokens.get_token_content">
-<code class="descname">get_token_content</code><span class="sig-paren">(</span><em>token_str</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/tokens.html#get_token_content"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.tokens.get_token_content" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.tokens.TOKENTYPE">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TOKENTYPE</span></span><a class="reference internal" href="_modules/nxt/tokens.html#TOKENTYPE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.tokens.TOKENTYPE" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.tokens.TOKENTYPE.ATTR">
+<span class="sig-name descname"><span class="pre">ATTR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Token(prefix='',</span> <span class="pre">detect=None,</span> <span class="pre">resolve=None)</span></em><a class="headerlink" href="#nxt.tokens.TOKENTYPE.ATTR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.tokens.TOKENTYPE.FILE">
+<span class="sig-name descname"><span class="pre">FILE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Token(prefix='file::',</span> <span class="pre">detect=None,</span> <span class="pre">resolve=None)</span></em><a class="headerlink" href="#nxt.tokens.TOKENTYPE.FILE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.tokens.TOKENTYPE.FILEPATH">
+<span class="sig-name descname"><span class="pre">FILEPATH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Token(prefix='path::',</span> <span class="pre">detect=None,</span> <span class="pre">resolve=None)</span></em><a class="headerlink" href="#nxt.tokens.TOKENTYPE.FILEPATH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.tokens.TOKENTYPE.PATH">
+<span class="sig-name descname"><span class="pre">PATH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Token(prefix='_nxtpath',</span> <span class="pre">detect=None,</span> <span class="pre">resolve=None)</span></em><a class="headerlink" href="#nxt.tokens.TOKENTYPE.PATH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.tokens.TOKENTYPE.CONTENTS">
+<span class="sig-name descname"><span class="pre">CONTENTS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Token(prefix='contents::',</span> <span class="pre">detect=None,</span> <span class="pre">resolve=None)</span></em><a class="headerlink" href="#nxt.tokens.TOKENTYPE.CONTENTS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.tokens.TOKENTYPE.COLOR">
+<span class="sig-name descname"><span class="pre">COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Token(prefix='_nxtcolor',</span> <span class="pre">detect=None,</span> <span class="pre">resolve=None)</span></em><a class="headerlink" href="#nxt.tokens.TOKENTYPE.COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.tokens.TOKENTYPE.ALL">
+<span class="sig-name descname"><span class="pre">ALL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(Token(prefix='file::',</span> <span class="pre">detect=None,</span> <span class="pre">resolve=None),</span> <span class="pre">Token(prefix='path::',</span> <span class="pre">detect=None,</span> <span class="pre">resolve=None),</span> <span class="pre">Token(prefix='_nxtpath',</span> <span class="pre">detect=None,</span> <span class="pre">resolve=None),</span> <span class="pre">Token(prefix='contents::',</span> <span class="pre">detect=None,</span> <span class="pre">resolve=None),</span> <span class="pre">Token(prefix='_nxtcolor',</span> <span class="pre">detect=None,</span> <span class="pre">resolve=None),</span> <span class="pre">Token(prefix='',</span> <span class="pre">detect=None,</span> <span class="pre">resolve=None))</span></em><a class="headerlink" href="#nxt.tokens.TOKENTYPE.ALL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.tokens.get_token_content">
+<span class="sig-name descname"><span class="pre">get_token_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token_str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/tokens.html#get_token_content"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.tokens.get_token_content" title="Permalink to this definition"></a></dt>
 <dd><p>Removes token prefix and suffix from given token_str</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token_str</strong> (<em>str</em>) – string to remove token syntax from</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">given token_str with token syntax removed</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>token_str</strong> (<em>str</em>) – string to remove token syntax from</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>given token_str with token syntax removed</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="nxt.tokens.make_token_str">
-<code class="descname">make_token_str</code><span class="sig-paren">(</span><em>token_content</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/tokens.html#make_token_str"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.tokens.make_token_str" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.tokens.make_token_str">
+<span class="sig-name descname"><span class="pre">make_token_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token_content</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/tokens.html#make_token_str"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.tokens.make_token_str" title="Permalink to this definition"></a></dt>
 <dd><p>Build a token around given token_content.
 The opposite of <cite>get_token_content</cite></p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>token_content</strong> (<em>str</em>) – token content to wrap</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">token content wrapped in token syntax</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>token_content</strong> (<em>str</em>) – token content to wrap</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>token content wrapped in token syntax</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="nxt.tokens.get_standalone_tokens">
-<code class="descname">get_standalone_tokens</code><span class="sig-paren">(</span><em>raw_value</em>, <em>token_types=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/tokens.html#get_standalone_tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.tokens.get_standalone_tokens" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.tokens.get_standalone_tokens">
+<span class="sig-name descname"><span class="pre">get_standalone_tokens</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raw_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token_types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/tokens.html#get_standalone_tokens"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.tokens.get_standalone_tokens" title="Permalink to this definition"></a></dt>
 <dd><p>Get tokens in the given value that are not nested within another token.
 If none are found, an empty list is returned.
 If the token syntax is malformed(extra starts or ends), return empty list.
 Returns list including outer token syntax</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>raw_value</strong> (<em>str</em>) – value to find standalone tokens in.</li>
-<li><strong>token_types</strong> (<em>list</em><em>, </em><em>tuple</em><em>, or </em><em>None</em>) – Optionally a list of specific token types can be     provided, only standalone tokens that look like those token type(s) will     be returned.</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>raw_value</strong> (<em>str</em>) – value to find standalone tokens in.</p></li>
+<li><p><strong>token_types</strong> (<em>list</em><em>, </em><em>tuple</em><em>, or </em><em>None</em>) – Optionally a list of specific token types can be     provided, only standalone tokens that look like those token type(s) will     be returned.</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list of standalone tokens, if found.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of standalone tokens, if found.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="nxt.tokens.atomic_token_partition">
-<code class="descname">atomic_token_partition</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/tokens.html#atomic_token_partition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.tokens.atomic_token_partition" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.tokens.atomic_token_partition">
+<span class="sig-name descname"><span class="pre">atomic_token_partition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/tokens.html#atomic_token_partition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.tokens.atomic_token_partition" title="Permalink to this definition"></a></dt>
 <dd><p>Partition given value on a token that appears resolvable(contains no
 sub tokens). Returns in a tuple: (before_token, token, after_token).
 Returned token includes token syntax. If no tokens are found, returned
 tuple contains None in all values.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>str</em>) – text to find a token from, and partition</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">before_token, token, after_token</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">tuple(str, str, str)</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – text to find a token from, and partition</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>before_token, token, after_token</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple(str, str, str)</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="nxt.tokens.get_atomic_tokens">
-<code class="descname">get_atomic_tokens</code><span class="sig-paren">(</span><em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/tokens.html#get_atomic_tokens"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.tokens.get_atomic_tokens" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.tokens.get_atomic_tokens">
+<span class="sig-name descname"><span class="pre">get_atomic_tokens</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/tokens.html#get_atomic_tokens"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.tokens.get_atomic_tokens" title="Permalink to this definition"></a></dt>
 <dd><p>Return a list of all tokens that appear ready to resolve.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>value</strong> (<em>str</em>) – string to find tokens in</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">tokens found</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>str</em>) – string to find tokens in</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>tokens found</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
 </dd></dl>
 
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="nxt.runtime.html" class="btn btn-neutral float-right" title="runtime module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="nxt.nxt_log.html" class="btn btn-neutral float-left" title="nxt_log module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nxt.stage.html" class="btn btn-neutral float-left" title="nxt.stage module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        
-        &copy; Copyright 2020, The nxt authors
-
-    </p>
+    <p>&#169; Copyright 2020, The nxt authors.</p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nxt.nxt_node module &mdash; NXT  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="nxt.nxt_path module" href="nxt.nxt_path.html" />
+    <link rel="prev" title="nxt.nxt_log module" href="nxt.nxt_log.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            NXT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="https://sunriseproductions.github.io/nxt/">User Docs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">nxt</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="nxt.html">nxt package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="nxt.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="nxt.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="nxt.clean_json.html">nxt.clean_json module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.cli.html">nxt.cli module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.constants.html">nxt.constants module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.legacy.html">nxt.legacy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_io.html">nxt.nxt_io module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_layer.html">nxt.nxt_layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_log.html">nxt.nxt_log module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">nxt.nxt_node module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_path.html">nxt.nxt_path module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.plugin_loader.html">nxt.plugin_loader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.runtime.html">nxt.runtime module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.session.html">nxt.session module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.stage.html">nxt.stage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.tokens.html">nxt.tokens module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nxt.html#module-nxt">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NXT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">nxt</a></li>
+          <li class="breadcrumb-item"><a href="nxt.html">nxt package</a></li>
+      <li class="breadcrumb-item active">nxt.nxt_node module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/nxt.nxt_node.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nxt.nxt_node">
+<span id="nxt-nxt-node-module"></span><h1>nxt.nxt_node module<a class="headerlink" href="#module-nxt.nxt_node" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">INTERNAL_ATTRS</span></span><a class="reference internal" href="_modules/nxt/nxt_node.html#INTERNAL_ATTRS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class uses for easy access to internal attr constants and various
+lists of them used for composition. Only modify if you are sure of the
+ramifications to the comp engine.
+The _prefix constant should be added to every attr name to match our
+convention. When an internal attr is saved the prefix is stripped.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.CHILD_ORDER">
+<span class="sig-name descname"><span class="pre">CHILD_ORDER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_child_order'</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.CHILD_ORDER" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.COMMENT">
+<span class="sig-name descname"><span class="pre">COMMENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_comment'</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.COMMENT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.COMPUTE">
+<span class="sig-name descname"><span class="pre">COMPUTE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_code'</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.COMPUTE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.ENABLED">
+<span class="sig-name descname"><span class="pre">ENABLED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_enabled'</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.ENABLED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.EXECUTE_IN">
+<span class="sig-name descname"><span class="pre">EXECUTE_IN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_execute_in'</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.EXECUTE_IN" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.INSTANCE_PATH">
+<span class="sig-name descname"><span class="pre">INSTANCE_PATH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_instance'</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.INSTANCE_PATH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.NODE_PATH">
+<span class="sig-name descname"><span class="pre">NODE_PATH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_node_path'</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.NODE_PATH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.NAME">
+<span class="sig-name descname"><span class="pre">NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_name'</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.NAME" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.PARENT_PATH">
+<span class="sig-name descname"><span class="pre">PARENT_PATH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_parent_path'</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.PARENT_PATH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.PROXY">
+<span class="sig-name descname"><span class="pre">PROXY</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_proxy'</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.PROXY" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.SOURCE_LAYER">
+<span class="sig-name descname"><span class="pre">SOURCE_LAYER</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_source_layer'</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.SOURCE_LAYER" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.START_POINT">
+<span class="sig-name descname"><span class="pre">START_POINT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_start_point'</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.START_POINT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.CACHED_CODE">
+<span class="sig-name descname"><span class="pre">CACHED_CODE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_cached_code'</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.CACHED_CODE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.BUILTINS">
+<span class="sig-name descname"><span class="pre">BUILTINS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('__class__',</span> <span class="pre">'__delattr__',</span> <span class="pre">'__dict__',</span> <span class="pre">'__dir__',</span> <span class="pre">'__doc__',</span> <span class="pre">'__eq__',</span> <span class="pre">'__format__',</span> <span class="pre">'__ge__',</span> <span class="pre">'__getattribute__',</span> <span class="pre">'__gt__',</span> <span class="pre">'__hash__',</span> <span class="pre">'__init__',</span> <span class="pre">'__init_subclass__',</span> <span class="pre">'__le__',</span> <span class="pre">'__lt__',</span> <span class="pre">'__module__',</span> <span class="pre">'__ne__',</span> <span class="pre">'__new__',</span> <span class="pre">'__reduce__',</span> <span class="pre">'__reduce_ex__',</span> <span class="pre">'__repr__',</span> <span class="pre">'__setattr__',</span> <span class="pre">'__sizeof__',</span> <span class="pre">'__str__',</span> <span class="pre">'__subclasshook__',</span> <span class="pre">'__weakref__')</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.BUILTINS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.TRACKED">
+<span class="sig-name descname"><span class="pre">TRACKED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('_code',</span> <span class="pre">'_execute_in',</span> <span class="pre">'_comment',</span> <span class="pre">'_start_point',</span> <span class="pre">'_enabled',</span> <span class="pre">'_instance')</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.TRACKED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.UNTRACKED">
+<span class="sig-name descname"><span class="pre">UNTRACKED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('_child_order',</span> <span class="pre">'_name',</span> <span class="pre">'_source_layer',</span> <span class="pre">'_proxy',</span> <span class="pre">'_parent_path',</span> <span class="pre">'_node_path')</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.UNTRACKED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.NO_COMP">
+<span class="sig-name descname"><span class="pre">NO_COMP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('_cached_code',)</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.NO_COMP" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.PROTECTED">
+<span class="sig-name descname"><span class="pre">PROTECTED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('__class__',</span> <span class="pre">'__delattr__',</span> <span class="pre">'__dict__',</span> <span class="pre">'__dir__',</span> <span class="pre">'__doc__',</span> <span class="pre">'__eq__',</span> <span class="pre">'__format__',</span> <span class="pre">'__ge__',</span> <span class="pre">'__getattribute__',</span> <span class="pre">'__gt__',</span> <span class="pre">'__hash__',</span> <span class="pre">'__init__',</span> <span class="pre">'__init_subclass__',</span> <span class="pre">'__le__',</span> <span class="pre">'__lt__',</span> <span class="pre">'__module__',</span> <span class="pre">'__ne__',</span> <span class="pre">'__new__',</span> <span class="pre">'__reduce__',</span> <span class="pre">'__reduce_ex__',</span> <span class="pre">'__repr__',</span> <span class="pre">'__setattr__',</span> <span class="pre">'__sizeof__',</span> <span class="pre">'__str__',</span> <span class="pre">'__subclasshook__',</span> <span class="pre">'__weakref__',</span> <span class="pre">'_code',</span> <span class="pre">'_execute_in',</span> <span class="pre">'_comment',</span> <span class="pre">'_start_point',</span> <span class="pre">'_enabled',</span> <span class="pre">'_instance',</span> <span class="pre">'_child_order',</span> <span class="pre">'_name',</span> <span class="pre">'_source_layer',</span> <span class="pre">'_proxy',</span> <span class="pre">'_parent_path',</span> <span class="pre">'_node_path',</span> <span class="pre">'_cached_code')</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.PROTECTED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.ALL">
+<span class="sig-name descname"><span class="pre">ALL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('_code',</span> <span class="pre">'_execute_in',</span> <span class="pre">'_comment',</span> <span class="pre">'_start_point',</span> <span class="pre">'_enabled',</span> <span class="pre">'_instance',</span> <span class="pre">'_child_order',</span> <span class="pre">'_name',</span> <span class="pre">'_source_layer',</span> <span class="pre">'_proxy',</span> <span class="pre">'_parent_path',</span> <span class="pre">'_node_path')</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.ALL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.SAVED">
+<span class="sig-name descname"><span class="pre">SAVED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('_start_point',</span> <span class="pre">'_instance',</span> <span class="pre">'_execute_in',</span> <span class="pre">'_child_order',</span> <span class="pre">'_enabled',</span> <span class="pre">'_comment',</span> <span class="pre">'_code')</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.SAVED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.WORLD_NODE_SAVED">
+<span class="sig-name descname"><span class="pre">WORLD_NODE_SAVED</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('_comment',</span> <span class="pre">'_code')</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.WORLD_NODE_SAVED" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.ALLOW_NO_OPINION">
+<span class="sig-name descname"><span class="pre">ALLOW_NO_OPINION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('_enabled',)</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.ALLOW_NO_OPINION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.DEFAULTS">
+<span class="sig-name descname"><span class="pre">DEFAULTS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'_code':</span> <span class="pre">functools.partial(&lt;class</span> <span class="pre">'list'&gt;,</span> <span class="pre">()),</span> <span class="pre">'_parent_path':</span> <span class="pre">'/'}</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.DEFAULTS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.REQUIRES_RECOMP">
+<span class="sig-name descname"><span class="pre">REQUIRES_RECOMP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('_start_point',</span> <span class="pre">'_node_path',</span> <span class="pre">'_comment',</span> <span class="pre">'_parent_path',</span> <span class="pre">'_name',</span> <span class="pre">'_proxy',</span> <span class="pre">'_source_layer',</span> <span class="pre">'_execute_in')</span></em><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.REQUIRES_RECOMP" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_node.INTERNAL_ATTRS.as_save_key">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">as_save_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_node.html#INTERNAL_ATTRS.as_save_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_node.INTERNAL_ATTRS.as_save_key" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.nxt_node.META_ATTRS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">META_ATTRS</span></span><a class="reference internal" href="_modules/nxt/nxt_node.html#META_ATTRS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_node.META_ATTRS" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.META_ATTRS.COMMENT">
+<span class="sig-name descname"><span class="pre">COMMENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_comment__nxt'</span></em><a class="headerlink" href="#nxt.nxt_node.META_ATTRS.COMMENT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.META_ATTRS.TYPE">
+<span class="sig-name descname"><span class="pre">TYPE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_type__nxt'</span></em><a class="headerlink" href="#nxt.nxt_node.META_ATTRS.TYPE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.META_ATTRS.SOURCE">
+<span class="sig-name descname"><span class="pre">SOURCE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'_source__nxt'</span></em><a class="headerlink" href="#nxt.nxt_node.META_ATTRS.SOURCE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.META_ATTRS.VALUE">
+<span class="sig-name descname"><span class="pre">VALUE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'value'</span></em><a class="headerlink" href="#nxt.nxt_node.META_ATTRS.VALUE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_node.META_ATTRS.ALL">
+<span class="sig-name descname"><span class="pre">ALL</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('_comment__nxt',</span> <span class="pre">'_type__nxt',</span> <span class="pre">'_source__nxt')</span></em><a class="headerlink" href="#nxt.nxt_node.META_ATTRS.ALL" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_node.META_ATTRS.as_save_key">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">as_save_key</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_node.html#META_ATTRS.as_save_key"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_node.META_ATTRS.as_save_key" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.nxt_node.Node">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Node</span></span><a class="reference internal" href="_modules/nxt/nxt_node.html#Node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_node.Node" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_node.create_spec_node">
+<span class="sig-name descname"><span class="pre">create_spec_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_proxy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_node.html#create_spec_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_node.create_spec_node" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.nxt_node.SpecNode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SpecNode</span></span><a class="reference internal" href="_modules/nxt/nxt_node.html#SpecNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_node.SpecNode" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_node.SpecNode.new">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">new</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attrs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_node.html#SpecNode.new"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_node.SpecNode.new" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.nxt_node.CompNode">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CompNode</span></span><a class="reference internal" href="_modules/nxt/nxt_node.html#CompNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_node.CompNode" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_node.CompNode.new">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">new</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spec_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attrs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_node.html#CompNode.new"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_node.CompNode.new" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_node.get_node_attr">
+<span class="sig-name descname"><span class="pre">get_node_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_node.html#get_node_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_node.get_node_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_node.get_opinion">
+<span class="sig-name descname"><span class="pre">get_opinion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_node.html#get_opinion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_node.get_opinion" title="Permalink to this definition"></a></dt>
+<dd><p>Check if the node attr has an opinion.
+Returns a tuple: (attr_value, bool_has_opinion)
+:param node: NxtNode
+:param attr: String of attr name
+:return: (attr_value, bool_has_opinion)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_node.get_node_enabled">
+<span class="sig-name descname"><span class="pre">get_node_enabled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_node.html#get_node_enabled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_node.get_node_enabled" title="Permalink to this definition"></a></dt>
+<dd><p>Get the enabled state of the given node. If the enabled state is not
+set it (None) the default return is True.
+:param node: Node object
+:return: Bool of enabled state</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_node.has_opinion">
+<span class="sig-name descname"><span class="pre">has_opinion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">attr_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_node.html#has_opinion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_node.has_opinion" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_node.has_stronger_opinion">
+<span class="sig-name descname"><span class="pre">has_stronger_opinion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_node.html#has_stronger_opinion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_node.has_stronger_opinion" title="Permalink to this definition"></a></dt>
+<dd><p>Check if the given attr on the given node has a stronger opinion than
+the opinion on the target layer (if any). We check the source layers of
+each base class. We are looping strong to weak so if there was no
+opinion before hitting the target layer there isn’t a stronger opinion.
+:param comp_node: NxtCompNode
+:param attr: String of attr name
+:param target_layer: NxtSpecLayer
+:return: bool (True if comp node has opinion that would overload the
+target layer’s opinion)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_node.get_node_as_dict">
+<span class="sig-name descname"><span class="pre">get_node_as_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spec_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_node.html#get_node_as_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_node.get_node_as_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Get a spec node as an ordered dictionary. The return data is
+strcutred as it would be in a saved graph file.
+:param spec_node: SpecNode object
+:return: OrderedDict</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_node.get_node_path">
+<span class="sig-name descname"><span class="pre">get_node_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_node.html#get_node_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_node.get_node_path" title="Permalink to this definition"></a></dt>
+<dd><p>Only to be used for inferred nodes who do not belong to a layer.
+:param node: Node object
+:return: string of node path</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_node.list_merger">
+<span class="sig-name descname"><span class="pre">list_merger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overlay_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_node.html#list_merger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_node.list_merger" title="Permalink to this definition"></a></dt>
+<dd><p>It is important to note we expect both arg lists to be non-repeating.
+Merges lists such that the <cite>base_list</cite> is preserved and
+the <cite>overlay_list</cite> is overlaid onto it.
+Example:
+source = [‘Node’, ‘Node1’]
+target = [‘Node’, ‘Jack’]
+returns = [‘Node’, ‘Jack’, ‘Node1’]
+:param base_list: Source list of object we want to overlay.
+:param overlay_list: Target list of object we want overlay onto.
+:return: Non-repeating list of object.</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nxt.nxt_log.html" class="btn btn-neutral float-left" title="nxt.nxt_log module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nxt.nxt_path.html" class="btn btn-neutral float-right" title="nxt.nxt_path module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, The nxt authors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,1677 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nxt.stage module &mdash; NXT  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="nxt.tokens module" href="nxt.tokens.html" />
+    <link rel="prev" title="nxt.session module" href="nxt.session.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            NXT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="https://sunriseproductions.github.io/nxt/">User Docs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">nxt</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="nxt.html">nxt package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="nxt.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="nxt.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="nxt.clean_json.html">nxt.clean_json module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.cli.html">nxt.cli module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.constants.html">nxt.constants module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.legacy.html">nxt.legacy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_io.html">nxt.nxt_io module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_layer.html">nxt.nxt_layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_log.html">nxt.nxt_log module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_node.html">nxt.nxt_node module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_path.html">nxt.nxt_path module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.plugin_loader.html">nxt.plugin_loader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.runtime.html">nxt.runtime module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.session.html">nxt.session module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">nxt.stage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.tokens.html">nxt.tokens module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nxt.html#module-nxt">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NXT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">nxt</a></li>
+          <li class="breadcrumb-item"><a href="nxt.html">nxt package</a></li>
+      <li class="breadcrumb-item active">nxt.stage module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/nxt.stage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nxt.stage">
+<span id="nxt-stage-module"></span><h1>nxt.stage module<a class="headerlink" href="#module-nxt.stage" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.stage.CompArc">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CompArc</span></span><a class="reference internal" href="_modules/nxt/stage.html#CompArc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.CompArc" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.stage.CompArc.REFERENCE">
+<span class="sig-name descname"><span class="pre">REFERENCE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'reference'</span></em><a class="headerlink" href="#nxt.stage.CompArc.REFERENCE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.stage.CompArc.PARENT">
+<span class="sig-name descname"><span class="pre">PARENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'parent'</span></em><a class="headerlink" href="#nxt.stage.CompArc.PARENT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.stage.CompArc.INSTANCE">
+<span class="sig-name descname"><span class="pre">INSTANCE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'instance'</span></em><a class="headerlink" href="#nxt.stage.CompArc.INSTANCE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.stage.CompArc.ALL_ARCS">
+<span class="sig-name descname"><span class="pre">ALL_ARCS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('reference',</span> <span class="pre">'parent',</span> <span class="pre">'instance')</span></em><a class="headerlink" href="#nxt.stage.CompArc.ALL_ARCS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.stage.CompArc.PRE_PROXY_ARCS">
+<span class="sig-name descname"><span class="pre">PRE_PROXY_ARCS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['reference']</span></em><a class="headerlink" href="#nxt.stage.CompArc.PRE_PROXY_ARCS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.stage.CompArc.POST_PROXY_ARCS">
+<span class="sig-name descname"><span class="pre">POST_PROXY_ARCS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['parent',</span> <span class="pre">'instance']</span></em><a class="headerlink" href="#nxt.stage.CompArc.POST_PROXY_ARCS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.stage.CompArc.INHERITANCE_MAP">
+<span class="sig-name descname"><span class="pre">INHERITANCE_MAP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'instance':</span> <span class="pre">('_enabled',</span> <span class="pre">'_comment',</span> <span class="pre">'_code'),</span> <span class="pre">'parent':</span> <span class="pre">(),</span> <span class="pre">'reference':</span> <span class="pre">('_start_point',</span> <span class="pre">'_enabled',</span> <span class="pre">'_execute_in',</span> <span class="pre">'_instance',</span> <span class="pre">'_comment',</span> <span class="pre">'_code')}</span></em><a class="headerlink" href="#nxt.stage.CompArc.INHERITANCE_MAP" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.stage.CompArc.ATTR_NAMES">
+<span class="sig-name descname"><span class="pre">ATTR_NAMES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'instance':</span> <span class="pre">'_instance',</span> <span class="pre">'parent':</span> <span class="pre">'_parent_path'}</span></em><a class="headerlink" href="#nxt.stage.CompArc.ATTR_NAMES" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.CompArc.get_arc">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_arc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_to_check</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#CompArc.get_arc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.CompArc.get_arc" title="Permalink to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>comp_node</strong> – </p></li>
+<li><p><strong>node_to_check</strong> – </p></li>
+<li><p><strong>comp_layer</strong> – CompLayer</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>CompArc or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.CompArc.get_bases_arc_dict">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_bases_arc_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#CompArc.get_bases_arc_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.CompArc.get_bases_arc_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a dict mapping nodes from the bases tuple to their comp
+arc. If there is no node for an arc its corresponding key will not be
+present in the dict.
+{REFERENCE: [SpecNode, SpecNode],
+PARENT: CompNode,
+INSTANCE: CompNode}
+:param comp_node: CompNode
+:param comp_layer: CompLayer
+:return: dict</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.stage.CompArc.Modes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Modes</span></span><a class="reference internal" href="_modules/nxt/stage.html#CompArc.Modes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.CompArc.Modes" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.stage.CompArc.Modes.REPLACE">
+<span class="sig-name descname"><span class="pre">REPLACE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'REPLACE'</span></em><a class="headerlink" href="#nxt.stage.CompArc.Modes.REPLACE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.stage.CompArc.Modes.ADD">
+<span class="sig-name descname"><span class="pre">ADD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ADD'</span></em><a class="headerlink" href="#nxt.stage.CompArc.Modes.ADD" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.stage.CompArc.Modes.REMOVE">
+<span class="sig-name descname"><span class="pre">REMOVE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'REMOVE'</span></em><a class="headerlink" href="#nxt.stage.CompArc.Modes.REMOVE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.stage.Stage">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Stage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_data=&lt;class</span> <span class="pre">'dict'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name='untitled'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.stage.Stage.protected_attrs">
+<span class="sig-name descname"><span class="pre">protected_attrs</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['__class__',</span> <span class="pre">'__delattr__',</span> <span class="pre">'__dict__',</span> <span class="pre">'__dir__',</span> <span class="pre">'__doc__',</span> <span class="pre">'__eq__',</span> <span class="pre">'__format__',</span> <span class="pre">'__ge__',</span> <span class="pre">'__getattribute__',</span> <span class="pre">'__gt__',</span> <span class="pre">'__hash__',</span> <span class="pre">'__init__',</span> <span class="pre">'__init_subclass__',</span> <span class="pre">'__le__',</span> <span class="pre">'__lt__',</span> <span class="pre">'__module__',</span> <span class="pre">'__ne__',</span> <span class="pre">'__new__',</span> <span class="pre">'__reduce__',</span> <span class="pre">'__reduce_ex__',</span> <span class="pre">'__repr__',</span> <span class="pre">'__setattr__',</span> <span class="pre">'__sizeof__',</span> <span class="pre">'__str__',</span> <span class="pre">'__subclasshook__',</span> <span class="pre">'__weakref__',</span> <span class="pre">'_code',</span> <span class="pre">'_execute_in',</span> <span class="pre">'_comment',</span> <span class="pre">'_start_point',</span> <span class="pre">'_enabled',</span> <span class="pre">'_instance',</span> <span class="pre">'_child_order',</span> <span class="pre">'_name',</span> <span class="pre">'_source_layer',</span> <span class="pre">'_proxy',</span> <span class="pre">'_parent_path',</span> <span class="pre">'_node_path',</span> <span class="pre">'_cached_code']</span></em><a class="headerlink" href="#nxt.stage.Stage.protected_attrs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.stage.Stage.meta_attrs">
+<span class="sig-name descname"><span class="pre">meta_attrs</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('_comment__nxt',</span> <span class="pre">'_type__nxt',</span> <span class="pre">'_source__nxt')</span></em><a class="headerlink" href="#nxt.stage.Stage.meta_attrs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nxt.stage.Stage.next_node">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">next_node</span></span><a class="headerlink" href="#nxt.stage.Stage.next_node" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nxt.stage.Stage.prev_node">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">prev_node</span></span><a class="headerlink" href="#nxt.stage.Stage.prev_node" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nxt.stage.Stage.filepath">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">filepath</span></span><a class="headerlink" href="#nxt.stage.Stage.filepath" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nxt.stage.Stage.loaded_files">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">loaded_files</span></span><a class="headerlink" href="#nxt.stage.Stage.loaded_files" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nxt.stage.Stage.reference_layers">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">reference_layers</span></span><a class="headerlink" href="#nxt.stage.Stage.reference_layers" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nxt.stage.Stage.top_layer">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">top_layer</span></span><a class="headerlink" href="#nxt.stage.Stage.top_layer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_layer">
+<span class="sig-name descname"><span class="pre">get_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_alias</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_layer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.new_sublayer">
+<span class="sig-name descname"><span class="pre">new_sublayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.new_sublayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.new_sublayer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.remove_sublayer">
+<span class="sig-name descname"><span class="pre">remove_sublayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.remove_sublayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.remove_sublayer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nxt.stage.Stage.total_nodes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">total_nodes</span></span><a class="headerlink" href="#nxt.stage.Stage.total_nodes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="nxt.stage.Stage.total_roots">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">total_roots</span></span><a class="headerlink" href="#nxt.stage.Stage.total_roots" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.check_for_layer_ref_cycle">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">check_for_layer_ref_cycle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_layer_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.check_for_layer_ref_cycle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.check_for_layer_ref_cycle" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.load_from_filepath">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_from_filepath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.load_from_filepath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.load_from_filepath" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.load_from_file">
+<span class="sig-name descname"><span class="pre">load_from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.load_from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.load_from_file" title="Permalink to this definition"></a></dt>
+<dd><p>Loads from filepath into a layer. Calls itself for sub-layers it finds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>layer_data</strong> – Clean dict of an nxt save file</p></li>
+<li><p><strong>parent_layer</strong> – <cite>Layer</cite> object that this layer will be         sub-layered under.         If you are creating a top layer it should be <cite>None</cite></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Layer object</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.reference_dependencies">
+<span class="sig-name descname"><span class="pre">reference_dependencies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.reference_dependencies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.reference_dependencies" title="Permalink to this definition"></a></dt>
+<dd><p>A layer and every layer it pulls in, as deep as they go.</p>
+<p>Reloading one file is rarely the whole story: a layer is what its
+own file says plus what everything it references says, so this is
+the set of files that decide what that layer contributes.</p>
+<p>A reference that did not resolve has no layer behind it and is
+left out: there is nothing loaded to reload.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>layer</strong> – layer to start from</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the layer first, then its references depth first</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.reload_layers">
+<span class="sig-name descname"><span class="pre">reload_layers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.reload_layers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.reload_layers" title="Permalink to this definition"></a></dt>
+<dd><p>Re-read layers, replacing what is in memory with what is saved.</p>
+<p>This throws away unsaved work on the layers it is given; that is
+what reloading is, and asking about it belongs to whoever offers
+it. Nothing is composited here, because which comp to build and
+when to build it is the caller’s business, and a reload of
+several layers wants one comp at the end rather than one each.</p>
+<p>A layer that has never been written has nothing to be reloaded
+from and is skipped, with a complaint.</p>
+<p>A file that has come to reference something else since it was
+opened brings that with it: the layers it now names are loaded,
+the ones it stopped naming are let go, and the stack is put in
+the order it gives. The layers it still names are left as they
+are, whatever state they are in, because nobody asked for those
+to be read again.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>layers</strong> (<em>list</em>) – layers to reload</p></li>
+<li><p><strong>source</strong> (<em>dict</em><em> | </em><em>None</em>) – real path -&gt; layer data to use instead of reading
+the file, for putting back what a layer held before</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>real path -&gt; the data each layer held before, in the form
+<cite>source</cite> takes, so that one reload can undo another. Layers a
+changed reference took out of the stage are in here too.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.settle_references">
+<span class="sig-name descname"><span class="pre">settle_references</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.settle_references"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.settle_references" title="Permalink to this definition"></a></dt>
+<dd><p>Put the stack under a layer back in step with its references.</p>
+<p>Only the difference is touched. A reference that was there before
+and is there still keeps the layer it had, whatever state that
+layer is in; a layer nothing references any more would otherwise
+go on compositing, and a reference nothing loaded would show as
+missing when the file it names is right there.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>layer</strong> – layer whose references have changed</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>({real path: save data} of the layers taken out, the
+layers brought in, the ones they reference included)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.load_reference">
+<span class="sig-name descname"><span class="pre">load_reference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.load_reference"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.load_reference" title="Permalink to this definition"></a></dt>
+<dd><p>Load one of a layer’s references, and what it references.</p>
+<p>The work <cite>load_from_file</cite> does for each reference it finds in a
+file, for one that turned up after the file was opened. A
+reference this machine cannot find is left as written, because it
+is still what the graph asks for and may resolve elsewhere.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>layer</strong> – layer holding the reference</p></li>
+<li><p><strong>reference</strong> (<em>str</em>) – the reference as stored on that layer</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the layers this brought into the stage</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.resort_layers">
+<span class="sig-name descname"><span class="pre">resort_layers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.resort_layers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.resort_layers" title="Permalink to this definition"></a></dt>
+<dd><p>Stack the layers in the order the references describe.</p>
+<p>Layers are stacked depth first from the top: a layer, then what
+it references, in the order it references them. That order is
+what decides whose opinion wins, so a file that has come to
+reference the same layers in a different order has to be able to
+move them, not only to add and to remove.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_layer_save_data">
+<span class="sig-name descname"><span class="pre">get_layer_save_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_idx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_layer_save_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_layer_save_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.stash_node">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stash_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.stash_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.stash_node" title="Permalink to this definition"></a></dt>
+<dd><p>Converts node into dict of {‘attr’: ‘value’}. Builtin object attrs are
+skipped. Dir is used to get the attr names so both NodeSpec and
+CompNode objects work.
+:param node: NodeSpec or CompNode
+:return: dict</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_stash_data">
+<span class="sig-name descname"><span class="pre">get_stash_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_stash_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_stash_data" title="Permalink to this definition"></a></dt>
+<dd><p>Parses every descendant of a layer and gets the stash data for
+each node. It returns a dict of {‘node/path’: {‘attr’: ‘value’}}.
+:param layer: SpecLayer or CompLayer
+:return: dict</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.legalize_name">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">legalize_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.legalize_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.legalize_name" title="Permalink to this definition"></a></dt>
+<dd><p>Returns given <cite>name</cite> without leading numeral, and matching
+<cite>w</cite> regex: (a-z, A-Z, 0-9, _)
+Replaces illegal characters with underscore.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_unique_node_name">
+<span class="sig-name descname"><span class="pre">get_unique_node_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_unique_node_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_unique_node_name" title="Permalink to this definition"></a></dt>
+<dd><p>Get an unused node name. If given a name preference, the resulting
+name will increment an integer if needed to create a unique name. If
+layer only is False and the layer provided is not a comp layer a
+re-comp will be executed. Because its slow a full re-comp will only
+be kicked off if the layer arg is a spec layer and the layer only
+kwarg is false.
+Bear in mind that calling this function does not reserve that name
+for future use, so if the name is not used before this function is
+called again before a name is used, it may produce duplicate results.
+:param name: The name that is desired.
+:type name: str
+:param layer: Layer object used as context for a unique name
+:type layer: SpecLayer or CompLayer
+:param parent_path: the given name preference will be tested against
+this node’s children’s names
+:type parent_path: str
+:param layer_only: If false a new comp layer will be created (slow)
+:type layer_only: bool
+:return: an unused node name.
+:rtype: str</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_unique_attr_name">
+<span class="sig-name descname"><span class="pre">get_unique_attr_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_unique_attr_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_unique_attr_name" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a unique attr name after comparing preferred name to given
+node’s existing attr names.
+:param node_path: Node containing attrs to check
+:type node_path: str
+:param layer: Layer object
+:type layer: SpecLayer or CompLayer
+:param attr_name: Preferences for name of new attr
+:type attr_name: str | None
+:return: valid attribute name
+:rtype: str</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.add_node_hierarchy">
+<span class="sig-name descname"><span class="pre">add_node_hierarchy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_hierarchy</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.add_node_hierarchy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.add_node_hierarchy" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.add_node_to_comp_layer">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">add_node_to_comp_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_to_child_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.add_node_to_comp_layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.add_node_to_comp_layer" title="Permalink to this definition"></a></dt>
+<dd><p>Simply deals with adding a comp node to the comp layer. This
+method does not deal with adjusting the node’s base classes tuple.
+Note: this method does not extend the dirty map.
+:param path: Node path of the node to add
+:param comp_node: CompNode object
+:param comp_layer: CompLayer
+:param ns: Optional namespace list (saves time if provided)
+:param add_to_child_order: If true the new node’s name will be added
+to its parent’s child order.
+:return: CompNode</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.add_node">
+<span class="sig-name descname"><span class="pre">add_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'node'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fix_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.add_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.add_node" title="Permalink to this definition"></a></dt>
+<dd><p>Add a new node to this graph. If nothing is specified,
+an empty node is created. If no layer index is given the stage top
+layer is used. The preferred name will be changed if it
+clashes with an existing used name. Unless fix names is False.
+:param name: Preferred name for the new node
+:type name: str
+:param data: Data for the new node
+:type data: dict
+:param parent: String of node path or Node object which will be cast
+to a node path.
+:type parent: NodeSpec or string
+:param layer: Layer object or layer index.
+:type layer: SpecLayer or int
+:param fix_names: If True the input name will be made unique
+:type fix_names: bool
+:param comp_layer: Layer to do a targeted re-comp on
+:type comp_layer: CompLayer
+:returns: NodeSpec</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.duplicate_node">
+<span class="sig-name descname"><span class="pre">duplicate_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">descendants</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.duplicate_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.duplicate_node" title="Permalink to this definition"></a></dt>
+<dd><p>Duplicates a given node spec and returns a list of the nodes created.
+Multiple nodes can be created if the target and comp layer are
+not the same and descendants is set to True.
+:param node: NodeSpec object
+:param layer: Layer object on which the duplicated node
+should be created
+:param descendants: If true node descendants will be duplicated
+on the target layer
+:return: list of node specs created</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.delete_node">
+<span class="sig-name descname"><span class="pre">delete_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_layer_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delete_descendants</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">other_removed_nodes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.delete_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.delete_node" title="Permalink to this definition"></a></dt>
+<dd><p>Deletes the given spec node. Returns a bool of success and a list
+of dirty node paths. If a comp layer is provided deleted nodes are
+removed from the dirty map.
+:param node: SpecNode
+:param layer: SpecLayer
+:param comp_layer: CompLayer
+:param remove_layer_data: If true, start, position, and collapse data
+is removed from the layer(s)
+:param delete_descendants: If true all descendants are deleted as well
+:param other_removed_nodes: A list of other node paths that are going
+to be deleted in the same event loop as the given node.
+Has no effect if comp_layer is None.
+:type other_removed_nodes: list (must be list not tuple)
+:return: (bool, list)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.remove_node_from_comp_layer">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_node_from_comp_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rm_from_child_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rm_layer_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.remove_node_from_comp_layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.remove_node_from_comp_layer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.ripple_delete">
+<span class="sig-name descname"><span class="pre">ripple_delete</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rm_from_child_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.ripple_delete"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.ripple_delete" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.parent_nodes">
+<span class="sig-name descname"><span class="pre">parent_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.parent_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.parent_nodes" title="Permalink to this definition"></a></dt>
+<dd><p>Make the given parent path the parent of all the given nodes.
+:param nodes: Nodes that will become children of the parent.
+:type nodes: list | [tree.CompTreeNode]
+:param parent_path: Node that will be the parent.
+:type parent_path: comptree.CompTreeNode
+:param layer: Layer object
+:type layer: SpecLayer
+:return: Dictionary of the changed children paths in the format
+{&lt;old path&gt; : &lt;new path&gt;}
+:rtype: dict</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.add_node_attr">
+<span class="sig-name descname"><span class="pre">add_node_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tracked</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.add_node_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.add_node_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.delete_node_attr">
+<span class="sig-name descname"><span class="pre">delete_node_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.delete_node_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.delete_node_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.rename_node_attr">
+<span class="sig-name descname"><span class="pre">rename_node_attr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_attr_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.rename_node_attr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.rename_node_attr" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.can_rename_targeted">
+<span class="sig-name descname"><span class="pre">can_rename_targeted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">old_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.can_rename_targeted"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.can_rename_targeted" title="Permalink to this definition"></a></dt>
+<dd><p>Whether a rename can be composited in place, without a rebuild.</p>
+<p>A rename is a path change, and a path change only alters what the
+stage composites when another layer is involved, or when something
+else derives its own path from this one. When none of that is true
+the comp layer can be updated by removing one node and adding one
+back, which is what a new node already costs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>old_path</strong> (<em>str</em>) – path the node is moving from</p></li>
+<li><p><strong>new_path</strong> (<em>str</em>) – path the node is moving to</p></li>
+<li><p><strong>layer</strong> (<a class="reference internal" href="nxt.nxt_layer.html#nxt.nxt_layer.SpecLayer" title="nxt.nxt_layer.SpecLayer"><em>SpecLayer</em></a>) – SpecLayer the node is authored on</p></li>
+<li><p><strong>comp_layer</strong> (<a class="reference internal" href="nxt.nxt_layer.html#nxt.nxt_layer.CompLayer" title="nxt.nxt_layer.CompLayer"><em>CompLayer</em></a>) – CompLayer that would be updated</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>(can_target, reason), reason explains a False</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.set_node_name">
+<span class="sig-name descname"><span class="pre">set_node_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.set_node_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.set_node_name" title="Permalink to this definition"></a></dt>
+<dd><p>Set’s the name of a node. This by definition changes the path to
+the node. Default behavior is to prevent clashing node names when
+stage is built to given <cite>layer</cite>. If <cite>force</cite> is true, will accept
+clashing names.
+TODO is it worthwhile to reverse this api? Where “forcing” is default
+and one would have to opt-into fixes via fix=True?</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<em>NodeSpec</em>) – Node to change name of.</p></li>
+<li><p><strong>name</strong> (<em>str</em>) – Name to change to.</p></li>
+<li><p><strong>layer</strong> (<em>Layer</em><em>, </em><em>optional</em>) – Context to prevent clashing node name, defaults to None.</p></li>
+<li><p><strong>force</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, allows clashing node names, defaults to False.</p></li>
+<li><p><strong>comp_layer</strong> (<a class="reference internal" href="nxt.nxt_layer.html#nxt.nxt_layer.CompLayer" title="nxt.nxt_layer.CompLayer"><em>CompLayer</em></a>) – The current CompLayer if you have one</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.transfer_node_data">
+<span class="sig-name descname"><span class="pre">transfer_node_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_inherit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.transfer_node_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.transfer_node_data" title="Permalink to this definition"></a></dt>
+<dd><p>Transfers data from one node to another. If the source arg is a
+node object a source layer must also be provided.
+:param target_node: NodeSpec
+:param source_node: CompNode, NodeSpec or node data dict
+:param source_layer: Layer object
+:param target_layer: SpecLayer object
+:param include_inherit: Bool passed to get_node_data
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.set_node_data">
+<span class="sig-name descname"><span class="pre">set_node_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.set_node_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.set_node_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.node_setattr_data">
+<span class="sig-name descname"><span class="pre">node_setattr_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.node_setattr_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.node_setattr_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.set_node_instance_path">
+<span class="sig-name descname"><span class="pre">set_node_instance_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instance_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.set_node_instance_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.set_node_instance_path" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the node’s instance path to the given path and sets the
+source meta attr.
+:param node: Node object
+:type node: SpecNode
+:param instance_path: Node path of instance source
+:type instance_path: str
+:param target_layer: Target spec layer
+:type target_layer: SpecLayer
+:param comp_layer: Comp layer to do targeted change to
+:type comp_layer: CompLayer
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.remove_node_instance">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_node_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.remove_node_instance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.remove_node_instance" title="Permalink to this definition"></a></dt>
+<dd><p>Removes the instance path and meta attr from the node.
+:param node: Node object
+:type node: SpecNode
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.safe_get_node_instance">
+<span class="sig-name descname"><span class="pre">safe_get_node_instance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expanded</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.safe_get_node_instance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.safe_get_node_instance" title="Permalink to this definition"></a></dt>
+<dd><p>Safely gets the instance from a node
+:param comp_node: CompNode object
+:param comp_layer: CompLayer object
+:param expanded: If True relative paths will be expanded
+:return: (CompNode, NodePath)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.node_setattr_comment">
+<span class="sig-name descname"><span class="pre">node_setattr_comment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">create</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.node_setattr_comment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.node_setattr_comment" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.lookup_layer">
+<span class="sig-name descname"><span class="pre">lookup_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.lookup_layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.lookup_layer" title="Permalink to this definition"></a></dt>
+<dd><p>Finds and returns a layer object from the sub layers list who’s
+real path matches the layer path arg.
+:param layer_path: String of real file path to layer’s save file
+:return: Layer Object</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_node_source_layer">
+<span class="sig-name descname"><span class="pre">get_node_source_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_node_source_layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_node_source_layer" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the source layer object for a given node.
+:param node: NodeSpec or CompNode
+:return: Layer object or None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_uncomped_opinion">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_uncomped_opinion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_uncomped_opinion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_uncomped_opinion" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_node_attr_comment">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_node_attr_comment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_node_attr_comment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_node_attr_comment" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_node_attr_names">
+<span class="sig-name descname"><span class="pre">get_node_attr_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_node_attr_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_node_attr_names" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_node_instanced_attr_names">
+<span class="sig-name descname"><span class="pre">get_node_instanced_attr_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_node_instanced_attr_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_node_instanced_attr_names" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_node_attr_value">
+<span class="sig-name descname"><span class="pre">get_node_attr_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolved</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_node_attr_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_node_attr_value" title="Permalink to this definition"></a></dt>
+<dd><p>Get the value of the specified attr from the specified node,
+optionally resolved.
+:param node: node that contains attr.
+:type node: nxt_node.Node
+:param attr_name: name of the attr you would like the value from.
+:type attr_name: str
+:param resolved: whether to resolve the value of the attr and return it
+:type resolved: bool
+:param layer: Layer object
+:type layer: Layer or CompLayer
+:return: value of the requested attribute, if found, else None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_node_attr_source">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_node_attr_source</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_node_attr_source"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_node_attr_source" title="Permalink to this definition"></a></dt>
+<dd><p>Tries to find the node who truly holds the local attribute via
+recursively looking for the _source__nxt meta attribute.
+:param node: Node who has access to the attr_name
+:param attr_name: Name of attribute you want to find the source node for
+nodes (stored in the ._inherit attr). Usually this is True except in
+some edgecases like finding the source of _compute.
+:return: Node object or None if no source found (None is not expected)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_node_attr_data">
+<span class="sig-name descname"><span class="pre">get_node_attr_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quiet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_node_attr_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_node_attr_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_node_data">
+<span class="sig-name descname"><span class="pre">get_node_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_inherit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_node_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_node_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_tokens_from">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_tokens_from</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">token_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(Token(prefix='file::',</span> <span class="pre">detect=None,</span> <span class="pre">resolve=None),</span> <span class="pre">Token(prefix='path::',</span> <span class="pre">detect=None,</span> <span class="pre">resolve=None),</span> <span class="pre">Token(prefix='_nxtpath',</span> <span class="pre">detect=None,</span> <span class="pre">resolve=None),</span> <span class="pre">Token(prefix='contents::',</span> <span class="pre">detect=None,</span> <span class="pre">resolve=None),</span> <span class="pre">Token(prefix='_nxtcolor',</span> <span class="pre">detect=None,</span> <span class="pre">resolve=None),</span> <span class="pre">Token(prefix='',</span> <span class="pre">detect=None,</span> <span class="pre">resolve=None))</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_tokens_from"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_tokens_from" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a list of token strings the given <cite>string</cite> contains.
+TODO Token syntax should be changed to make each token type
+explicit rather than assuming attr refs for random strings.
+Tokens can be attribute references that look like
+<cite>${&lt;NodeName&gt;.&lt;ChildNodeName&gt;.&lt;AttributeName&gt;}</cite> at the most verbose,
+<cite>${&lt;AttributeName&gt;}</cite> at a minimum.
+or tokens can be file tokens that look like
+<cite>${file::&lt;filepath, relative or absolute&gt;}</cite>
+i.e. <cite>${file::../otherfile.txt}</cite>
+:return: List of tokens as found.
+:rtype: list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.next_token_partition">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">next_token_partition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.next_token_partition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.next_token_partition" title="Permalink to this definition"></a></dt>
+<dd><p>partition given <cite>text</cite> on a token that appears
+resolvable(contains no sub tokens). Returns in a tuple:
+(before_token, token_content, after_token), losing the token prefix
+and suffix in the partition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>text</strong> (<em>str</em>) – text to find a token from, and partition</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>before_token, token_content, after_token</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>tuple(str, str, str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.determine_token_type">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">determine_token_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token_str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.determine_token_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.determine_token_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.resolve">
+<span class="sig-name descname"><span class="pre">resolve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.resolve"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.resolve" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.resolve_attr_ref_token">
+<span class="sig-name descname"><span class="pre">resolve_attr_ref_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.resolve_attr_ref_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.resolve_attr_ref_token" title="Permalink to this definition"></a></dt>
+<dd><p>Resolve an attribute ref string into the value contained at that
+attribute.
+Attr refs look like: <cite>${/&lt;NodeName&gt;/&lt;ChildNodeName&gt;.&lt;AttributeName&gt;}</cite>
+at the most verbose, <cite>${&lt;AttributeName&gt;}</cite> at a minimum.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<a class="reference internal" href="nxt.nxt_node.html#nxt.nxt_node.Node" title="nxt.nxt_node.Node"><em>Node</em></a>) – node resolve is started from</p></li>
+<li><p><strong>text</strong> (<em>str</em>) – text to resolve</p></li>
+<li><p><strong>layer</strong> (<em>Layer</em>) – Layer object for context of this resolve</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>attribute value given text refers to</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.resolve_file_path_token">
+<span class="sig-name descname"><span class="pre">resolve_file_path_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.resolve_file_path_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.resolve_file_path_token" title="Permalink to this definition"></a></dt>
+<dd><p>Uses pathing module to attempt to expand given <cite>token_str</cite> into
+a file path. Path is treated as a relative path to start layer’s real
+file path.
+:param node: node resolve is started from
+:type node: Node
+:param text: text to resolve
+:type text: str
+:param start_layer: Layer object who’s file path is used to resolve
+the given token
+:type start_layer: Layer
+:return: file path
+:rtype: str</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.resolve_file_token">
+<span class="sig-name descname"><span class="pre">resolve_file_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.resolve_file_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.resolve_file_token" title="Permalink to this definition"></a></dt>
+<dd><p>Generates a file path using resolution of path token logic, but
+only returns a path if the file exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<a class="reference internal" href="nxt.nxt_node.html#nxt.nxt_node.Node" title="nxt.nxt_node.Node"><em>Node</em></a>) – node resolve is started from</p></li>
+<li><p><strong>text</strong> (<em>str</em>) – text to resolve</p></li>
+<li><p><strong>start_layer</strong> – Layer object who’s file path is used to resolve</p></li>
+</ul>
+</dd>
+</dl>
+<p>the given token
+:type start_layer: Layer
+:return: file path or empty string
+:rtype: str</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.resolve_contents_token">
+<span class="sig-name descname"><span class="pre">resolve_contents_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.resolve_contents_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.resolve_contents_token" title="Permalink to this definition"></a></dt>
+<dd><p>Resolves to the text file contents of file path as a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<a class="reference internal" href="nxt.nxt_node.html#nxt.nxt_node.Node" title="nxt.nxt_node.Node"><em>Node</em></a>) – node resolve is started from</p></li>
+<li><p><strong>text</strong> (<em>str</em>) – text to resolve</p></li>
+<li><p><strong>layer</strong> (<em>Layer</em>) – Layer object for context of this resolve</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>string contents of file, if found, otherwise empty string</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.infer_lower_comp">
+<span class="sig-name descname"><span class="pre">infer_lower_comp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active_layers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inferred_comp_layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.infer_lower_comp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.infer_lower_comp" title="Permalink to this definition"></a></dt>
+<dd><p>Infer a new comp node based on the provided args. This method
+attempts to shift the composition for a node to a different comp
+depth. The default depth is 1 which means it will infer a new comp
+node as though the comp’s display layer was 1 layer below the
+provided <cite>comp_layer</cite>’s display layer. None is returned if it is not
+possible to infer a new comp node based on the args provided. If the
+depth is 0 the comp node is returned unchanged. If the depth is &lt; 0
+None is returned as this method infers lower comps (high numbers are
+lower layers). If no inferred_comp_layer is provided one is created.
+Its only use is to hold pointers to inferred nodes as they are
+created, within this method it is treated like a real comp layer,
+however it is not returned or intended to be returned.
+:param comp_node: Comp node to be used as the source for the inference.
+:type comp_node: CompNode
+:param comp_layer: Comp layer used to inform us what spec layers to
+consider.
+:type comp_layer: CompLayer
+:param active_layers: If no active layers are provided they will be
+calculated from the comp layer’s range using the depth arg. If the
+caller of this method already knows the active layers it should pass
+them here to improve the speed of the inferred comp.
+:type active_layers: list or None
+:param depth: number of layers to rollback the comp
+:type depth: int
+:param inferred_comp_layer: Temporary comp layer used to hold inferred
+nodes, if not is provided one will be created and passed to further
+recursions of this method.
+:type inferred_comp_layer: CompLayer
+:return: CompNode or None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_specs_at_path">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_specs_at_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layers</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_specs_at_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_specs_at_path" title="Permalink to this definition"></a></dt>
+<dd><p>Give a node path and a list of layers this method will look up the
+node path on each layer and return a list of SpecNode objects at
+that path. If no node is found at the given path for any layer
+nothing will be added to the list, this may result in the return list
+length being shorter than the input layer list.
+:param node_path: string of node path
+:param layers: list of SpecLayer objects
+:return: list of SpecNode objects</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_attr_as_real_data_type">
+<span class="sig-name descname"><span class="pre">get_attr_as_real_data_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">_globals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_attr_as_real_data_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_attr_as_real_data_type" title="Permalink to this definition"></a></dt>
+<dd><p>Resolves the attribute value specified and evaluates it to the python
+type it’s syntax indicates, if possible.
+If node.attr is 5</p>
+<blockquote>
+<div><p>[${/node.attr}, 123]
+converts to
+[5, 123]</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> – Node object</p></li>
+<li><p><strong>attr</strong> – String of name of node attr</p></li>
+<li><p><strong>layer</strong> – Layer object used to resolve tokens in</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_node_attr_external_sources">
+<span class="sig-name descname"><span class="pre">get_node_attr_external_sources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_node_attr_external_sources"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_node_attr_external_sources" title="Permalink to this definition"></a></dt>
+<dd><p>Get a list of paths to attributes that the given attribute
+includes in it’s value. This
+is similar to get_attr_refs, but excludes local attribute paths
+like ${self.attr_name} and ${attr_name}
+:param node: Node that contains attr.
+:type node: comptree.CompTreeNode
+:param attr_name: Name of attr
+:type attr_name: str
+:param layer: root node to find node under
+:type layer: comptree.CompTreeNode
+:return: List of paths to attributes that the given attribute
+includes in it’s value
+:rtype: list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_node_code_external_sources">
+<span class="sig-name descname"><span class="pre">get_node_code_external_sources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_node_code_external_sources"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_node_code_external_sources" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_node_code_string">
+<span class="sig-name descname"><span class="pre">get_node_code_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raw'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_node_code_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_node_code_string" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the compute code as a string where each line is on a new line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<em>comptree.CompTreeNode</em>) – Node to retrieve compute string from.</p></li>
+<li><p><strong>data_state</strong> (<em>bool</em>) – Whether to return the code with attr_refs resolved or not.</p></li>
+<li><p><strong>layer</strong> (<em>comptree.CompTreeNode</em>) – node to consider root</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The compute string of the given node.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_node_code">
+<span class="sig-name descname"><span class="pre">get_node_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_node_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_node_code" title="Permalink to this definition"></a></dt>
+<dd><p>Converts node’s compute lines into a code object. If an exception is
+raised while we try to compile the compute code we log it and
+raise a GraphError.
+:param node: CompNode
+:param layer: CompLayer
+:param custom_code: String of code to used instead of the node’s
+actual compute.
+:return: code</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_node_code_lines">
+<span class="sig-name descname"><span class="pre">get_node_code_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'raw'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_node_code_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_node_code_lines" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a copy of the list of code lines on the given node.
+:param node: Node to retrieve compute string from.
+:type node: Node object
+:param layer: Layer object
+:type layer: SpecLayer or CompLayer
+:param data_state: if DATA_STATE.RESOLVED is received the compute
+lines will be resolved otherwise we return the raw value.
+:type data_state: str
+:return: The compute string of the given node.
+:rtype: str</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.set_node_code_lines">
+<span class="sig-name descname"><span class="pre">set_node_code_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">code_lines</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.set_node_code_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.set_node_code_lines" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.clear_code_lines">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clear_code_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.clear_code_lines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.clear_code_lines" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_node_local_attrs_data">
+<span class="sig-name descname"><span class="pre">get_node_local_attrs_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_node_local_attrs_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_node_local_attrs_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.create_instance_node">
+<span class="sig-name descname"><span class="pre">create_instance_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tgt_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_tgt_ns</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.create_instance_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.create_instance_node" title="Permalink to this definition"></a></dt>
+<dd><p>Creates an instance node and adds it to the comp layer. Returns
+the new instance node if it isn’t an implied node, otherwise returns
+False.
+:param source_path: String of path instancing from
+:param tgt_path: String of path instancing to (could be new node path)
+:param comp_layer: NxtCompLayer
+:param new_tgt_ns: Namespace list of tgt_path
+:return: NxtCompNode or False</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.namespace_merger">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">namespace_merger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_ns</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_ns</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.namespace_merger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.namespace_merger" title="Permalink to this definition"></a></dt>
+<dd><p>Smartly merges instance namespaces <cite>source_ns</cite> into <cite>target_ns</cite>.
+Example 1:</p>
+<blockquote>
+<div><p>source = [‘Character’, ‘build’, ‘legs’, ‘left’]
+target = [‘dummy’, ‘build’, ‘legs’]
+return == [‘dummy’, ‘build’, ‘legs’, ‘left’]</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Example 2:</dt><dd><p>source = [‘control’, ‘create’]
+target = [‘leg’, ‘create’, ‘fk’, ‘controls’, ‘upper’]
+return = [‘leg’, ‘create’, ‘fk’, ‘controls’, ‘upper’, ‘create’]</p>
+</dd>
+</dl>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>source_ns</strong> – List of strings representing an instance source</p>
+</dd>
+</dl>
+<p>namespace
+:param target_ns: List of strings representing an instance
+target namespace
+:return: Merged list of string  representing an instance child
+namespace</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.new_layer">
+<span class="sig-name descname"><span class="pre">new_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">logical_index=&lt;class</span> <span class="pre">'int'&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_data=&lt;class</span> <span class="pre">'dict'&gt;</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.new_layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.new_layer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.register_layer">
+<span class="sig-name descname"><span class="pre">register_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logical_index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.register_layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.register_layer" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.build_stage">
+<span class="sig-name descname"><span class="pre">build_stage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">from_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_paths</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.build_stage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.build_stage" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.comp_pre_proxies">
+<span class="sig-name descname"><span class="pre">comp_pre_proxies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.comp_pre_proxies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.comp_pre_proxies" title="Permalink to this definition"></a></dt>
+<dd><p>Loops the pre comp arcs as defined by CompModes. This method
+expects that the following comp layer
+attributes are empty dicts or lists
+respectively.</p>
+<blockquote>
+<div><p>‘_nodes_path_as_key’
+‘_nodes_node_as_key’
+‘_node_table’</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>comp_layer</strong> – CompLayer</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Int of node count</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.targeted_comp_pre_proxies">
+<span class="sig-name descname"><span class="pre">targeted_comp_pre_proxies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spec_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_node_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.targeted_comp_pre_proxies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.targeted_comp_pre_proxies" title="Permalink to this definition"></a></dt>
+<dd><p>Adds a single node to a comp layer, loops the same arcs as
+<cite>pre_proxy_comp</cite>, the logic is slightly different as we are doing
+targeted work on the comp layer.
+:param spec_node: SpecNode
+:param new_node_path: String of node path
+:param comp_layer: CompLayer
+:param target_layer: SpecLayer
+:return: CompNode</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.targeted_comp_proxies">
+<span class="sig-name descname"><span class="pre">targeted_comp_proxies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.targeted_comp_proxies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.targeted_comp_proxies" title="Permalink to this definition"></a></dt>
+<dd><p>Given a comp node and a comp layer this function will discover,
+generate, and add to the comp layer proxy nodes needed by the comp
+node. The newly generated nodes are not fully composited,
+this function simply creates the mapping for compping the new nodes.
+In the end it produces a proxy map used by the post_proxy_comp
+function. This process is iterative, not recursive.
+:param comp_node: NxtCompNode
+:param node_path: String of node path
+:param comp_layer: CompLayer
+:return: proxy_map dict</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.discover_proxies">
+<span class="sig-name descname"><span class="pre">discover_proxies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">namespace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.discover_proxies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.discover_proxies" title="Permalink to this definition"></a></dt>
+<dd><p>Given a node and the current comp layer this function will return
+a multi list of proxy nodes that need to be created. Its called
+discover because it must be called many times as we discover nodes
+that need to be created we don’t yet know if those discoveries
+themselves need to generate proxies.
+The return is sorted by namespace depth, shallow to deep.
+:param node_path: String of node path
+:param comp_node: NxtCompNode
+:param comp_layer: CompLayer
+:return: sorted list of tuples [(target_ns, src_path, tgt_path)]</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.comp_proxies">
+<span class="sig-name descname"><span class="pre">comp_proxies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_count</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.comp_proxies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.comp_proxies" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.post_proxy_comp">
+<span class="sig-name descname"><span class="pre">post_proxy_comp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.post_proxy_comp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.post_proxy_comp" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.targeted_comp_post_proxies">
+<span class="sig-name descname"><span class="pre">targeted_comp_post_proxies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proxy_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.targeted_comp_post_proxies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.targeted_comp_post_proxies" title="Permalink to this definition"></a></dt>
+<dd><p>Given a proxy map, this function finishes the compositing of nodes
+by mutating the base class tuple of each node in the proxy_map.
+The map is structured like this:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>High level terms:</dt><dd><p>{dirty_node: arc_dict}</p>
+</dd>
+<dt>Actual data:</dt><dd><dl class="simple">
+<dt>{NxtCompNode: {CompArc.PARENT: NxtCompNode or None,</dt><dd><p>CompArc.INSTANCE: NxtCompNode or None}}</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div></blockquote>
+<p>If any given arc key is None or missing in the arc dict no change is
+made in that loop.
+:param proxy_map: dict
+:param comp_layer: CompLayer
+:return: list of dirty node paths</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.targeted_uncomp">
+<span class="sig-name descname"><span class="pre">targeted_uncomp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arcs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('reference',</span> <span class="pre">'parent',</span> <span class="pre">'instance')</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.targeted_uncomp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.targeted_uncomp" title="Permalink to this definition"></a></dt>
+<dd><p>For each arc in the arcs list remove the base class of the given
+node that corresponds to the arc name. Each arc name in the arcs list
+must map to an internal attr name in order to determine which base
+class to remove. See: CompArc.ATTR_NAMES
+Resulting in the comp node no longer inheriting from some or any arc(s).
+:param comp_node: NxtCompNode
+:param comp_layer: CompLayer
+:param target_layer: SpectLayer
+:param arcs: list of CompArc arcs
+:return: list of dirty node paths</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.instance_is_possible">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">instance_is_possible</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">namespace</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.instance_is_possible"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.instance_is_possible" title="Permalink to this definition"></a></dt>
+<dd><p>Simply checks that the given node has a valid shot at having
+proxies (instances) connected to it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Expanded instance path instance is possible, else None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.update_inherited_attrs">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">update_inherited_attrs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arcs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('reference',</span> <span class="pre">'parent',</span> <span class="pre">'instance')</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.update_inherited_attrs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.update_inherited_attrs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.sort_instances">
+<span class="sig-name descname"><span class="pre">sort_instances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deep_sort</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.sort_instances"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.sort_instances" title="Permalink to this definition"></a></dt>
+<dd><p>Sorts instances based on the length of their trace list. An
+instance trace list is every node that is directly or indirectly
+instanced by the node in question.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>comp_layer</strong> – CompLayer</p></li>
+<li><p><strong>deep_sort</strong> – If True nodes are double sorted such that it is</p></li>
+</ul>
+</dd>
+</dl>
+<p>guaranteed that the inst target is after its inst source. This is of
+course slower and not always needed.
+:return: Sorted list of instance target nodes</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_instance_sources">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_instance_sources</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_instance_sources"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_instance_sources" title="Permalink to this definition"></a></dt>
+<dd><p>Fill a list (trace_list) with all of the nodes in the instance
+source trace of the node on the comp_layer. This function is
+recursive, the trace_list is passed forward during recursion.
+:param node: NxtCompNode
+:param trace_list: list object to be filled
+:param comp_layer: CompLayer
+:return: trace_list (same object you provided when calling)</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_instance_targets">
+<span class="sig-name descname"><span class="pre">get_instance_targets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inst_source_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_instance_targets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_instance_targets" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.extend_dirty_map">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">extend_dirty_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concern</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirty_map</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.extend_dirty_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.extend_dirty_map" title="Permalink to this definition"></a></dt>
+<dd><p>Adds node path to concerns map if it is not in the dict and adds
+the concern to its concern list.
+:param node_path: String of node path
+:param concern: Node path of node that <cite>node_path</cite> should be
+concerned with
+:param dirty_map: Dict of concerns {node/path: [other/node/path]}
+:return: Dict</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.remove_from_dirty_map">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">remove_from_dirty_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dirty_map</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.remove_from_dirty_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.remove_from_dirty_map" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_layers_with_opinion">
+<span class="sig-name descname"><span class="pre">get_layers_with_opinion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_layers_with_opinion"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_layers_with_opinion" title="Permalink to this definition"></a></dt>
+<dd><p>Returns all layers in given layer list(or current stage) that
+contain the given node_path. Ordered with the top layer at 0.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node_path</strong> (<em>str</em>) – path to find layers for.</p></li>
+<li><p><strong>layer_list</strong> – list of layers to check, defaults to None. If not</p></li>
+</ul>
+</dd>
+</dl>
+<p>given, all layers in stage will be checked.
+:type layer_list: list, optional
+:param attr_name: Optional: name of specific attr that must have an
+opinion at the given node path.
+:type attr_name: str
+:return: list of layers
+:rtype: list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.assign_layer_parents">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">assign_layer_parents</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.assign_layer_parents"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.assign_layer_parents" title="Permalink to this definition"></a></dt>
+<dd><p>Loops the layers in the given layer list and sets their parent_layer
+attribute. Then the file path and layer keys are set in the parent
+layer’s sub_layers dict.
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.set_node_child_order">
+<span class="sig-name descname"><span class="pre">set_node_child_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">child_order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.set_node_child_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.set_node_child_order" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.propagate_child_order">
+<span class="sig-name descname"><span class="pre">propagate_child_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_node_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_child_order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_child_order</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.propagate_child_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.propagate_child_order" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_node_spec">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_node_spec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_object</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_node_spec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_node_spec" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.retarget_spec_node">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">retarget_spec_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.retarget_spec_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.retarget_spec_node" title="Permalink to this definition"></a></dt>
+<dd><p>Update one spec node’s bookkeeping after its path changed.</p>
+<p>The layer wide refresh() does this for every node it holds, which is
+wasted work when a single node was renamed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> – the spec node that moved</p></li>
+<li><p><strong>old_path</strong> (<em>str</em>) – path it was at</p></li>
+<li><p><strong>new_path</strong> (<em>str</em>) – path it is at now</p></li>
+<li><p><strong>layer</strong> (<a class="reference internal" href="nxt.nxt_layer.html#nxt.nxt_layer.SpecLayer" title="nxt.nxt_layer.SpecLayer"><em>SpecLayer</em></a>) – SpecLayer holding it</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.rekey_comp_node">
+<span class="sig-name descname"><span class="pre">rekey_comp_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">old_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.rekey_comp_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.rekey_comp_node" title="Permalink to this definition"></a></dt>
+<dd><p>Move one node in the comp layer from one path to another.</p>
+<p>A rename is not a delete and a create. The composited node at the old
+path may be several opinions merged together, an authored node and a
+proxy among them, and rebuilding it from one spec node would throw
+the rest away. Nothing about what is merged changes when a node is
+renamed, only where it is filed, so the node object is kept and
+re-filed under the new path.</p>
+<p>Callers must have established with can_rename_targeted that no other
+layer and nothing derived is involved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>old_path</strong> (<em>str</em>) – path being vacated</p></li>
+<li><p><strong>new_path</strong> (<em>str</em>) – path being moved to</p></li>
+<li><p><strong>new_name</strong> (<em>str</em>) – the node’s new name</p></li>
+<li><p><strong>old_name</strong> (<em>str</em>) – the name it had, for the parent’s child order</p></li>
+<li><p><strong>comp_layer</strong> (<a class="reference internal" href="nxt.nxt_layer.html#nxt.nxt_layer.CompLayer" title="nxt.nxt_layer.CompLayer"><em>CompLayer</em></a>) – CompLayer to update</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_node_child_order">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_node_child_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_node_child_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_node_child_order" title="Permalink to this definition"></a></dt>
+<dd><p>Returns a copy of the node’s child order list, thus mutation of the
+return value will not effect the node object.
+:param node: Node object
+:return: Copy of the child order list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_reverted_child_order">
+<span class="sig-name descname"><span class="pre">get_reverted_child_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_reverted_child_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_reverted_child_order" title="Permalink to this definition"></a></dt>
+<dd><p>Merges child order lists from lowest to highest layer, effectively
+removing any local edits to the child order of the <cite>node</cite>.
+:param node: Node object
+:return: Non-repeating list of strings representing node names.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_top_node">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_top_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_top_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_top_node" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_node_inherited_attr_names">
+<span class="sig-name descname"><span class="pre">get_node_inherited_attr_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_node_inherited_attr_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_node_inherited_attr_names" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_node_comment">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_node_comment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_node_comment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_node_comment" title="Permalink to this definition"></a></dt>
+<dd><p>Returns the comment of the specified node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node</strong> (<em>comptree.CompTreeNode</em>) – Node to get comment from.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Comment of node.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.set_node_comment">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_node_comment</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comment</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.set_node_comment"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.set_node_comment" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the node comment
+:param node: SpecNode
+:param comment: String of node comment. NoneType is allowed
+:param layer: SpecLayer
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.node_attr_exists">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">node_attr_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.node_attr_exists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.node_attr_exists" title="Permalink to this definition"></a></dt>
+<dd><p>Check if node as the given attr.
+:param node: NxtNode
+:param attr_name: string of attr name
+:raises: AttributeError
+:return: bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.execute">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.execute" title="Permalink to this definition"></a></dt>
+<dd><p>Executes stage. Optionally at given start. Start can be a
+start point index, or a node path to start from. If no start is given
+will attempt to start at first start point. If more than one start
+node is present a random one will be chosen.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<em>str</em><em>, </em><em>optional</em>) – Node path to start from, defaults to None</p></li>
+<li><p><strong>layer</strong> (<a class="reference internal" href="nxt.nxt_layer.html#nxt.nxt_layer.CompLayer" title="nxt.nxt_layer.CompLayer"><em>CompLayer</em></a>) – Layer to execute</p></li>
+<li><p><strong>parameters</strong> – Optional dict of {‘/node.attr’: value} to be</p></li>
+</ul>
+</dd>
+</dl>
+<p>applied before execution begins.
+:type parameters: dict
+:raises IndexError: If start point index is not found.
+:raises ValueError: If given start node path cannot be found or if no
+start is specified and no start nodes can be found.
+:return: a runtime CompLayer object
+:rtype: CompLayer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.execute_nodes">
+<span class="sig-name descname"><span class="pre">execute_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_paths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.execute_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.execute_nodes" title="Permalink to this definition"></a></dt>
+<dd><p>Execute nodes at given <cite>node_paths</cite> using given <cite>layer</cite>. Returns
+runtime layer object that if passed as layer argument to successive
+calls will “continue” execution with the same cached values.
+If parameters are provided they will be applied before the layer node
+runs, unless the layer provided (in the layer arg) is a runtime layer,
+in which case they will be applied before the first node is run.
+:param node_paths: node paths to execute
+:type node_paths: list
+:param layer: CompLayer to execute
+:type layer: CompLayer
+:param parameters: Optional dict of {‘/node.attr’: value} to be
+applied before execution begins.
+:type parameters: dict
+:raises ValueError: When layer argument has invalid value;
+GraphError: For any exception raised by a node’s compute.
+:return: Runtime CompLayer that can be used for continued execution.
+:rtype: CompLayer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.execute_custom_code">
+<span class="sig-name descname"><span class="pre">execute_custom_code</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code_string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.execute_custom_code"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.execute_custom_code" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_node_exec_in">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_node_exec_in</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_node_exec_in"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_node_exec_in" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.set_node_exec_in">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_node_exec_in</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">exec_in_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.set_node_exec_in"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.set_node_exec_in" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.set_node_enabled">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_node_enabled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">spec_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.set_node_enabled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.set_node_enabled" title="Permalink to this definition"></a></dt>
+<dd><p>Sets the enabled state of the given node. And updates the comp
+to accurately reflect the change without building a new comp layer.
+:param spec_node: Spec Node object
+:type spec_node: SpecNode
+:param state: Enabled state
+:type state: bool
+:param comp_layer: Current comp layer, should contain the spec node
+:type comp_layer: CompLayer
+:return: List of dirty nodes, aka nodes that were updated.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.get_layer_start_nodes">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_layer_start_nodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.get_layer_start_nodes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.get_layer_start_nodes" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.set_runtime_parameters">
+<span class="sig-name descname"><span class="pre">set_runtime_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">runtime_layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.set_runtime_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.set_runtime_parameters" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.setup_runtime_layer">
+<span class="sig-name descname"><span class="pre">setup_runtime_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.setup_runtime_layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.setup_runtime_layer" title="Permalink to this definition"></a></dt>
+<dd><p>Modifies given CompLayer for runtime use. If no comp layer is given
+the runtime layer is generated using all of the stage’s sub_layers.
+:param comp_layer: CompLayer
+:param parameters: Optional dict of {‘/node.attr’: value} to be
+applied before layer node is executed.
+:return: A runtime CompLayer
+:rtype: CompLayer</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.stage.Stage.save_to_temp">
+<span class="sig-name descname"><span class="pre">save_to_temp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#Stage.save_to_temp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.Stage.save_to_temp" title="Permalink to this definition"></a></dt>
+<dd><p>Saves the spec layers, that make up a comp layer, to an
+output dir. If no output_dir is provided one will be generated using
+tempfile.mkdtemp. The reference list of the sub-layers are converted
+to relative paths so they work with all the layers in the same
+folder. The cwd of each layer is set to the original location of the
+source layer.
+:param comp_layer: CompLayer
+:param output_dir: Path to output directory (defaults to a generated
+temp dir)
+:return: Path to temp top layer file</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.stage.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">runtime_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stage</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rt_node</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_code</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.run" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.stage.clean_globals">
+<span class="sig-name descname"><span class="pre">clean_globals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code_lines</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">good_keys</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">global_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#clean_globals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.clean_globals" title="Permalink to this definition"></a></dt>
+<dd><p>Super hack that tries to remove non global keyword var from the globals
+:param code_lines: list of strings
+:param good_keys: list of expected global keys
+:param global_dict: global dict to clean
+:return: None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.stage.determine_nxt_type">
+<span class="sig-name descname"><span class="pre">determine_nxt_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#determine_nxt_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.determine_nxt_type" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.stage.w">
+<span class="sig-name descname"><span class="pre">w</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quote_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#w"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.w" title="Permalink to this definition"></a></dt>
+<dd><p>Wraps your string in quotes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>string</strong> (<em>str</em>) – Input string to be wrapped</p></li>
+<li><p><strong>quote_type</strong> (<em>int</em><em> or </em><em>str</em>) – Int 1: ‘, 2: “, 3: ‘’’, 4: “””</p></li>
+</ul>
+</dd>
+</dl>
+<p>Default is 1, any string can also be provided and we will wrap the
+string arg in that string ie w(‘Hello World’, ‘$’) returns ‘$Hello World$’
+:return: String wrapped in quote marks or custom string</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.stage.get_historical_opinions">
+<span class="sig-name descname"><span class="pre">get_historical_opinions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comp_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comp_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_local</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#get_historical_opinions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.get_historical_opinions" title="Permalink to this definition"></a></dt>
+<dd><p>Gets all the historical values for the given node and attr. The local
+opinion is not included in the return. The MRO is looped so all depths of
+parents and instances are considered.
+:param comp_node: NxtCompNode
+:param attr: String of attr name
+:param comp_layer: CompLayer
+:param include_local: if True the local opinion will not be stripped from
+the start of the return list.
+:return: [{META_ATTRS.SOURCE: source, META_ATTRS.VALUE: val}]</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.stage.composite_lists">
+<span class="sig-name descname"><span class="pre">composite_lists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">list_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list_2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#composite_lists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.composite_lists" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.stage.nxt_uuid">
+<span class="sig-name descname"><span class="pre">nxt_uuid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extra</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">f</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/stage.html#nxt_uuid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.stage.nxt_uuid" title="Permalink to this definition"></a></dt>
+<dd><p>Creates an ALMOST guaranteed unique id int.
+:param f: If True the float value will be returned else int will
+:param extra: An extra int that helps with the uniqueness problem.
+:return: int</p>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nxt.session.html" class="btn btn-neutral float-left" title="nxt.session module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nxt.tokens.html" class="btn btn-neutral float-right" title="nxt.tokens module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, The nxt authors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

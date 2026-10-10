@@ -1,0 +1,21 @@
+nxt.remote package
+==================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   nxt.remote.client
+   nxt.remote.contexts
+   nxt.remote.nxt_socket
+   nxt.remote.server
+
+Module contents
+---------------
+
+.. automodule:: nxt.remote
+   :members:
+   :undoc-members:
+   :show-inheritance:

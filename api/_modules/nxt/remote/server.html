@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nxt.remote.server &mdash; NXT  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            NXT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference external" href="https://sunriseproductions.github.io/nxt/">User Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">nxt</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NXT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../nxt.html">nxt</a></li>
+          <li class="breadcrumb-item"><a href="../remote.html">nxt.remote</a></li>
+      <li class="breadcrumb-item active">nxt.remote.server</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nxt.remote.server</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Builin</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging.handlers</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
+
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">SocketServer</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreadingMixIn</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">SimpleXMLRPCServer</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleXMLRPCServer</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">socketserver</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreadingMixIn</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">xmlrpc.server</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleXMLRPCServer</span>
+
+<span class="c1"># Internal</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nxt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nxt.stage</span><span class="w"> </span><span class="kn">import</span> <span class="n">GraphError</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nxt.remote</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_server_info_filepath</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">nxt.remote.contexts</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nxt</span><span class="w"> </span><span class="kn">import</span> <span class="n">nxt_path</span><span class="p">,</span> <span class="n">nxt_io</span><span class="p">,</span> <span class="n">nxt_log</span>
+
+<span class="n">server</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">'nxt'</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="NxtServerException"><a class="viewcode-back" href="../../../nxt.remote.server.html#nxt.remote.server.NxtServerException">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">NxtServerException</span><span class="p">(</span><span class="n">GraphError</span><span class="p">):</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="NxtServer"><a class="viewcode-back" href="../../../nxt.remote.server.html#nxt.remote.server.NxtServer">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">NxtServer</span><span class="p">(</span><span class="n">ThreadingMixIn</span><span class="p">,</span> <span class="n">SimpleXMLRPCServer</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">address</span><span class="p">,</span> <span class="n">allow_none</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">log_requests</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Simple Threaded XMLRPCServer.</span>
+<span class="sd">        :param address: tuple of (HOST, PORT)</span>
+<span class="sd">        :param allow_none: If True None type objects are marshaled.</span>
+<span class="sd">        :param log_requests: If True connection requests are logged.</span>
+<span class="sd">        """</span>
+        <span class="n">SimpleXMLRPCServer</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">addr</span><span class="o">=</span><span class="n">address</span><span class="p">,</span> <span class="n">allow_none</span><span class="o">=</span><span class="n">allow_none</span><span class="p">,</span>
+                                    <span class="n">logRequests</span><span class="o">=</span><span class="n">log_requests</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="ServerFunctions"><a class="viewcode-back" href="../../../nxt.remote.server.html#nxt.remote.server.ServerFunctions">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">ServerFunctions</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_filepath</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cache_file</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_filepath</span> <span class="o">=</span> <span class="n">log_filepath</span>
+
+<div class="viewcode-block" id="ServerFunctions.get_log_location"><a class="viewcode-back" href="../../../nxt.remote.server.html#nxt.remote.server.ServerFunctions.get_log_location">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_log_location</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Simple method for getting the filepath of the file the server is</span>
+<span class="sd">        logging to. May be an empty string if the server isn't logging to a</span>
+<span class="sd">        custom filepath.</span>
+<span class="sd">        :return: str</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_filepath</span> <span class="ow">or</span> <span class="s1">''</span></div>
+
+<div class="viewcode-block" id="ServerFunctions.is_alive"><a class="viewcode-back" href="../../../nxt.remote.server.html#nxt.remote.server.ServerFunctions.is_alive">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_alive</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">"""Simple method for clients to use to check if the server is still</span>
+<span class="sd">        alive.</span>
+<span class="sd">        :return: True</span>
+<span class="sd">        """</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"rpc server is alive and ready"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="ServerFunctions.exec_in_headless"><a class="viewcode-back" href="../../../nxt.remote.server.html#nxt.remote.server.ServerFunctions.exec_in_headless">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">exec_in_headless</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">start_node</span><span class="p">,</span> <span class="n">cache_path</span><span class="p">,</span>
+                         <span class="n">parameters</span><span class="p">,</span> <span class="n">context_name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Executed the given graph (filepath) with the given start_node in the</span>
+<span class="sd">        dcc exe (as a sub-process). The temp path (if provided) must be a</span>
+<span class="sd">        location that the server can read/write. If no temp path is given one</span>
+<span class="sd">        will be generated. The file at the temp path is used to store the</span>
+<span class="sd">        cache data to be returned to the caller. Only the file path is</span>
+<span class="sd">        returned to the caller, not the actual data.</span>
+<span class="sd">        :param filepath: Path to nxt save file</span>
+<span class="sd">        :param start_node: start node path</span>
+<span class="sd">        :param cache_path: Path to store output cache data (if none is given</span>
+<span class="sd">        one will be generated)</span>
+<span class="sd">        :param parameters: Optional parameters dict</span>
+<span class="sd">        :param context_name: name of context, defaults to python</span>
+<span class="sd">        :return: filepath to temp file</span>
+<span class="sd">        """</span>
+        <span class="c1"># Fixme: Contexts must be accessed like this to avoid importing them</span>
+        <span class="c1">#  again and thus emptying the list of user contexts.</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="n">nxt</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">contexts</span><span class="o">.</span><span class="n">find_context_by_name</span><span class="p">(</span><span class="n">context_name</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">context</span><span class="p">:</span>
+            <span class="n">known</span> <span class="o">=</span> <span class="n">nxt</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">contexts</span><span class="o">.</span><span class="n">iter_context_names</span><span class="p">()</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'Known contexts: </span><span class="se">\n</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">known</span><span class="p">)))</span>
+            <span class="k">raise</span> <span class="ne">NameError</span><span class="p">(</span><span class="s1">'Unknown context "</span><span class="si">{}</span><span class="s1">"'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">context_name</span><span class="p">))</span>
+        <span class="n">context_exe</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">exe</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">context</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">context_exe</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">'Unable to find context exe for: '</span>
+                            <span class="s1">'</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">context</span><span class="p">))</span>
+
+        <span class="n">context_graph</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">graph</span>
+        <span class="n">context_graph</span> <span class="o">=</span> <span class="n">nxt_path</span><span class="o">.</span><span class="n">full_file_expand</span><span class="p">(</span><span class="n">context_graph</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">context_graph</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">'No launch script found for context: '</span>
+                            <span class="s1">'</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">context</span><span class="p">))</span>
+        <span class="c1"># Setup cache file if none provided</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">cache_path</span><span class="p">:</span>
+            <span class="n">cache_path</span> <span class="o">=</span> <span class="n">nxt_io</span><span class="o">.</span><span class="n">generate_temp_file</span><span class="p">()</span>
+        <span class="n">cache_path</span> <span class="o">=</span> <span class="n">cache_path</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">,</span> <span class="s1">'/'</span><span class="p">)</span>
+        <span class="c1"># Setup parameters file if parameters provided</span>
+        <span class="k">if</span> <span class="n">parameters</span><span class="p">:</span>
+            <span class="n">parameters_file</span> <span class="o">=</span> <span class="n">nxt_io</span><span class="o">.</span><span class="n">generate_temp_file</span><span class="p">()</span>
+            <span class="n">parameters_file</span> <span class="o">=</span> <span class="n">parameters_file</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">,</span> <span class="s1">'/'</span><span class="p">)</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">parameters_file</span><span class="p">,</span> <span class="s1">'w+'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+                <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">parameters</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="p">(</span><span class="s1">','</span><span class="p">,</span> <span class="s1">': '</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">parameters_file</span> <span class="o">=</span> <span class="s1">''</span>
+        <span class="n">context_graph</span> <span class="o">=</span> <span class="n">context_graph</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">,</span> <span class="s1">'/'</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">'Starting </span><span class="se">\n</span><span class="s1">'</span>
+                    <span class="s1">'Context: </span><span class="si">{}</span><span class="s1"> </span><span class="se">\n</span><span class="s1">'</span>
+                    <span class="s1">'Interpreter: </span><span class="si">{}</span><span class="s1"> </span><span class="se">\n</span><span class="s1">'</span>
+                    <span class="s1">'Context Graph: </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">context_exe</span><span class="p">,</span>
+                                                 <span class="n">context_graph</span><span class="p">))</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">'Cache location: </span><span class="si">{}</span><span class="se">\n</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cache_path</span><span class="p">))</span>
+        <span class="c1"># Format the cli call</span>
+        <span class="n">safe_graph_path</span> <span class="o">=</span> <span class="n">nxt_path</span><span class="o">.</span><span class="n">full_file_expand</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+        <span class="c1"># open context with graph and parameters</span>
+        <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="n">nxt_log</span><span class="o">.</span><span class="n">VERBOSE_ENV_VAR</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'socket'</span>
+        <span class="n">cli_args</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'exec'</span><span class="p">,</span> <span class="n">context_graph</span><span class="p">,</span> <span class="s1">'-p'</span><span class="p">,</span>
+                    <span class="s1">'/.graph_file'</span><span class="p">,</span> <span class="n">safe_graph_path</span><span class="p">,</span>
+                    <span class="s1">'/.cache_file'</span><span class="p">,</span> <span class="n">cache_path</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">parameters_file</span><span class="p">:</span>
+            <span class="n">cli_args</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">'/.parameters_file'</span><span class="p">,</span> <span class="n">parameters_file</span><span class="p">]</span>
+        <span class="n">script</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span> <span class="s1">'..'</span><span class="p">,</span> <span class="s1">'cli.py'</span><span class="p">)</span>
+        <span class="n">script</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">script</span><span class="p">)</span>
+        <span class="n">script</span> <span class="o">=</span> <span class="n">script</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">,</span> <span class="s1">'/'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">context</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+            <span class="n">extra_args</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="n">context</span><span class="o">.</span><span class="n">args</span><span class="p">:</span>
+                <span class="n">extra_args</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="n">context_exe</span><span class="p">]</span> <span class="o">+</span> <span class="n">extra_args</span> <span class="o">+</span> <span class="p">[</span><span class="n">script</span><span class="p">,</span> <span class="s1">'--'</span><span class="p">]</span> <span class="o">+</span> <span class="n">cli_args</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="p">[</span><span class="n">context_exe</span><span class="p">,</span> <span class="n">script</span><span class="p">]</span> <span class="o">+</span> <span class="n">cli_args</span>
+            <span class="k">if</span> <span class="n">start_node</span><span class="p">:</span>
+                <span class="n">args</span> <span class="o">+=</span> <span class="p">[</span><span class="s1">'/enter/call_graph._start'</span><span class="p">,</span> <span class="n">start_node</span><span class="p">]</span>
+        <span class="c1"># HACK solution only until refined context system rolls out to relate</span>
+        <span class="c1"># format strings to context names to include space for cli args.</span>
+        <span class="k">if</span> <span class="s1">'UE4Editor'</span> <span class="ow">in</span> <span class="n">context_exe</span><span class="p">:</span>
+            <span class="n">args</span> <span class="o">=</span> <span class="n">context_exe</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cli_path</span><span class="o">=</span><span class="n">script</span><span class="p">,</span>
+                                      <span class="n">cli_args</span><span class="o">=</span><span class="s1">' '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cli_args</span><span class="p">))</span>
+
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'call:  </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">args</span><span class="p">))</span>
+        <span class="c1"># TODO: Find a clean way to raise exceptions from the subprocess.</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">subprocess</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">CalledProcessError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s1">'Remote context graph "</span><span class="si">{}</span><span class="s1">" failed! See log...'</span>
+                               <span class="s1">''</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">safe_graph_path</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">cache_path</span></div>
+
+<div class="viewcode-block" id="ServerFunctions.kill"><a class="viewcode-back" href="../../../nxt.remote.server.html#nxt.remote.server.ServerFunctions.kill">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">kill</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Shuts down the running rpc server and attemps to remove the server</span>
+<span class="sd">        log file if there is one.</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        """</span>
+        <span class="k">global</span> <span class="n">server</span>
+        <span class="k">if</span> <span class="n">server</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">'Shutting down rpc server!'</span><span class="p">)</span>
+            <span class="n">server</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">log_filepath</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'Removing server log file: '</span>
+                                 <span class="s1">'</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_filepath</span><span class="p">))</span>
+                    <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">log_filepath</span><span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">'Failed to remove server log file, '</span>
+                                   <span class="s1">'if it was an autogenerated file nxt_log '</span>
+                                   <span class="s1">'will remove it when determined it is '</span>
+                                   <span class="s1">'stale.'</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="secure_address"><a class="viewcode-back" href="../../../nxt.remote.server.html#nxt.remote.server.secure_address">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">secure_address</span><span class="p">():</span>
+    <span class="n">server_info_filepath</span> <span class="o">=</span> <span class="n">get_server_info_filepath</span><span class="p">()</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">bind</span><span class="p">((</span><span class="s1">''</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_SOCKET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_REUSEADDR</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">getsockname</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">server_info_filepath</span><span class="p">,</span> <span class="s1">'w+'</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
+        <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">'localhost'</span> <span class="o">+</span> <span class="s1">'</span><span class="se">\n</span><span class="s1">'</span><span class="p">)</span>
+        <span class="n">fp</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">port</span><span class="p">))</span>
+    <span class="k">return</span> <span class="s1">'localhost'</span><span class="p">,</span> <span class="n">port</span></div>
+
+
+<div class="viewcode-block" id="run_server"><a class="viewcode-back" href="../../../nxt.remote.server.html#nxt.remote.server.run_server">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">run_server</span><span class="p">(</span><span class="n">address</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log_requests</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">nxt_root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span>
+                                            <span class="s1">'../..'</span><span class="p">))</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">sep</span><span class="p">,</span> <span class="s1">'/'</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">chdir</span><span class="p">(</span><span class="n">nxt_root</span><span class="p">)</span>
+    <span class="k">global</span> <span class="n">server</span>
+    <span class="k">if</span> <span class="n">address</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">address</span> <span class="o">=</span> <span class="n">secure_address</span><span class="p">()</span>
+    <span class="n">server</span> <span class="o">=</span> <span class="n">NxtServer</span><span class="p">(</span><span class="n">address</span><span class="p">,</span> <span class="n">log_requests</span><span class="o">=</span><span class="n">log_requests</span><span class="p">)</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">register_instance</span><span class="p">(</span><span class="n">ServerFunctions</span><span class="p">(</span><span class="n">log_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">))</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">allow_reuse_address</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">'Threaded nxt rpc server started!'</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'Listening on:  </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">address</span><span class="p">))</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">'__main__'</span><span class="p">:</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">'Available contexts: '</span>
+                <span class="s1">'</span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">nxt</span><span class="o">.</span><span class="n">remote</span><span class="o">.</span><span class="n">contexts</span><span class="o">.</span><span class="n">iter_context_names</span><span class="p">())))</span>
+    <span class="c1"># TODO: Fix logging so non-hosting apps can get the stdout and logs</span>
+    <span class="c1"># logger.debug('Logging to: {}'.format(log_file))</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">'Starting up server...'</span><span class="p">)</span>
+    <span class="n">run_server</span><span class="p">()</span>
+    <span class="c1"># logger.info('Logging rpc stdout to: {}'.format(log_file))</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, The nxt authors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

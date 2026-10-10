@@ -40,6 +40,9 @@
                                 <a href=".." class="nav-link">Home</a>
                             </li>
                             <li class="navitem">
+                                <a href="../whats_new/" class="nav-link">What's New</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../concepts/" class="nav-link">Concepts</a>
                             </li>
                             <li class="navitem">
@@ -171,7 +174,7 @@ nxt.create_context('MyContext',
 </code></pre>
 <h4 id="my_custom_contextspy">my_custom_contexts.py</h4>
 <p>The following example is for Maya 2020 running on Windows.</p>
-<p>The two imports from nxt that you'll need are the <code>RemoteContext</code> class and <code>register_context</code> function. The first arg in <code>RemoteContexts</code> is the <strong>context name</strong>, this will be used by users to call your context. Next we have the context executable, this must be a python (currently only <code>Python 2.7</code>) executable. And finally the path to your context graph.</p>
+<p>The two imports from nxt that you'll need are the <code>RemoteContext</code> class and <code>register_context</code> function. The first arg in <code>RemoteContexts</code> is the <strong>context name</strong>, this will be used by users to call your context. Next we have the context executable, this must be a Python 3 executable that nxt-core supports, such as <code>mayapy</code>. And finally the path to your context graph.</p>
 <pre><code class="language-python"># Builtin
 import os
 # External
@@ -193,7 +196,11 @@ register_context(maya_2020_context)
 </code></pre>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>To add a layer like this (using the env var) right click on your layer in the layer manager and select <code>Reference Builtin Graph</code></p>
+<p>To add a reference that uses an environment variable, open the
+<a href="../reference/#reference-editor">Reference Editor</a> (right click the layer
+in the Layer Manager &gt; <strong>Edit References...</strong>), press <strong>+</strong> and type
+<code>$NXT_BUILTINS/_context.nxt</code> into the field. Typed paths are stored
+exactly as written.</p>
 </div>
 <p>2) On the <code>/</code> node add an attr called <code>maya_inst_name</code> and set its value to <code>nxt</code></p>
 <p>3) Also on the <code>/</code> node we're going to want to write some custom code in. Add

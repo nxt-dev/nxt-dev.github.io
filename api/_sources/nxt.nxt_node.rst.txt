@@ -1,0 +1,7 @@
+nxt.nxt\_node module
+====================
+
+.. automodule:: nxt.nxt_node
+   :members:
+   :undoc-members:
+   :show-inheritance:

@@ -1,6 +1,7 @@
-runtime module
+nxt.runtime module
 ==================
 
 .. automodule:: nxt.runtime
-   :members: w, execute
+   :members:
+   :undoc-members:
    :show-inheritance:

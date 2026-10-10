@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nxt.session &mdash; NXT  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            NXT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference external" href="https://sunriseproductions.github.io/nxt/">User Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">nxt</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NXT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../nxt.html">nxt</a></li>
+      <li class="breadcrumb-item active">nxt.session</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nxt.session</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Built-in</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">subprocess</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">socket</span>
+
+<span class="c1"># Internal</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nxt</span><span class="w"> </span><span class="kn">import</span> <span class="n">nxt_log</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">nxt_io</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">nxt_path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">nxt_layer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nxt.remote</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_running_server_address</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nxt.remote.client</span><span class="w"> </span><span class="kn">import</span> <span class="n">NxtClient</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.remote</span><span class="w"> </span><span class="kn">import</span> <span class="n">contexts</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nxt.stage</span><span class="w"> </span><span class="kn">import</span> <span class="n">Stage</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nxt.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">NXT_DCC_ENV_VAR</span><span class="p">,</span> <span class="n">is_standalone</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Session"><a class="viewcode-back" href="../../nxt.session.html#nxt.session.Session">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">Session</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Nxt Session, manages loading, saving, and execution of graphs."""</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_loaded_files</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">log_file</span> <span class="o">=</span> <span class="n">nxt_log</span><span class="o">.</span><span class="n">make_session_log</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rpc_server</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">loaded_files</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_loaded_files</span>
+
+<div class="viewcode-block" id="Session.new_file"><a class="viewcode-back" href="../../nxt.session.html#nxt.session.Session.new_file">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">new_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Create a new (empty) graph.</span>
+
+<span class="sd">        :return: New graph object.</span>
+<span class="sd">        """</span>
+        <span class="n">new_graph</span> <span class="o">=</span> <span class="n">Stage</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_unused_graph_name</span><span class="p">(</span><span class="s1">'untitled'</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_loaded_files</span><span class="p">[</span><span class="n">new_graph</span><span class="o">.</span><span class="n">uid</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_graph</span>
+        <span class="k">return</span> <span class="n">new_graph</span></div>
+
+<div class="viewcode-block" id="Session.get_unused_graph_name"><a class="viewcode-back" href="../../nxt.session.html#nxt.session.Session.get_unused_graph_name">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_unused_graph_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Used by new_file() to make sure that any new graph created won't</span>
+<span class="sd">        conflict with the names of currently open graphs.</span>
+
+<span class="sd">        :param name: Name preference, adjusted to remove conflicts if needed.</span>
+<span class="sd">        :type name: str</span>
+
+<span class="sd">        :return: Resulting name, may not match input name preference.</span>
+<span class="sd">        """</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">test_name</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">stage</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_loaded_files</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="n">stage</span><span class="o">.</span><span class="n">_name</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="kc">False</span>
+            <span class="k">return</span> <span class="kc">True</span>
+
+        <span class="n">result_name</span> <span class="o">=</span> <span class="s1">''</span>
+        <span class="n">num_suffix</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">potential_name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="k">while</span> <span class="n">result_name</span> <span class="o">==</span> <span class="s1">''</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">test_name</span><span class="p">(</span><span class="n">potential_name</span><span class="p">):</span>
+                <span class="n">result_name</span> <span class="o">=</span> <span class="n">potential_name</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">num_suffix</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">potential_name</span> <span class="o">=</span> <span class="n">name</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">num_suffix</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">result_name</span></div>
+
+<div class="viewcode-block" id="Session.load_file"><a class="viewcode-back" href="../../nxt.session.html#nxt.session.Session.load_file">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">load_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Create a new graph from given filepath.</span>
+
+<span class="sd">        :param filepath: Path to .json file to load.</span>
+<span class="sd">        :type filepath: str</span>
+
+<span class="sd">        :return: New graph object, if load succeeded. Otherwise None.</span>
+<span class="sd">        :rtype: Graph</span>
+<span class="sd">        """</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">layer_data</span> <span class="o">=</span> <span class="n">nxt_io</span><span class="o">.</span><span class="n">load_file_data</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+            <span class="n">new_stage</span> <span class="o">=</span> <span class="n">Stage</span><span class="p">(</span><span class="n">layer_data</span><span class="o">=</span><span class="n">layer_data</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">'Failed to open: "</span><span class="si">{}</span><span class="s1">"'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filepath</span><span class="p">))</span>
+            <span class="k">raise</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_loaded_files</span><span class="p">[</span><span class="n">new_stage</span><span class="o">.</span><span class="n">uid</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_stage</span>
+        <span class="k">return</span> <span class="n">new_stage</span></div>
+
+<div class="viewcode-block" id="Session.unload_file"><a class="viewcode-back" href="../../nxt.session.html#nxt.session.Session.unload_file">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">unload_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uid</span><span class="p">):</span>
+        <span class="n">unload_key</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loaded_files</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="n">uid</span><span class="p">]</span>
+        <span class="n">uid_lst</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">loaded_files</span><span class="o">.</span><span class="n">keys</span><span class="p">()]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">unload_key</span><span class="p">:</span>
+            <span class="n">err_format</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'Unable to find a graph with the uuid </span><span class="si">{uid}</span><span class="s1"> '</span>
+                          <span class="s1">'exsisting uuids are </span><span class="si">{uidLst}</span><span class="s1">'</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">LookupError</span><span class="p">(</span><span class="n">err_format</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">uid</span><span class="o">=</span><span class="n">uid</span><span class="p">,</span> <span class="n">uidLst</span><span class="o">=</span><span class="n">uid_lst</span><span class="p">))</span>
+        <span class="n">unload_key</span> <span class="o">=</span> <span class="n">unload_key</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loaded_files</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">unload_key</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Session.save_file"><a class="viewcode-back" href="../../nxt.session.html#nxt.session.Session.save_file">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">save_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">graph_file_path</span><span class="p">,</span> <span class="n">new_path</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""The file to save is specified via graph_file_path.</span>
+<span class="sd">        If new_path is specified, it will change the path used to</span>
+<span class="sd">        identify the graph in the future.</span>
+
+<span class="sd">        :param graph_file_path: path used to locate file to save in currently</span>
+<span class="sd">                                loaded files.</span>
+<span class="sd">        :type graph_file_path: str</span>
+
+<span class="sd">        :param new_path: If specified, saves the specified file to a new path.</span>
+<span class="sd">        :type new_path: str</span>
+
+<span class="sd">        :return: True/False if successful</span>
+<span class="sd">        """</span>
+        <span class="n">target_path</span> <span class="o">=</span> <span class="n">graph_file_path</span>
+        <span class="k">if</span> <span class="n">new_path</span><span class="p">:</span>
+            <span class="n">target_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normcase</span><span class="p">(</span><span class="n">new_path</span><span class="p">)</span>
+        <span class="n">current_path</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">graph_file_path</span><span class="p">:</span>
+            <span class="n">current_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normcase</span><span class="p">(</span><span class="n">graph_file_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">current_path</span> <span class="ow">in</span> <span class="p">(</span><span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_loaded_files</span><span class="o">.</span><span class="n">keys</span><span class="p">()):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_loaded_files</span><span class="p">[</span><span class="n">current_path</span><span class="p">]</span><span class="o">.</span><span class="n">save_layer</span><span class="p">(</span><span class="n">filepath</span><span class="o">=</span><span class="n">target_path</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">current_path</span> <span class="o">!=</span> <span class="n">target_path</span><span class="p">:</span>
+                <span class="n">changed_graph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_loaded_files</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">current_path</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_loaded_files</span><span class="p">[</span><span class="n">target_path</span><span class="p">]</span> <span class="o">=</span> <span class="n">changed_graph</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="Session.save_layer"><a class="viewcode-back" href="../../nxt.session.html#nxt.session.Session.save_layer">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">save_layer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer</span><span class="p">,</span> <span class="n">filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">as_copy</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">layer</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">filepath</span><span class="o">=</span><span class="n">filepath</span><span class="p">,</span> <span class="n">as_copy</span><span class="o">=</span><span class="n">as_copy</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Session.get_stage"><a class="viewcode-back" href="../../nxt.session.html#nxt.session.Session.get_stage">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">get_stage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Get the graph object for a specified file path.</span>
+<span class="sd">        If the file is not already loaded, it will be.</span>
+
+<span class="sd">        :param path: Path to file the graph is loaded from.</span>
+<span class="sd">        :type path: str</span>
+
+<span class="sd">        :return: Graph object, if found, otherwise None.</span>
+<span class="sd">        """</span>
+        <span class="n">norm_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">normcase</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">uid</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_loaded_files</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">data</span><span class="o">.</span><span class="n">filepath</span> <span class="o">==</span> <span class="n">norm_path</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_loaded_files</span><span class="p">[</span><span class="n">uid</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_file</span><span class="p">(</span><span class="n">path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Session.execute_graph"><a class="viewcode-back" href="../../nxt.session.html#nxt.session.Session.execute_graph">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">execute_graph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">context</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Execute the graph at the given file path. Optionally at given</span>
+<span class="sd">        start. You may provided parameters to the parameter arg. The data</span>
+<span class="sd">        should be formatted as follows::</span>
+<span class="sd">            {</span>
+<span class="sd">                '/node.attr': 'New value!',</span>
+<span class="sd">                '/another.count: 5</span>
+<span class="sd">            }</span>
+<span class="sd">        If the node does not exist an error will be logged but the execution</span>
+<span class="sd">        will continue. If the attr does not exist (but the node does) it</span>
+<span class="sd">        will be created.</span>
+
+<span class="sd">        :param filepath: Path to the graph file.</span>
+<span class="sd">        :type filepath: str</span>
+<span class="sd">        :param start: Path to the node to begin execution from OR int \</span>
+<span class="sd">        of start node index</span>
+<span class="sd">        :type start: str or int</span>
+<span class="sd">        :param parameters: Dict where key is attr path and value is new attr \</span>
+<span class="sd">        value.</span>
+<span class="sd">        :type parameters: dict</span>
+<span class="sd">        :param context: Optional name of remote context to execute graph in, \</span>
+<span class="sd">        if none is passed the graph is executed in this interpreter.</span>
+<span class="sd">        :type context: str</span>
+<span class="sd">        :return: a runtime CompLayer.</span>
+<span class="sd">        """</span>
+        <span class="n">stage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_stage</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">context</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">start_rpc_if_needed</span><span class="p">(</span><span class="n">stage</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">stage</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shutdown_rpc_server</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_start_rpc_server</span><span class="p">()</span>
+            <span class="n">proxy</span> <span class="o">=</span> <span class="n">NxtClient</span><span class="p">()</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">cache_file</span> <span class="o">=</span> <span class="n">proxy</span><span class="o">.</span><span class="n">exec_in_headless</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
+                                                    <span class="n">parameters</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">nxt_layer</span><span class="o">.</span><span class="n">CacheLayer</span><span class="o">.</span><span class="n">load_from_filepath</span><span class="p">(</span><span class="n">cache_file</span><span class="p">)</span>
+            <span class="k">finally</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">shutdown_rpc_server</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Session.execute_nodes"><a class="viewcode-back" href="../../nxt.session.html#nxt.session.Session.execute_nodes">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">execute_nodes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filepath</span><span class="p">,</span> <span class="n">node_paths</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">stage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_stage</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start_rpc_if_needed</span><span class="p">(</span><span class="n">stage</span><span class="p">)</span>
+        <span class="n">comp_layer</span> <span class="o">=</span> <span class="n">stage</span><span class="o">.</span><span class="n">build_stage</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">stage</span><span class="o">.</span><span class="n">execute_nodes</span><span class="p">(</span><span class="n">node_paths</span><span class="o">=</span><span class="n">node_paths</span><span class="p">,</span>
+                                       <span class="n">layer</span><span class="o">=</span><span class="n">comp_layer</span><span class="p">,</span> <span class="n">parameters</span><span class="o">=</span><span class="n">parameters</span><span class="p">)</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">shutdown_rpc_server</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Session.start_rpc_if_needed"><a class="viewcode-back" href="../../nxt.session.html#nxt.session.Session.start_rpc_if_needed">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">start_rpc_if_needed</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stage</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Given a stage this method parses for the remote context node,</span>
+<span class="sd">        if it is found in the stage's sub_layers an rpc is started.</span>
+<span class="sd">        (if one is already run a new on will NOT be started)</span>
+
+<span class="sd">        :param stage: stage.Stage instance</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        """</span>
+        <span class="c1"># Remote Graphs</span>
+        <span class="n">remote_node_name</span> <span class="o">=</span> <span class="n">contexts</span><span class="o">.</span><span class="n">REMOTE_CONTEXT_BUILTIN_NODE</span>
+        <span class="n">remote_path</span> <span class="o">=</span> <span class="n">nxt_path</span><span class="o">.</span><span class="n">join_node_paths</span><span class="p">(</span><span class="n">nxt_path</span><span class="o">.</span><span class="n">NODE_SEP</span><span class="p">,</span>
+                                               <span class="n">remote_node_name</span><span class="p">)</span>
+        <span class="c1"># Sub-graphs that might call remote graphs</span>
+        <span class="n">sub_graph_node_name</span> <span class="o">=</span> <span class="n">contexts</span><span class="o">.</span><span class="n">SUB_GRAPH_BUILTIN_NODE</span>
+        <span class="n">sub_graph_path</span> <span class="o">=</span> <span class="n">nxt_path</span><span class="o">.</span><span class="n">join_node_paths</span><span class="p">(</span><span class="n">nxt_path</span><span class="o">.</span><span class="n">NODE_SEP</span><span class="p">,</span>
+                                                  <span class="n">sub_graph_node_name</span><span class="p">)</span>
+        <span class="n">start_rpc</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">stage</span><span class="o">.</span><span class="n">_sub_layers</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">layer</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">remote_path</span><span class="p">)</span> <span class="ow">or</span> <span class="n">layer</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">sub_graph_path</span><span class="p">):</span>
+                <span class="n">start_rpc</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">break</span>
+        <span class="k">if</span> <span class="n">start_rpc</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_start_rpc_server</span><span class="p">()</span>
+            <span class="k">return</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">'It was determined you do not need an rpc server.'</span><span class="p">)</span></div>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_start_rpc_server</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">custom_stdout</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">rpc_log_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                          <span class="n">socket_log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">stream_handler</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Directly start the RPC server regardless of need for it.</span>
+<span class="sd">        :param custom_stdout: If True the stdout and stderr of the rpc server</span>
+<span class="sd">        will be directed to a file on disc</span>
+<span class="sd">        :param rpc_log_filepath: Optional filepath to be used for custom_stdout.</span>
+<span class="sd">        The file must be writeable. If custom_stdout is False this kwarg has</span>
+<span class="sd">        no effect.</span>
+<span class="sd">        :param socket_log: If True the a nxt logging messages will be</span>
+<span class="sd">        directed to a socket handler.</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        """</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'Starting rpc server!'</span><span class="p">)</span>
+        <span class="n">rpc_server</span> <span class="o">=</span> <span class="n">RPCServerProcess</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">use_custom_stdout</span><span class="o">=</span><span class="n">custom_stdout</span><span class="p">,</span>
+                                            <span class="n">stdout_filepath</span><span class="o">=</span><span class="n">rpc_log_filepath</span><span class="p">,</span>
+                                            <span class="n">socket_log</span><span class="o">=</span><span class="n">socket_log</span><span class="p">,</span>
+                                            <span class="n">stream_handler</span><span class="o">=</span><span class="n">stream_handler</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rpc_server</span> <span class="o">=</span> <span class="n">rpc_server</span>
+
+<div class="viewcode-block" id="Session.shutdown_rpc_server"><a class="viewcode-back" href="../../nxt.session.html#nxt.session.Session.shutdown_rpc_server">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">shutdown_rpc_server</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Attempts to close THIS session's rpc server, if this session</span>
+<span class="sd">        doesn't own the server it will not shut it down.</span>
+<span class="sd">        :return: None</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">rpc_server</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'This session does not own an rpc server.'</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'Trying to shutdown rpc server...'</span><span class="p">)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rpc_server</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">exception</span><span class="p">(</span><span class="s1">'Failed to shut down rpc server!'</span><span class="p">)</span>
+            <span class="k">pass</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rpc_server</span> <span class="o">=</span> <span class="kc">None</span></div></div>
+
+
+<div class="viewcode-block" id="RPCServerProcess"><a class="viewcode-back" href="../../nxt.session.html#nxt.session.RPCServerProcess">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">RPCServerProcess</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">STARTUP_TIMEOUT</span> <span class="o">=</span> <span class="mi">5</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">use_custom_stdout</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">stdout_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                 <span class="n">socket_log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">stream_handler</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Uses a subprocess to start remote/server.py</span>
+<span class="sd">        If it is determined there is already a server running somewhere on</span>
+<span class="sd">        the host address then run will early exit. If for some reason the</span>
+<span class="sd">        port is occupied by another process that is not our RPC server an</span>
+<span class="sd">        exception is raised.</span>
+<span class="sd">        :param use_custom_stdout: If True the stdout/stderr of the subprocess</span>
+<span class="sd">        is populated by a file handle to a custom filepath.</span>
+<span class="sd">        :param stdout_filepath: Optionally, if you don't want a generated</span>
+<span class="sd">        temp file as the stdout file a path to your desired output file can</span>
+<span class="sd">        be passed here. Has no effect if use_custom_stdout is False.</span>
+<span class="sd">        :param socket_log: If True the a nxt logging messages will be</span>
+<span class="sd">        :param stream_handler: Logging stream handler only needed if calling</span>
+<span class="sd">        from visual app.</span>
+<span class="sd">        directed to a socket handler.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">use_custom_stdout</span> <span class="o">=</span> <span class="n">use_custom_stdout</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">server_log_file</span> <span class="o">=</span> <span class="n">stdout_filepath</span> <span class="ow">or</span> <span class="s1">''</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">socket_logging</span> <span class="o">=</span> <span class="n">socket_log</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">stream_handler</span> <span class="o">=</span> <span class="n">stream_handler</span>
+
+<div class="viewcode-block" id="RPCServerProcess.start"><a class="viewcode-back" href="../../nxt.session.html#nxt.session.RPCServerProcess.start">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">use_custom_stdout</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">stdout_filepath</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+              <span class="n">socket_log</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">stream_handler</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Quick start method for starting and returning a server if needed</span>
+
+<span class="sd">        :param use_custom_stdout: see __init__</span>
+<span class="sd">        :param stdout_filepath: see __init__</span>
+<span class="sd">        :param socket_log: see __init__</span>
+<span class="sd">        :return: None or RPCServerProcess instance</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_standalone</span><span class="p">():</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">'The nxt rpc server cannot be started unless nxt '</span>
+                           <span class="s1">'is launched as standalone.'</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="n">rpc_server</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">use_custom_stdout</span><span class="o">=</span><span class="n">use_custom_stdout</span><span class="p">,</span>
+                         <span class="n">stdout_filepath</span><span class="o">=</span><span class="n">stdout_filepath</span><span class="p">,</span>
+                         <span class="n">socket_log</span><span class="o">=</span><span class="n">socket_log</span><span class="p">,</span> <span class="n">stream_handler</span><span class="o">=</span><span class="n">stream_handler</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">rpc_server</span><span class="o">.</span><span class="n">run</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">rpc_server</span></div>
+
+<div class="viewcode-block" id="RPCServerProcess.run"><a class="viewcode-back" href="../../nxt.session.html#nxt.session.RPCServerProcess.run">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Method for starting rpc server sub-process</span>
+
+<span class="sd">        :raises: OSError</span>
+<span class="sd">        :return: True if server was started, else False.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">'Server already running somewhere...'</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_port_available</span><span class="p">():</span>
+            <span class="n">_</span><span class="p">,</span> <span class="n">port</span> <span class="o">=</span> <span class="n">get_running_server_address</span><span class="p">(</span><span class="n">as_str</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="s1">'Port </span><span class="si">{}</span><span class="s1"> is not available!'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">port</span><span class="p">))</span>
+        <span class="n">old_env_verbosity</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">nxt_log</span><span class="o">.</span><span class="n">VERBOSE_ENV_VAR</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">socket_logging</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="n">nxt_log</span><span class="o">.</span><span class="n">VERBOSE_ENV_VAR</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'socket'</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_custom_stdout</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">server_log_file</span><span class="p">:</span>
+                <span class="n">_ext</span> <span class="o">=</span> <span class="s1">'.nxtlog'</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">server_log_file</span> <span class="o">=</span> <span class="n">nxt_io</span><span class="o">.</span><span class="n">generate_temp_file</span><span class="p">(</span><span class="n">suffix</span><span class="o">=</span><span class="n">_ext</span><span class="p">)</span>
+                <span class="n">nxt_log</span><span class="o">.</span><span class="n">track_log_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">server_log_file</span><span class="p">)</span>
+            <span class="n">server_log_handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">server_log_file</span><span class="p">,</span> <span class="s1">'w'</span><span class="p">)</span>
+            <span class="n">nxt_log</span><span class="o">.</span><span class="n">startup_log_socket</span><span class="p">(</span><span class="n">stream_handler</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">stream_handler</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">server_log_handle</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">call</span> <span class="o">=</span> <span class="p">[</span><span class="n">sys</span><span class="o">.</span><span class="n">executable</span><span class="p">,</span> <span class="s1">'-m'</span><span class="p">,</span> <span class="s1">'nxt.remote.server'</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">server_log_file</span><span class="p">]</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"Calling: "</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">call</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">call</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">server_log_handle</span><span class="p">,</span>
+                                         <span class="n">stderr</span><span class="o">=</span><span class="n">server_log_handle</span><span class="p">)</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">count</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">STARTUP_TIMEOUT</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'Waiting on rpc server...'</span><span class="p">)</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_running</span><span class="p">():</span>
+                <span class="k">break</span>
+        <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">STARTUP_TIMEOUT</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="s1">'Failed to start RPC server!'</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'rpc server started'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">old_env_verbosity</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="n">nxt_log</span><span class="o">.</span><span class="n">VERBOSE_ENV_VAR</span><span class="p">]</span> <span class="o">=</span> <span class="n">old_env_verbosity</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="RPCServerProcess.is_running"><a class="viewcode-back" href="../../nxt.session.html#nxt.session.RPCServerProcess.is_running">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">is_running</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Attempts to connect to the rpc server as a client, if that fails</span>
+<span class="sd">        because the connection is refused the subprocess is polled. If this</span>
+<span class="sd">        instance doesn't own the subprocess and it fails to connect as a</span>
+<span class="sd">        client False is returned.</span>
+
+<span class="sd">        :return: bool of server running state</span>
+<span class="sd">        """</span>
+        <span class="n">is_running</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">proxy</span> <span class="o">=</span> <span class="n">NxtClient</span><span class="p">()</span>
+            <span class="n">is_running</span> <span class="o">=</span> <span class="n">proxy</span><span class="o">.</span><span class="n">is_alive</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="c1"># Connection refused</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="s1">'errno'</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">10061</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">terminal</span><span class="p">:</span>
+                <span class="n">poll</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">terminal</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">poll</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">is_running</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">return</span> <span class="n">is_running</span></div>
+
+<div class="viewcode-block" id="RPCServerProcess.terminate"><a class="viewcode-back" href="../../nxt.session.html#nxt.session.RPCServerProcess.terminate">[docs]</a>    <span class="k">def</span><span class="w"> </span><span class="nf">terminate</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Attempts to kill the rpc server.</span>
+<span class="sd">        Note: The server is killed even if it isn't owned by this class!</span>
+
+<span class="sd">        :return: None</span>
+<span class="sd">        """</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">proxy</span> <span class="o">=</span> <span class="n">NxtClient</span><span class="p">()</span>
+            <span class="n">proxy</span><span class="o">.</span><span class="n">kill</span><span class="p">()</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="s1">'errno'</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">10061</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">terminal</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">'Telling rpc server to shutdown...'</span><span class="p">)</span>
+                    <span class="n">proxy</span> <span class="o">=</span> <span class="n">NxtClient</span><span class="p">()</span>
+                    <span class="n">proxy</span><span class="o">.</span><span class="n">kill</span><span class="p">()</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">server_log_file</span> <span class="o">=</span> <span class="s1">''</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                        <span class="s1">'Unable to tell rpc server to shutdown!'</span><span class="p">)</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">terminal</span><span class="o">.</span><span class="n">terminate</span><span class="p">()</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s1">'RPC server has shutdown!'</span><span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">'Unable to kill rpc process!'</span><span class="p">)</span>
+        <span class="n">nxt_log</span><span class="o">.</span><span class="n">shutdown_log_socket</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="RPCServerProcess.is_port_available"><a class="viewcode-back" href="../../nxt.session.html#nxt.session.RPCServerProcess.is_port_available">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_port_available</span><span class="p">():</span>
+<span class="w">        </span><span class="sd">"""Checks if the rpc port is occupied.</span>
+<span class="sd">        :return: bool</span>
+<span class="sd">        """</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">AF_INET</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SOCK_STREAM</span><span class="p">)</span>
+        <span class="n">address</span> <span class="o">=</span> <span class="n">get_running_server_address</span><span class="p">(</span><span class="n">as_str</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">connect_ex</span><span class="p">(</span><span class="n">address</span><span class="p">)</span>
+        <span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">results</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span></div></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, The nxt authors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+nxt.plugins.example module
+==========================
+
+.. automodule:: nxt.plugins.example
+   :members:
+   :undoc-members:
+   :show-inheritance:

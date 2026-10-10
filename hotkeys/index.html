@@ -40,6 +40,9 @@
                                 <a href=".." class="nav-link">Home</a>
                             </li>
                             <li class="navitem">
+                                <a href="../whats_new/" class="nav-link">What's New</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../concepts/" class="nav-link">Concepts</a>
                             </li>
                             <li class="navitem">
@@ -92,53 +95,48 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
+            <li class="nav-item" data-level="1"><a href="#hotkeys" class="nav-link">Hotkeys</a>
+              <ul class="nav flex-column">
             <li class="nav-item" data-level="2"><a href="#application-actions" class="nav-link">Application Actions</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
             <li class="nav-item" data-level="2"><a href="#alignment" class="nav-link">Alignment</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
             <li class="nav-item" data-level="2"><a href="#display" class="nav-link">Display</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
             <li class="nav-item" data-level="2"><a href="#graph" class="nav-link">Graph</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
             <li class="nav-item" data-level="2"><a href="#layers" class="nav-link">Layers</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
             <li class="nav-item" data-level="2"><a href="#nodes" class="nav-link">Nodes</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
             <li class="nav-item" data-level="2"><a href="#property-editor" class="nav-link">Property Editor</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
             <li class="nav-item" data-level="2"><a href="#node-comment" class="nav-link">Node Comment</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
             <li class="nav-item" data-level="2"><a href="#graph-execution" class="nav-link">Graph Execution</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            
             <li class="nav-item" data-level="2"><a href="#code-editor" class="nav-link">Code Editor</a>
               <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
         </ul>
@@ -146,6 +144,8 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
+<h1 id="hotkeys">Hotkeys</h1>
+<p>Every action below can be given a new shortcut in the Hotkey Editor (<strong>Window &gt; Hotkey Editor</strong>).</p>
 <h2 id="application-actions">Application Actions</h2>
 <table>
 <thead>
@@ -377,6 +377,18 @@
 <td align="center">Ctrl+L</td>
 </tr>
 <tr>
+<td align="left">Toggle Mini Map</td>
+<td align="center">Shows or hides the mini map in the bottom right of the graph for all tabs.</td>
+<td align="left">Show / Hide the Mini Map</td>
+<td align="center">Ctrl+M</td>
+</tr>
+<tr>
+<td align="left">Animate Nodes</td>
+<td align="center">When on, nodes slide and fade as they open and close. Off by default.</td>
+<td align="left">Animate nodes opening and closing</td>
+<td align="center"></td>
+</tr>
+<tr>
 <td align="left">Pick walk up</td>
 <td align="center"></td>
 <td align="left">Pick walk up</td>
@@ -466,6 +478,18 @@
 <td align="center">Open target layer in new tab.</td>
 <td align="left">Open Source</td>
 <td align="center">Ctrl+Shift+O</td>
+</tr>
+<tr>
+<td align="left">Reload Source...</td>
+<td align="center">Re-read a layer, and as much of what it references as you choose, from disk, and composite the graph again.</td>
+<td align="left">Re-read this layer and what it references from disk</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="left">Edit References...</td>
+<td align="center">Change what a layer references. Applying reloads the referenced layers and recomposites; the layer is written when you save it.</td>
+<td align="left">Edit which layers this layer references</td>
+<td align="center"></td>
 </tr>
 <tr>
 <td align="left">Toggle Layer Mute</td>
@@ -976,8 +1000,91 @@
 <td align="left">Cancel Code Edit</td>
 <td align="center">Esc</td>
 </tr>
+<tr>
+<td align="left">Find In Code</td>
+<td align="center">Search the code in this editor.</td>
+<td align="left">Find In Code</td>
+<td align="center">Ctrl+F</td>
+</tr>
+<tr>
+<td align="left">Replace In Code</td>
+<td align="center">Search and replace in the code in this editor.</td>
+<td align="left">Replace In Code</td>
+<td align="center">Ctrl+H</td>
+</tr>
+<tr>
+<td align="left">Find Next</td>
+<td align="center">Jump to the next match.</td>
+<td align="left">Find Next</td>
+<td align="center">F3</td>
+</tr>
+<tr>
+<td align="left">Find Previous</td>
+<td align="center">Jump to the previous match.</td>
+<td align="left">Find Previous</td>
+<td align="center">Shift+F3</td>
+</tr>
+<tr>
+<td align="left">Go To Line</td>
+<td align="center">Jump to a line number.</td>
+<td align="left">Go To Line</td>
+<td align="center">Ctrl+G</td>
+</tr>
+<tr>
+<td align="left">Duplicate Line</td>
+<td align="center">Copy the selected line(s) below.</td>
+<td align="left">Duplicate Line</td>
+<td align="center">Ctrl+Shift+D</td>
+</tr>
+<tr>
+<td align="left">Move Line Up</td>
+<td align="center">Swap the selected line(s) with the line above.</td>
+<td align="left">Move Line Up</td>
+<td align="center">Alt+Up</td>
+</tr>
+<tr>
+<td align="left">Move Line Down</td>
+<td align="center">Swap the selected line(s) with the line below.</td>
+<td align="left">Move Line Down</td>
+<td align="center">Alt+Down</td>
+</tr>
+<tr>
+<td align="left">Delete Line</td>
+<td align="center">Delete the selected line(s).</td>
+<td align="left">Delete Line</td>
+<td align="center">Ctrl+Shift+K</td>
+</tr>
+<tr>
+<td align="left">Expand Selection</td>
+<td align="center">Grow the selection from the word under the cursor, to the line, to everything.</td>
+<td align="left">Expand Selection</td>
+<td align="center">Ctrl+D</td>
+</tr>
+<tr>
+<td align="left">Complete Word</td>
+<td align="center">Offer completions for the word being typed.</td>
+<td align="left">Complete Word</td>
+<td align="center">Ctrl+Space</td>
+</tr>
+<tr>
+<td align="left">Code Editor Autocomplete</td>
+<td align="center">When on, completions are offered as you type. Ctrl+Space always offers them either way.</td>
+<td align="left">Code Editor Autocomplete</td>
+<td align="center"></td>
+</tr>
 </tbody>
-</table></div>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Code editor shortcuts win while it has focus</p>
+<p>The code editor's shortcuts only apply while the code editor has focus, and while it does they take
+precedence: <code>Ctrl+F</code>, <code>Ctrl+G</code> and <code>Ctrl+D</code> find in code, go to a line and expand the selection there,
+and open the graph wide find, toggle grid snapping and duplicate nodes everywhere else.
+The completion sources are toggled from <strong>Options &gt; Autocomplete</strong>; see
+<a href="../reference/#completion">Completion</a>.</p>
+<p><code>Ctrl+click</code> on a <code>${}</code> token, which selects the node the token reads
+from, is a mouse action rather than a shortcut, so it is not listed here;
+see <a href="../reference/#following-tokens">Following tokens</a>.</p>
+</div></div>
             </div>
         </div>
 

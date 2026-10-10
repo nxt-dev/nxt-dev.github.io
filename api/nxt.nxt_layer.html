@@ -1,394 +1,990 @@
-
-
 <!DOCTYPE html>
-<html class="writer-html4" lang="en" >
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <title>nxt_layer module &mdash; NXT  documentation</title>
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-  
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-
-  
-  
-  
-  
-
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nxt.nxt_layer module &mdash; NXT  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script type="text/javascript" src="_static/jquery.js"></script>
-        <script type="text/javascript" src="_static/underscore.js"></script>
-        <script type="text/javascript" src="_static/doctools.js"></script>
-        <script type="text/javascript" src="_static/language_data.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="nxt_path module" href="nxt.nxt_path.html" />
-    <link rel="prev" title="nxt_io module" href="nxt.nxt_io.html" /> 
+    <link rel="next" title="nxt.nxt_log module" href="nxt.nxt_log.html" />
+    <link rel="prev" title="nxt.nxt_io module" href="nxt.nxt_io.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="index.html" class="icon icon-home" alt="Documentation Home"> NXT
           
-
-          
+          <a href="index.html" class="icon icon-home">
+            NXT
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-<li class="toctree-l1"><a class="reference external" href="https://nxt-dev.github.io/">User Docs</a></li>
-<li class="toctree-l1"><a class="reference internal" href="nxt.html">nxt package</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="nxt.html#modules">modules</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_io.html">nxt_io</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">nxt_layer</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_path.html">nxt_path</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nxt.nxt_log.html">nxt_log</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nxt.tokens.html">tokens</a></li>
-<li class="toctree-l2"><a class="reference internal" href="nxt.runtime.html">runtime</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://sunriseproductions.github.io/nxt/">User Docs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">nxt</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="nxt.html">nxt package</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="nxt.html#subpackages">Subpackages</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="nxt.html#submodules">Submodules</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="nxt.clean_json.html">nxt.clean_json module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.cli.html">nxt.cli module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.constants.html">nxt.constants module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.legacy.html">nxt.legacy module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_io.html">nxt.nxt_io module</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">nxt.nxt_layer module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_log.html">nxt.nxt_log module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_node.html">nxt.nxt_node module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.nxt_path.html">nxt.nxt_path module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.plugin_loader.html">nxt.plugin_loader module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.runtime.html">nxt.runtime module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.session.html">nxt.session module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.stage.html">nxt.stage module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="nxt.tokens.html">nxt.tokens module</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nxt.html#module-nxt">Module contents</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">NXT</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="nxt.html">nxt package</a> &raquo;</li>
-        
-      <li>nxt_layer module</li>
-    
-    
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">nxt</a></li>
+          <li class="breadcrumb-item"><a href="nxt.html">nxt package</a></li>
+      <li class="breadcrumb-item active">nxt.nxt_layer module</li>
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="_sources/nxt.nxt_layer.rst.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="module-nxt.nxt_layer">
-<span id="nxt-layer-module"></span><h1>nxt_layer module<a class="headerlink" href="#module-nxt.nxt_layer" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="module-nxt.nxt_layer">
+<span id="nxt-nxt-layer-module"></span><h1>nxt.nxt_layer module<a class="headerlink" href="#module-nxt.nxt_layer" title="Permalink to this headline"></a></h1>
 <p>Ways to operate on and ask questions of nxt layers.</p>
-<dl class="function">
-<dt id="nxt.nxt_layer.get_active_layers">
-<code class="descname">get_active_layers</code><span class="sig-paren">(</span><em>layers</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#get_active_layers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_layer.get_active_layers" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SAVE_KEY">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SAVE_KEY</span></span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SAVE_KEY"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SAVE_KEY" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SAVE_KEY.VERSION">
+<span class="sig-name descname"><span class="pre">VERSION</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'version'</span></em><a class="headerlink" href="#nxt.nxt_layer.SAVE_KEY.VERSION" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SAVE_KEY.ALIAS">
+<span class="sig-name descname"><span class="pre">ALIAS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'alias'</span></em><a class="headerlink" href="#nxt.nxt_layer.SAVE_KEY.ALIAS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SAVE_KEY.MUTE">
+<span class="sig-name descname"><span class="pre">MUTE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'mute'</span></em><a class="headerlink" href="#nxt.nxt_layer.SAVE_KEY.MUTE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SAVE_KEY.SOLO">
+<span class="sig-name descname"><span class="pre">SOLO</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'solo'</span></em><a class="headerlink" href="#nxt.nxt_layer.SAVE_KEY.SOLO" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SAVE_KEY.REFERENCES">
+<span class="sig-name descname"><span class="pre">REFERENCES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'references'</span></em><a class="headerlink" href="#nxt.nxt_layer.SAVE_KEY.REFERENCES" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SAVE_KEY.COMP_ORVERRIDES">
+<span class="sig-name descname"><span class="pre">COMP_ORVERRIDES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'comp_overrides'</span></em><a class="headerlink" href="#nxt.nxt_layer.SAVE_KEY.COMP_ORVERRIDES" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SAVE_KEY.COLOR">
+<span class="sig-name descname"><span class="pre">COLOR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'color'</span></em><a class="headerlink" href="#nxt.nxt_layer.SAVE_KEY.COLOR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SAVE_KEY.META_DATA">
+<span class="sig-name descname"><span class="pre">META_DATA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'meta_data'</span></em><a class="headerlink" href="#nxt.nxt_layer.SAVE_KEY.META_DATA" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SAVE_KEY.NODES">
+<span class="sig-name descname"><span class="pre">NODES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'nodes'</span></em><a class="headerlink" href="#nxt.nxt_layer.SAVE_KEY.NODES" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SAVE_KEY.CWD">
+<span class="sig-name descname"><span class="pre">CWD</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'cwd'</span></em><a class="headerlink" href="#nxt.nxt_layer.SAVE_KEY.CWD" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SAVE_KEY.FILEPATH">
+<span class="sig-name descname"><span class="pre">FILEPATH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'filepath'</span></em><a class="headerlink" href="#nxt.nxt_layer.SAVE_KEY.FILEPATH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SAVE_KEY.REAL_PATH">
+<span class="sig-name descname"><span class="pre">REAL_PATH</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'real_path'</span></em><a class="headerlink" href="#nxt.nxt_layer.SAVE_KEY.REAL_PATH" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SAVE_KEY.ATTRS">
+<span class="sig-name descname"><span class="pre">ATTRS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'attrs'</span></em><a class="headerlink" href="#nxt.nxt_layer.SAVE_KEY.ATTRS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SAVE_KEY.NAME">
+<span class="sig-name descname"><span class="pre">NAME</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'name'</span></em><a class="headerlink" href="#nxt.nxt_layer.SAVE_KEY.NAME" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SAVE_KEY.LOCK">
+<span class="sig-name descname"><span class="pre">LOCK</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'lock'</span></em><a class="headerlink" href="#nxt.nxt_layer.SAVE_KEY.LOCK" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.nxt_layer.META_DATA_KEY">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">META_DATA_KEY</span></span><a class="reference internal" href="_modules/nxt/nxt_layer.html#META_DATA_KEY"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.META_DATA_KEY" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.META_DATA_KEY.POSITIONS">
+<span class="sig-name descname"><span class="pre">POSITIONS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'positions'</span></em><a class="headerlink" href="#nxt.nxt_layer.META_DATA_KEY.POSITIONS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.META_DATA_KEY.COLLAPSE">
+<span class="sig-name descname"><span class="pre">COLLAPSE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'collapse'</span></em><a class="headerlink" href="#nxt.nxt_layer.META_DATA_KEY.COLLAPSE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.META_DATA_KEY.COLORS">
+<span class="sig-name descname"><span class="pre">COLORS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'colors'</span></em><a class="headerlink" href="#nxt.nxt_layer.META_DATA_KEY.COLORS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.META_DATA_KEY.ALIASES">
+<span class="sig-name descname"><span class="pre">ALIASES</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'aliases'</span></em><a class="headerlink" href="#nxt.nxt_layer.META_DATA_KEY.ALIASES" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.META_DATA_KEY.LOCKS">
+<span class="sig-name descname"><span class="pre">LOCKS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'locks'</span></em><a class="headerlink" href="#nxt.nxt_layer.META_DATA_KEY.LOCKS" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.nxt_layer.LAYERS">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LAYERS</span></span><a class="reference internal" href="_modules/nxt/nxt_layer.html#LAYERS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.LAYERS" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.LAYERS.COMP">
+<span class="sig-name descname"><span class="pre">COMP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'&lt;display&gt;'</span></em><a class="headerlink" href="#nxt.nxt_layer.LAYERS.COMP" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.LAYERS.TARGET">
+<span class="sig-name descname"><span class="pre">TARGET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'&lt;target&gt;'</span></em><a class="headerlink" href="#nxt.nxt_layer.LAYERS.TARGET" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.LAYERS.TOP">
+<span class="sig-name descname"><span class="pre">TOP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'&lt;top&gt;'</span></em><a class="headerlink" href="#nxt.nxt_layer.LAYERS.TOP" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.nxt_layer.AUTHORING">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AUTHORING</span></span><a class="reference internal" href="_modules/nxt/nxt_layer.html#AUTHORING"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.AUTHORING" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.AUTHORING.CREATE">
+<span class="sig-name descname"><span class="pre">CREATE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'create'</span></em><a class="headerlink" href="#nxt.nxt_layer.AUTHORING.CREATE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.AUTHORING.REFERENCE">
+<span class="sig-name descname"><span class="pre">REFERENCE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'reference'</span></em><a class="headerlink" href="#nxt.nxt_layer.AUTHORING.REFERENCE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.AUTHORING.ABOVE">
+<span class="sig-name descname"><span class="pre">ABOVE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#nxt.nxt_layer.AUTHORING.ABOVE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.AUTHORING.BELOW">
+<span class="sig-name descname"><span class="pre">BELOW</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#nxt.nxt_layer.AUTHORING.BELOW" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.nxt_layer.LayerReturnTypes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LayerReturnTypes</span></span><a class="reference internal" href="_modules/nxt/nxt_layer.html#LayerReturnTypes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.LayerReturnTypes" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.LayerReturnTypes.Node">
+<span class="sig-name descname"><span class="pre">Node</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Node'</span></em><a class="headerlink" href="#nxt.nxt_layer.LayerReturnTypes.Node" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.LayerReturnTypes.Path">
+<span class="sig-name descname"><span class="pre">Path</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Path'</span></em><a class="headerlink" href="#nxt.nxt_layer.LayerReturnTypes.Path" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.LayerReturnTypes.NodeTable">
+<span class="sig-name descname"><span class="pre">NodeTable</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'NodeTable'</span></em><a class="headerlink" href="#nxt.nxt_layer.LayerReturnTypes.NodeTable" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.LayerReturnTypes.NameDict">
+<span class="sig-name descname"><span class="pre">NameDict</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'NameDict'</span></em><a class="headerlink" href="#nxt.nxt_layer.LayerReturnTypes.NameDict" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.LayerReturnTypes.PathDict">
+<span class="sig-name descname"><span class="pre">PathDict</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'PathDict'</span></em><a class="headerlink" href="#nxt.nxt_layer.LayerReturnTypes.PathDict" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.LayerReturnTypes.Boolean">
+<span class="sig-name descname"><span class="pre">Boolean</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'Boolean'</span></em><a class="headerlink" href="#nxt.nxt_layer.LayerReturnTypes.Boolean" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SpecLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Layer object representing layer data from disk.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.RETURNS">
+<span class="sig-name descname"><span class="pre">RETURNS</span></span><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.RETURNS" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#nxt.nxt_layer.LayerReturnTypes" title="nxt.nxt_layer.LayerReturnTypes"><code class="xref py py-class docutils literal notranslate"><span class="pre">nxt.nxt_layer.LayerReturnTypes</span></code></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.load_from_filepath">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_from_filepath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.load_from_filepath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.load_from_filepath" title="Permalink to this definition"></a></dt>
+<dd><p>Given a filepath, return a SpecLayer loaded from that path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>filepath</strong> (<em>str</em>) – path to file to load</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Loaded SpecLayer</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#nxt.nxt_layer.SpecLayer" title="nxt.nxt_layer.SpecLayer">SpecLayer</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.load_from_layer_data">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_from_layer_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.load_from_layer_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.load_from_layer_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.reload_from_data">
+<span class="sig-name descname"><span class="pre">reload_from_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.reload_from_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.reload_from_data" title="Permalink to this definition"></a></dt>
+<dd><p>Replace everything this layer holds with what the data says.</p>
+<p>The layer object is kept. A stage holds its layers by object and
+so does everything looking at one – the target layer, the
+display layer, the layer tree, the source layer recorded on every
+node – so building a new layer and swapping it in would leave
+all of those pointing at a layer that is not in the graph.</p>
+<p>What is not in the data is what does not belong to it: where the
+layer sits in the stack, which layer references it, which file it
+came from, and whether it is locked, which is a local opinion
+nobody writes to a file. Those are carried over.</p>
+<p>What a layer references does come from the data, because that is
+what the file says this layer is built on, and the layers already
+loaded behind the references that survive are kept. Putting the
+stage’s stack back in step with the new list – loading what
+arrived, letting go of what went, and stacking them in the order
+the file gives – is <cite>Stage.settle_references</cite>, because the stack
+is the stage’s to hold, not one layer’s.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>layer_data</strong> (<em>dict</em>) – clean dict of an nxt save file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.get_cwd">
+<span class="sig-name descname"><span class="pre">get_cwd</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.get_cwd"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.get_cwd" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.refresh">
+<span class="sig-name descname"><span class="pre">refresh</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.refresh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.refresh" title="Permalink to this definition"></a></dt>
+<dd><p>Re-populates the node table, and sets nodes’ source layer.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.sort_node_table">
+<span class="sig-name descname"><span class="pre">sort_node_table</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.sort_node_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.sort_node_table" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.layer_idx">
+<span class="sig-name descname"><span class="pre">layer_idx</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.layer_idx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.layer_idx" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.lookup">
+<span class="sig-name descname"><span class="pre">lookup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.lookup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.lookup" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.node_exists">
+<span class="sig-name descname"><span class="pre">node_exists</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.node_exists"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.node_exists" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.get_exec_in">
+<span class="sig-name descname"><span class="pre">get_exec_in</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.get_exec_in"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.get_exec_in" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.get_node_path">
+<span class="sig-name descname"><span class="pre">get_node_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.get_node_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.get_node_path" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.ancestors">
+<span class="sig-name descname"><span class="pre">ancestors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Node'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_implied</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.ancestors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.ancestors" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.children">
+<span class="sig-name descname"><span class="pre">children</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Node'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordered</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_implied</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.children"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.children" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.get_cached_child_paths">
+<span class="sig-name descname"><span class="pre">get_cached_child_paths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.get_cached_child_paths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.get_cached_child_paths" title="Permalink to this definition"></a></dt>
+<dd><p>Get the cached child paths for the given parent path. If no cache
+exists, None is returned.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>parent_path</strong> (<em>str</em>) – Path to node that has children</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of node paths or None</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.descendants">
+<span class="sig-name descname"><span class="pre">descendants</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'/'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">return_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Path'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordered</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">include_implied</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.descendants"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.descendants" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.add_child_to_child_cache">
+<span class="sig-name descname"><span class="pre">add_child_to_child_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">child_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">child_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.add_child_to_child_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.add_child_to_child_cache" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.remove_child_from_child_cache">
+<span class="sig-name descname"><span class="pre">remove_child_from_child_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">child_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">child_node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.remove_child_from_child_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.remove_child_from_child_cache" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.clear_node_child_cache">
+<span class="sig-name descname"><span class="pre">clear_node_child_cache</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parent_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.clear_node_child_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.clear_node_child_cache" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.get_exec_order">
+<span class="sig-name descname"><span class="pre">get_exec_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.get_exec_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.get_exec_order" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.get_root_exec_order">
+<span class="sig-name descname"><span class="pre">get_root_exec_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_root_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.get_root_exec_order"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.get_root_exec_order" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.get_muted">
+<span class="sig-name descname"><span class="pre">get_muted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">local</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.get_muted"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.get_muted" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.set_muted">
+<span class="sig-name descname"><span class="pre">set_muted</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.set_muted"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.set_muted" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.set_mute_over">
+<span class="sig-name descname"><span class="pre">set_mute_over</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.set_mute_over"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.set_mute_over" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.get_soloed">
+<span class="sig-name descname"><span class="pre">get_soloed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">local</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.get_soloed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.get_soloed" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.set_soloed">
+<span class="sig-name descname"><span class="pre">set_soloed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.set_soloed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.set_soloed" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.set_solo_over">
+<span class="sig-name descname"><span class="pre">set_solo_over</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.set_solo_over"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.set_solo_over" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.add_reference">
+<span class="sig-name descname"><span class="pre">add_reference</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">insert_idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.add_reference"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.add_reference" title="Permalink to this definition"></a></dt>
+<dd><p>Given a layer path, a layer object, or both, add a reference to
+specified layer on this layer, optionally at a specified insert index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>layer_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to use as reference path, defaults to None,         if None is given, defaults to given <cite>layer.real_path</cite></p></li>
+<li><p><strong>layer</strong> (<a class="reference internal" href="#nxt.nxt_layer.SpecLayer" title="nxt.nxt_layer.SpecLayer"><em>SpecLayer</em></a>) – layer to add as reference layer in this layer</p></li>
+<li><p><strong>insert_idx</strong> (<em>int</em><em>, </em><em>optional</em>) – index to insert given layer at, defaults to None,         if None is given, defaults to lowest reference layer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>index given layer was inserted at.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>ValueError</strong> – If not provided with a layer path or layer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.get_references">
+<span class="sig-name descname"><span class="pre">get_references</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.get_references"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.get_references" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.rebased_references">
+<span class="sig-name descname"><span class="pre">rebased_references</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">old_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_dir</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.rebased_references"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.rebased_references" title="Permalink to this definition"></a></dt>
+<dd><p>How this layer’s relative references read from another folder.</p>
+<p>A reference relative to this layer’s folder means a different file
+once the layer is somewhere else, so a copy saved elsewhere would
+have lost them. Each one that found its file beside the old folder
+is written again from the new one: relative if the file is beside
+the new folder too, whole if not. References that are absolute, use
+a variable or a token, are found through NXT_FILE_ROOTS, or find
+nothing at all are left as written, since none of those depend on
+this layer’s folder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>old_dir</strong> – the folder the layer was saved in</p></li>
+<li><p><strong>new_dir</strong> – the folder it is being saved to</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>{reference as written now: reference to write instead}</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.rebase_references">
+<span class="sig-name descname"><span class="pre">rebase_references</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">renamed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.rebase_references"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.rebase_references" title="Permalink to this definition"></a></dt>
+<dd><p>Write references, and the comp overrides that belong to them,
+under new names. See rebased_references.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>renamed</strong> (<em>dict</em>) – {reference as written now: reference to write instead}</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.get_alias">
+<span class="sig-name descname"><span class="pre">get_alias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">local</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fallback_to_local</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.get_alias"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.get_alias" title="Permalink to this definition"></a></dt>
+<dd><p>Get the layer’s alias (nice name). By default the local alias is
+returned, if local is False the parent layer’s opinion of the alias is
+returned.
+:param local: If True the local opinion is returned, if False the
+strongest override opinion is returned.
+:type local: bool
+:param fallback_to_local: if True and local is False and there is no
+override opinion the local alias is returned. If false and no
+override opinion is found None is returned.
+:return: string of layer alias or None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.set_alias">
+<span class="sig-name descname"><span class="pre">set_alias</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alias</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.set_alias"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.set_alias" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.set_alias_over">
+<span class="sig-name descname"><span class="pre">set_alias_over</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alias</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.set_alias_over"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.set_alias_over" title="Permalink to this definition"></a></dt>
+<dd><p>Set a alias override on the root parent of a layer.
+:param alias: new alias string</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.get_color">
+<span class="sig-name descname"><span class="pre">get_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">local</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fallback_to_local</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.get_color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.get_color" title="Permalink to this definition"></a></dt>
+<dd><p>Get the layer’s color. By default the local color is
+retuned, if local is False the parent layer’s opinion of the alias is
+returned.
+:param local: bool
+:param fallback_to_local: if True and local is False and there is no
+override opinion the local color is returned. If false and no
+override opinion is found None is returned.
+:return: string of layer alias</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.set_color_over">
+<span class="sig-name descname"><span class="pre">set_color_over</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.set_color_over"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.set_color_over" title="Permalink to this definition"></a></dt>
+<dd><p>Set a color override on the root parent of a layer.
+:param color: hex color</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.get_locked">
+<span class="sig-name descname"><span class="pre">get_locked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">local</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fallback_to_local</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.get_locked"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.get_locked" title="Permalink to this definition"></a></dt>
+<dd><p>Get the locked state of the layer. By
+default the local opinion is returned, if local is False the parent
+layer’s opinion of the alias is returned.
+:param local: If True the local opinion is returned, if False the
+strongest override opinion is returned.
+:type local: bool
+:param fallback_to_local: if True and local is False and there is no
+override opinion the local alias is returned. If false and no
+override opinion is found None is returned.
+:return: bool of layer’s lock state</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.set_locked">
+<span class="sig-name descname"><span class="pre">set_locked</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lock</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.set_locked"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.set_locked" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.set_locked_over">
+<span class="sig-name descname"><span class="pre">set_locked_over</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lock</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.set_locked_over"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.set_locked_over" title="Permalink to this definition"></a></dt>
+<dd><p>Set a lock override on the root parent of a layer.
+:param lock: bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">as_copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.save" title="Permalink to this definition"></a></dt>
+<dd><p>Save this layer, optionally to new, given filepath.</p>
+<p>Saved to another folder, relative references are written so they
+still find the same files from there. See rebased_references.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em><em>, </em><em>optional</em>) – file path to save to, defaults to None</p></li>
+<li><p><strong>as_copy</strong> (<em>bool</em>) – write a copy and leave this layer as it is, where it
+is, rather than moving it to the new file</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.get_meta_data">
+<span class="sig-name descname"><span class="pre">get_meta_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.get_meta_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.get_meta_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.get_comp_overrides">
+<span class="sig-name descname"><span class="pre">get_comp_overrides</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.get_comp_overrides"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.get_comp_overrides" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.get_save_data">
+<span class="sig-name descname"><span class="pre">get_save_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.get_save_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.get_save_data" title="Permalink to this definition"></a></dt>
+<dd><p>Returns save data for this layer.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.order_save_dict">
+<span class="sig-name descname"><span class="pre">order_save_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.order_save_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.order_save_dict" title="Permalink to this definition"></a></dt>
+<dd><p>Given a save dictionary, returns an ordered dictionary where the
+save keys are ordered correctly. Leftover keys are put at the end.
+:param data: dictionary to order
+:type data: dict
+:return: ordered version of given dictionary
+:rtype: OrderedDcit</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.get_nodes_save_data">
+<span class="sig-name descname"><span class="pre">get_nodes_save_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.get_nodes_save_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.get_nodes_save_data" title="Permalink to this definition"></a></dt>
+<dd><p>Gets an ordered dict of all of the spec nodes
+:return: OrderedDict</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.SpecLayer.propegate_real_path">
+<span class="sig-name descname"><span class="pre">propegate_real_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.propegate_real_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.propegate_real_path" title="Permalink to this definition"></a></dt>
+<dd><p>Update nodes source layer to current real path</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.nxt_layer.CompLayer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CompLayer</span></span><a class="reference internal" href="_modules/nxt/nxt_layer.html#CompLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.CompLayer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nxt.nxt_layer.SpecLayer" title="nxt.nxt_layer.SpecLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">nxt.nxt_layer.SpecLayer</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.CompLayer.load_from_layer_data">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_from_layer_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#CompLayer.load_from_layer_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.CompLayer.load_from_layer_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.CompLayer.layer_idx">
+<span class="sig-name descname"><span class="pre">layer_idx</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#CompLayer.layer_idx"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.CompLayer.layer_idx" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.CompLayer.get_node_dirties">
+<span class="sig-name descname"><span class="pre">get_node_dirties</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#CompLayer.get_node_dirties"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.CompLayer.get_node_dirties" title="Permalink to this definition"></a></dt>
+<dd><p>Get all nodes that depend on the given node path. The given node
+path will be the 0th item in the return list.
+:param node_path: String of node path
+:return: List of string node paths</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.nxt_layer.CacheLayer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CacheLayer</span></span><a class="reference internal" href="_modules/nxt/nxt_layer.html#CacheLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.CacheLayer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="#nxt.nxt_layer.SpecLayer" title="nxt.nxt_layer.SpecLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">nxt.nxt_layer.SpecLayer</span></code></a></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.CacheLayer.was_during_node_exec">
+<span class="sig-name descname"><span class="pre">was_during_node_exec</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#CacheLayer.was_during_node_exec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.CacheLayer.was_during_node_exec" title="Permalink to this definition"></a></dt>
+<dd><p>Checks if given time float is within any executed node’s exec
+timeframe.
+:param time_float: float of time
+:return: bool</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.CacheLayer.set_node_enter_time">
+<span class="sig-name descname"><span class="pre">set_node_enter_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#CacheLayer.set_node_enter_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.CacheLayer.set_node_enter_time" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.CacheLayer.set_node_exit_time">
+<span class="sig-name descname"><span class="pre">set_node_exit_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#CacheLayer.set_node_exit_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.CacheLayer.set_node_exit_time" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.CacheLayer.get_node_run_time">
+<span class="sig-name descname"><span class="pre">get_node_run_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">idx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#CacheLayer.get_node_run_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.CacheLayer.get_node_run_time" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.CacheLayer.lookup">
+<span class="sig-name descname"><span class="pre">lookup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_path</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#CacheLayer.lookup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.CacheLayer.lookup" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.CacheLayer.add_node">
+<span class="sig-name descname"><span class="pre">add_node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#CacheLayer.add_node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.CacheLayer.add_node" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.CacheLayer.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#CacheLayer.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.CacheLayer.save" title="Permalink to this definition"></a></dt>
+<dd><p>Save this layer, optionally to new, given filepath.</p>
+<p>Saved to another folder, relative references are written so they
+still find the same files from there. See rebased_references.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em><em>, </em><em>optional</em>) – file path to save to, defaults to None</p></li>
+<li><p><strong>as_copy</strong> (<em>bool</em>) – write a copy and leave this layer as it is, where it
+is, rather than moving it to the new file</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.CacheLayer.get_save_data">
+<span class="sig-name descname"><span class="pre">get_save_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#CacheLayer.get_save_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.CacheLayer.get_save_data" title="Permalink to this definition"></a></dt>
+<dd><p>Returns save data for this layer.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.CacheLayer.load_from_layer_data">
+<em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load_from_layer_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#CacheLayer.load_from_layer_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.CacheLayer.load_from_layer_data" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_layer.get_active_layers">
+<span class="sig-name descname"><span class="pre">get_active_layers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layers</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#get_active_layers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.get_active_layers" title="Permalink to this definition"></a></dt>
 <dd><p>Given a list of layers, return those that should contribute to comp.</p>
 <p>If there are soloed layers, only the soloed layers that are not muted
 will be returned. If there are not soloed layers, only the non-muted
 layers will be returned.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>layers</strong> (<em>list</em>) – list of layers to filter</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of layers that should contribute to a comp.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>layers</strong> (<em>list</em>) – list of layers to filter</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of layers that should contribute to a comp.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="nxt.nxt_layer.get_soloed_layers">
-<code class="descname">get_soloed_layers</code><span class="sig-paren">(</span><em>layers</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#get_soloed_layers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_layer.get_soloed_layers" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_layer.get_soloed_layers">
+<span class="sig-name descname"><span class="pre">get_soloed_layers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layers</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#get_soloed_layers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.get_soloed_layers" title="Permalink to this definition"></a></dt>
 <dd><p>Given a list of layers, return only those that are soloed</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>layers</strong> (<em>list</em>) – list of layers to filter</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of layers that are soloed.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>layers</strong> (<em>list</em>) – list of layers to filter</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of layers that are soloed.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="nxt.nxt_layer.get_muted_layers">
-<code class="descname">get_muted_layers</code><span class="sig-paren">(</span><em>layers</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#get_muted_layers"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_layer.get_muted_layers" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_layer.get_muted_layers">
+<span class="sig-name descname"><span class="pre">get_muted_layers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layers</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#get_muted_layers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.get_muted_layers" title="Permalink to this definition"></a></dt>
 <dd><p>Given a list of layers, return only those that are muted</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>layers</strong> (<em>list</em>) – list of layers to filter</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">list of layers that are muted.</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">list</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>layers</strong> (<em>list</em>) – list of layers to filter</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of layers that are muted.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="nxt.nxt_layer.get_node_local_attr_names">
-<code class="descname">get_node_local_attr_names</code><span class="sig-paren">(</span><em>node_path</em>, <em>layers</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#get_node_local_attr_names"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_layer.get_node_local_attr_names" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_layer.get_node_local_attr_names">
+<span class="sig-name descname"><span class="pre">get_node_local_attr_names</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layers</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#get_node_local_attr_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.get_node_local_attr_names" title="Permalink to this definition"></a></dt>
 <dd><p>Get all attribute names that are local to the given node path within
 the given layers.</p>
 <p>NOTE that layers are filtered to active layers.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>node_path</strong> (<em>str</em>) – node path to find local attributes of</li>
-<li><strong>layers</strong> (<em>list</em>) – list of layers to look for attributes of given node within</li>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node_path</strong> (<em>str</em>) – node path to find local attributes of</p></li>
+<li><p><strong>layers</strong> (<em>list</em>) – list of layers to look for attributes of given node within</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">list of local attributes found in given layers</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">list</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list of local attributes found in given layers</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="function">
-<dt id="nxt.nxt_layer.order_nodes_dict">
-<code class="descname">order_nodes_dict</code><span class="sig-paren">(</span><em>node_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#order_nodes_dict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_layer.order_nodes_dict" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_layer.get_comped_layer_overs">
+<span class="sig-name descname"><span class="pre">get_comped_layer_overs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">over_dict_attr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#get_comped_layer_overs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.get_comped_layer_overs" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_layer.get_root_parent">
+<span class="sig-name descname"><span class="pre">get_root_parent</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#get_root_parent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.get_root_parent" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_layer.order_nodes_dict">
+<span class="sig-name descname"><span class="pre">order_nodes_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#order_nodes_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.order_nodes_dict" title="Permalink to this definition"></a></dt>
 <dd><p>Given a dictionary mapping node paths to node data, return an ordered
 dict where the keys are sorted.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>node_dict</strong> (<em>dict</em>) – dictionary mapping node paths to node data</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">ordered dctionary with keys sosrted</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">OrderedDict</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>node_dict</strong> (<em>dict</em>) – dictionary mapping node paths to node data</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>ordered dctionary with keys sosrted</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>OrderedDict</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="class">
-<dt id="nxt.nxt_layer.SpecLayer">
-<em class="property">class </em><code class="descname">SpecLayer</code><span class="sig-paren">(</span><em>layer_data=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Layer object representing layer data from disk.</p>
-<dl class="classmethod">
-<dt id="nxt.nxt_layer.SpecLayer.load_from_filepath">
-<em class="property">classmethod </em><code class="descname">load_from_filepath</code><span class="sig-paren">(</span><em>filepath</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.load_from_filepath"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.load_from_filepath" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given a filepath, return a SpecLayer loaded from that path.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filepath</strong> (<em>str</em>) – path to file to load</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Loaded SpecLayer</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#nxt.nxt_layer.SpecLayer" title="nxt.nxt_layer.SpecLayer">SpecLayer</a></td>
-</tr>
-</tbody>
-</table>
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.nxt_layer.RankedList">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RankedList</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">items</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#RankedList"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.RankedList" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>List that answers “where is this item” and “put this item at index i”
+in log time rather than by scanning.</p>
+<p>Stage.sort_instances moves most of its items exactly once, and both
+list.index and list.remove scan from the front, which made the sort
+quadratic in node count. Items here sit in per position buckets with a
+Fenwick tree over the bucket sizes turning a bucket into a global index.</p>
+<p>Items are matched by identity. The list scans this replaces matched by
+equality, but the items are (trace, node) pairs holding distinct node
+classes, so no two of them ever compare equal.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.RankedList.index">
+<span class="sig-name descname"><span class="pre">index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#RankedList.index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.RankedList.index" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.RankedList.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#RankedList.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.RankedList.remove" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.RankedList.insert">
+<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rank</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#RankedList.insert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.RankedList.insert" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.nxt_layer.RankedList.to_list">
+<span class="sig-name descname"><span class="pre">to_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#RankedList.to_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.RankedList.to_list" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
-<dl class="method">
-<dt id="nxt.nxt_layer.SpecLayer.add_reference">
-<code class="descname">add_reference</code><span class="sig-paren">(</span><em>layer_path=None</em>, <em>layer=None</em>, <em>insert_idx=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.add_reference"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.add_reference" title="Permalink to this definition">¶</a></dt>
-<dd><p>Given a layer path, a layer object, or both, add a reference to
-specified layer on this layer, optionally at a specified insert index.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>layer_path</strong> (<em>str</em><em>, </em><em>optional</em>) – Path to use as reference path, defaults to None,         if None is given, defaults to given <cite>layer.real_path</cite></li>
-<li><strong>layer</strong> (<a class="reference internal" href="#nxt.nxt_layer.SpecLayer" title="nxt.nxt_layer.SpecLayer"><em>SpecLayer</em></a>) – layer to add as reference layer in this layer</li>
-<li><strong>insert_idx</strong> (<em>int</em><em>, </em><em>optional</em>) – index to insert given layer at, defaults to None,         if None is given, defaults to lowest reference layer.</li>
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.nxt_layer.sort_multidimensional_list">
+<span class="sig-name descname"><span class="pre">sort_multidimensional_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">multi_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sort_by_idx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#sort_multidimensional_list"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.nxt_layer.sort_multidimensional_list" title="Permalink to this definition"></a></dt>
+<dd><p>Takes a multi-dimensional list and sorts it by the length of a sub-list
+item. The item who’s length we sort by is
+determined by the idx parameter.
+If your input is:
+<a href="#id1"><span class="problematic" id="id2">``</span></a>`
+sort_multidimensional_list(
+[</p>
+<blockquote>
+<div><p>[[1,2,3], [‘a’, ‘b’]],
+[[4,5,6], [‘a’]]</p>
+</div></blockquote>
+<p>], idx = 1)
+<code class="docutils literal notranslate"><span class="pre">`</span>
+<span class="pre">Your</span> <span class="pre">output</span> <span class="pre">will</span> <span class="pre">be:</span>
+<span class="pre">`</span></code>
+[</p>
+<blockquote>
+<div><p>[[1,2,3], [‘a’]],
+[[4,5,6], [‘a’, ‘b’]]</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>multi_list</strong> – multi-dimensional list</p></li>
+<li><p><strong>sort_by_idx</strong> – Index of sub list item to sort by</p></li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">index given layer was inserted at.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first">int</p>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Raises:</th><td class="field-body"><p class="first last"><strong>ValueError</strong> – If not provided with a layer path or layer.</p>
-</td>
-</tr>
-</tbody>
-</table>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>list</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="nxt.nxt_layer.SpecLayer.save">
-<code class="descname">save</code><span class="sig-paren">(</span><em>filepath=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/nxt_layer.html#SpecLayer.save"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#nxt.nxt_layer.SpecLayer.save" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save this layer, optionally to new, given filepath.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>filepath</strong> (<em>str</em><em>, </em><em>optional</em>) – file path to save to, defaults to None</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-</dd></dl>
-
-</div>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="nxt.nxt_path.html" class="btn btn-neutral float-right" title="nxt_path module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="nxt.nxt_io.html" class="btn btn-neutral float-left" title="nxt_io module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nxt.nxt_io.html" class="btn btn-neutral float-left" title="nxt.nxt_io module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nxt.nxt_log.html" class="btn btn-neutral float-right" title="nxt.nxt_log module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        
-        &copy; Copyright 2020, The nxt authors
-
-    </p>
+    <p>&#169; Copyright 2020, The nxt authors.</p>
   </div>
-    
-    
-    
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
-    
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

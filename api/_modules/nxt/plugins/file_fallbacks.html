@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nxt.plugins.file_fallbacks &mdash; NXT  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            NXT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference external" href="https://sunriseproductions.github.io/nxt/">User Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">nxt</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">NXT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../../nxt.html">nxt</a></li>
+      <li class="breadcrumb-item active">nxt.plugins.file_fallbacks</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nxt.plugins.file_fallbacks</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Builtin</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">unittest</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="c1"># Internal</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nxt.session</span><span class="w"> </span><span class="kn">import</span> <span class="n">Session</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nxt</span><span class="w"> </span><span class="kn">import</span> <span class="n">nxt_path</span><span class="p">,</span> <span class="n">nxt_io</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nxt.tokens</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">register_token</span><span class="p">,</span> <span class="n">get_token_content</span><span class="p">,</span>
+                        <span class="n">get_standalone_tokens</span><span class="p">,</span> <span class="n">make_token_str</span><span class="p">,</span> <span class="n">TOKENTYPE</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nxt.nxt_layer</span><span class="w"> </span><span class="kn">import</span> <span class="n">CompLayer</span><span class="p">,</span> <span class="n">get_active_layers</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nxt.nxt_node</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_node_path</span>
+
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s1">'nxt'</span><span class="p">)</span>
+
+<span class="n">FILEPATH_PREFIX</span> <span class="o">=</span> <span class="n">TOKENTYPE</span><span class="o">.</span><span class="n">FILE</span><span class="o">.</span><span class="n">prefix</span>
+<span class="n">FILE_LIST_PREFIX</span> <span class="o">=</span> <span class="s1">'filelist::'</span>
+
+<span class="n">NXT_FILE_ROOTS</span> <span class="o">=</span> <span class="s1">'NXT_FILE_ROOTS'</span>
+<span class="n">ROOT_PATH_SEP</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">pathsep</span>
+
+<span class="n">INVALID_PATH</span> <span class="o">=</span> <span class="s1">'&lt;invalid&gt;'</span>
+
+
+<div class="viewcode-block" id="detect_filepath_token"><a class="viewcode-back" href="../../../nxt.plugins.file_fallbacks.html#nxt.plugins.file_fallbacks.detect_filepath_token">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">detect_filepath_token</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">FILEPATH_PREFIX</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="detect_file_list_token"><a class="viewcode-back" href="../../../nxt.plugins.file_fallbacks.html#nxt.plugins.file_fallbacks.detect_file_list_token">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">detect_file_list_token</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">FILE_LIST_PREFIX</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="resolve_filepath_token"><a class="viewcode-back" href="../../../nxt.plugins.file_fallbacks.html#nxt.plugins.file_fallbacks.resolve_filepath_token">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">resolve_filepath_token</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">cleaned</span><span class="p">,</span> <span class="n">layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Custom resolver for `file::` tokens. Can resolve multiple file tokens</span>
+<span class="sd">    in a single attr value. The initial raw value is NOT retrieved from the</span>
+<span class="sd">    node again as fallbacks happen.</span>
+<span class="sd">        If on layer_0 the attr value is</span>
+<span class="sd">            ${file::${attr}}</span>
+<span class="sd">        and on layer_1 the attr value is</span>
+<span class="sd">            ${file::${foo}}</span>
+<span class="sd">        This plugin will only fallback and resolve for the value:</span>
+<span class="sd">              ${file::${attr}}</span>
+<span class="sd">    This is a fallback resolver for the contents of the token, not the entire</span>
+<span class="sd">    attr value!</span>
+<span class="sd">    :param stage: Stage instance</span>
+<span class="sd">    :param node: Node object</span>
+<span class="sd">    :param cleaned: String of cleaned attr value (the outer file</span>
+<span class="sd">    token has been stripped off).</span>
+<span class="sd">    :param layer: Layer object</span>
+<span class="sd">    :param kwargs: Not used but may be passed by the Stage</span>
+<span class="sd">    :return: string of resolved file path</span>
+<span class="sd">    """</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="n">make_token_str</span><span class="p">(</span><span class="n">FILEPATH_PREFIX</span><span class="o">+</span><span class="n">cleaned</span><span class="p">)</span>
+    <span class="n">out_value</span> <span class="o">=</span> <span class="n">resolve_file_token_with_fallbacks</span><span class="p">(</span><span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">,</span>
+                                                  <span class="n">comp_node</span><span class="o">=</span><span class="n">node</span><span class="p">,</span>
+                                                  <span class="n">value</span><span class="o">=</span><span class="n">token</span><span class="p">,</span>
+                                                  <span class="n">comp_layer</span><span class="o">=</span><span class="n">layer</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out_value</span></div>
+
+
+<div class="viewcode-block" id="resolve_filelist_token"><a class="viewcode-back" href="../../../nxt.plugins.file_fallbacks.html#nxt.plugins.file_fallbacks.resolve_filelist_token">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">resolve_filelist_token</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">cleaned</span><span class="p">,</span> <span class="n">layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">as_string</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'as_string'</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+    <span class="n">token</span> <span class="o">=</span> <span class="n">make_token_str</span><span class="p">(</span><span class="n">FILE_LIST_PREFIX</span><span class="o">+</span><span class="n">cleaned</span><span class="p">)</span>
+    <span class="n">genny</span> <span class="o">=</span> <span class="n">resolve_file_list_token</span><span class="p">(</span><span class="n">stage</span><span class="o">=</span><span class="n">stage</span><span class="p">,</span> <span class="n">comp_node</span><span class="o">=</span><span class="n">node</span><span class="p">,</span>
+                                    <span class="n">value</span><span class="o">=</span><span class="n">token</span><span class="p">,</span> <span class="n">comp_layer</span><span class="o">=</span><span class="n">layer</span><span class="p">)</span>
+    <span class="n">file_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">genny</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">as_string</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">file_list</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">file_list</span></div>
+
+
+<span class="c1"># Whole filelist walks, for tokens that cannot depend on the node asking.</span>
+<span class="c1"># Keyed by nxt_path's expand generation, so a run that starts fresh gets a</span>
+<span class="c1"># fresh answer without this plugin needing its own invalidation hook.</span>
+<span class="n">_FILE_LIST_CACHE</span> <span class="o">=</span> <span class="p">{}</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_is_node_independent</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Whether a filelist token resolves the same for every node.</span>
+
+<span class="sd">    A walk only reaches back to the node it was asked for through the tokens</span>
+<span class="sd">    nested inside it: attr refs are resolved against the node at each</span>
+<span class="sd">    historical depth, and nested file tokens recurse. A token whose content</span>
+<span class="sd">    holds no tokens at all has nothing node specific left in it, so every</span>
+<span class="sd">    node asking gets the same list.</span>
+<span class="sd">    """</span>
+    <span class="n">content</span> <span class="o">=</span> <span class="n">get_token_content</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'${'</span><span class="p">)</span> <span class="k">else</span> <span class="n">value</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">raw</span> <span class="o">=</span> <span class="n">content</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="n">FILE_LIST_PREFIX</span><span class="p">)</span>
+    <span class="k">return</span> <span class="ow">not</span> <span class="n">get_standalone_tokens</span><span class="p">(</span><span class="n">raw</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="resolve_file_list_token"><a class="viewcode-back" href="../../../nxt.plugins.file_fallbacks.html#nxt.plugins.file_fallbacks.resolve_file_list_token">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">resolve_file_list_token</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">comp_node</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">comp_layer</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">comp_layer</span><span class="p">,</span> <span class="n">CompLayer</span><span class="p">):</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">'File list resolve requires a comp layer or a '</span>
+                     <span class="s1">'sub-class of a comp layer!'</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">stage</span><span class="o">.</span><span class="n">resolve_file_token</span><span class="p">(</span><span class="n">comp_node</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">comp_layer</span><span class="p">)</span>
+    <span class="n">first</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="n">comp_layer</span><span class="o">.</span><span class="n">_layer_range</span>
+    <span class="c1"># Unlike file::, a filelist:: walk visits every layer, it is collecting</span>
+    <span class="c1"># all the paths rather than stopping at the first that exists. On a rig</span>
+    <span class="c1"># that is the single most expensive thing a build does, and most of the</span>
+    <span class="c1"># walks are for the same literal path asked by different nodes.</span>
+    <span class="n">cache_key</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">_is_node_independent</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+        <span class="n">cache_key</span> <span class="o">=</span> <span class="p">(</span><span class="n">nxt_path</span><span class="o">.</span><span class="n">file_expand_generation</span><span class="p">(),</span> <span class="nb">id</span><span class="p">(</span><span class="n">comp_layer</span><span class="p">),</span>
+                     <span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="n">cached</span> <span class="o">=</span> <span class="n">_FILE_LIST_CACHE</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">cache_key</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cached</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="n">cached</span><span class="p">)</span>
+    <span class="n">paths</span> <span class="o">=</span> <span class="n">generate_historical_values</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span>
+                                       <span class="n">comp_node</span><span class="p">,</span> <span class="n">comp_layer</span><span class="p">,</span> <span class="n">file_list_token</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cache_key</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">paths</span>
+    <span class="n">resolved</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+    <span class="n">_FILE_LIST_CACHE</span><span class="p">[</span><span class="n">cache_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">resolved</span>
+    <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="n">resolved</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="resolve_file_token_with_fallbacks"><a class="viewcode-back" href="../../../nxt.plugins.file_fallbacks.html#nxt.plugins.file_fallbacks.resolve_file_token_with_fallbacks">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">resolve_file_token_with_fallbacks</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">comp_node</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">comp_layer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Given a node, who's attr_name has a value only containing a file</span>
+<span class="sd">    token we will fall back through all possible historical comps until</span>
+<span class="sd">    we bottom out or find a valid file path.</span>
+<span class="sd">    :param stage: Stage instance to resolve against</span>
+<span class="sd">    :param comp_node: CompNode object</span>
+<span class="sd">    :param value: string of attribute value</span>
+<span class="sd">    :param comp_layer: CompLayer object</span>
+<span class="sd">    :raises: TypeError</span>
+<span class="sd">    :return: string of file path or empty string if no file found</span>
+<span class="sd">    """</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">comp_layer</span><span class="p">,</span> <span class="n">CompLayer</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">'Resolve with fallbacks requires a comp layer or a '</span>
+                        <span class="s1">'sub-class of a comp layer!'</span><span class="p">)</span>
+    <span class="n">first</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="n">comp_layer</span><span class="o">.</span><span class="n">_layer_range</span>
+    <span class="n">paths</span> <span class="o">=</span> <span class="n">generate_historical_values</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span>
+                                       <span class="n">comp_node</span><span class="p">,</span> <span class="n">comp_layer</span><span class="p">,</span> <span class="n">file_fallback_token</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">valid_path</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">paths</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+        <span class="n">valid_path</span> <span class="o">=</span> <span class="s1">''</span>
+    <span class="c1"># resolve_time = str(int(round((time.time() - start) * 1000)))  # debugging</span>
+    <span class="k">return</span> <span class="n">valid_path</span></div>
+
+
+<div class="viewcode-block" id="generate_historical_values"><a class="viewcode-back" href="../../../nxt.plugins.file_fallbacks.html#nxt.plugins.file_fallbacks.generate_historical_values">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">generate_historical_values</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">stage</span><span class="p">,</span> <span class="n">comp_node</span><span class="p">,</span>
+                               <span class="n">comp_layer</span><span class="p">,</span> <span class="n">token</span><span class="p">):</span>
+    <span class="n">seen</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">depth</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">last</span><span class="p">):</span>
+        <span class="n">requested_layers</span> <span class="o">=</span> <span class="n">stage</span><span class="o">.</span><span class="n">_sub_layers</span><span class="p">[</span><span class="n">depth</span><span class="p">:</span><span class="n">last</span><span class="p">]</span>
+        <span class="c1"># Early exit if there are no active layers in the requested range</span>
+        <span class="n">active_layers</span> <span class="o">=</span> <span class="n">get_active_layers</span><span class="p">(</span><span class="n">requested_layers</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">active_layers</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">historical_node</span> <span class="o">=</span> <span class="n">stage</span><span class="o">.</span><span class="n">infer_lower_comp</span><span class="p">(</span><span class="n">comp_node</span><span class="p">,</span> <span class="n">comp_layer</span><span class="p">,</span>
+                                                 <span class="n">active_layers</span><span class="o">=</span><span class="n">active_layers</span><span class="p">,</span>
+                                                 <span class="n">depth</span><span class="o">=</span><span class="n">depth</span><span class="p">)</span>
+        <span class="n">resolved</span> <span class="o">=</span> <span class="n">historical_resolve_file_ref</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">historical_node</span><span class="p">,</span>
+                                               <span class="n">value</span><span class="p">,</span> <span class="n">comp_layer</span><span class="p">,</span>
+                                               <span class="n">active_layers</span><span class="p">,</span>
+                                               <span class="n">historical_depth</span><span class="o">=</span><span class="n">depth</span><span class="p">,</span>
+                                               <span class="n">token</span><span class="o">=</span><span class="n">token</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">resolved</span> <span class="ow">and</span> <span class="n">resolved</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">resolved</span>
+            <span class="n">seen</span> <span class="o">+=</span> <span class="p">[</span><span class="n">resolved</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="historical_resolve_file_ref"><a class="viewcode-back" href="../../../nxt.plugins.file_fallbacks.html#nxt.plugins.file_fallbacks.historical_resolve_file_ref">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">historical_resolve_file_ref</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">comp_node</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">comp_layer</span><span class="p">,</span>
+                                <span class="n">active_layers</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">historical_depth</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Attempts to resolve a file token in the attribute</span>
+<span class="sd">    specified at the historical depth given. See `Stage.infer_lower_comp` for</span>
+<span class="sd">    more details on comping at a historical depth. This method is not</span>
+<span class="sd">    recursive, it only checks the exact historical depth provided.</span>
+<span class="sd">    :param stage: Stage instance to resolve against</span>
+<span class="sd">    :param comp_node: CompNode object</span>
+<span class="sd">    :param value: string of attribute value</span>
+<span class="sd">    :param comp_layer: CompLayer object</span>
+<span class="sd">    :param active_layers: List of at least 1 active layer</span>
+<span class="sd">    :param token: tokens.Token object</span>
+<span class="sd">    :param historical_depth: number of layers to step back, relative to the</span>
+<span class="sd">    comp layer, that the historical comp should be built at.</span>
+<span class="sd">    :return: string of the resolved attribute value</span>
+<span class="sd">    """</span>
+    <span class="n">resolved</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="n">display_layer</span> <span class="o">=</span> <span class="n">active_layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">layer_dir</span> <span class="o">=</span> <span class="n">display_layer</span><span class="o">.</span><span class="n">get_cwd</span><span class="p">()</span>
+    <span class="n">all_tokens</span> <span class="o">=</span> <span class="n">get_standalone_tokens</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">token_types</span><span class="o">=</span><span class="p">(</span><span class="n">token</span><span class="p">,))</span>
+    <span class="c1"># If no tokens are found we test if the val is a valid a valid path</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">all_tokens</span> <span class="ow">and</span> <span class="n">value</span><span class="p">:</span>
+        <span class="n">resolved</span> <span class="o">=</span> <span class="n">file_root_fallback</span><span class="p">(</span><span class="n">resolved</span><span class="p">,</span> <span class="n">layer_dir</span><span class="o">=</span><span class="n">layer_dir</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">full_token</span> <span class="ow">in</span> <span class="n">all_tokens</span><span class="p">:</span>
+        <span class="n">token_content</span> <span class="o">=</span> <span class="n">get_token_content</span><span class="p">(</span><span class="n">full_token</span><span class="p">)</span>
+        <span class="n">string</span> <span class="o">=</span> <span class="n">token_content</span>
+        <span class="n">_</span><span class="p">,</span> <span class="n">sep</span><span class="p">,</span> <span class="n">raw</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="n">token</span><span class="o">.</span><span class="n">prefix</span><span class="p">)</span>
+        <span class="n">resolved_token</span> <span class="o">=</span> <span class="n">historical_resolve_attr_ref</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">raw</span><span class="p">,</span> <span class="n">comp_node</span><span class="p">,</span>
+                                                     <span class="n">comp_layer</span><span class="p">,</span> <span class="n">active_layers</span><span class="p">,</span>
+                                                     <span class="n">historical_depth</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">resolved_token</span> <span class="ow">and</span> <span class="n">raw</span><span class="p">:</span>
+            <span class="n">resolved_token</span> <span class="o">=</span> <span class="n">INVALID_PATH</span>
+        <span class="n">resolved_fp</span> <span class="o">=</span> <span class="n">file_root_fallback</span><span class="p">(</span><span class="n">resolved_token</span><span class="p">,</span> <span class="n">layer_dir</span><span class="o">=</span><span class="n">layer_dir</span><span class="p">)</span>
+        <span class="n">resolved</span> <span class="o">=</span> <span class="n">resolved</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">full_token</span><span class="p">,</span> <span class="n">resolved_fp</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">resolved</span></div>
+
+
+<div class="viewcode-block" id="historical_resolve_attr_ref"><a class="viewcode-back" href="../../../nxt.plugins.file_fallbacks.html#nxt.plugins.file_fallbacks.historical_resolve_attr_ref">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">historical_resolve_attr_ref</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">string</span><span class="p">,</span> <span class="n">comp_node</span><span class="p">,</span> <span class="n">comp_layer</span><span class="p">,</span>
+                                <span class="n">active_layers</span><span class="p">,</span> <span class="n">historical_depth</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Attempts to resolve an attr ref token at the historical depth given.</span>
+<span class="sd">    See `Stage.infer_lower_comp` for more details on comping at a historical</span>
+<span class="sd">    depth. This method IS recursive, BUT only checks the exact historical</span>
+<span class="sd">    depth provided.</span>
+<span class="sd">    :param stage: Stage instance</span>
+<span class="sd">    :param string: Attr value string containing 1 or more attr ref tokens.</span>
+<span class="sd">    :param comp_node: CompNode object</span>
+<span class="sd">    :param comp_layer: CompLayer object</span>
+<span class="sd">    :param active_layers: list of active layers</span>
+<span class="sd">    :param historical_depth: number of layers to step back, relative to the</span>
+<span class="sd">    comp layer, that the historical comp should be built at.</span>
+<span class="sd">    :return: string of the resolved attribute token</span>
+<span class="sd">    """</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">stage</span><span class="o">.</span><span class="n">get_tokens_from</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">token_type</span><span class="o">=</span><span class="n">TOKENTYPE</span><span class="o">.</span><span class="n">ATTR</span><span class="p">)</span>
+    <span class="n">resolved_token</span> <span class="o">=</span> <span class="n">string</span>
+    <span class="k">for</span> <span class="n">attr_token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">:</span>
+        <span class="n">attr_ref</span> <span class="o">=</span> <span class="n">get_token_content</span><span class="p">(</span><span class="n">attr_token</span><span class="p">)</span>
+        <span class="n">ref_path</span><span class="p">,</span> <span class="n">ref_attr_name</span> <span class="o">=</span> <span class="n">nxt_path</span><span class="o">.</span><span class="n">path_attr_partition</span><span class="p">(</span><span class="n">attr_ref</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ref_path</span> <span class="ow">and</span> <span class="n">ref_attr_name</span><span class="p">:</span>
+            <span class="n">attr_name</span> <span class="o">=</span> <span class="n">ref_attr_name</span>
+            <span class="n">source_path</span> <span class="o">=</span> <span class="n">ref_path</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">attr_name</span> <span class="o">=</span> <span class="n">attr_ref</span>
+            <span class="n">source_path</span> <span class="o">=</span> <span class="n">get_node_path</span><span class="p">(</span><span class="n">comp_node</span><span class="p">)</span>
+        <span class="c1"># If this attr ref is to another node, go there and get the value</span>
+        <span class="k">if</span> <span class="n">source_path</span><span class="p">:</span>
+            <span class="n">node_path</span> <span class="o">=</span> <span class="n">get_node_path</span><span class="p">(</span><span class="n">comp_node</span><span class="p">)</span>
+            <span class="n">source_path</span> <span class="o">=</span> <span class="n">nxt_path</span><span class="o">.</span><span class="n">expand_relative_node_path</span><span class="p">(</span><span class="n">source_path</span><span class="p">,</span>
+                                                             <span class="n">node_path</span><span class="p">)</span>
+        <span class="n">source_node</span> <span class="o">=</span> <span class="n">comp_layer</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">source_path</span><span class="p">)</span>
+        <span class="n">historical_node</span> <span class="o">=</span> <span class="n">stage</span><span class="o">.</span><span class="n">infer_lower_comp</span><span class="p">(</span><span class="n">source_node</span><span class="p">,</span> <span class="n">comp_layer</span><span class="p">,</span>
+                                                 <span class="n">active_layers</span><span class="p">,</span>
+                                                 <span class="n">historical_depth</span><span class="p">)</span>
+
+        <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">historical_node</span><span class="p">,</span> <span class="n">attr_name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">or</span> <span class="s1">''</span>
+        <span class="n">more</span> <span class="o">=</span> <span class="n">get_standalone_tokens</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">token_types</span><span class="o">=</span><span class="p">(</span><span class="n">TOKENTYPE</span><span class="o">.</span><span class="n">ATTR</span><span class="p">,</span>
+                                                         <span class="n">file_fallback_token</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">token_content</span> <span class="ow">in</span> <span class="n">more</span><span class="p">:</span>
+            <span class="n">token</span> <span class="o">=</span> <span class="n">stage</span><span class="o">.</span><span class="n">determine_token_type</span><span class="p">(</span><span class="n">get_token_content</span><span class="p">(</span><span class="n">token_content</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">token</span> <span class="o">==</span> <span class="n">TOKENTYPE</span><span class="o">.</span><span class="n">ATTR</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">historical_resolve_attr_ref</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">comp_node</span><span class="p">,</span>
+                                                    <span class="n">comp_layer</span><span class="p">,</span>
+                                                    <span class="n">active_layers</span><span class="p">,</span>
+                                                    <span class="n">historical_depth</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="n">file_fallback_token</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">historical_resolve_file_ref</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">comp_node</span><span class="p">,</span>
+                                                    <span class="n">token_content</span><span class="p">,</span> <span class="n">comp_layer</span><span class="p">,</span>
+                                                    <span class="n">active_layers</span><span class="p">,</span>
+                                                    <span class="n">token</span><span class="p">,</span>
+                                                    <span class="n">historical_depth</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">value</span> <span class="o">=</span> <span class="n">token</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">comp_node</span><span class="p">,</span> <span class="n">token_content</span><span class="p">,</span> <span class="n">comp_layer</span><span class="p">)</span>
+        <span class="n">raw_token</span> <span class="o">=</span> <span class="n">make_token_str</span><span class="p">(</span><span class="n">attr_ref</span><span class="p">)</span>
+        <span class="n">resolved_token</span> <span class="o">=</span> <span class="n">resolved_token</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">raw_token</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">resolved_token</span></div>
+
+
+<span class="c1"># Usable roots, keyed by the raw env var value they came from.</span>
+<span class="n">_ENV_ROOTS_CACHE</span> <span class="o">=</span> <span class="p">{}</span>
+
+
+<div class="viewcode-block" id="iter_env_roots"><a class="viewcode-back" href="../../../nxt.plugins.file_fallbacks.html#nxt.plugins.file_fallbacks.iter_env_roots">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">iter_env_roots</span><span class="p">(</span><span class="n">only_exsiting</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Yield the roots in NXT_FILE_ROOTS, skipping any that do not exist.</span>
+
+<span class="sd">    Resolving one build's file tokens calls this tens of thousands of times,</span>
+<span class="sd">    and it used to stat every root every time. The usable roots are cached</span>
+<span class="sd">    against the raw env var, so a graph changing NXT_FILE_ROOTS gets a fresh</span>
+<span class="sd">    answer while a build that does not pays for the check once.</span>
+
+<span class="sd">    And against the working directory: a relative root exists or not</span>
+<span class="sd">    depending on where it is looked from, and loading a graph changes into</span>
+<span class="sd">    each layer's folder. Cached without it, a relative root checked once</span>
+<span class="sd">    from the wrong folder was skipped for good.</span>
+<span class="sd">    """</span>
+    <span class="n">raw</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">NXT_FILE_ROOTS</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">raw</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">only_exsiting</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+    <span class="n">roots</span> <span class="o">=</span> <span class="n">_ENV_ROOTS_CACHE</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">roots</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">roots</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">root</span> <span class="ow">in</span> <span class="n">raw</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">ROOT_PATH_SEP</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">only_exsiting</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+                <span class="k">continue</span>
+            <span class="n">roots</span> <span class="o">+=</span> <span class="p">[</span><span class="n">root</span><span class="p">]</span>
+        <span class="n">_ENV_ROOTS_CACHE</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">roots</span>
+    <span class="k">for</span> <span class="n">root</span> <span class="ow">in</span> <span class="n">roots</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">root</span></div>
+
+
+<div class="viewcode-block" id="file_root_fallback"><a class="viewcode-back" href="../../../nxt.plugins.file_fallbacks.html#nxt.plugins.file_fallbacks.file_root_fallback">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">file_root_fallback</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">layer_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Test a given filepath against the list of possible root paths</span>
+<span class="sd">    specified in the env var NXT_FILE_ROOTS.</span>
+<span class="sd">    :param filepath: string of file path</span>
+<span class="sd">    :param layer_dir: optional layer dir to be tested after all possible</span>
+<span class="sd">    roots fail.</span>
+<span class="sd">    :return: string of valid filepath or empty string</span>
+<span class="sd">    """</span>
+    <span class="k">for</span> <span class="n">root</span> <span class="ow">in</span> <span class="n">iter_env_roots</span><span class="p">():</span>
+        <span class="n">full_path</span> <span class="o">=</span> <span class="n">nxt_path</span><span class="o">.</span><span class="n">full_file_expand</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">root</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">full_path</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">full_path</span>
+    <span class="k">if</span> <span class="n">layer_dir</span> <span class="ow">and</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">layer_dir</span><span class="p">):</span>
+        <span class="n">full_path</span> <span class="o">=</span> <span class="n">nxt_path</span><span class="o">.</span><span class="n">full_file_expand</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">layer_dir</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">full_path</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">full_path</span>
+    <span class="k">return</span> <span class="s1">''</span></div>
+
+
+<span class="n">nxt_io</span><span class="o">.</span><span class="n">register_reference_path_expander</span><span class="p">(</span><span class="n">file_root_fallback</span><span class="p">)</span>
+
+
+<span class="n">file_fallback_token</span> <span class="o">=</span> <span class="n">register_token</span><span class="p">(</span><span class="n">FILEPATH_PREFIX</span><span class="p">,</span> <span class="n">detect_filepath_token</span><span class="p">,</span>
+                                     <span class="n">resolve_filepath_token</span><span class="p">)</span>
+
+<span class="n">file_list_token</span> <span class="o">=</span> <span class="n">register_token</span><span class="p">(</span><span class="n">FILE_LIST_PREFIX</span><span class="p">,</span> <span class="n">detect_file_list_token</span><span class="p">,</span>
+                                 <span class="n">resolve_filelist_token</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="detect_path_token"><a class="viewcode-back" href="../../../nxt.plugins.file_fallbacks.html#nxt.plugins.file_fallbacks.detect_path_token">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">detect_path_token</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">value</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">TOKENTYPE</span><span class="o">.</span><span class="n">FILEPATH</span><span class="o">.</span><span class="n">prefix</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="resolve_path_token_in_roots"><a class="viewcode-back" href="../../../nxt.plugins.file_fallbacks.html#nxt.plugins.file_fallbacks.resolve_path_token_in_roots">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">resolve_path_token_in_roots</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">cleaned</span><span class="p">,</span> <span class="n">layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">stage</span><span class="o">.</span><span class="n">resolve</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">cleaned</span><span class="p">,</span> <span class="n">layer</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">iter_env_roots</span><span class="p">())</span>
+    <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
+        <span class="n">layer_cwd</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">get_cwd</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">layer_cwd</span><span class="p">):</span>
+            <span class="n">root</span> <span class="o">=</span> <span class="n">layer_cwd</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">root</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">nxt_path</span><span class="o">.</span><span class="n">full_file_expand</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="n">root</span><span class="p">)</span></div>
+
+
+<span class="n">roots_path_token</span> <span class="o">=</span> <span class="n">register_token</span><span class="p">(</span><span class="n">TOKENTYPE</span><span class="o">.</span><span class="n">FILEPATH</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span> <span class="n">detect_path_token</span><span class="p">,</span>
+                                  <span class="n">resolve_path_token_in_roots</span><span class="p">)</span>
+
+
+<span class="c1"># UNITTESTS</span>
+<span class="c1"># Fixme: putting these here until we can make plugins packages</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, The nxt authors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

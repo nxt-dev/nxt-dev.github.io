@@ -1,0 +1,7 @@
+nxt.session module
+==================
+
+.. automodule:: nxt.session
+   :members:
+   :undoc-members:
+   :show-inheritance:

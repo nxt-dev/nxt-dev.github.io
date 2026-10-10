@@ -1,0 +1,7 @@
+nxt.constants module
+====================
+
+.. automodule:: nxt.constants
+   :members:
+   :undoc-members:
+   :show-inheritance:

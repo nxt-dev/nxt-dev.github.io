@@ -1,6 +1,7 @@
-nxt\_path module
+nxt.nxt\_path module
 ====================
 
 .. automodule:: nxt.nxt_path
    :members:
+   :undoc-members:
    :show-inheritance:

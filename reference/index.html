@@ -40,6 +40,9 @@
                                 <a href=".." class="nav-link">Home</a>
                             </li>
                             <li class="navitem">
+                                <a href="../whats_new/" class="nav-link">What's New</a>
+                            </li>
+                            <li class="navitem">
                                 <a href="../concepts/" class="nav-link">Concepts</a>
                             </li>
                             <li class="navitem">
@@ -109,6 +112,30 @@
             
             <li class="nav-item" data-level="1"><a href="#editors" class="nav-link">Editors</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#docks-and-layout" class="nav-link">Docks and layout</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#stage-view" class="nav-link">Stage View</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#code-editor" class="nav-link">Code Editor</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#layer-manager" class="nav-link">Layer Manager</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#build-view" class="nav-link">Build View</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#property-editor-history-view-output-log-and-workflow-tools" class="nav-link">Property Editor, History View, Output Log and Workflow Tools</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
               </ul>
             </li>
             
@@ -172,15 +199,389 @@
 <p>Checkout our example graphs <a href="https://github.com/nxt-dev/nxt_editor/tree/release/examples">here</a>.</p>
 <p><em>If you're looking for workflow checkout our workflow and transition map <a href="../workflows/">here</a>.</em></p>
 <h1 id="editors">Editors</h1>
-<p>Stage View</p>
-<p>Node Properties</p>
-<p>Code Editor</p>
-<p>Layer manager</p>
-<p>Tool Bar</p>
-<p>Output Log</p>
-<p>Build View</p>
-<p>History View</p>
-<p><a href="../hotkeys/">Hotkey Editor</a></p>
+<p><img alt="The nxt editor" src="../images/editor_overview.png" /></p>
+<p>The editor is made of a graph (the stage view) in the middle, surrounded by
+dock widgets that can be moved, tabbed and closed: the Layer Manager,
+Property Editor, Code Editor, History View, Build View, Workflow Tools,
+Output Log and <a href="../hotkeys/">Hotkey Editor</a>. Closed docks come back from the
+<strong>Window</strong> menu.</p>
+<h2 id="docks-and-layout">Docks and layout</h2>
+<p><img alt="View &gt; Reset Layout" src="../images/view_reset_layout.png" /></p>
+<ul>
+<li><strong>Float a dock</strong> by dragging its title bar or tab out of the window, or,
+  where several docks share a space as tabs, by double clicking its tab.</li>
+<li><strong>Dock it again</strong> by dragging it back over the window until a space opens
+  for it, or by double clicking its title bar, which returns it to where it
+  was docked last.</li>
+<li><strong>View &gt; Reset Layout</strong> puts every dock back where a fresh install has
+  it, with its default size. It resets to the editor's own layout, not to
+  the one you left at the end of your last session. The layout you leave the
+  editor in is still remembered for next time.</li>
+</ul>
+<h2 id="stage-view">Stage View</h2>
+<p>The stage view draws the composited graph for the open tab. Each tab is
+composited and drawn the first time it is selected, and kept from then on,
+so switching back to a tab is instant.</p>
+<h3 id="mini-map">Mini map</h3>
+<p><img alt="The mini map" src="../images/mini_map.png" /></p>
+<p>The mini map in the bottom right corner shows the whole graph, the selected
+nodes, and a rectangle for the part of the graph the view is showing.</p>
+<ul>
+<li>Click anywhere in the mini map to centre the view there, or drag in it to
+  pan.</li>
+<li>Toggle it with <strong>View &gt; Toggle Mini Map</strong> or <code>Ctrl+M</code>. The choice is
+  remembered between sessions.</li>
+</ul>
+<h3 id="animate-nodes">Animate Nodes</h3>
+<p>Nodes no longer slide open when a parent is expanded. Every child is
+animated separately, so a node with hundreds of children opens noticeably
+slower that way. The <strong>Animate Nodes</strong> action turns the animation back on.
+It is listed under <strong>Graph</strong> in the <a href="../hotkeys/#graph">Hotkey Editor</a>,
+where you can give it a shortcut, and the choice is remembered between
+sessions.</p>
+<h3 id="deleting-and-pasting-nodes">Deleting and pasting nodes</h3>
+<p><code>Del</code> removes the selected node from the target layer. If no other layer has
+an opinion on the deleted node's path, its descendants are removed with it,
+so nothing is left behind as an implied "ghost" node. If another layer does
+provide the node, the node from that layer shows through, as you would
+expect from <a href="#layers">layering</a>. <code>Shift+Del</code> deletes the node and all of its
+descendants.</p>
+<p>Pasting nodes (<code>Ctrl+V</code>) is a single step on the undo stack however many
+nodes are pasted.</p>
+<h2 id="code-editor">Code Editor</h2>
+<p>The code editor shows the compute of the selected node. It is read only
+until you <strong>double click</strong> into it. Accept your edit with <code>Ctrl+Enter</code>, the
+numpad <code>Enter</code>, or by clicking off the code, and cancel it with <code>Esc</code>.</p>
+<p>The shortcuts below only apply while the code editor has focus, so for
+example <code>Ctrl+D</code> expands the selection in the code editor but duplicates the
+selected node in the graph. While the code editor, or one of its find
+fields, has focus the main window's shortcuts are suspended so typing cannot
+trigger them. All of these can be rebound in the
+<a href="../hotkeys/#code-editor">Hotkey Editor</a>, and most are also on the code
+editor's right click menu, with the line commands under <strong>Line</strong>.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Action</th>
+<th align="center">Shortcut</th>
+<th align="left">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Find In Code</td>
+<td align="center"><code>Ctrl+F</code></td>
+<td align="left">Opens the find panel, filled in with the selected text</td>
+</tr>
+<tr>
+<td align="left">Replace In Code</td>
+<td align="center"><code>Ctrl+H</code></td>
+<td align="left">Opens the find panel with the replace row showing</td>
+</tr>
+<tr>
+<td align="left">Find Next / Find Previous</td>
+<td align="center"><code>F3</code> / <code>Shift+F3</code></td>
+<td align="left">Wraps around at either end</td>
+</tr>
+<tr>
+<td align="left">Go To Line</td>
+<td align="center"><code>Ctrl+G</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Duplicate Line</td>
+<td align="center"><code>Ctrl+Shift+D</code></td>
+<td align="left">Copies the selected line(s) below</td>
+</tr>
+<tr>
+<td align="left">Move Line Up / Down</td>
+<td align="center"><code>Alt+Up</code> / <code>Alt+Down</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Delete Line</td>
+<td align="center"><code>Ctrl+Shift+K</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Expand Selection</td>
+<td align="center"><code>Ctrl+D</code></td>
+<td align="left">The word under the cursor, then the line, then everything</td>
+</tr>
+<tr>
+<td align="left">Complete Word</td>
+<td align="center"><code>Ctrl+Space</code></td>
+<td align="left">See <a href="#completion">Completion</a></td>
+</tr>
+<tr>
+<td align="left">Go to a token's node</td>
+<td align="center"><code>Ctrl+click</code></td>
+<td align="left">See <a href="#following-tokens">Following tokens</a></td>
+</tr>
+<tr>
+<td align="left">Indent / Un-Indent Line</td>
+<td align="center"><code>Tab</code> / <code>Shift+Tab</code></td>
+<td align="left">Works on several lines at once</td>
+</tr>
+<tr>
+<td align="left">Comment Line</td>
+<td align="center"><code>Ctrl+/</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Execute Selection Locally</td>
+<td align="center"><code>Shift+Return</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Execute Selection Globally</td>
+<td align="center"><code>Ctrl+Shift+Return</code></td>
+<td align="left"></td>
+</tr>
+<tr>
+<td align="left">Copy Resolved Code</td>
+<td align="center"><code>Ctrl+Shift+C</code></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Two kinds of find</p>
+<p><code>Ctrl+F</code> in the code editor searches the compute you are looking at.
+<code>Ctrl+F</code> anywhere else opens the graph wide <strong>Find and Replace</strong>, which
+searches node attributes across the whole stage.</p>
+</div>
+<h3 id="find-and-replace">Find and replace</h3>
+<p><img alt="Find and replace in the code editor" src="../images/code_editor_find.png" /></p>
+<p>The find panel floats over the top right corner of the code, so the code
+never moves when it opens.</p>
+<ul>
+<li>Type in the <strong>Find</strong> field and every match is highlighted, with the
+  current match in a stronger colour. The counter shows which match you are
+  on (<code>3 of 3</code>), or <code>bad pattern</code> when a regular expression is not valid.</li>
+<li><code>Enter</code> and <code>Shift+Enter</code> in the field, <code>F3</code> and <code>Shift+F3</code>, or the arrow
+  buttons step through the matches.</li>
+<li>The three toggles inside the field are <strong>regular expression</strong> (<code>.*</code>),
+  <strong>whole word</strong> (<code>ab</code>) and <strong>match case</strong> (<code>Aa</code>).</li>
+<li>The chevron on the left shows the replace row. <strong>Replace</strong> replaces the
+  current match and moves on to the next one; <strong>All</strong> replaces every match
+  in one undoable step. Replacing needs the editor to be in editing mode;
+  while it is read only the panel says <em>double click to edit</em>.</li>
+<li><code>Esc</code> closes the panel.</li>
+</ul>
+<h3 id="go-to-line">Go to line</h3>
+<p><img alt="Go to line" src="../images/code_editor_goto_line.png" /></p>
+<p><code>Ctrl+G</code> drops a small field from the top of the editor. The view scrolls to
+the line as you type, <code>Enter</code> goes there, and <code>Esc</code> puts the cursor back
+where it was before you started.</p>
+<h3 id="highlighting">Highlighting</h3>
+<p><img alt="Word and bracket highlighting" src="../images/code_editor_highlight.png" /></p>
+<p>Every use of the word under the cursor is highlighted, and so is the bracket
+next to the cursor together with its partner. A bracket without a partner is
+drawn in a warning colour.</p>
+<p>Syntax colouring applies to every match on a line, so a line with several
+tokens or strings has all of them coloured, not only the first.</p>
+<h3 id="auto-pairing">Auto-pairing</h3>
+<p>While you edit, brackets and quotes come in pairs:</p>
+<ul>
+<li>Typing <code>(</code>, <code>[</code>, <code>{</code>, <code>"</code> or <code>'</code> adds the closing character after the
+  cursor, so typing <code>${</code> gives <code>${}</code> with the cursor inside.</li>
+<li>Typing a closing character that is already right after the cursor steps
+  over it rather than adding a second one, so typing the closer yourself
+  out of habit does no harm.</li>
+<li>With text selected, typing an opening bracket or a quote wraps the
+  selection in the pair, and the text stays selected.</li>
+<li>A quote typed straight after a letter or digit, or before one, is just
+  typed, so apostrophes and string prefixes such as <code>f'</code> work as usual.
+  Typing <code>"""</code> gives exactly three quotes.</li>
+<li>Keyboard layouts that type <code>[</code> and <code>{</code> with <code>AltGr</code> pair them too.</li>
+<li>Accepting a token completion inside <code>${}</code> does not leave a spare <code>}</code>
+  behind.</li>
+</ul>
+<h3 id="following-tokens">Following tokens</h3>
+<p><img alt="Hovering a token shows its value" src="../images/code_editor_token_hover.png" /></p>
+<p>In Raw View (<code>Q</code>), where the code shows its <code>${}</code> tokens, the tokens can be
+inspected and followed:</p>
+<ul>
+<li><strong>Hover</strong> a token that reads an attribute, such as <code>${/settings.out_dir}</code>
+  or a local <code>${suffix}</code>, to see the value it resolves to in a tooltip. If
+  the token names a node that does not exist, the tooltip says so instead.
+  <code>${file::}</code>, <code>${contents::}</code>, <code>${path::}</code> and tokens added by plugins are
+  never resolved by hovering, because resolving them reads files or runs
+  plugin code.</li>
+<li><strong><code>Ctrl+click</code></strong> a token that reads an attribute of another node to select
+  that node in the graph and frame it. While <code>Ctrl</code> is held, the mouse
+  pointer turns into a pointing hand over a token you can follow. A token
+  that reads the node's own attribute stays where it is, and a token naming
+  a node that does not exist logs a warning.</li>
+</ul>
+<p><code>Ctrl+click</code> does nothing while you are editing the code, so it can never
+take you to another node, and accept your edit on the way, by accident.</p>
+<h3 id="completion">Completion</h3>
+<p><img alt="Completing names from an imported module" src="../images/completion_modules.png" /></p>
+<p><code>Ctrl+Space</code> offers completions for the word in front of the cursor. Use the
+arrow keys to choose one and <code>Enter</code> or <code>Tab</code> to insert it; <code>Esc</code> closes the
+list. With <strong>Code Editor Autocomplete</strong> on, the list also appears by itself
+once you have typed two characters of a word.</p>
+<p>Completions come from six sources:</p>
+<table>
+<thead>
+<tr>
+<th align="left">Source</th>
+<th align="left">What it offers</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Python Builtins</td>
+<td align="left">Python's keywords and builtins, such as <code>return</code> and <code>enumerate</code>.</td>
+</tr>
+<tr>
+<td align="left">Imported Modules</td>
+<td align="left">Names inside the modules this compute imports, and inside the modules the world node (<code>/</code>) imports, since every compute can use those: <code>os.pa</code> offers <code>os.path</code>, and <code>os.path.jo</code> offers <code>os.path.join</code>. Aliases such as <code>import numpy as np</code> are understood. Only modules named on import lines are looked at, and a module that fails to import is skipped.</td>
+</tr>
+<tr>
+<td align="left">Node Attributes And Tokens</td>
+<td align="left">The node's attributes written as <code>name</code>, <code>self.name</code> and <code>${name}</code>; the names nxt gives every compute, <code>STAGE</code>, <code>self</code>, <code>w</code>, <code>execute</code>, <code>nxt_path</code>, <code>ExitNode</code>, <code>ExitGraph</code> and <code>types</code> (<code>nxt_path.</code> looks inside it); the token prefixes nxt knows about, including any added by plugins: <code>${file::</code>, <code>${filelist::</code>, <code>${path::</code> and so on; and <a href="#node-paths-and-their-attributes">node paths</a> inside <code>${/</code>.</td>
+</tr>
+<tr>
+<td align="left">Words In This Compute</td>
+<td align="left">Words already written in the compute, which catches your own variable names.</td>
+</tr>
+<tr>
+<td align="left">Host Modules</td>
+<td align="left">The modules the host application already has loaded, under the names scripts usually give them, so they complete before any import line is written: <code>cmds</code>, <code>mc</code>, <code>mel</code>, <code>om</code>, <code>oma</code>, <code>omui</code>, <code>omr</code> and <code>pm</code> in Maya, <code>unreal</code> in Unreal, <code>bpy</code> in Blender, <code>pyfbsdk</code> in MotionBuilder and <code>pymxs</code> in 3ds Max. Only modules the host has already loaded are offered; nothing is imported for them. In the standalone editor there are none.</td>
+</tr>
+<tr>
+<td align="left">Python Analysis (jedi)</td>
+<td align="left">Optional. Uses <a href="https://github.com/davidhalter/jedi">jedi</a> to work out what a name is, so that after a dot it can complete what a call returns or what a variable holds. See <a href="#python-analysis-with-jedi">Python analysis with jedi</a>.</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="Completing tokens" src="../images/completion_tokens.png" /></p>
+<h4 id="node-paths-and-their-attributes">Node paths and their attributes</h4>
+<p><img alt="Completing another node's attributes" src="../images/completion_node_attrs.png" /></p>
+<p>Inside a token that starts with <code>${/</code>, completion offers the paths of the
+nodes in the graph (<code>${/settings</code>, <code>${/export/report</code>). Once a node path is
+followed by a dot, it offers that node's attributes as whole tokens, so
+choosing one writes <code>${/settings.out_dir}</code> complete with its closing brace.</p>
+<h4 id="python-analysis-with-jedi">Python analysis with jedi</h4>
+<p><img alt="jedi completing a string's methods" src="../images/completion_jedi.png" /></p>
+<p>The other sources read names: they can complete <code>os.path.jo</code> because <code>os</code>
+is imported, but not what <code>os.path.join(...)</code> returns. jedi analyses the
+code, so after <code>path = os.path.join(out_dir, name)</code> it knows <code>path</code> is a
+string and offers <code>path.split</code> and <code>path.splitlines</code>.</p>
+<ul>
+<li>It is optional. Install it with <code>pip install nxt-editor[completion]</code> (see
+  <a href="../install/#standalone-installation">Standalone Installation</a>). Without
+  it, <strong>Python Analysis (jedi)</strong> is greyed out in the menu, and its
+  description says how to install it.</li>
+<li>It is only asked after a dot. Bare names still come from the other
+  sources, so switching one of those off keeps its names out of the list.</li>
+<li>It is asked once typing pauses, or straight away with <code>Ctrl+Space</code>. The
+  answer is kept while you type more of the same name.</li>
+<li>It sees the world node's imports and the names nxt gives every compute.
+  <code>${}</code> tokens are read as plain strings, so a compute full of tokens can
+  still be analysed.</li>
+<li>jedi is loaded the first time it is needed, not when the editor starts,
+  and keeps its cache in the nxt user directory.</li>
+</ul>
+<h4 id="autocomplete-options">Autocomplete options</h4>
+<p><img alt="Options &gt; Autocomplete" src="../images/options_autocomplete.png" /></p>
+<p><strong>Options &gt; Autocomplete</strong> holds the completion switches. They are all on by
+default and remembered between sessions, and a change applies straight away,
+even to a list that is already open.</p>
+<ul>
+<li><strong>Code Editor Autocomplete</strong>: offer completions while you type. When it is
+  off, completions only appear when you press <code>Ctrl+Space</code>.</li>
+<li><strong>Python Builtins</strong>, <strong>Imported Modules</strong>, <strong>Node Attributes And Tokens</strong>,
+  <strong>Words In This Compute</strong>, <strong>Host Modules</strong> and <strong>Python Analysis (jedi)</strong>:
+  the sources described above.</li>
+</ul>
+<h2 id="layer-manager">Layer Manager</h2>
+<p>The Layer Manager lists the layers of the open graph: the top layer and,
+nested under it, the layers it references. Right click a layer for its
+menu.</p>
+<p><img alt="The layer menu" src="../images/layer_menu.png" /></p>
+<p>Two items on this menu change what a layer pulls in from disk:
+<strong>Edit References...</strong> and <strong>Reload Source...</strong>.</p>
+<h3 id="reference-editor">Reference Editor</h3>
+<p><strong>Edit References...</strong> opens the Reference Editor on that layer.</p>
+<p><img alt="The Reference Editor" src="../images/reference_editor.png" /></p>
+<ul>
+<li><strong>Layer</strong> picks which layer's references you are editing. Only layers that
+  are open in this graph and not locked can be edited.</li>
+<li><strong>The list</strong> holds that layer's references in stack order: a reference
+  higher in the list is stronger than the ones below it. Drag a row, or use
+  the up and down arrow buttons, to change the order.</li>
+<li><strong>The field under the list</strong> edits the selected reference. What you type
+  is stored exactly as written, so a path with an environment variable in
+  it, a path relative to the layer, or a path under one of your
+  <a href="#how-references-are-found">file roots</a> keeps working on other machines.
+  The folder button next to the field picks a file with a file browser
+  instead. A picked file that sits next to the layer, or in a folder below
+  it, is stored relative to the layer; anything else is stored as a full
+  path. A relative path is looked for under your file roots before the
+  layer's folder, so check the resolved view if a root might hold a file of
+  the same name.</li>
+<li><strong>+</strong> adds an empty row and puts the cursor in the field, ready to type.
+  An empty row that is never filled in is dropped. <strong>-</strong> removes the
+  selected reference.</li>
+<li><strong>The resolved toggle</strong> next to the layer picker switches every row
+  between the path as stored and where it resolves to on this machine.
+  Resolved paths are only for looking: they cannot be edited, so this
+  machine's answer is never written into the layer.</li>
+<li><strong>Missing references</strong> are drawn in red and counted
+  (<code>1 could not be found</code>). They are kept exactly as written, in case they
+  resolve on another machine. Hover over a row to see where nxt looked.</li>
+</ul>
+<p><img alt="Typing a reference that uses an environment variable" src="../images/reference_editor_typed.png" /></p>
+<p>Pressing <code>Enter</code> in the field does not close the dialog. <strong>OK</strong> applies the
+change to the open graph: the referenced layers are reloaded, the graph is
+composited again, and the layer is marked unsaved. Nothing is written to
+disk until you save the layer. Applying is one step on the undo stack, and
+pressing <strong>OK</strong> with nothing changed does nothing at all.</p>
+<h3 id="reload-source">Reload Source</h3>
+<p><strong>Reload Source...</strong> reads a layer from disk again, for example when
+somebody else has saved a file your graph is built on. It is on every
+layer's right click menu, and in the <strong>File</strong> menu next to <strong>Save Layer</strong>,
+where it acts on the target layer.</p>
+<p><img alt="Reload Source" src="../images/reload_source.png" /></p>
+<p>A layer is rarely just one file, so the dialog lists the layer and every
+layer it references, as deep as they go, indented to show which layer
+references which. Every row starts checked; uncheck the files you do not
+want read again, or use the <strong>Uncheck All</strong> / <strong>Check All</strong> toggle. A file
+referenced from several places is listed once. Rows with unsaved changes say
+so, because reloading them throws those changes away.</p>
+<p><strong>Reload Checked</strong> reads the checked files again and composites the graph.
+If a file now references something different, the layer stack follows it:
+layers can appear, disappear or change order. Reloading is one step on the
+undo stack, and undoing it puts back exactly what each layer held before,
+without reading the files again.</p>
+<h2 id="build-view">Build View</h2>
+<p><img alt="The build view" src="../images/build_view_find.png" /></p>
+<p>The Build View lists the nodes that will run, in execution order, from the
+start point chosen in the drop down. Next to the drop down are buttons to
+find the selected node, run the build, step through it, stop it and
+restart it.</p>
+<ul>
+<li><strong>Find the selected node</strong> (the magnifier) scrolls the build so the node
+  selected in the graph is at the top of the list, and marks its row. A
+  selected node is not always part of the build: it may be disabled,
+  outside the start point's branch, or not executable at all. In that case
+  the Output Log says the node is not in the build, and the editor dings.</li>
+<li>The build stays current as you edit. Enabling or disabling a node,
+  changing a start point, exec input, child order, instance path or parent,
+  and renaming or deleting a node all update the list straight away.</li>
+<li>If the graph has changed since the last run in a way the cached runtime
+  does not know about (a node was moved, renamed or deleted), the cache is
+  cleared and rebuilt when the build is set up, before anything runs, and
+  the Output Log says so.</li>
+</ul>
+<h2 id="property-editor-history-view-output-log-and-workflow-tools">Property Editor, History View, Output Log and Workflow Tools</h2>
+<p>See the <a href="../tutorials/">tutorial videos</a> for a tour of these. The History
+View lists every step on the undo stack, including reference edits and
+reloads.</p>
 <h1 id="terms-and-definitions">Terms and Definitions</h1>
 <h2 id="stage">Stage</h2>
 <p>The stage is a collection of graphs, trees, and layers of nxt <a href="#node">nodes </a>that set the <a href="#stage-composition">composition structure</a> and <a href="#execution-order">execution order</a> for an nxt file.<br />
@@ -200,7 +601,7 @@ STAGE.complex_data = my_object
 <p>A node is a container for code (or compute) and a collection of attributes. Every node contains a single <a href="#compute">code block</a> that is executed when a node is run. <a href="#execution-order">Execution order</a> is defined both by hierarchy and connections to execution plugs on the nodes.</p>
 <h2 id="attributes">Attributes</h2>
 <p><a href="#node">Nodes</a> contain <a href="#attributes">attributes </a>that are read from and written to from inside a node’s <a href="#compute">code block</a>. Attributes can also be connected to inputs and outputs of other nodes via <a href="#tokens">tokens </a>in  attributes, token paths within the code block, or dragging and dropping attribute connections between nodes.</p>
-<p>At editor time (before the graph has begun <a href="#executionorder">executing</a>) attribute values can be composited into other attribute’s values or into the text of a code block via <code>${path/to/node.otherattr}_rest_of_attr_value</code>. </p>
+<p>At editor time (before the graph has begun <a href="#execution-order">executing</a>) attribute values can be composited into other attribute’s values or into the text of a code block via <code>${path/to/node.otherattr}_rest_of_attr_value</code>. </p>
 <p>A node’s local attributes can be resolved by name alone via <code>${attrname}</code></p>
 <div class="admonition note">
 <p class="admonition-title">Hotkeys</p>
@@ -246,7 +647,7 @@ print(Stage.anyattr)
 <p>It is best practice to display inter-node dependencies via hierarchy or connections of attributes, rather than hide that dependency in the code. This will make your layers more portable and friendly to other users. Despite this best practice, other nodes and their attributes can be accessed inside a code <code>block using STAGE.lookup('path/to/node')</code> and <code>STAGE.lookup('path/to/node.otherattr')</code>.</p>
 </div>
 <h2 id="tokens">Tokens</h2>
-<p>A token is like a <a href="../workflows/#transitionguide">reference or pointer</a> to another token or value. <a href="../workflows/#transitionmap">OS </a>style pathing is used to resolve attribute and file tokens.</p>
+<p>A token is like a <a href="../workflows/#transition-map">reference or pointer</a> to another token or value. <a href="../workflows/#transition-map">OS </a>style pathing is used to resolve attribute and file tokens.</p>
 <p>Attribute token syntax is <code>${}</code>: if it can resolve, it substitutes the attribute, if not it will be empty.<br />
 <em>If a token is empty it will resolve to <code>BADRESOLVE</code>.</em></p>
 <pre><code>        ${attribute}
@@ -317,7 +718,7 @@ self.attribute = w(my_attr)</code></p>
 <h3 id="hierarchiesstacks">Hierarchies/Stacks</h3>
 <p>Nodes have relationships we refer to as “parent”, “child”, and “sibling” to describe their relationship to one another inside the stage to influence composition and execution order. </p>
 <p><img alt="hierarchy.PNG" src="../images/hierarchy.PNG" /></p>
-<p>To begin execution from a given node, the first node is run, followed by a depth first execution of each of it’s descendants. Following the execution of the descendants, the root node whose input <a href="#executionplugs">execution plug</a> is connected to the current node’s output execution plug will be run following the same logic.</p>
+<p>To begin execution from a given node, the first node is run, followed by a depth first execution of each of it’s descendants. Following the execution of the descendants, the root node whose input <a href="#execution-plugs">execution plug</a> is connected to the current node’s output execution plug will be run following the same logic.</p>
 <h2 id="stage-composition">Stage Composition</h2>
 <h3 id="layers">Layers</h3>
 <p>Layers are designed to be composited (combined) to create a hierarchy of instructions that can be reused and repurposed by several NXT users for use on several assets or workflows. Multiple layers can be referenced and nxt seamlessly combines them into a single composite layer.
@@ -326,8 +727,70 @@ self.attribute = w(my_attr)</code></p>
 <p>All of the layers in your file are composited together to produce final code to execute. Each layer has the power to change as much or as little as is needed to customize the composited node’s attributes and code block. These changes are stored in the file they are made on, keeping referenced files safe to use for many purposes.</p>
 <p>Layer color propagates into nodes an also attributes.</p>
 <p><img alt="attribute_color.PNG" src="../images/attribute_color.PNG" /></p>
+<h3 id="references">References</h3>
+<p>A layer pulls other layers in through its <strong>references</strong>. They are stored in
+the layer's file as a list:</p>
+<pre><code>"references": [
+    "base_steps.nxt",
+    "$PROJECT_ROOT/lib/shared_steps.nxt"
+]
+</code></pre>
+<p>References are a stack: the first one in the list is the strongest of them,
+directly below the layer that references it, and each one after it is
+weaker. A referenced layer can have references of its own.</p>
+<p>Edit them with the <a href="#reference-editor">Reference Editor</a> (right click a layer
+in the Layer Manager &gt; <strong>Edit References...</strong>), or add one with
+<strong>Reference Layer Above/Below</strong> and <strong>Reference Builtin Graph</strong> from the
+<strong>File</strong> menu. To pick up changes somebody else saved to any of these files,
+use <a href="#reload-source">Reload Source</a>.</p>
+<h4 id="how-references-are-found">How references are found</h4>
+<p>A reference is stored exactly as it was written, which is often only part of
+a path. Environment variables (<code>$NAME</code>) and <code>~</code> in it are expanded first.
+Then:</p>
+<ol>
+<li><strong>An absolute path</strong> is used as it is.</li>
+<li><strong>Anything else</strong> is looked for under each folder listed in the
+   <code>NXT_FILE_ROOTS</code> environment variable, in order. Separate the folders
+   with <code>;</code> on Windows and <code>:</code> on Linux and macOS.</li>
+<li>If no root has it, it is looked for relative to the folder of the layer
+   that holds the reference. That is the layer's own folder, not the folder
+   of the top graph and not wherever the editor was started.</li>
+</ol>
+<p>The first file found is used. The same order is used when a graph is
+opened, when a reference is added in the editor, when a layer is reloaded
+with Reload Source, and by the Reference Editor's resolved view, so they
+always agree.</p>
+<p>For example, with <code>NXT_FILE_ROOTS=/projects/show_a;/projects/library</code>, the
+reference <code>lib/shared_steps.nxt</code> is found at
+<code>/projects/show_a/lib/shared_steps.nxt</code> if it exists there, otherwise at
+<code>/projects/library/lib/shared_steps.nxt</code>, and otherwise at
+<code>lib/shared_steps.nxt</code> in the referring layer's folder. Because what is
+stored is the partial path, the same graph keeps working on another
+machine, or for another project, with different roots.</p>
+<div class="admonition note">
+<p class="admonition-title">A root wins over a file beside the layer</p>
+<p>Because the roots are tried first, a file under a root is used even when
+a file of the same name sits next to the layer. This is deliberate: put
+a folder holding your working copies first in <code>NXT_FILE_ROOTS</code>, and a
+graph that references <code>rig_steps.nxt</code> picks up your working copy of
+<code>rig_steps.nxt</code> instead of the published one beside it, without
+changing the graph. Take the folder out of <code>NXT_FILE_ROOTS</code> to go back.
+To always use one particular file, reference it by an absolute path, or
+by a path built from an environment variable.</p>
+</div>
+<p>The <a href="#reference-editor">Reference Editor</a> shows where each reference
+resolves on this machine with its resolved toggle, and the tooltip on a row
+says where nxt looked.</p>
+<div class="admonition note">
+<p class="admonition-title">References that cannot be found are kept</p>
+<p>If a referenced file cannot be found, for example because it lives on a
+share this machine cannot see, the graph still opens without that layer,
+and the failure is logged. The reference itself is kept on the layer
+exactly as written, so saving the layer does not remove it. The Reference
+Editor draws such references in red.</p>
+</div>
 <h3 id="composition-inside-node-hierarchies">Composition Inside Node Hierarchies</h3>
-<p>When a <a href="#node">node </a>is a child of another node, it <a href="../concepts/#Inheritance">inherits </a>its <a href="#attributes">attributes </a>from that node which can be overwritten locally on the node.</p>
+<p>When a <a href="#node">node </a>is a child of another node, it <a href="../concepts/#inheritance">inherits </a>its <a href="#attributes">attributes </a>from that node which can be overwritten locally on the node.</p>
 <h2 id="instancing">Instancing</h2>
 <p>Instancing allows you to reuse nodes from other parts of the graph with specific overrides. </p>
 <p>Instances in NXT can be simple and powerful. But they can also be extremely complicated with mind-bending edge cases. In simple terms, you can think about an  instance as a clone of another node. It's like a live copy. But it's a bit more nuanced to think about an instance like an additional parent that's outside the hierarchy.</p>

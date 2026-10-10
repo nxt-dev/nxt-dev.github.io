@@ -1,0 +1,7 @@
+nxt.remote.server module
+========================
+
+.. automodule:: nxt.remote.server
+   :members:
+   :undoc-members:
+   :show-inheritance:

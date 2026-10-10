@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nxt.remote.server module &mdash; NXT  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="nxt.clean_json module" href="nxt.clean_json.html" />
+    <link rel="prev" title="nxt.remote.nxt_socket module" href="nxt.remote.nxt_socket.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            NXT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="https://sunriseproductions.github.io/nxt/">User Docs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">nxt</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="nxt.html">nxt package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="nxt.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="nxt.plugins.html">nxt.plugins package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="nxt.remote.html">nxt.remote package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nxt.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nxt.html#module-nxt">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NXT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">nxt</a></li>
+          <li class="breadcrumb-item"><a href="nxt.html">nxt package</a></li>
+          <li class="breadcrumb-item"><a href="nxt.remote.html">nxt.remote package</a></li>
+      <li class="breadcrumb-item active">nxt.remote.server module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/nxt.remote.server.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nxt.remote.server">
+<span id="nxt-remote-server-module"></span><h1>nxt.remote.server module<a class="headerlink" href="#module-nxt.remote.server" title="Permalink to this headline"></a></h1>
+<dl class="py exception">
+<dt class="sig sig-object py" id="nxt.remote.server.NxtServerException">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NxtServerException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">err</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tb</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">err_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lineno</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bad_line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">err_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/server.html#NxtServerException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.server.NxtServerException" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <a class="reference internal" href="nxt.runtime.html#nxt.runtime.GraphError" title="nxt.runtime.GraphError"><code class="xref py py-class docutils literal notranslate"><span class="pre">nxt.runtime.GraphError</span></code></a></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.remote.server.NxtServer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NxtServer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">allow_none</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_requests</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/server.html#NxtServer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.server.NxtServer" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">socketserver.ThreadingMixIn</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">xmlrpc.server.SimpleXMLRPCServer</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.remote.server.ServerFunctions">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ServerFunctions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/server.html#ServerFunctions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.server.ServerFunctions" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.remote.server.ServerFunctions.get_log_location">
+<span class="sig-name descname"><span class="pre">get_log_location</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/server.html#ServerFunctions.get_log_location"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.server.ServerFunctions.get_log_location" title="Permalink to this definition"></a></dt>
+<dd><p>Simple method for getting the filepath of the file the server is
+logging to. May be an empty string if the server isn’t logging to a
+custom filepath.
+:return: str</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.remote.server.ServerFunctions.is_alive">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">is_alive</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/server.html#ServerFunctions.is_alive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.server.ServerFunctions.is_alive" title="Permalink to this definition"></a></dt>
+<dd><p>Simple method for clients to use to check if the server is still
+alive.
+:return: True</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.remote.server.ServerFunctions.exec_in_headless">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">exec_in_headless</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parameters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/server.html#ServerFunctions.exec_in_headless"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.server.ServerFunctions.exec_in_headless" title="Permalink to this definition"></a></dt>
+<dd><p>Executed the given graph (filepath) with the given start_node in the
+dcc exe (as a sub-process). The temp path (if provided) must be a
+location that the server can read/write. If no temp path is given one
+will be generated. The file at the temp path is used to store the
+cache data to be returned to the caller. Only the file path is
+returned to the caller, not the actual data.
+:param filepath: Path to nxt save file
+:param start_node: start node path
+:param cache_path: Path to store output cache data (if none is given
+one will be generated)
+:param parameters: Optional parameters dict
+:param context_name: name of context, defaults to python
+:return: filepath to temp file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.remote.server.ServerFunctions.kill">
+<span class="sig-name descname"><span class="pre">kill</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/server.html#ServerFunctions.kill"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.server.ServerFunctions.kill" title="Permalink to this definition"></a></dt>
+<dd><p>Shuts down the running rpc server and attemps to remove the server
+log file if there is one.
+:return: None</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.remote.server.secure_address">
+<span class="sig-name descname"><span class="pre">secure_address</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/server.html#secure_address"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.server.secure_address" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.remote.server.run_server">
+<span class="sig-name descname"><span class="pre">run_server</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">address</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">log_requests</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/server.html#run_server"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.server.run_server" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nxt.remote.nxt_socket.html" class="btn btn-neutral float-left" title="nxt.remote.nxt_socket module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nxt.clean_json.html" class="btn btn-neutral float-right" title="nxt.clean_json module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, The nxt authors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

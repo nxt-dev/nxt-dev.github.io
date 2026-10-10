@@ -4,22 +4,15 @@
    contain the root `toctree` directive.
 
 Welcome to the nxt api documentation!
-=====================================
-
-The content within this documentation is the "public" api, what nxt's version numbers are constrained to.
-
-These documents represent the supported parts of the api. More pieces
-will be documented as python ergonomics improve. 
-In the source there are many more classes, methods, and even a few modules not 
-listed here. 
-Any use of those methods is at your own risk.
-
+===============================
 
 .. toctree::
+
+   User Docs <https://sunriseproductions.github.io/nxt/>
    :maxdepth: 2
+   modules.rst
+   :caption: Contents:
 
-   User Docs <https://nxt-dev.github.io/>
-   nxt.rst
-
-
+.. * :ref:`genindex`
+.. * :ref:`modindex`
 .. * :ref:`search`

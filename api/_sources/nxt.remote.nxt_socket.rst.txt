@@ -1,0 +1,7 @@
+nxt.remote.nxt\_socket module
+=============================
+
+.. automodule:: nxt.remote.nxt_socket
+   :members:
+   :undoc-members:
+   :show-inheritance:

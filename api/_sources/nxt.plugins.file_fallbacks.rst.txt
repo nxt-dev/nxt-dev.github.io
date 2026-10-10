@@ -1,0 +1,7 @@
+nxt.plugins.file\_fallbacks module
+==================================
+
+.. automodule:: nxt.plugins.file_fallbacks
+   :members:
+   :undoc-members:
+   :show-inheritance:

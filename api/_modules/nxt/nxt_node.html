@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nxt.nxt_node &mdash; NXT  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            NXT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference external" href="https://sunriseproductions.github.io/nxt/">User Docs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">nxt</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">NXT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+          <li class="breadcrumb-item"><a href="../nxt.html">nxt</a></li>
+      <li class="breadcrumb-item active">nxt.nxt_node</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for nxt.nxt_node</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Built-in</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">partial</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">copy</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="c1"># Internal</span>
+<span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">nxt_path</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">nxt_io</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">nxt_path</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">nxt_io</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">_ClassAttrProbe</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Exists only so INTERNAL_ATTRS.BUILTINS can see what python puts on a</span>
+<span class="sd">    class that is declared in source, as opposed to one built with type()."""</span>
+    <span class="k">pass</span>
+
+
+<div class="viewcode-block" id="INTERNAL_ATTRS"><a class="viewcode-back" href="../../nxt.nxt_node.html#nxt.nxt_node.INTERNAL_ATTRS">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">INTERNAL_ATTRS</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Class uses for easy access to internal attr constants and various</span>
+<span class="sd">    lists of them used for composition. Only modify if you are sure of the</span>
+<span class="sd">    ramifications to the comp engine.</span>
+<span class="sd">    The _prefix constant should be added to every attr name to match our</span>
+<span class="sd">    convention. When an internal attr is saved the prefix is stripped.</span>
+<span class="sd">    """</span>
+    <span class="n">_prefix</span> <span class="o">=</span> <span class="s1">'_'</span>
+    <span class="n">CHILD_ORDER</span> <span class="o">=</span> <span class="n">_prefix</span> <span class="o">+</span> <span class="s1">'child_order'</span>
+    <span class="n">COMMENT</span> <span class="o">=</span> <span class="n">_prefix</span> <span class="o">+</span> <span class="s1">'comment'</span>
+    <span class="n">COMPUTE</span> <span class="o">=</span> <span class="n">_prefix</span> <span class="o">+</span> <span class="s1">'code'</span>
+    <span class="n">ENABLED</span> <span class="o">=</span> <span class="n">_prefix</span> <span class="o">+</span> <span class="s1">'enabled'</span>
+    <span class="n">EXECUTE_IN</span> <span class="o">=</span> <span class="n">_prefix</span> <span class="o">+</span> <span class="s1">'execute_in'</span>
+    <span class="n">INSTANCE_PATH</span> <span class="o">=</span> <span class="n">_prefix</span> <span class="o">+</span> <span class="s1">'instance'</span>
+    <span class="n">NODE_PATH</span> <span class="o">=</span> <span class="n">_prefix</span> <span class="o">+</span> <span class="s1">'node_path'</span>
+    <span class="n">NAME</span> <span class="o">=</span> <span class="n">_prefix</span> <span class="o">+</span> <span class="s1">'name'</span>
+    <span class="n">PARENT_PATH</span> <span class="o">=</span> <span class="n">_prefix</span> <span class="o">+</span> <span class="s1">'parent_path'</span>
+    <span class="n">PROXY</span> <span class="o">=</span> <span class="n">_prefix</span> <span class="o">+</span> <span class="s1">'proxy'</span>
+    <span class="n">SOURCE_LAYER</span> <span class="o">=</span> <span class="n">_prefix</span> <span class="o">+</span> <span class="s1">'source_layer'</span>
+    <span class="n">START_POINT</span> <span class="o">=</span> <span class="n">_prefix</span> <span class="o">+</span> <span class="s1">'start_point'</span>
+    <span class="n">CACHED_CODE</span> <span class="o">=</span> <span class="n">_prefix</span> <span class="o">+</span> <span class="s1">'cached_code'</span>
+    <span class="c1"># List of python attrs that a node will have but we don't want to parse or</span>
+    <span class="c1"># considering in our composite logic.</span>
+    <span class="c1"># Two probes, because python does not give both kinds of class the same</span>
+    <span class="c1"># attrs. 3.13 added __firstlineno__ and __static_attributes__, which the</span>
+    <span class="c1"># compiler writes onto classes declared in source but not onto ones built</span>
+    <span class="c1"># by calling type(). Node classes are built both ways, so ask both and</span>
+    <span class="c1"># whatever a future python adds is covered without another look at this.</span>
+    <span class="n">BUILTINS</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="s1">'NodeSpec'</span><span class="p">,</span> <span class="p">(</span><span class="nb">object</span><span class="p">,),</span> <span class="p">{})))</span>
+                            <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="nb">dir</span><span class="p">(</span><span class="n">_ClassAttrProbe</span><span class="p">))))</span>
+    <span class="c1"># A list of node attrs that are used internally in our composite logic but</span>
+    <span class="c1"># tracked and like user attrs with a `_source__nxt` meta attr</span>
+    <span class="n">TRACKED</span> <span class="o">=</span> <span class="p">(</span><span class="n">COMPUTE</span><span class="p">,</span> <span class="n">EXECUTE_IN</span><span class="p">,</span> <span class="n">COMMENT</span><span class="p">,</span> <span class="n">START_POINT</span><span class="p">,</span> <span class="n">ENABLED</span><span class="p">,</span>
+               <span class="n">INSTANCE_PATH</span><span class="p">)</span>
+    <span class="c1"># Un-tracked internal attrs</span>
+    <span class="n">UNTRACKED</span> <span class="o">=</span> <span class="p">(</span><span class="n">CHILD_ORDER</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">SOURCE_LAYER</span><span class="p">,</span> <span class="n">PROXY</span><span class="p">,</span> <span class="n">PARENT_PATH</span><span class="p">,</span>
+                 <span class="n">NODE_PATH</span><span class="p">)</span>
+    <span class="c1"># Attrs names that must be reserved but are not used in the comp engine</span>
+    <span class="n">NO_COMP</span> <span class="o">=</span> <span class="p">(</span><span class="n">CACHED_CODE</span><span class="p">,)</span>
+    <span class="c1"># The full tuple of all internal attr names</span>
+    <span class="n">PROTECTED</span> <span class="o">=</span> <span class="n">BUILTINS</span> <span class="o">+</span> <span class="n">TRACKED</span> <span class="o">+</span> <span class="n">UNTRACKED</span> <span class="o">+</span> <span class="n">NO_COMP</span>
+    <span class="c1"># Tuple for easy looping when saving/loading node data</span>
+    <span class="n">ALL</span> <span class="o">=</span> <span class="n">TRACKED</span> <span class="o">+</span> <span class="n">UNTRACKED</span>
+    <span class="c1"># Defines order of node attrs in the save file</span>
+    <span class="n">SAVED</span> <span class="o">=</span> <span class="p">(</span><span class="n">START_POINT</span><span class="p">,</span> <span class="n">INSTANCE_PATH</span><span class="p">,</span> <span class="n">EXECUTE_IN</span><span class="p">,</span> <span class="n">CHILD_ORDER</span><span class="p">,</span> <span class="n">ENABLED</span><span class="p">,</span>
+             <span class="n">COMMENT</span><span class="p">,</span> <span class="n">COMPUTE</span><span class="p">)</span>
+    <span class="n">WORLD_NODE_SAVED</span> <span class="o">=</span> <span class="p">(</span><span class="n">COMMENT</span><span class="p">,</span> <span class="n">COMPUTE</span><span class="p">)</span>
+    <span class="n">ALLOW_NO_OPINION</span> <span class="o">=</span> <span class="p">(</span><span class="n">ENABLED</span><span class="p">,)</span>
+    <span class="c1"># Dict mapping internal attr to a partial object that generates a default</span>
+    <span class="c1"># for the given attr</span>
+    <span class="n">DEFAULTS</span> <span class="o">=</span> <span class="p">{</span><span class="n">COMPUTE</span><span class="p">:</span> <span class="n">partial</span><span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="p">()),</span> <span class="n">PARENT_PATH</span><span class="p">:</span> <span class="n">nxt_path</span><span class="o">.</span><span class="n">WORLD</span><span class="p">}</span>
+    <span class="n">REQUIRES_RECOMP</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">ALL</span><span class="p">)</span> <span class="o">-</span> <span class="p">{</span><span class="n">CHILD_ORDER</span><span class="p">,</span> <span class="n">INSTANCE_PATH</span><span class="p">,</span> <span class="n">COMPUTE</span><span class="p">,</span>
+                                        <span class="n">ENABLED</span><span class="p">})</span>
+
+
+<div class="viewcode-block" id="INTERNAL_ATTRS.as_save_key"><a class="viewcode-back" href="../../nxt.nxt_node.html#nxt.nxt_node.INTERNAL_ATTRS.as_save_key">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">as_save_key</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">_prefix</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">attr</span> <span class="o">==</span> <span class="bp">cls</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="s1">'name'</span>
+        <span class="k">return</span> <span class="n">key</span></div></div>
+
+
+<div class="viewcode-block" id="META_ATTRS"><a class="viewcode-back" href="../../nxt.nxt_node.html#nxt.nxt_node.META_ATTRS">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">META_ATTRS</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">_prefix</span> <span class="o">=</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">_prefix</span>
+    <span class="n">_suffix</span> <span class="o">=</span> <span class="s1">'__nxt'</span>
+    <span class="n">COMMENT</span> <span class="o">=</span> <span class="n">_prefix</span> <span class="o">+</span> <span class="s1">'comment'</span> <span class="o">+</span> <span class="n">_suffix</span>
+    <span class="n">TYPE</span> <span class="o">=</span> <span class="n">_prefix</span> <span class="o">+</span> <span class="s1">'type'</span> <span class="o">+</span> <span class="n">_suffix</span>
+    <span class="n">SOURCE</span> <span class="o">=</span> <span class="n">_prefix</span> <span class="o">+</span> <span class="s1">'source'</span> <span class="o">+</span> <span class="n">_suffix</span>
+    <span class="n">VALUE</span> <span class="o">=</span> <span class="s1">'value'</span>
+    <span class="n">ALL</span> <span class="o">=</span> <span class="p">(</span><span class="n">COMMENT</span><span class="p">,</span> <span class="n">TYPE</span><span class="p">,</span> <span class="n">SOURCE</span><span class="p">)</span>
+
+<div class="viewcode-block" id="META_ATTRS.as_save_key"><a class="viewcode-back" href="../../nxt.nxt_node.html#nxt.nxt_node.META_ATTRS.as_save_key">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">as_save_key</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="bp">cls</span><span class="o">.</span><span class="n">VALUE</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">key</span>
+        <span class="k">return</span> <span class="n">key</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_prefix</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">partition</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="n">_suffix</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div></div>
+
+
+<div class="viewcode-block" id="Node"><a class="viewcode-back" href="../../nxt.nxt_node.html#nxt.nxt_node.Node">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">Node</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="n">_name</span> <span class="o">=</span> <span class="s1">'node'</span>
+    <span class="n">_parent_path</span> <span class="o">=</span> <span class="n">nxt_path</span><span class="o">.</span><span class="n">WORLD</span>
+    <span class="n">_child_order</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">_proxy</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">_enabled</span> <span class="o">=</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="create_spec_node"><a class="viewcode-back" href="../../nxt.nxt_node.html#nxt.nxt_node.create_spec_node">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">create_spec_node</span><span class="p">(</span><span class="n">node_data</span><span class="p">,</span> <span class="n">layer</span><span class="p">,</span> <span class="n">parent_path</span><span class="o">=</span><span class="n">nxt_path</span><span class="o">.</span><span class="n">WORLD</span><span class="p">,</span>
+                     <span class="n">is_proxy</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">attrs</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">node_name</span> <span class="o">=</span> <span class="n">node_data</span><span class="p">[</span><span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">as_save_key</span><span class="p">(</span><span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">NAME</span><span class="p">)]</span>
+    <span class="n">path</span> <span class="o">=</span> <span class="n">nxt_path</span><span class="o">.</span><span class="n">join_node_paths</span><span class="p">(</span><span class="n">parent_path</span><span class="p">,</span> <span class="n">node_name</span><span class="p">)</span>
+    <span class="c1"># Parse for attrs</span>
+    <span class="n">user_attrs</span> <span class="o">=</span> <span class="n">node_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">nxt_io</span><span class="o">.</span><span class="n">SAVE_KEY</span><span class="o">.</span><span class="n">ATTRS</span><span class="p">,</span> <span class="p">{})</span>
+    <span class="k">for</span> <span class="n">attr_name</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">user_attrs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">attrs</span><span class="p">[</span><span class="n">attr_name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">attrs</span><span class="p">[</span><span class="n">attr_name</span> <span class="o">+</span> <span class="n">META_ATTRS</span><span class="o">.</span><span class="n">SOURCE</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">real_path</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">sub_attr</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">sub_attr</span> <span class="o">==</span> <span class="n">META_ATTRS</span><span class="o">.</span><span class="n">VALUE</span><span class="p">:</span>
+                <span class="n">attrs</span><span class="p">[</span><span class="n">attr_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+                <span class="k">continue</span>
+            <span class="n">meta_attr</span> <span class="o">=</span> <span class="n">META_ATTRS</span><span class="o">.</span><span class="n">_prefix</span> <span class="o">+</span> <span class="n">sub_attr</span> <span class="o">+</span> <span class="n">META_ATTRS</span><span class="o">.</span><span class="n">_suffix</span>
+            <span class="k">if</span> <span class="n">meta_attr</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">META_ATTRS</span><span class="o">.</span><span class="n">ALL</span><span class="p">:</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">'Invalid meta attr "</span><span class="si">{}</span><span class="s1">"'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">meta_attr</span><span class="p">))</span>
+                <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s1">'Expected </span><span class="si">{}</span><span class="s1">'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">META_ATTRS</span><span class="o">.</span><span class="n">ALL</span><span class="p">))</span>
+                <span class="k">continue</span>
+            <span class="n">full_attr_name</span> <span class="o">=</span> <span class="p">(</span><span class="n">attr_name</span> <span class="o">+</span> <span class="n">meta_attr</span><span class="p">)</span>
+            <span class="n">attrs</span><span class="p">[</span><span class="n">full_attr_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">value</span>
+    <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">ALL</span><span class="p">:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">as_save_key</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+        <span class="n">val</span> <span class="o">=</span> <span class="n">node_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="n">has_opinion</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="ow">and</span> <span class="n">attr</span> <span class="ow">not</span> <span class="ow">in</span>
+                <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">ALLOW_NO_OPINION</span><span class="p">):</span>
+            <span class="n">val</span> <span class="o">=</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">DEFAULTS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">callable</span><span class="p">(</span><span class="n">val</span><span class="p">):</span>
+                <span class="n">val</span> <span class="o">=</span> <span class="n">val</span><span class="p">()</span>
+        <span class="n">attrs</span><span class="p">[</span><span class="n">attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+    <span class="c1"># Remove duplicates in child order</span>
+    <span class="n">child_order</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">node_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">'child_order'</span><span class="p">,</span> <span class="p">[]):</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">child_order</span><span class="p">:</span>
+            <span class="n">child_order</span> <span class="o">+=</span> <span class="p">[</span><span class="n">c</span><span class="p">]</span>
+    <span class="n">attrs</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">NAME</span><span class="p">:</span> <span class="n">node_name</span><span class="p">,</span>
+                  <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">PROXY</span><span class="p">:</span> <span class="n">is_proxy</span><span class="p">,</span>
+                  <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">CHILD_ORDER</span><span class="p">:</span> <span class="n">child_order</span><span class="p">,</span>
+                  <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">SOURCE_LAYER</span><span class="p">:</span> <span class="n">layer</span><span class="o">.</span><span class="n">real_path</span>
+                  <span class="p">})</span>
+    <span class="n">pp_key</span> <span class="o">=</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">as_save_key</span><span class="p">(</span><span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">PARENT_PATH</span><span class="p">)</span>
+    <span class="n">pp_attr</span> <span class="o">=</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">PARENT_PATH</span>
+    <span class="k">if</span> <span class="n">is_proxy</span><span class="p">:</span>
+        <span class="n">attrs</span><span class="p">[</span><span class="n">pp_attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">node_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pp_key</span><span class="p">)</span> <span class="ow">or</span> <span class="n">parent_path</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">attrs</span><span class="p">[</span><span class="n">pp_attr</span><span class="p">]</span> <span class="o">=</span> <span class="n">parent_path</span>
+
+    <span class="n">node_spec</span> <span class="o">=</span> <span class="n">SpecNode</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">attrs</span><span class="o">=</span><span class="n">attrs</span><span class="p">)</span>
+    <span class="n">parent_object</span> <span class="o">=</span> <span class="n">layer</span><span class="o">.</span><span class="n">lookup</span><span class="p">(</span><span class="n">parent_path</span><span class="p">)</span>
+    <span class="n">layer</span><span class="o">.</span><span class="n">clear_node_child_cache</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+    <span class="n">layer</span><span class="o">.</span><span class="n">clear_node_child_cache</span><span class="p">(</span><span class="n">parent_path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">parent_object</span><span class="p">:</span>
+        <span class="n">proxies</span> <span class="o">=</span> <span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">node_spec</span><span class="p">,</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">PROXY</span><span class="p">)</span> <span class="ow">or</span>
+                    <span class="nb">getattr</span><span class="p">(</span><span class="n">parent_object</span><span class="p">,</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">PROXY</span><span class="p">))</span>
+        <span class="n">child_order</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">parent_object</span><span class="p">,</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">CHILD_ORDER</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">node_name</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">child_order</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">proxies</span><span class="p">:</span>
+            <span class="n">new_co</span> <span class="o">=</span> <span class="n">list_merger</span><span class="p">(</span><span class="n">child_order</span><span class="p">,</span> <span class="p">[</span><span class="n">node_name</span><span class="p">])</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="n">parent_object</span><span class="p">,</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">CHILD_ORDER</span><span class="p">,</span> <span class="n">new_co</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">TRACKED</span><span class="p">:</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">node_spec</span><span class="p">,</span> <span class="n">attr</span> <span class="o">+</span> <span class="n">META_ATTRS</span><span class="o">.</span><span class="n">SOURCE</span><span class="p">,</span>
+                <span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">real_path</span><span class="p">,</span> <span class="n">path</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">node_spec</span></div>
+
+
+<div class="viewcode-block" id="SpecNode"><a class="viewcode-back" href="../../nxt.nxt_node.html#nxt.nxt_node.SpecNode">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">SpecNode</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="viewcode-block" id="SpecNode.new"><a class="viewcode-back" href="../../nxt.nxt_node.html#nxt.nxt_node.SpecNode.new">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">new</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">attrs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">attrs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="p">(</span><span class="n">Node</span><span class="p">,),</span> <span class="n">attrs</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="CompNode"><a class="viewcode-back" href="../../nxt.nxt_node.html#nxt.nxt_node.CompNode">[docs]</a><span class="k">class</span><span class="w"> </span><span class="nc">CompNode</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+
+<div class="viewcode-block" id="CompNode.new"><a class="viewcode-back" href="../../nxt.nxt_node.html#nxt.nxt_node.CompNode.new">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">new</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">spec_node</span><span class="p">,</span> <span class="n">attrs</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">bases</span> <span class="o">=</span> <span class="p">(</span><span class="n">spec_node</span><span class="p">,)</span>
+        <span class="k">if</span> <span class="n">attrs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">attrs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="bp">cls</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">bases</span><span class="p">,</span> <span class="n">attrs</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="get_node_attr"><a class="viewcode-back" href="../../nxt.nxt_node.html#nxt.nxt_node.get_node_attr">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">get_node_attr</span><span class="p">(</span><span class="n">node_object</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">node_object</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="get_opinion"><a class="viewcode-back" href="../../nxt.nxt_node.html#nxt.nxt_node.get_opinion">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">get_opinion</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">attr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Check if the node attr has an opinion.</span>
+<span class="sd">    Returns a tuple: (attr_value, bool_has_opinion)</span>
+<span class="sd">    :param node: NxtNode</span>
+<span class="sd">    :param attr: String of attr name</span>
+<span class="sd">    :return: (attr_value, bool_has_opinion)</span>
+<span class="sd">    """</span>
+    <span class="n">attr_value</span> <span class="o">=</span> <span class="n">get_node_attr</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+    <span class="n">op_exists</span> <span class="o">=</span> <span class="n">has_opinion</span><span class="p">(</span><span class="n">attr_value</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">attr_value</span><span class="p">,</span> <span class="n">op_exists</span></div>
+
+
+<div class="viewcode-block" id="get_node_enabled"><a class="viewcode-back" href="../../nxt.nxt_node.html#nxt.nxt_node.get_node_enabled">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">get_node_enabled</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Get the enabled state of the given node. If the enabled state is not</span>
+<span class="sd">    set it (None) the default return is True.</span>
+<span class="sd">    :param node: Node object</span>
+<span class="sd">    :return: Bool of enabled state</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">ENABLED</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="has_opinion"><a class="viewcode-back" href="../../nxt.nxt_node.html#nxt.nxt_node.has_opinion">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">has_opinion</span><span class="p">(</span><span class="n">attr_value</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">attr_value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="p">[])</span></div>
+
+
+<div class="viewcode-block" id="has_stronger_opinion"><a class="viewcode-back" href="../../nxt.nxt_node.html#nxt.nxt_node.has_stronger_opinion">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">has_stronger_opinion</span><span class="p">(</span><span class="n">comp_node</span><span class="p">,</span> <span class="n">attr</span><span class="p">,</span> <span class="n">target_layer</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Check if the given attr on the given node has a stronger opinion than</span>
+<span class="sd">    the opinion on the target layer (if any). We check the source layers of</span>
+<span class="sd">    each base class. We are looping strong to weak so if there was no</span>
+<span class="sd">    opinion before hitting the target layer there isn't a stronger opinion.</span>
+<span class="sd">    :param comp_node: NxtCompNode</span>
+<span class="sd">    :param attr: String of attr name</span>
+<span class="sd">    :param target_layer: NxtSpecLayer</span>
+<span class="sd">    :return: bool (True if comp node has opinion that would overload the</span>
+<span class="sd">    target layer's opinion)</span>
+<span class="sd">    """</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">comp_opinion</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">get_opinion</span><span class="p">(</span><span class="n">comp_node</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+    <span class="n">val</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">comp_node</span><span class="o">.</span><span class="vm">__bases__</span><span class="p">:</span>
+        <span class="n">source_layer</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">SOURCE_LAYER</span><span class="p">)</span>
+        <span class="n">val</span><span class="p">,</span> <span class="n">has</span> <span class="o">=</span> <span class="n">get_opinion</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">source_layer</span> <span class="o">==</span> <span class="n">target_layer</span><span class="p">:</span>
+            <span class="k">break</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">has</span>
+        <span class="k">if</span> <span class="n">has</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="k">if</span> <span class="n">comp_opinion</span> <span class="o">==</span> <span class="n">val</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+<div class="viewcode-block" id="get_node_as_dict"><a class="viewcode-back" href="../../nxt.nxt_node.html#nxt.nxt_node.get_node_as_dict">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">get_node_as_dict</span><span class="p">(</span><span class="n">spec_node</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Get a spec node as an ordered dictionary. The return data is</span>
+<span class="sd">    strcutred as it would be in a saved graph file.</span>
+<span class="sd">    :param spec_node: SpecNode object</span>
+<span class="sd">    :return: OrderedDict</span>
+<span class="sd">    """</span>
+    <span class="n">user_attrs</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+    <span class="n">spec_dict</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+    <span class="c1"># user attrs</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">spec_node</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">PROTECTED</span> <span class="ow">or</span> <span class="n">key</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">META_ATTRS</span><span class="o">.</span><span class="n">ALL</span><span class="p">):</span>
+            <span class="k">continue</span>
+        <span class="c1"># Sub-attrs</span>
+        <span class="n">comment</span> <span class="o">=</span> <span class="n">get_node_attr</span><span class="p">(</span><span class="n">spec_node</span><span class="p">,</span> <span class="n">key</span> <span class="o">+</span> <span class="n">META_ATTRS</span><span class="o">.</span><span class="n">COMMENT</span><span class="p">)</span>
+        <span class="n">typ</span> <span class="o">=</span> <span class="n">get_node_attr</span><span class="p">(</span><span class="n">spec_node</span><span class="p">,</span> <span class="n">key</span> <span class="o">+</span> <span class="n">META_ATTRS</span><span class="o">.</span><span class="n">TYPE</span><span class="p">)</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">get_node_attr</span><span class="p">(</span><span class="n">spec_node</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+        <span class="n">sub_attrs</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">comment</span><span class="p">:</span>
+            <span class="n">sub_attrs</span><span class="p">[</span><span class="n">META_ATTRS</span><span class="o">.</span><span class="n">as_save_key</span><span class="p">(</span><span class="n">META_ATTRS</span><span class="o">.</span><span class="n">COMMENT</span><span class="p">)]</span> <span class="o">=</span> <span class="n">comment</span>
+        <span class="k">if</span> <span class="n">typ</span><span class="p">:</span>
+            <span class="n">sub_attrs</span><span class="p">[</span><span class="n">META_ATTRS</span><span class="o">.</span><span class="n">as_save_key</span><span class="p">(</span><span class="n">META_ATTRS</span><span class="o">.</span><span class="n">TYPE</span><span class="p">)]</span> <span class="o">=</span> <span class="n">typ</span>
+        <span class="k">if</span> <span class="n">value</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>  <span class="c1"># Marshal data</span>
+                <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                <span class="n">val_copy</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+                <span class="n">sub_attrs</span><span class="p">[</span><span class="n">META_ATTRS</span><span class="o">.</span><span class="n">as_save_key</span><span class="p">(</span><span class="n">META_ATTRS</span><span class="o">.</span><span class="n">VALUE</span><span class="p">)]</span> <span class="o">=</span> <span class="n">val_copy</span>
+            <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>  <span class="c1"># value is not JSON serializable</span>
+                <span class="k">pass</span>
+        <span class="n">sorted_sub_attrs</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">sub_attrs</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span>
+                                              <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">user_attrs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">sorted_sub_attrs</span>
+    <span class="k">if</span> <span class="n">user_attrs</span><span class="p">:</span>
+        <span class="n">sorted_attrs</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">user_attrs</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span>
+                                          <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">spec_dict</span><span class="p">[</span><span class="n">nxt_io</span><span class="o">.</span><span class="n">SAVE_KEY</span><span class="o">.</span><span class="n">ATTRS</span><span class="p">]</span> <span class="o">=</span> <span class="n">sorted_attrs</span>
+    <span class="c1"># Saving of internal attrs</span>
+    <span class="n">save_attrs</span> <span class="o">=</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">SAVED</span>
+    <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">spec_node</span><span class="p">,</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">NAME</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="o">==</span> <span class="n">nxt_path</span><span class="o">.</span><span class="n">WORLD</span><span class="p">:</span>
+        <span class="n">save_attrs</span> <span class="o">=</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">WORLD_NODE_SAVED</span>
+    <span class="k">for</span> <span class="n">attr</span> <span class="ow">in</span> <span class="n">save_attrs</span><span class="p">:</span>
+        <span class="n">value</span><span class="p">,</span> <span class="n">has_opinion</span> <span class="o">=</span> <span class="n">get_opinion</span><span class="p">(</span><span class="n">spec_node</span><span class="p">,</span> <span class="n">attr</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">has_opinion</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">save_attr_name</span> <span class="o">=</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">as_save_key</span><span class="p">(</span><span class="n">attr</span><span class="p">)</span>
+        <span class="n">spec_dict</span><span class="p">[</span><span class="n">save_attr_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">_order_node_dict</span><span class="p">(</span><span class="n">spec_dict</span><span class="p">)</span></div>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">_order_node_dict</span><span class="p">(</span><span class="n">node_dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Given a node in dictionary format, order the node dictionary based on</span>
+<span class="sd">    INTERNAL_ATTRS.SAVED order. Any keys in given dictionary not found will</span>
+<span class="sd">    be at the end.</span>
+<span class="sd">    :param node_dict: node in dict format</span>
+<span class="sd">    :type node_dict: dict</span>
+<span class="sd">    """</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+    <span class="n">user_attrs</span> <span class="o">=</span> <span class="n">node_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">nxt_io</span><span class="o">.</span><span class="n">SAVE_KEY</span><span class="o">.</span><span class="n">ATTRS</span><span class="p">)</span>
+    <span class="n">remaining_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">node_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">internal_attr</span> <span class="ow">in</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">SAVED</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">internal_attr</span> <span class="o">==</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">COMPUTE</span> <span class="ow">and</span> <span class="n">user_attrs</span><span class="p">:</span>
+            <span class="n">result</span><span class="p">[</span><span class="n">nxt_io</span><span class="o">.</span><span class="n">SAVE_KEY</span><span class="o">.</span><span class="n">ATTRS</span><span class="p">]</span> <span class="o">=</span> <span class="n">user_attrs</span>
+        <span class="n">save_key</span> <span class="o">=</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">as_save_key</span><span class="p">(</span><span class="n">internal_attr</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">save_key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">node_dict</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="n">remaining_keys</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">save_key</span><span class="p">)</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">save_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">node_dict</span><span class="p">[</span><span class="n">save_key</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">remaining_keys</span><span class="p">:</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">node_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+
+<div class="viewcode-block" id="get_node_path"><a class="viewcode-back" href="../../nxt.nxt_node.html#nxt.nxt_node.get_node_path">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">get_node_path</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Only to be used for inferred nodes who do not belong to a layer.</span>
+<span class="sd">    :param node: Node object</span>
+<span class="sd">    :return: string of node path</span>
+<span class="sd">    """</span>
+    <span class="k">return</span> <span class="n">nxt_path</span><span class="o">.</span><span class="n">join_node_paths</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">PARENT_PATH</span><span class="p">),</span>
+                                    <span class="nb">getattr</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">INTERNAL_ATTRS</span><span class="o">.</span><span class="n">NAME</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="list_merger"><a class="viewcode-back" href="../../nxt.nxt_node.html#nxt.nxt_node.list_merger">[docs]</a><span class="k">def</span><span class="w"> </span><span class="nf">list_merger</span><span class="p">(</span><span class="n">base_list</span><span class="p">,</span> <span class="n">overlay_list</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""It is important to note we expect both arg lists to be non-repeating.</span>
+<span class="sd">    Merges lists such that the `base_list` is preserved and</span>
+<span class="sd">    the `overlay_list` is overlaid onto it.</span>
+<span class="sd">    Example:</span>
+<span class="sd">    source = ['Node', 'Node1']</span>
+<span class="sd">    target = ['Node', 'Jack']</span>
+<span class="sd">    returns = ['Node', 'Jack', 'Node1']</span>
+<span class="sd">    :param base_list: Source list of object we want to overlay.</span>
+<span class="sd">    :param overlay_list: Target list of object we want overlay onto.</span>
+<span class="sd">    :return: Non-repeating list of object.</span>
+<span class="sd">    """</span>
+    <span class="n">merged_list</span> <span class="o">=</span> <span class="n">base_list</span><span class="p">[:]</span>
+    <span class="n">result_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">merged_list</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">base_list</span> <span class="o">==</span> <span class="n">overlay_list</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">merged_list</span>
+    <span class="n">src_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">base_list</span><span class="p">)</span>
+    <span class="n">tgt_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">overlay_list</span><span class="p">)</span>
+    <span class="n">tgt_order</span> <span class="o">=</span> <span class="n">overlay_list</span><span class="p">[:]</span>
+    <span class="n">src_order</span> <span class="o">=</span> <span class="n">base_list</span><span class="p">[:]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">tgt_set</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">src_set</span><span class="p">):</span>
+        <span class="n">only_source</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">src_order</span> <span class="k">if</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">tgt_order</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">only_source</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">if</span> <span class="n">tgt_set</span><span class="o">.</span><span class="n">issubset</span><span class="p">(</span><span class="n">src_set</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">merged_list</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">tgt_order</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">item</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">src_order</span><span class="p">:</span>
+            <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">_</span> <span class="o">=</span> <span class="n">src_order</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+                <span class="n">valid</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                <span class="n">valid</span> <span class="o">=</span> <span class="kc">False</span>
+            <span class="k">if</span> <span class="n">valid</span><span class="p">:</span>
+                <span class="n">prev_idx</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="n">match</span> <span class="o">=</span> <span class="n">src_order</span><span class="p">[</span><span class="n">prev_idx</span><span class="p">]</span> <span class="o">==</span> <span class="n">tgt_order</span><span class="p">[</span><span class="n">prev_idx</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">prev_idx</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">match</span><span class="p">:</span>
+                    <span class="n">offset</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">elif</span> <span class="n">match</span><span class="p">:</span>
+                    <span class="n">offset</span> <span class="o">=</span> <span class="n">prev_idx</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">next_idx</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">match</span> <span class="o">=</span> <span class="n">src_order</span><span class="p">[</span><span class="n">next_idx</span><span class="p">]</span> <span class="o">==</span> <span class="n">tgt_order</span><span class="p">[</span><span class="n">next_idx</span><span class="p">]</span>
+                        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+                            <span class="n">offset</span> <span class="o">=</span> <span class="n">next_idx</span>
+                    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                <span class="n">insert</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">+</span> <span class="n">offset</span>
+                <span class="k">if</span> <span class="n">insert</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">result_len</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+                    <span class="n">merged_list</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">insert</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">merged_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">merged_list</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+            <span class="n">result_len</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">idx</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">only_source</span><span class="p">):</span>
+        <span class="n">merged_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="n">merged_list</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">merged_list</span></div>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, The nxt authors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

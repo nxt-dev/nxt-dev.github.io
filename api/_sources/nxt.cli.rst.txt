@@ -1,0 +1,7 @@
+nxt.cli module
+==============
+
+.. automodule:: nxt.cli
+   :members:
+   :undoc-members:
+   :show-inheritance:

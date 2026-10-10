@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>nxt.remote.nxt_socket module &mdash; NXT  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="nxt.remote.server module" href="nxt.remote.server.html" />
+    <link rel="prev" title="nxt.remote.contexts module" href="nxt.remote.contexts.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            NXT
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference external" href="https://sunriseproductions.github.io/nxt/">User Docs</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">nxt</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="nxt.html">nxt package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="nxt.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="nxt.plugins.html">nxt.plugins package</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="nxt.remote.html">nxt.remote package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="nxt.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="nxt.html#module-nxt">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">NXT</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">nxt</a></li>
+          <li class="breadcrumb-item"><a href="nxt.html">nxt package</a></li>
+          <li class="breadcrumb-item"><a href="nxt.remote.html">nxt.remote package</a></li>
+      <li class="breadcrumb-item active">nxt.remote.nxt_socket module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/nxt.remote.nxt_socket.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-nxt.remote.nxt_socket">
+<span id="nxt-remote-nxt-socket-module"></span><h1>nxt.remote.nxt_socket module<a class="headerlink" href="#module-nxt.remote.nxt_socket" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.COM_TYPE">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">COM_TYPE</span></span><a class="reference internal" href="_modules/nxt/remote/nxt_socket.html#COM_TYPE"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.nxt_socket.COM_TYPE" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Constants used as keys in the pickled message dicts sent over to the
+nxt socket server.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.COM_TYPE.LOG">
+<span class="sig-name descname"><span class="pre">LOG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'log'</span></em><a class="headerlink" href="#nxt.remote.nxt_socket.COM_TYPE.LOG" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.COM_TYPE.CACHE">
+<span class="sig-name descname"><span class="pre">CACHE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'cache'</span></em><a class="headerlink" href="#nxt.remote.nxt_socket.COM_TYPE.CACHE" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.COM_TYPE.SHUTDOWN">
+<span class="sig-name descname"><span class="pre">SHUTDOWN</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'shutdown'</span></em><a class="headerlink" href="#nxt.remote.nxt_socket.COM_TYPE.SHUTDOWN" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.COM_TYPE.PING">
+<span class="sig-name descname"><span class="pre">PING</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'ping'</span></em><a class="headerlink" href="#nxt.remote.nxt_socket.COM_TYPE.PING" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.COM_TYPE.WAIT">
+<span class="sig-name descname"><span class="pre">WAIT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'wait'</span></em><a class="headerlink" href="#nxt.remote.nxt_socket.COM_TYPE.WAIT" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.COM_TYPE.ERR">
+<span class="sig-name descname"><span class="pre">ERR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'error'</span></em><a class="headerlink" href="#nxt.remote.nxt_socket.COM_TYPE.ERR" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.setup">
+<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/nxt_socket.html#setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.nxt_socket.setup" title="Permalink to this definition"></a></dt>
+<dd><p>Setup a connection to the nxt socket server. Sets the global variable
+__nxt_server__ to the newly created socket instance.
+:return: socket instance</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.format_msg">
+<span class="sig-name descname"><span class="pre">format_msg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">com_typ</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">msg_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/nxt_socket.html#format_msg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.nxt_socket.format_msg" title="Permalink to this definition"></a></dt>
+<dd><p>Formats the given msg into a dict matching the expected format used by
+nxt socket servers and clients.
+:param msg: Object to be formatted as a socket message
+:param com_typ: COM_TYPE constant
+:param msg_dict: Optionally if you are combining commands you can pass an
+existing msg_dict returned from a previous call to this function.
+:return: dict</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.get_nxt_model">
+<span class="sig-name descname"><span class="pre">get_nxt_model</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/nxt_socket.html#get_nxt_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.nxt_socket.get_nxt_model" title="Permalink to this definition"></a></dt>
+<dd><p>Gets the existing SocketClientModel instance in global scope, if none is
+found a new one is created and returned. It is stored in the global scope
+to allow maximum context compatibility.
+:return: SocketClientModel instance</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.SocketClientModel">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SocketClientModel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">com_server</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/nxt_socket.html#SocketClientModel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.nxt_socket.SocketClientModel" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Simple nxt model used by remote socket clients</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.SocketClientModel.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/nxt_socket.html#SocketClientModel.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.nxt_socket.SocketClientModel.load" title="Permalink to this definition"></a></dt>
+<dd><p>Loads the given file path and builds a comp layer ready to be
+executed.
+:param filepath: string of nxt save filepath.
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.SocketClientModel.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">exec_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/nxt_socket.html#SocketClientModel.run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.nxt_socket.SocketClientModel.run" title="Permalink to this definition"></a></dt>
+<dd><p>General purpose run function meant to be called over a socket
+command port. If a GraphError is raised the internal nxt ERR message
+is sent over the socket to the server.
+:param exec_order: Optional list of node paths to execute.
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.SocketClientModel.refresh">
+<span class="sig-name descname"><span class="pre">refresh</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/nxt_socket.html#SocketClientModel.refresh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.nxt_socket.SocketClientModel.refresh" title="Permalink to this definition"></a></dt>
+<dd><p>Refresh (rebuild) stage and comp objects.
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.SocketClientModel.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notify_server</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/nxt_socket.html#SocketClientModel.close"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.nxt_socket.SocketClientModel.close" title="Permalink to this definition"></a></dt>
+<dd><p>Attempts to gracefully close connection to nxt socket server.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.SocketClientModel.open">
+<span class="sig-name descname"><span class="pre">open</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/nxt_socket.html#SocketClientModel.open"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.nxt_socket.SocketClientModel.open" title="Permalink to this definition"></a></dt>
+<dd><p>Opens connection to nxt socket server. Installs
+NXTSocketLogHandler logging handler if none is installed.
+:return: None</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.SocketClientModel.ping">
+<span class="sig-name descname"><span class="pre">ping</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/nxt_socket.html#SocketClientModel.ping"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.nxt_socket.SocketClientModel.ping" title="Permalink to this definition"></a></dt>
+<dd><p>Debug function for testing 2 way communication from the nxt socket
+server to this client.
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.SocketClientModel.get_cache">
+<span class="sig-name descname"><span class="pre">get_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/nxt_socket.html#SocketClientModel.get_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.nxt_socket.SocketClientModel.get_cache" title="Permalink to this definition"></a></dt>
+<dd><p>Method for the nxt socket server to request cache data from this
+client model.
+:return: Save data dict</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.send_log">
+<span class="sig-name descname"><span class="pre">send_log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/nxt_socket.html#send_log"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.nxt_socket.send_log" title="Permalink to this definition"></a></dt>
+<dd><p>Simple method for sending log records to an nxt socket server.
+:param record: logging record
+:return: None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.send_to_server">
+<span class="sig-name descname"><span class="pre">send_to_server</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/nxt_socket.html#send_to_server"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.nxt_socket.send_to_server" title="Permalink to this definition"></a></dt>
+<dd><p>Pickles the given data, assembles fixed length header, casts to bytes
+and sends to the nxt socket server.
+NOTE: This function catches ALL exceptions raised by the socket instance!
+:param data_dict: Dict formatted by format_msg
+:return: None</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.IPCWait">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IPCWait</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/nxt_socket.html#IPCWait"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.nxt_socket.IPCWait" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Simple context manager for telling the server to wait while a command
+is being processed by the client interpreter.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.IPCWait.send_wait_msg">
+<span class="sig-name descname"><span class="pre">send_wait_msg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/nxt_socket.html#IPCWait.send_wait_msg"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.nxt_socket.IPCWait.send_wait_msg" title="Permalink to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.NXTSocketLogHandler">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NXTSocketLogHandler</span></span><a class="reference internal" href="_modules/nxt/remote/nxt_socket.html#NXTSocketLogHandler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.nxt_socket.NXTSocketLogHandler" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">logging.Handler</span></code></p>
+<p>Simple logging handler for emitting log records to the nxt socket
+server.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="nxt.remote.nxt_socket.NXTSocketLogHandler.emit">
+<span class="sig-name descname"><span class="pre">emit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">record</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/nxt/remote/nxt_socket.html#NXTSocketLogHandler.emit"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#nxt.remote.nxt_socket.NXTSocketLogHandler.emit" title="Permalink to this definition"></a></dt>
+<dd><p>Do whatever it takes to actually log the specified logging record.</p>
+<p>This version is intended to be implemented by subclasses and so
+raises a NotImplementedError.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="nxt.remote.contexts.html" class="btn btn-neutral float-left" title="nxt.remote.contexts module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="nxt.remote.server.html" class="btn btn-neutral float-right" title="nxt.remote.server module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020, The nxt authors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
