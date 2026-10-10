@@ -60,7 +60,7 @@ Plugins
 
 The following example is for Maya 2020 running on Windows.
 
-The two imports from nxt that you'll need are the `RemoteContext` class and `register_context` function. The first arg in `RemoteContexts` is the **context name**, this will be used by users to call your context. Next we have the context executable, this must be a python (currently only `Python 2.7`) executable. And finally the path to your context graph.
+The two imports from nxt that you'll need are the `RemoteContext` class and `register_context` function. The first arg in `RemoteContexts` is the **context name**, this will be used by users to call your context. Next we have the context executable, this must be a Python 3 executable that nxt-core supports, such as `mayapy`. And finally the path to your context graph.
 
 ```python
 # Builtin
@@ -88,7 +88,11 @@ Now to write your context graph.
 ```
 
 !!! Note
-    To add a layer like this (using the env var) right click on your layer in the layer manager and select `Reference Builtin Graph`
+    To add a reference that uses an environment variable, open the
+    [Reference Editor](reference.md#reference-editor) (right click the layer
+    in the Layer Manager > **Edit References...**), press **+** and type
+    `$NXT_BUILTINS/_context.nxt` into the field. Typed paths are stored
+    exactly as written.
 
 
 2) On the `/` node add an attr called `maya_inst_name` and set its value to `nxt`

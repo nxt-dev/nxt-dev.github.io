@@ -4,6 +4,7 @@ copyright: 2022 NXT Authors
 
 nav:
     - Home: index.md
+    - What's New: whats_new.md
     - Concepts: concepts.md
     - Tutorials: tutorials.md
     - Installation: install.md
