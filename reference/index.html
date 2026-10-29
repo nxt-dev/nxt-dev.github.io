@@ -58,7 +58,7 @@
                                 <a href="../extensions/" class="nav-link">Extensions</a>
                             </li>
                             <li class="navitem">
-                                <a href="../api/" class="nav-link">API</a>
+                                <a href="../api/index.html" class="nav-link">API</a>
                             </li>
                             <li class="navitem">
                                 <a href="../license/" class="nav-link">License</a>
@@ -558,6 +558,14 @@ If a file now references something different, the layer stack follows it:
 layers can appear, disappear or change order. Reloading is one step on the
 undo stack, and undoing it puts back exactly what each layer held before,
 without reading the files again.</p>
+<h3 id="show-in-explorer">Show in Explorer</h3>
+<p><strong>Show in Explorer</strong> opens the folder a layer is saved in, with the layer's
+file selected. On a Mac it is called <strong>Reveal in Finder</strong> and opens the
+Finder; on Linux it is <strong>Show in File Manager</strong>. It is on every layer's
+right click menu, and in the <strong>File</strong> menu, where it acts on the target
+layer. A layer that has never been saved has no file to show, so the item is
+greyed out. If the file has been moved or deleted, the nearest folder that
+still exists is opened instead.</p>
 <h2 id="build-view">Build View</h2>
 <p><img alt="The build view" src="../images/build_view_find.png" /></p>
 <p>The Build View lists the nodes that will run, in execution order, from the
