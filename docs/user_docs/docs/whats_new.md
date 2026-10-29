@@ -1,7 +1,21 @@
 # What's New
 
-This page summarises what is new in **nxt_editor 4.3** and **nxt_core 0.21**.
+This page summarises what is new in **nxt_editor 4.4** and **nxt_core 0.21**.
 Each item links to the part of the docs that explains it in full.
+
+## nxt_editor 4.4.2
+
+- **[Show in Explorer](reference.md#show-in-explorer)** on a layer's right
+  click menu opens the folder it is saved in, with its file selected:
+  Explorer on Windows, the Finder on a Mac, the file manager on Linux.
+
+## nxt_editor 4.4.1
+
+- **Maya's fonts are left alone again.** Opening the editor in Maya no
+  longer changes the font of Maya's own windows, such as the node editor's
+  tab search.
+- **Code Editor Data State Overlay** is now under **View > Options**, and
+  the editor remembers whether you turned it on or off.
 
 ![The nxt editor with the mini map in the corner of the graph](images/editor_overview.png)
 
