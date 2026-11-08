@@ -10,14 +10,14 @@ of various technical and artistic backgrounds. We set out to bring to the
  table a simple set of principles:
 
 - Visualize a map of what a complex script is actually doing. 
-[Nodes](reference.md#node), [inheritance](concepts.md#inheritance), and
+[Nodes](graphs.md#node), [inheritance](concepts.md#inheritance), and
 connection lines are easy to understand. However, we've gone a step further 
-and added string [tokens](reference.md#tokens). An instant visualization 
+and added string [tokens](graphs.md#tokens). An instant visualization 
 of what an attribute value _actually_ is. Our tokens can be used _almost_
 anywhere inside nxt and are dynamically "resolved" during execution. Allowing the
 user to see exactly what data is flowing around without the use of an
 external debugger.
-- Encourage collaboration though [layering](reference.md#layers) and multi context graphs. 
+- Encourage collaboration though [layering](composition.md#layers) and multi context graphs. 
 With our layering system it is easy for departments to share base workflows and
 utility nodes. Since layering is non-destructive graphs can referenced built on 
 without worrying about breaking someone else's graph. With [multi context](extensions.md#creating-custom-contexts) 
@@ -43,7 +43,7 @@ allow users to quickly jump to and correct erroneous values.
 ## Limitations
 - We currently do not support asynchronous execution in a single graph. Our 
 current focus is on lineal scripts.
-- We are [not visual programming](reference.md#design-philosophy), no for loop nodes sorry.
+- We are [not visual programming](file_format.md#design-philosophy), no for loop nodes sorry.
 - We currently experimentally support Python 3, it is possible to lose layout and break point preferences 
 by switching back and forth between Py2/3.
 
