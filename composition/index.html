@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Layers and References - NXT User Docs</title>
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow-night.min.css">
+
+        <script src="../js/bootstrap.bundle.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/json.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">NXT User Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../whats_new/" class="nav-link">What's New</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Getting Started</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../install/" class="dropdown-item">Installation</a>
+</li>
+                                    
+<li>
+    <a href="../concepts/" class="dropdown-item">Concepts</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/" class="dropdown-item">Tutorials</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../editor/" class="dropdown-item">Using the Editor</a>
+</li>
+                                    
+<li>
+    <a href="../graphs/" class="dropdown-item">Graphs and Nodes</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Layers and References</a>
+</li>
+                                    
+<li>
+    <a href="../file_format/" class="dropdown-item">File Format and Design</a>
+</li>
+                                    
+<li>
+    <a href="../hotkeys/" class="dropdown-item">Hotkeys</a>
+</li>
+                                    
+<li>
+    <a href="../workflows/" class="dropdown-item">Workflows</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../extensions/" class="nav-link">Extensions</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../api/" class="nav-link">API</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../about/" class="dropdown-item">About</a>
+</li>
+                                    
+<li>
+    <a href="../license/" class="dropdown-item">License</a>
+</li>
+                                    
+<li>
+    <a href="https://github.com/nxt-dev/" target="_blank" class="dropdown-item">GitHub</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-tools">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" title="Previous: Graphs and Nodes" href="../graphs/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i><span class="nav-label"> Previous</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" title="Next: File Format and Design" href="../file_format/" class="nav-link">
+                                    <span class="nav-label">Next </span><i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#layers-and-references" class="nav-link">Layers and References</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#layers" class="nav-link">Layers</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#references" class="nav-link">References</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#composition-inside-node-hierarchies" class="nav-link">Composition Inside Node Hierarchies</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#instancing" class="nav-link">Instancing</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="layers-and-references">Layers and References</h1>
+<p>A graph is composed (combined) from layers. Each layer holds its own
+opinions about nodes, and the layers stack, so a stronger layer can change a
+node from a weaker one without touching that layer's file. Layers pull other
+layers in through references. Inside a layer, nodes also inherit from their
+parents and from the nodes they instance.</p>
+<p>For editing references in the editor, see the
+<a href="../editor/#reference-editor">Reference Editor</a> and
+<a href="../editor/#reload-source">Reload Source</a>.</p>
+<h2 id="layers">Layers</h2>
+<p>Layers are designed to be composited (combined) to create a hierarchy of instructions that can be reused and repurposed by several NXT users for use on several assets or workflows. Multiple layers can be referenced and nxt seamlessly combines them into a single composite layer.
+<img alt="nxt_layers" src="../images/layers_concept.png" />
+<img alt="layers.PNG" src="../images/layers.PNG" /></p>
+<p>All of the layers in your file are composited together to produce final code to execute. Each layer has the power to change as much or as little as is needed to customize the composited node’s attributes and code block. These changes are stored in the file they are made on, keeping referenced files safe to use for many purposes.</p>
+<p>Layer color propagates into nodes an also attributes.</p>
+<p><img alt="attribute_color.PNG" src="../images/attribute_color.PNG" /></p>
+<h2 id="references">References</h2>
+<p>A layer pulls other layers in through its <strong>references</strong>. They are stored in
+the layer's file as a list:</p>
+<pre><code>"references": [
+    "base_steps.nxt",
+    "$PROJECT_ROOT/lib/shared_steps.nxt"
+]
+</code></pre>
+<p>References are a stack: the first one in the list is the strongest of them,
+directly below the layer that references it, and each one after it is
+weaker. A referenced layer can have references of its own.</p>
+<p>Edit them with the <a href="../editor/#reference-editor">Reference Editor</a> (right click a layer
+in the Layer Manager &gt; <strong>Edit References...</strong>), or add one with
+<strong>Reference Layer Above/Below</strong> and <strong>Reference Builtin Graph</strong> from the
+<strong>File</strong> menu. To pick up changes somebody else saved to any of these files,
+use <a href="../editor/#reload-source">Reload Source</a>.</p>
+<h3 id="how-references-are-found">How references are found</h3>
+<p>A reference is stored exactly as it was written, which is often only part of
+a path. Environment variables (<code>$NAME</code>) and <code>~</code> in it are expanded first.
+Then:</p>
+<ol>
+<li><strong>An absolute path</strong> is used as it is.</li>
+<li><strong>Anything else</strong> is looked for under each folder listed in the
+   <code>NXT_FILE_ROOTS</code> environment variable, in order. Separate the folders
+   with <code>;</code> on Windows and <code>:</code> on Linux and macOS.</li>
+<li>If no root has it, it is looked for relative to the folder of the layer
+   that holds the reference. That is the layer's own folder, not the folder
+   of the top graph and not wherever the editor was started.</li>
+</ol>
+<p>The first file found is used. The same order is used when a graph is
+opened, when a reference is added in the editor, when a layer is reloaded
+with Reload Source, and by the Reference Editor's resolved view, so they
+always agree.</p>
+<p>For example, with <code>NXT_FILE_ROOTS=/projects/show_a;/projects/library</code>, the
+reference <code>lib/shared_steps.nxt</code> is found at
+<code>/projects/show_a/lib/shared_steps.nxt</code> if it exists there, otherwise at
+<code>/projects/library/lib/shared_steps.nxt</code>, and otherwise at
+<code>lib/shared_steps.nxt</code> in the referring layer's folder. Because what is
+stored is the partial path, the same graph keeps working on another
+machine, or for another project, with different roots.</p>
+<div class="admonition note">
+<p class="admonition-title">A root wins over a file beside the layer</p>
+<p>Because the roots are tried first, a file under a root is used even when
+a file of the same name sits next to the layer. This is deliberate: put
+a folder holding your working copies first in <code>NXT_FILE_ROOTS</code>, and a
+graph that references <code>rig_steps.nxt</code> picks up your working copy of
+<code>rig_steps.nxt</code> instead of the published one beside it, without
+changing the graph. Take the folder out of <code>NXT_FILE_ROOTS</code> to go back.
+To always use one particular file, reference it by an absolute path, or
+by a path built from an environment variable.</p>
+</div>
+<p>The <a href="../editor/#reference-editor">Reference Editor</a> shows where each reference
+resolves on this machine with its resolved toggle, and the tooltip on a row
+says where nxt looked.</p>
+<div class="admonition note">
+<p class="admonition-title">References that cannot be found are kept</p>
+<p>If a referenced file cannot be found, for example because it lives on a
+share this machine cannot see, the graph still opens without that layer,
+and the failure is logged. The reference itself is kept on the layer
+exactly as written, so saving the layer does not remove it. The Reference
+Editor draws such references in red.</p>
+</div>
+<h2 id="composition-inside-node-hierarchies">Composition Inside Node Hierarchies</h2>
+<p>When a <a href="../graphs/#node">node </a>is a child of another node, it <a href="../concepts/#inheritance">inherits </a>its <a href="../graphs/#attributes">attributes </a>from that node which can be overwritten locally on the node.</p>
+<h2 id="instancing">Instancing</h2>
+<p>Instancing allows you to reuse nodes from other parts of the graph with specific overrides. </p>
+<p>Instances in NXT can be simple and powerful. But they can also be extremely complicated with mind-bending edge cases. In simple terms, you can think about an  instance as a clone of another node. It's like a live copy. But it's a bit more nuanced to think about an instance like an additional parent that's outside the hierarchy.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<ul>
+<li>If you create a node, don't add any attributes or code, it will just look like a clone of the instance source.</li>
+</ul>
+<p><img alt="simple" src="../images/instance_simple.PNG" /></p>
+<ul>
+<li>If you create a node with unique attributes it will look like the instance source is another parent. All the attributes will composite from the instance source, and the local attributes will be visible as well.</li>
+</ul>
+<p><img alt="local" src="../images/instance_local.PNG" />
+- If you create a node with attributes named the same as the instance source, the local attributes will have a stronger opinion and overwrite the instance values. In this case, <code>cat</code> exists on <code>custom_node</code> so it's value wins.
+<img alt="overwrite" src="../images/instance_overwrite.PNG" /></p>
+</div>
+<p>The children of the instance node get inserted into the hierarchy as proxy children. This data exists only as a result of the composite. The are not local saved data. Proxy children are drawn in a hashed style to make it clear you haven't touched the data.</p>
+<p><img alt="proxy_children.PNG" src="../images/proxy_children.PNG" /></p>
+<p>As soon as you begin to edit proxy children, they are converted into real editable nodes and exist in the hierarchy.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The hierarchy has the final opinion in the composite. <em>UNLESS</em> the node has an local opinion on the data.</p>
+<ul>
+<li>Layer</li>
+<li>Node parent</li>
+<li>Node</li>
+<li>Instance parent</li>
+<li>Instance</li>
+</ul>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Build a base arm. Instance it twice. Change L to R, done.
+<img alt="proxy_children.PNG" src="../images/inheritance_arm.gif" /></p>
+</div>
+<p>An instance of a node inherits data like a child. It creates proxy children of the instance source’s children, and can be arranged into a separate parent-child relationship as it’s instance source. </p>
+<p>Most instance attributes are carried over. Execution input is never inherited. Child order is inherited by instances but not by children.</p>
+<p>Data comes from the hierarchical parent as well as the instance source, with hierarchical parent  having final word. Instance execution order is defined by the hierarchical parent.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>If a node instances itself, or any ancestor or descendants, it will crash. It's best (because that's all thats possible) to only instance from other hierarchies or sibling nodes</p>
+</div></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>2022 NXT Authors</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

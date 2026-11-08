@@ -10,12 +10,13 @@
         <link rel="shortcut icon" href="/img/favicon.ico">
         <title>NXT User Docs</title>
         <link href="/css/bootstrap.css" rel="stylesheet">
-        <link href="/css/font-awesome.css" rel="stylesheet">
+        <link href="/css/fontawesome.min.css" rel="stylesheet">
+        <link href="/css/solid.min.css" rel="stylesheet">
+        <link href="/css/brands.min.css" rel="stylesheet">
         <link href="/css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow-night.min.css">
 
-        <script src="/js/jquery-1.10.2.min.js" defer></script>
-        <script src="/js/bootstrap.min.js" defer></script>
+        <script src="/js/bootstrap.bundle.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/json.min.js"></script>
@@ -28,52 +29,94 @@
             <div class="container">
                 <a class="navbar-brand" href="/.">NXT User Docs</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <!-- Expanded navigation -->
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="navitem">
+                        <ul class="nav navbar-nav me-auto">
+                            <li class="nav-item">
                                 <a href="/." class="nav-link">Home</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="/whats_new/" class="nav-link">What's New</a>
                             </li>
-                            <li class="navitem">
-                                <a href="/concepts/" class="nav-link">Concepts</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Getting Started</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="/install/" class="dropdown-item">Installation</a>
+</li>
+                                    
+<li>
+    <a href="/concepts/" class="dropdown-item">Concepts</a>
+</li>
+                                    
+<li>
+    <a href="/tutorials/" class="dropdown-item">Tutorials</a>
+</li>
+                                </ul>
                             </li>
-                            <li class="navitem">
-                                <a href="/tutorials/" class="nav-link">Tutorials</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="/editor/" class="dropdown-item">Using the Editor</a>
+</li>
+                                    
+<li>
+    <a href="/graphs/" class="dropdown-item">Graphs and Nodes</a>
+</li>
+                                    
+<li>
+    <a href="/composition/" class="dropdown-item">Layers and References</a>
+</li>
+                                    
+<li>
+    <a href="/file_format/" class="dropdown-item">File Format and Design</a>
+</li>
+                                    
+<li>
+    <a href="/hotkeys/" class="dropdown-item">Hotkeys</a>
+</li>
+                                    
+<li>
+    <a href="/workflows/" class="dropdown-item">Workflows</a>
+</li>
+                                </ul>
                             </li>
-                            <li class="navitem">
-                                <a href="/install/" class="nav-link">Installation</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="/reference/" class="nav-link">Reference</a>
-                            </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="/extensions/" class="nav-link">Extensions</a>
                             </li>
-                            <li class="navitem">
-                                <a href="/api/index.html" class="nav-link">API</a>
+                            <li class="nav-item">
+                                <a href="/api/" class="nav-link">API</a>
                             </li>
-                            <li class="navitem">
-                                <a href="/license/" class="nav-link">License</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="/about/" class="nav-link">About</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="https://github.com/nxt-dev/" target="_blank" class="nav-link">GitHub</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="/about/" class="dropdown-item">About</a>
+</li>
+                                    
+<li>
+    <a href="/license/" class="dropdown-item">License</a>
+</li>
+                                    
+<li>
+    <a href="https://github.com/nxt-dev/" target="_blank" class="dropdown-item">GitHub</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav navbar-tools">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
@@ -113,7 +156,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -133,7 +176,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">

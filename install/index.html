@@ -10,12 +10,13 @@
         <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Installation - NXT User Docs</title>
         <link href="../css/bootstrap.css" rel="stylesheet">
-        <link href="../css/font-awesome.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow-night.min.css">
 
-        <script src="../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="../js/bootstrap.bundle.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/json.min.js"></script>
@@ -28,63 +29,105 @@
             <div class="container">
                 <a class="navbar-brand" href="..">NXT User Docs</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <!-- Expanded navigation -->
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="navitem">
+                        <ul class="nav navbar-nav me-auto">
+                            <li class="nav-item">
                                 <a href=".." class="nav-link">Home</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../whats_new/" class="nav-link">What's New</a>
                             </li>
-                            <li class="navitem">
-                                <a href="../concepts/" class="nav-link">Concepts</a>
+                            <li class="nav-item dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Getting Started</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Installation</a>
+</li>
+                                    
+<li>
+    <a href="../concepts/" class="dropdown-item">Concepts</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/" class="dropdown-item">Tutorials</a>
+</li>
+                                </ul>
                             </li>
-                            <li class="navitem">
-                                <a href="../tutorials/" class="nav-link">Tutorials</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../editor/" class="dropdown-item">Using the Editor</a>
+</li>
+                                    
+<li>
+    <a href="../graphs/" class="dropdown-item">Graphs and Nodes</a>
+</li>
+                                    
+<li>
+    <a href="../composition/" class="dropdown-item">Layers and References</a>
+</li>
+                                    
+<li>
+    <a href="../file_format/" class="dropdown-item">File Format and Design</a>
+</li>
+                                    
+<li>
+    <a href="../hotkeys/" class="dropdown-item">Hotkeys</a>
+</li>
+                                    
+<li>
+    <a href="../workflows/" class="dropdown-item">Workflows</a>
+</li>
+                                </ul>
                             </li>
-                            <li class="navitem active">
-                                <a href="./" class="nav-link">Installation</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../reference/" class="nav-link">Reference</a>
-                            </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../extensions/" class="nav-link">Extensions</a>
                             </li>
-                            <li class="navitem">
-                                <a href="../api/index.html" class="nav-link">API</a>
+                            <li class="nav-item">
+                                <a href="../api/" class="nav-link">API</a>
                             </li>
-                            <li class="navitem">
-                                <a href="../license/" class="nav-link">License</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../about/" class="nav-link">About</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="https://github.com/nxt-dev/" target="_blank" class="nav-link">GitHub</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../about/" class="dropdown-item">About</a>
+</li>
+                                    
+<li>
+    <a href="../license/" class="dropdown-item">License</a>
+</li>
+                                    
+<li>
+    <a href="https://github.com/nxt-dev/" target="_blank" class="dropdown-item">GitHub</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav navbar-tools">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../tutorials/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
+                                <a rel="prev" title="Previous: What's New" href="../whats_new/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i><span class="nav-label"> Previous</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../reference/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
+                                <a rel="next" title="Next: Concepts" href="../concepts/" class="nav-link">
+                                    <span class="nav-label">Next </span><i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
                     </ul>
@@ -94,53 +137,53 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#requirements" class="nav-link">Requirements</a>
+            <li class="nav-item" data-bs-level="1"><a href="#requirements" class="nav-link">Requirements</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#standalone-installation" class="nav-link">Standalone Installation</a>
+            <li class="nav-item" data-bs-level="1"><a href="#standalone-installation" class="nav-link">Standalone Installation</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#host-applications" class="nav-link">Host Applications</a>
+            <li class="nav-item" data-bs-level="1"><a href="#host-applications" class="nav-link">Host Applications</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#maya" class="nav-link">Maya</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#unreal" class="nav-link">Unreal</a>
+            <li class="nav-item" data-bs-level="2"><a href="#maya" class="nav-link">Maya</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#blender" class="nav-link">Blender</a>
+            <li class="nav-item" data-bs-level="2"><a href="#unreal" class="nav-link">Unreal</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#qt-for-blender-and-unreal" class="nav-link">Qt for Blender and Unreal</a>
+            <li class="nav-item" data-bs-level="2"><a href="#blender" class="nav-link">Blender</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#other-hosts" class="nav-link">Other hosts</a>
+            <li class="nav-item" data-bs-level="2"><a href="#qt-for-blender-and-unreal" class="nav-link">Qt for Blender and Unreal</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#other-hosts" class="nav-link">Other hosts</a>
               <ul class="nav flex-column">
               </ul>
             </li>
               </ul>
             </li>
             
-            <li class="nav-item" data-level="1"><a href="#developer-installation" class="nav-link">Developer Installation</a>
+            <li class="nav-item" data-bs-level="1"><a href="#developer-installation" class="nav-link">Developer Installation</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -154,21 +197,21 @@
 <table>
 <thead>
 <tr>
-<th align="left">Package</th>
-<th align="left">What it is</th>
-<th align="left">Python</th>
+<th style="text-align: left;">Package</th>
+<th style="text-align: left;">What it is</th>
+<th style="text-align: left;">Python</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left"><a href="https://pypi.org/project/nxt-core/">nxt-core</a></td>
-<td align="left">The graph engine. Loads, composites and executes graphs, with no UI.</td>
-<td align="left">3.7 to 3.14</td>
+<td style="text-align: left;"><a href="https://pypi.org/project/nxt-core/">nxt-core</a></td>
+<td style="text-align: left;">The graph engine. Loads, composites and executes graphs, with no UI.</td>
+<td style="text-align: left;">3.7 to 3.14</td>
 </tr>
 <tr>
-<td align="left"><a href="https://pypi.org/project/nxt-editor/">nxt-editor</a></td>
-<td align="left">The visual editor. Installs nxt-core with it.</td>
-<td align="left">3.9 to 3.14, with PySide6 6.x below 6.12</td>
+<td style="text-align: left;"><a href="https://pypi.org/project/nxt-editor/">nxt-editor</a></td>
+<td style="text-align: left;">The visual editor. Installs nxt-core with it.</td>
+<td style="text-align: left;">3.9 to 3.14, with PySide6 6.x below 6.12</td>
 </tr>
 </tbody>
 </table>
@@ -192,7 +235,7 @@ environment of its own.</p>
 <li>Optionally, for richer code completion:
   <code>pip install nxt-editor[completion]</code>. This adds
   <a href="https://github.com/davidhalter/jedi">jedi</a>, which the
-  <a href="../reference/#python-analysis-with-jedi">Python Analysis</a> completion
+  <a href="../editor/#python-analysis-with-jedi">Python Analysis</a> completion
   source uses. The editor works the same without it.</li>
 </ul>
 </li>
@@ -231,26 +274,26 @@ Each zip also contains a <code>README.md</code> with these same steps.</p>
 <table>
 <thead>
 <tr>
-<th align="left">Host</th>
-<th align="left">Versions</th>
-<th align="left">Qt</th>
+<th style="text-align: left;">Host</th>
+<th style="text-align: left;">Versions</th>
+<th style="text-align: left;">Qt</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left"><a href="#maya">Maya</a></td>
-<td align="left">2025, 2026, 2027</td>
-<td align="left">Ships with Maya</td>
+<td style="text-align: left;"><a href="#maya">Maya</a></td>
+<td style="text-align: left;">2025, 2026, 2027</td>
+<td style="text-align: left;">Ships with Maya</td>
 </tr>
 <tr>
-<td align="left"><a href="#unreal">Unreal</a></td>
-<td align="left">5.4 to 5.8</td>
-<td align="left">Installed once from the nxt menu</td>
+<td style="text-align: left;"><a href="#unreal">Unreal</a></td>
+<td style="text-align: left;">5.4 to 5.8</td>
+<td style="text-align: left;">Installed once from the nxt menu</td>
 </tr>
 <tr>
-<td align="left"><a href="#blender">Blender</a></td>
-<td align="left">4.2 and newer</td>
-<td align="left">Installed once from the NXT menu</td>
+<td style="text-align: left;"><a href="#blender">Blender</a></td>
+<td style="text-align: left;">4.2 and newer</td>
+<td style="text-align: left;">Installed once from the NXT menu</td>
 </tr>
 </tbody>
 </table>
@@ -290,26 +333,26 @@ uses it rather than opening a second one.</p>
 <table>
 <thead>
 <tr>
-<th align="left">Flag</th>
-<th align="left">What it does</th>
+<th style="text-align: left;">Flag</th>
+<th style="text-align: left;">What it does</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left"><em>(none)</em></td>
-<td align="left">Opens the editor, or, when one is already open, brings it to the front, restoring it if it was minimised.</td>
+<td style="text-align: left;"><em>(none)</em></td>
+<td style="text-align: left;">Opens the editor, or, when one is already open, brings it to the front, restoring it if it was minimised.</td>
 </tr>
 <tr>
-<td align="left"><code>-path</code>, <code>-p</code></td>
-<td align="left">Opens a graph, as a new tab of the open editor or in a new editor. Can be given more than once.</td>
+<td style="text-align: left;"><code>-path</code>, <code>-p</code></td>
+<td style="text-align: left;">Opens a graph, as a new tab of the open editor or in a new editor. Can be given more than once.</td>
 </tr>
 <tr>
-<td align="left"><code>-reload</code>, <code>-r</code></td>
-<td align="left">Closes the editor and opens a fresh one. Closing asks about unsaved changes as usual; if you cancel, the reload stops with a warning and the editor stays open.</td>
+<td style="text-align: left;"><code>-reload</code>, <code>-r</code></td>
+<td style="text-align: left;">Closes the editor and opens a fresh one. Closing asks about unsaved changes as usual; if you cancel, the reload stops with a warning and the editor stays open.</td>
 </tr>
 <tr>
-<td align="left"><code>-close</code>, <code>-c</code></td>
-<td align="left">Closes the editor.</td>
+<td style="text-align: left;"><code>-close</code>, <code>-c</code></td>
+<td style="text-align: left;">Closes the editor.</td>
 </tr>
 </tbody>
 </table>
@@ -348,22 +391,22 @@ mayapy run_maya_graph.py -g path/to/graph.nxt -p path/to/parameters.json
 <table>
 <thead>
 <tr>
-<th align="left">Argument</th>
-<th align="left">Meaning</th>
+<th style="text-align: left;">Argument</th>
+<th style="text-align: left;">Meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left"><code>-g</code>, <code>--graph_path</code></td>
-<td align="left">The graph to run. Required.</td>
+<td style="text-align: left;"><code>-g</code>, <code>--graph_path</code></td>
+<td style="text-align: left;">The graph to run. Required.</td>
 </tr>
 <tr>
-<td align="left"><code>-s</code>, <code>--start_node</code></td>
-<td align="left">The node to start from. Without it the graph's start point is used.</td>
+<td style="text-align: left;"><code>-s</code>, <code>--start_node</code></td>
+<td style="text-align: left;">The node to start from. Without it the graph's start point is used.</td>
 </tr>
 <tr>
-<td align="left"><code>-p</code>, <code>--parameters</code></td>
-<td align="left">Values to set before the graph runs, as a JSON dictionary or the path to a JSON file. Keys are attribute paths such as <code>/node.attr</code>. A <code>/node._enabled</code> key set to <code>true</code> or <code>false</code> enables or disables that node for this run.</td>
+<td style="text-align: left;"><code>-p</code>, <code>--parameters</code></td>
+<td style="text-align: left;">Values to set before the graph runs, as a JSON dictionary or the path to a JSON file. Keys are attribute paths such as <code>/node.attr</code>. A <code>/node._enabled</code> key set to <code>true</code> or <code>false</code> enables or disables that node for this run.</td>
 </tr>
 </tbody>
 </table>
@@ -417,34 +460,34 @@ add-on does not open anything on its own.</p>
 <table>
 <thead>
 <tr>
-<th align="left">Menu item</th>
-<th align="left">What it does</th>
+<th style="text-align: left;">Menu item</th>
+<th style="text-align: left;">What it does</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">Open Editor</td>
-<td align="left">Opens an nxt editor window inside Blender.</td>
+<td style="text-align: left;">Open Editor</td>
+<td style="text-align: left;">Opens an nxt editor window inside Blender.</td>
 </tr>
 <tr>
-<td align="left">Close Editor</td>
-<td align="left">Closes the editor windows this session opened.</td>
+<td style="text-align: left;">Close Editor</td>
+<td style="text-align: left;">Closes the editor windows this session opened.</td>
 </tr>
 <tr>
-<td align="left">Install Qt (PySide6)</td>
-<td align="left">Only shown while Qt is missing. Installs PySide6 for this Blender.</td>
+<td style="text-align: left;">Install Qt (PySide6)</td>
+<td style="text-align: left;">Only shown while Qt is missing. Installs PySide6 for this Blender.</td>
 </tr>
 <tr>
-<td align="left">Run Graph...</td>
-<td align="left">Picks a <code>.nxt</code> file and runs it in the current scene, without opening the editor.</td>
+<td style="text-align: left;">Run Graph...</td>
+<td style="text-align: left;">Picks a <code>.nxt</code> file and runs it in the current scene, without opening the editor.</td>
 </tr>
 <tr>
-<td align="left">Run Last Graph</td>
-<td align="left">Runs the same graph again.</td>
+<td style="text-align: left;">Run Last Graph</td>
+<td style="text-align: left;">Runs the same graph again.</td>
 </tr>
 <tr>
-<td align="left">Reload Code</td>
-<td align="left">Forgets the nxt modules Blender has already imported, so the next run uses the files on disk.</td>
+<td style="text-align: left;">Reload Code</td>
+<td style="text-align: left;">Forgets the nxt modules Blender has already imported, so the next run uses the files on disk.</td>
 </tr>
 </tbody>
 </table>
@@ -564,7 +607,7 @@ instance.setParent(hou.qt.mainWindow(), QtCore.Qt.Window)
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -584,7 +627,7 @@ instance.setParent(hou.qt.mainWindow(), QtCore.Qt.Window)
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">

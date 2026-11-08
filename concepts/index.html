@@ -10,12 +10,13 @@
         <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Concepts - NXT User Docs</title>
         <link href="../css/bootstrap.css" rel="stylesheet">
-        <link href="../css/font-awesome.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow-night.min.css">
 
-        <script src="../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="../js/bootstrap.bundle.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/json.min.js"></script>
@@ -28,63 +29,105 @@
             <div class="container">
                 <a class="navbar-brand" href="..">NXT User Docs</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <!-- Expanded navigation -->
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="navitem">
+                        <ul class="nav navbar-nav me-auto">
+                            <li class="nav-item">
                                 <a href=".." class="nav-link">Home</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../whats_new/" class="nav-link">What's New</a>
                             </li>
-                            <li class="navitem active">
-                                <a href="./" class="nav-link">Concepts</a>
+                            <li class="nav-item dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Getting Started</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../install/" class="dropdown-item">Installation</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Concepts</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/" class="dropdown-item">Tutorials</a>
+</li>
+                                </ul>
                             </li>
-                            <li class="navitem">
-                                <a href="../tutorials/" class="nav-link">Tutorials</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../editor/" class="dropdown-item">Using the Editor</a>
+</li>
+                                    
+<li>
+    <a href="../graphs/" class="dropdown-item">Graphs and Nodes</a>
+</li>
+                                    
+<li>
+    <a href="../composition/" class="dropdown-item">Layers and References</a>
+</li>
+                                    
+<li>
+    <a href="../file_format/" class="dropdown-item">File Format and Design</a>
+</li>
+                                    
+<li>
+    <a href="../hotkeys/" class="dropdown-item">Hotkeys</a>
+</li>
+                                    
+<li>
+    <a href="../workflows/" class="dropdown-item">Workflows</a>
+</li>
+                                </ul>
                             </li>
-                            <li class="navitem">
-                                <a href="../install/" class="nav-link">Installation</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../reference/" class="nav-link">Reference</a>
-                            </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../extensions/" class="nav-link">Extensions</a>
                             </li>
-                            <li class="navitem">
-                                <a href="../api/index.html" class="nav-link">API</a>
+                            <li class="nav-item">
+                                <a href="../api/" class="nav-link">API</a>
                             </li>
-                            <li class="navitem">
-                                <a href="../license/" class="nav-link">License</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../about/" class="nav-link">About</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="https://github.com/nxt-dev/" target="_blank" class="nav-link">GitHub</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../about/" class="dropdown-item">About</a>
+</li>
+                                    
+<li>
+    <a href="../license/" class="dropdown-item">License</a>
+</li>
+                                    
+<li>
+    <a href="https://github.com/nxt-dev/" target="_blank" class="dropdown-item">GitHub</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav navbar-tools">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href="../whats_new/" class="nav-link">
-                                    <i class="fa fa-arrow-left"></i> Previous
+                                <a rel="prev" title="Previous: Installation" href="../install/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i><span class="nav-label"> Previous</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../tutorials/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
+                                <a rel="next" title="Next: Tutorials" href="../tutorials/" class="nav-link">
+                                    <span class="nav-label">Next </span><i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
                     </ul>
@@ -94,36 +137,36 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#concept-quick-start" class="nav-link">Concept quick start</a>
+            <li class="nav-item" data-bs-level="1"><a href="#concept-quick-start" class="nav-link">Concept quick start</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#nodes" class="nav-link">Nodes</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#attributes" class="nav-link">Attributes</a>
+            <li class="nav-item" data-bs-level="2"><a href="#nodes" class="nav-link">Nodes</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#inheritance" class="nav-link">Inheritance</a>
+            <li class="nav-item" data-bs-level="2"><a href="#attributes" class="nav-link">Attributes</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#layers" class="nav-link">Layers</a>
+            <li class="nav-item" data-bs-level="2"><a href="#inheritance" class="nav-link">Inheritance</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#instances" class="nav-link">Instances</a>
+            <li class="nav-item" data-bs-level="2"><a href="#layers" class="nav-link">Layers</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#instances" class="nav-link">Instances</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -140,7 +183,7 @@
 <p><img alt="hierarchy.PNG" src="../images/hierarchy.PNG" /></p>
 <p>In the above example, the execution order would be: <code>/parent</code>, <code>/parent/child1</code>, <code>/parent/child1/child2</code>, <code>/parent/sibling</code>, <code>/parent/sibling2</code>, <code>/node</code>, <code>/node/node</code></p>
 <h2 id="attributes">Attributes</h2>
-<p>Rather than building a custom UI to interact with code, you edit attributes on <a href="../reference/#node">nodes </a>in a familiar property editor. Nxt <a href="../reference/#stage-composition">substitutes </a> <a href="../reference/#attributes">attributes </a>into the body of the  <a href="../reference/#compute">code </a>on the fly and generates linearly executed bespoke programs. It lets you interact via properties without writing, managing, and extracting data from a UI. </p>
+<p>Rather than building a custom UI to interact with code, you edit attributes on <a href="../graphs/#node">nodes </a>in a familiar property editor. Nxt <a href="../composition/">substitutes </a> <a href="../graphs/#attributes">attributes </a>into the body of the  <a href="../graphs/#compute">code </a>on the fly and generates linearly executed bespoke programs. It lets you interact via properties without writing, managing, and extracting data from a UI. </p>
 <table>
 <thead>
 <tr>
@@ -156,17 +199,17 @@
 </tbody>
 </table>
 <p><img alt="token_intro.gif" src="../images/token_intro.gif" /></p>
-<p>Attributes can refer to other attributes and are <a href="../reference/#stage-composition">composited </a>on the fly, or attributes can be used directly in code. These are called <a href="../reference/#tokens">tokens</a>.</p>
+<p>Attributes can refer to other attributes and are <a href="../composition/">composited </a>on the fly, or attributes can be used directly in code. These are called <a href="../graphs/#tokens">tokens</a>.</p>
 <p><img alt="token2_intro.gif" src="../images/token2_intro.gif" /></p>
 <h2 id="inheritance">Inheritance</h2>
-<p>Each tree <a href="../reference/#stage-composition">inherits </a>all the attributes of their parent nodes. (All of this can be easily hidden via <code>1,2,3</code> hotkeys) Those attributes are available to child nodes. Each child node can overwrite the value, or use the inherited value.</p>
+<p>Each tree <a href="../composition/">inherits </a>all the attributes of their parent nodes. (All of this can be easily hidden via <code>1,2,3</code> hotkeys) Those attributes are available to child nodes. Each child node can overwrite the value, or use the inherited value.</p>
 <p><img alt="token_intro.gif" src="../images/tree_intro.gif" /></p>
 <h2 id="layers">Layers</h2>
-<p>Nxt also incorporates a <a href="../reference/#layers">layering </a>model where attributes and code can be overridden by nodes on higher layers and leave the underlying structure intact.</p>
+<p>Nxt also incorporates a <a href="../composition/#layers">layering </a>model where attributes and code can be overridden by nodes on higher layers and leave the underlying structure intact.</p>
 <p><img alt="layer_intro.gif" src="../images/layer_intro.gif" /></p>
 <h2 id="instances">Instances</h2>
 <p>Finally, any node can be instanced and overridden by layers or nodes.</p>
-<p><a href="../reference/#instancing">Instancing </a>allows you to reuse node trees from other parts of the graph with specific overrides.</p>
+<p><a href="../composition/#instancing">Instancing </a>allows you to reuse node trees from other parts of the graph with specific overrides.</p>
 <p><img alt="instance_intro.gif" src="../images/instance_intro.gif" /></p></div>
             </div>
         </div>
@@ -188,7 +231,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -208,7 +251,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">

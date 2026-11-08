@@ -10,12 +10,13 @@
         <link rel="shortcut icon" href="img/favicon.ico">
         <title>NXT User Docs</title>
         <link href="css/bootstrap.css" rel="stylesheet">
-        <link href="css/font-awesome.css" rel="stylesheet">
+        <link href="css/fontawesome.min.css" rel="stylesheet">
+        <link href="css/solid.min.css" rel="stylesheet">
+        <link href="css/brands.min.css" rel="stylesheet">
         <link href="css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow-night.min.css">
 
-        <script src="js/jquery-1.10.2.min.js" defer></script>
-        <script src="js/bootstrap.min.js" defer></script>
+        <script src="js/bootstrap.bundle.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/json.min.js"></script>
@@ -28,63 +29,105 @@
             <div class="container">
                 <a class="navbar-brand" href=".">NXT User Docs</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <!-- Expanded navigation -->
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="navitem active">
+                        <ul class="nav navbar-nav me-auto">
+                            <li class="nav-item active">
                                 <a href="." class="nav-link">Home</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="whats_new/" class="nav-link">What's New</a>
                             </li>
-                            <li class="navitem">
-                                <a href="concepts/" class="nav-link">Concepts</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Getting Started</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="install/" class="dropdown-item">Installation</a>
+</li>
+                                    
+<li>
+    <a href="concepts/" class="dropdown-item">Concepts</a>
+</li>
+                                    
+<li>
+    <a href="tutorials/" class="dropdown-item">Tutorials</a>
+</li>
+                                </ul>
                             </li>
-                            <li class="navitem">
-                                <a href="tutorials/" class="nav-link">Tutorials</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="editor/" class="dropdown-item">Using the Editor</a>
+</li>
+                                    
+<li>
+    <a href="graphs/" class="dropdown-item">Graphs and Nodes</a>
+</li>
+                                    
+<li>
+    <a href="composition/" class="dropdown-item">Layers and References</a>
+</li>
+                                    
+<li>
+    <a href="file_format/" class="dropdown-item">File Format and Design</a>
+</li>
+                                    
+<li>
+    <a href="hotkeys/" class="dropdown-item">Hotkeys</a>
+</li>
+                                    
+<li>
+    <a href="workflows/" class="dropdown-item">Workflows</a>
+</li>
+                                </ul>
                             </li>
-                            <li class="navitem">
-                                <a href="install/" class="nav-link">Installation</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="reference/" class="nav-link">Reference</a>
-                            </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="extensions/" class="nav-link">Extensions</a>
                             </li>
-                            <li class="navitem">
-                                <a href="api/index.html" class="nav-link">API</a>
+                            <li class="nav-item">
+                                <a href="api/" class="nav-link">API</a>
                             </li>
-                            <li class="navitem">
-                                <a href="license/" class="nav-link">License</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="about/" class="nav-link">About</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="https://github.com/nxt-dev/" target="_blank" class="nav-link">GitHub</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="about/" class="dropdown-item">About</a>
+</li>
+                                    
+<li>
+    <a href="license/" class="dropdown-item">License</a>
+</li>
+                                    
+<li>
+    <a href="https://github.com/nxt-dev/" target="_blank" class="dropdown-item">GitHub</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav navbar-tools">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" class="nav-link disabled">
-                                    <i class="fa fa-arrow-left"></i> Previous
+                                <a rel="prev" title="Previous" class="nav-link disabled">
+                                    <i class="fa fa-arrow-left"></i><span class="nav-label"> Previous</span>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="whats_new/" class="nav-link">
-                                    Next <i class="fa fa-arrow-right"></i>
+                                <a rel="next" title="Next: What's New" href="whats_new/" class="nav-link">
+                                    <span class="nav-label">Next </span><i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
                     </ul>
@@ -94,48 +137,48 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="2"><a href="#what-is-nxt" class="nav-link">What is nxt?</a>
+            <li class="nav-item" data-bs-level="2"><a href="#what-is-nxt" class="nav-link">What is nxt?</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#introduction" class="nav-link">Introduction</a>
+            <li class="nav-item" data-bs-level="2"><a href="#introduction" class="nav-link">Introduction</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#why-use-nxt" class="nav-link">Why use nxt?</a>
+            <li class="nav-item" data-bs-level="2"><a href="#why-use-nxt" class="nav-link">Why use nxt?</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#what-does-nxt-do" class="nav-link">What does nxt do?</a>
+            <li class="nav-item" data-bs-level="2"><a href="#what-does-nxt-do" class="nav-link">What does nxt do?</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#limitations" class="nav-link">Limitations</a>
+            <li class="nav-item" data-bs-level="2"><a href="#limitations" class="nav-link">Limitations</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#how-do-i-get-it" class="nav-link">How do I get it?</a>
+            <li class="nav-item" data-bs-level="2"><a href="#how-do-i-get-it" class="nav-link">How do I get it?</a>
               <ul class="nav flex-column">
               </ul>
             </li>
             
-            <li class="nav-item" data-level="2"><a href="#where-do-i-ask-questions-or-report-a-bug" class="nav-link">Where do I ask questions or report a bug?</a>
+            <li class="nav-item" data-bs-level="2"><a href="#where-do-i-ask-questions-or-report-a-bug" class="nav-link">Where do I ask questions or report a bug?</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -151,8 +194,10 @@
 <p>NXT, pronounced ɛn·ɛks·ti, is a layered code compositing application. Enabling visualization of complex scripts and easy cross discipline collaboration.
 <em>It’s code with layers with a nice way to see and change data.</em></p>
 <div class="admonition note">
-<p class="admonition-title">New in nxt_editor 4.4</p>
-<p>A code editor with find and replace and completion, a reference editor,
+<p class="admonition-title">New in nxt_editor 4.5</p>
+<p>An <a href="editor/#ai-assistant">AI Assistant</a> that looks over, changes and
+runs the graph with Claude, OpenAI, Grok or a local model. New in 4.4: a
+code editor with find and replace and completion, a reference editor,
 Reload Source, a mini map, and plugins for Maya, Unreal and Blender.
 See <a href="whats_new/">What's New</a>.</p>
 </div>
@@ -167,14 +212,14 @@ of various technical and artistic backgrounds. We set out to bring to the
  table a simple set of principles:</p>
 <ul>
 <li>Visualize a map of what a complex script is actually doing. 
-<a href="reference/#node">Nodes</a>, <a href="concepts/#inheritance">inheritance</a>, and
+<a href="graphs/#node">Nodes</a>, <a href="concepts/#inheritance">inheritance</a>, and
 connection lines are easy to understand. However, we've gone a step further 
-and added string <a href="reference/#tokens">tokens</a>. An instant visualization 
+and added string <a href="graphs/#tokens">tokens</a>. An instant visualization 
 of what an attribute value <em>actually</em> is. Our tokens can be used <em>almost</em>
 anywhere inside nxt and are dynamically "resolved" during execution. Allowing the
 user to see exactly what data is flowing around without the use of an
 external debugger.</li>
-<li>Encourage collaboration though <a href="reference/#layers">layering</a> and multi context graphs. 
+<li>Encourage collaboration though <a href="composition/#layers">layering</a> and multi context graphs. 
 With our layering system it is easy for departments to share base workflows and
 utility nodes. Since layering is non-destructive graphs can referenced built on 
 without worrying about breaking someone else's graph. With <a href="extensions/#creating-custom-contexts">multi context</a> 
@@ -199,7 +244,7 @@ allow users to quickly jump to and correct erroneous values.</p>
 <ul>
 <li>We currently do not support asynchronous execution in a single graph. Our 
 current focus is on lineal scripts.</li>
-<li>We are <a href="reference/#design-philosophy">not visual programming</a>, no for loop nodes sorry.</li>
+<li>We are <a href="file_format/#design-philosophy">not visual programming</a>, no for loop nodes sorry.</li>
 </ul>
 <h2 id="how-do-i-get-it">How do I get it?</h2>
 <ul>
@@ -220,21 +265,21 @@ current focus is on lineal scripts.</li>
 <table>
 <thead>
 <tr>
-<th align="center"></th>
-<th align="center"></th>
-<th align="center"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center">Concepts</td>
-<td align="center">Tutorials</td>
-<td align="center">Installation</td>
+<td style="text-align: center;">Concepts</td>
+<td style="text-align: center;">Tutorials</td>
+<td style="text-align: center;">Installation</td>
 </tr>
 <tr>
-<td align="center">See <a href="concepts/">concepts</a> for a quick overview of nxt's core concepts.</td>
-<td align="center">See the <a href="tutorials/">tutorials</a> for a step by step walkthroughs</td>
-<td align="center">nxt runs on Python 3.7 to 3.14, the editor on 3.9 to 3.14. See <a href="install/">installation</a> for standalone, Maya, Unreal and Blender.</td>
+<td style="text-align: center;">See <a href="concepts/">concepts</a> for a quick overview of nxt's core concepts.</td>
+<td style="text-align: center;">See the <a href="tutorials/">tutorials</a> for a step by step walkthroughs</td>
+<td style="text-align: center;">nxt runs on Python 3.7 to 3.14, the editor on 3.9 to 3.14. See <a href="install/">installation</a> for standalone, Maya, Unreal and Blender.</td>
 </tr>
 </tbody>
 </table></div>
@@ -258,7 +303,7 @@ current focus is on lineal scripts.</li>
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -278,7 +323,7 @@ current focus is on lineal scripts.</li>
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">
@@ -318,6 +363,6 @@ current focus is on lineal scripts.</li>
 </html>
 
 <!--
-MkDocs version : 1.2.3
-Build Date UTC : 2026-10-29 16:01:26.284622+00:00
+MkDocs version : 1.6.1
+Build Date UTC : 2026-11-08 18:09:37.383609+00:00
 -->

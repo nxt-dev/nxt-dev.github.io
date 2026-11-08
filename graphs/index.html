@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Graphs and Nodes - NXT User Docs</title>
+        <link href="../css/bootstrap.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow-night.min.css">
+
+        <script src="../js/bootstrap.bundle.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/json.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/python.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">NXT User Docs</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../whats_new/" class="nav-link">What's New</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Getting Started</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../install/" class="dropdown-item">Installation</a>
+</li>
+                                    
+<li>
+    <a href="../concepts/" class="dropdown-item">Concepts</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/" class="dropdown-item">Tutorials</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../editor/" class="dropdown-item">Using the Editor</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Graphs and Nodes</a>
+</li>
+                                    
+<li>
+    <a href="../composition/" class="dropdown-item">Layers and References</a>
+</li>
+                                    
+<li>
+    <a href="../file_format/" class="dropdown-item">File Format and Design</a>
+</li>
+                                    
+<li>
+    <a href="../hotkeys/" class="dropdown-item">Hotkeys</a>
+</li>
+                                    
+<li>
+    <a href="../workflows/" class="dropdown-item">Workflows</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../extensions/" class="nav-link">Extensions</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../api/" class="nav-link">API</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../about/" class="dropdown-item">About</a>
+</li>
+                                    
+<li>
+    <a href="../license/" class="dropdown-item">License</a>
+</li>
+                                    
+<li>
+    <a href="https://github.com/nxt-dev/" target="_blank" class="dropdown-item">GitHub</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav navbar-tools">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" title="Previous: Using the Editor" href="../editor/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i><span class="nav-label"> Previous</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" title="Next: Layers and References" href="../composition/" class="nav-link">
+                                    <span class="nav-label">Next </span><i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#graphs-and-nodes" class="nav-link">Graphs and Nodes</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#stage" class="nav-link">Stage</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#node" class="nav-link">Node</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#attributes" class="nav-link">Attributes</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#tokens" class="nav-link">Tokens</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#compute" class="nav-link">Compute</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#execution-order" class="nav-link">Execution Order</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="graphs-and-nodes">Graphs and Nodes</h1>
+<p>A graph is a stage of nodes. Each node holds attributes and a block of code,
+and the graph runs the nodes in order. This page covers those parts and how
+they fit together. How a graph is built from layers, and how nodes inherit
+from their parents and instances, is on
+<a href="../composition/">Layers and References</a>.</p>
+<h2 id="stage">Stage</h2>
+<p>The stage is a collection of graphs, trees, and layers of nxt <a href="#node">nodes </a>that set the <a href="../composition/">composition structure</a> and <a href="#execution-order">execution order</a> for an nxt file.<br />
+Every node has access to the <code>STAGE</code> object. When working with Python classes (besides the builtins) it is best to store those objects on the <code>STAGE</code>.<br />
+An example of how you would do that in a node's code is as follows:</p>
+<pre><code class="language-python">my_object = ComplexData()
+STAGE.complex_data = my_object
+</code></pre>
+<p>Another node later in the execution can access that object as follows:</p>
+<pre><code class="language-python">STAGE.complex_data.a_method()
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Stage attributes and composition</p>
+<p>Note that each layer is also a node, and those nodes get composited to the <code>STAGE</code> object. Each node is parented to that object and inherit the attributes of it. This can be useful for defining "global" variables, or a state that needs to propagate into the entire graph.</p>
+</div>
+<h2 id="node">Node</h2>
+<p>A node is a container for code (or compute) and a collection of attributes. Every node contains a single <a href="#compute">code block</a> that is executed when a node is run. <a href="#execution-order">Execution order</a> is defined both by hierarchy and connections to execution plugs on the nodes.</p>
+<h2 id="attributes">Attributes</h2>
+<p><a href="#node">Nodes</a> contain <a href="#attributes">attributes </a>that are read from and written to from inside a node’s <a href="#compute">code block</a>. Attributes can also be connected to inputs and outputs of other nodes via <a href="#tokens">tokens </a>in  attributes, token paths within the code block, or dragging and dropping attribute connections between nodes.</p>
+<p>At editor time (before the graph has begun <a href="#execution-order">executing</a>) attribute values can be composited into other attribute’s values or into the text of a code block via <code>${path/to/node.otherattr}_rest_of_attr_value</code>. </p>
+<p>A node’s local attributes can be resolved by name alone via <code>${attrname}</code></p>
+<div class="admonition note">
+<p class="admonition-title">Hotkeys</p>
+<p>The raw/composited state can be visualized by toggling editor resolution on and off using <code>Q</code>, <code>W</code>, <code>E</code>.
+NXT includes a full hot key editor. (Window &gt; <a href="../hotkeys/">Hotkey </a>Editor)</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>The node at <code>/path/to/node</code> has the attribute <code>otherattr</code> with the value <code>simple_stupid</code>, and our local node has an attribute named <code>myattr</code> with the value <code>never_eat</code></p>
+<table>
+<thead>
+<tr>
+<th>Unresolved</th>
+<th>Resolved</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>keep_it_${path/to/node.attrname}</td>
+<td>keep_it_simple_stupid</td>
+</tr>
+<tr>
+<td>${myattr}_shredded_wheat</td>
+<td>never_eat_shredded_wheat</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Cached view</p>
+<p>Cached view should only be used to inspect and debug your data. It should not be considered accurate, <em>especially</em> if you are changing the data via the <code>self.attribute</code> paridigm. Any data that NXT is not confident in will be drawn with red hashes.</p>
+</div>
+<p>A node’s local attributes can be changed inside a node’s code block following python convention as seen below.</p>
+<pre><code>self.attr_name = 'example code'
+print(self.attr_name + ' is always boring.')
+</code></pre>
+<p>While executing, the <a href="#stage">Stage</a> can have arbitrary attributes add/set/retrieved on it, that will be available to all nodes, as seen below. Note: Inside a node’s codeblock the stage is accessed via all caps STAGE</p>
+<pre><code>STAGE.anyattr = 'anything you want'
+print(Stage.anyattr)
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Attribute connections</p>
+<p>It is best practice to display inter-node dependencies via hierarchy or connections of attributes, rather than hide that dependency in the code. This will make your layers more portable and friendly to other users. Despite this best practice, other nodes and their attributes can be accessed inside a code <code>block using STAGE.lookup('path/to/node')</code> and <code>STAGE.lookup('path/to/node.otherattr')</code>.</p>
+</div>
+<h2 id="tokens">Tokens</h2>
+<p>A token is like a <a href="../workflows/#transition-map">reference or pointer</a> to another token or value. <a href="../workflows/#transition-map">OS </a>style pathing is used to resolve attribute and file tokens.</p>
+<p>Attribute token syntax is <code>${}</code>: if it can resolve, it substitutes the attribute, if not it will be empty.<br />
+<em>If a token is empty it will resolve to <code>BADRESOLVE</code>.</em></p>
+<pre><code>        ${attribute}
+        ${/absolute_node_path.attribute}
+        ${../relative_nodepath.attribute}
+</code></pre>
+<p>File validation syntax <code>${file::}</code>: this will always resolve to a real file, and will return an empty string if the file doesn't exist. Used to validate files for reading.</p>
+<pre><code>        ${file::file.nxt}
+        ${file::C:/absolute_path/file.nxt}
+        ${file::../relative_path/file.nxt}
+</code></pre>
+<p>File path token syntax <code>${path::}</code>this will  attempt to resolve to a valid path. If not, it will be empty. Used to expand paths for writing.</p>
+<p>File path token syntax <code>${contents::}</code> will include the contents of an external file. For example, <code>${contents::${file::external.py}}</code> will include the contents of <code>external.py</code> in the attribute, compute, <em>and</em> it will resolve tokens written within this file.</p>
+<p>File list token syntax <code>${fileslist::}</code> will list valid historical filepaths at the same path.<br />
+Imagine you have <code>/node.my_file</code> = <code>${file::weights.json}</code> on several layers in different directories, all saved in different folders.
+If you then used a token like <code>${filelist::/node.weiths_file}</code> you would get a list of file paths to the <code>weights.json</code> file in each of the layer's save folder.<br />
+This would allow you to collete and parse data from multiple reference layers:</p>
+<pre><code>all_the_data = {}
+for filepath in ${filelist::/node.weiths_file}:
+    all_the_data.update(json.load(filepath))
+</code></pre>
+<div class="admonition note">
+<p class="admonition-title">File list validation</p>
+<p>The <code>filelist::</code> token only returns valid filepaths to existing files. </p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Relative file resolution</p>
+<p>The <code>${file::}</code> and <code>${path::}</code> tokens will resolve relative paths based on the parent folder of the current display layer.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Using an external IDE</p>
+<p>The <code>${contents::}</code> token allows the use of an external IDE for authoring your compute blocks.</p>
+</div>
+<p>Tokens are <em>not</em> python template strings, even though they share the syntax.</p>
+<div class="admonition note">
+<p class="admonition-title">Quote behavior in tokens</p>
+<p>Since all attribute values are stored and processed as strings in NXT before they are composed as python objects, you have to manually manage string attributes. The value will <em>substitute as written</em>. In some cases, it makes sense to have string attributes in quotes, in other cases, it makes sense to add quotes in the code block. 
+For example if you had an attribute <code>side</code> set to a value of <code>L</code></p>
+<p><code>foot_${side}</code> and <code>'foot_' + '${side}'</code> are equally valid. This really comes down to convention.</p>
+<p>There is a simple <code>w()</code> convenience function to assist with adding quotes when using a python string object as a string.</p>
+<p><code>my_attr = 'quotes go away when it becomes a string object'
+self.attribute = w(my_attr)</code></p>
+<p><code>my_attr</code> can now be used by downstream nodes as a string.</p>
+</div>
+<h2 id="compute">Compute</h2>
+<p>The compute block/code block  is standard python code, with the exception that it will deep-resolve tokens over 1000 levels deep. (should this be a preference?)</p>
+<p><img alt="code_editor.PNG" src="../images/code_editor.PNG" /></p>
+<div class="admonition note">
+<p class="admonition-title">Hotkeys</p>
+<p>The raw/composited state can be visualized by toggling editor resolution on and off using <code>Q</code>, <code>W</code>, <code>E</code>.</p>
+<p><code>numreturn</code> or <code>ctrl+enter</code> or clicking off the code will accept your edit</p>
+<p><code>tab</code> and <code>shift+tab</code> handle multi-line indents</p>
+<p>NXT includes a full hot key editor.(Window &gt; <a href="../hotkeys/">Hotkey </a>Editor)</p>
+</div>
+<h2 id="execution-order">Execution Order</h2>
+<h3 id="stagelayer-node">Stage/Layer Node</h3>
+<p><em>Stub for this feature once new layer editor arrives</em></p>
+<h3 id="execution-root">Execution Root</h3>
+<p>A stage can have root nodes with no parent node and no node connected to it’s input execution plug. Use execute tags to define the order</p>
+<p><img alt="execution_tag.PNG" src="../images/execution_tag.PNG" /></p>
+<h3 id="execution-plugs">Execution Plugs</h3>
+<p>Nodes have execution plugs on their left and right to determine execution order. Nodes are executed from left to right along the execution chain specified by these connections.</p>
+<p><img alt="graph_intro.PNG" src="../images/graph_intro.PNG" /></p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>We don't have checks for circular dependencies yet. So don't setup loops.</p>
+</div>
+<h3 id="hierarchiesstacks">Hierarchies/Stacks</h3>
+<p>Nodes have relationships we refer to as “parent”, “child”, and “sibling” to describe their relationship to one another inside the stage to influence composition and execution order. </p>
+<p><img alt="hierarchy.PNG" src="../images/hierarchy.PNG" /></p>
+<p>To begin execution from a given node, the first node is run, followed by a depth first execution of each of it’s descendants. Following the execution of the descendants, the root node whose input <a href="#execution-plugs">execution plug</a> is connected to the current node’s output execution plug will be run following the same logic.</p></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>2022 NXT Authors</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

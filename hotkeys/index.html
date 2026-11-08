@@ -10,12 +10,13 @@
         <link rel="shortcut icon" href="../img/favicon.ico">
         <title>Hotkeys - NXT User Docs</title>
         <link href="../css/bootstrap.css" rel="stylesheet">
-        <link href="../css/font-awesome.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow-night.min.css">
 
-        <script src="../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../js/bootstrap.min.js" defer></script>
+        <script src="../js/bootstrap.bundle.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/yaml.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/json.min.js"></script>
@@ -28,55 +29,107 @@
             <div class="container">
                 <a class="navbar-brand" href="..">NXT User Docs</a>
                 <!-- Expander button -->
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <!-- Expanded navigation -->
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
-                        <ul class="nav navbar-nav">
-                            <li class="navitem">
+                        <ul class="nav navbar-nav me-auto">
+                            <li class="nav-item">
                                 <a href=".." class="nav-link">Home</a>
                             </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../whats_new/" class="nav-link">What's New</a>
                             </li>
-                            <li class="navitem">
-                                <a href="../concepts/" class="nav-link">Concepts</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Getting Started</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../install/" class="dropdown-item">Installation</a>
+</li>
+                                    
+<li>
+    <a href="../concepts/" class="dropdown-item">Concepts</a>
+</li>
+                                    
+<li>
+    <a href="../tutorials/" class="dropdown-item">Tutorials</a>
+</li>
+                                </ul>
                             </li>
-                            <li class="navitem">
-                                <a href="../tutorials/" class="nav-link">Tutorials</a>
+                            <li class="nav-item dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">Reference</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../editor/" class="dropdown-item">Using the Editor</a>
+</li>
+                                    
+<li>
+    <a href="../graphs/" class="dropdown-item">Graphs and Nodes</a>
+</li>
+                                    
+<li>
+    <a href="../composition/" class="dropdown-item">Layers and References</a>
+</li>
+                                    
+<li>
+    <a href="../file_format/" class="dropdown-item">File Format and Design</a>
+</li>
+                                    
+<li>
+    <a href="./" class="dropdown-item active" aria-current="page">Hotkeys</a>
+</li>
+                                    
+<li>
+    <a href="../workflows/" class="dropdown-item">Workflows</a>
+</li>
+                                </ul>
                             </li>
-                            <li class="navitem">
-                                <a href="../install/" class="nav-link">Installation</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../reference/" class="nav-link">Reference</a>
-                            </li>
-                            <li class="navitem">
+                            <li class="nav-item">
                                 <a href="../extensions/" class="nav-link">Extensions</a>
                             </li>
-                            <li class="navitem">
-                                <a href="../api/index.html" class="nav-link">API</a>
+                            <li class="nav-item">
+                                <a href="../api/" class="nav-link">API</a>
                             </li>
-                            <li class="navitem">
-                                <a href="../license/" class="nav-link">License</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../about/" class="nav-link">About</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="https://github.com/nxt-dev/" target="_blank" class="nav-link">GitHub</a>
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../about/" class="dropdown-item">About</a>
+</li>
+                                    
+<li>
+    <a href="../license/" class="dropdown-item">License</a>
+</li>
+                                    
+<li>
+    <a href="https://github.com/nxt-dev/" target="_blank" class="dropdown-item">GitHub</a>
+</li>
+                                </ul>
                             </li>
                         </ul>
 
-                    <ul class="nav navbar-nav ml-auto">
+                    <ul class="nav navbar-nav navbar-tools">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
                                 <i class="fa fa-search"></i> Search
                             </a>
                         </li>
+                            <li class="nav-item">
+                                <a rel="prev" title="Previous: File Format and Design" href="../file_format/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i><span class="nav-label"> Previous</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" title="Next: Workflows" href="../workflows/" class="nav-link">
+                                    <span class="nav-label">Next </span><i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
                     </ul>
                 </div>
             </div>
@@ -84,56 +137,56 @@
 
         <div class="container">
             <div class="row">
-                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
     <div class="navbar-header">
-        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
             <span class="fa fa-angle-down"></span>
         </button>
     </div>
 
     
-    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#hotkeys" class="nav-link">Hotkeys</a>
+            <li class="nav-item" data-bs-level="1"><a href="#hotkeys" class="nav-link">Hotkeys</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#application-actions" class="nav-link">Application Actions</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#alignment" class="nav-link">Alignment</a>
+            <li class="nav-item" data-bs-level="2"><a href="#application-actions" class="nav-link">Application Actions</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#display" class="nav-link">Display</a>
+            <li class="nav-item" data-bs-level="2"><a href="#alignment" class="nav-link">Alignment</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#graph" class="nav-link">Graph</a>
+            <li class="nav-item" data-bs-level="2"><a href="#display" class="nav-link">Display</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#layers" class="nav-link">Layers</a>
+            <li class="nav-item" data-bs-level="2"><a href="#graph" class="nav-link">Graph</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#nodes" class="nav-link">Nodes</a>
+            <li class="nav-item" data-bs-level="2"><a href="#layers" class="nav-link">Layers</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#property-editor" class="nav-link">Property Editor</a>
+            <li class="nav-item" data-bs-level="2"><a href="#nodes" class="nav-link">Nodes</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#node-comment" class="nav-link">Node Comment</a>
+            <li class="nav-item" data-bs-level="2"><a href="#property-editor" class="nav-link">Property Editor</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#graph-execution" class="nav-link">Graph Execution</a>
+            <li class="nav-item" data-bs-level="2"><a href="#node-comment" class="nav-link">Node Comment</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#code-editor" class="nav-link">Code Editor</a>
+            <li class="nav-item" data-bs-level="2"><a href="#graph-execution" class="nav-link">Graph Execution</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#code-editor" class="nav-link">Code Editor</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -150,114 +203,114 @@
 <table>
 <thead>
 <tr>
-<th align="left">Name</th>
-<th align="center">What's this</th>
-<th align="left">Tool tip</th>
-<th align="center">Shortcut</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: center;">What's this</th>
+<th style="text-align: left;">Tool tip</th>
+<th style="text-align: center;">Shortcut</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">Find Node</td>
-<td align="center">Search for, select, and focus nodes in the view</td>
-<td align="left">Find Node</td>
-<td align="center">/</td>
+<td style="text-align: left;">Find Node</td>
+<td style="text-align: center;">Search for, select, and focus nodes in the view</td>
+<td style="text-align: left;">Find Node</td>
+<td style="text-align: center;">/</td>
 </tr>
 <tr>
-<td align="left">New Graph</td>
-<td align="center">New empty graph.</td>
-<td align="left">New Graph</td>
-<td align="center">Ctrl+N</td>
+<td style="text-align: left;">New Graph</td>
+<td style="text-align: center;">New empty graph.</td>
+<td style="text-align: left;">New Graph</td>
+<td style="text-align: center;">Ctrl+N</td>
 </tr>
 <tr>
-<td align="left">Open Graph</td>
-<td align="center">Open nxt file.</td>
-<td align="left">Open Graph</td>
-<td align="center">Ctrl+O</td>
+<td style="text-align: left;">Open Graph</td>
+<td style="text-align: center;">Open nxt file.</td>
+<td style="text-align: left;">Open Graph</td>
+<td style="text-align: center;">Ctrl+O</td>
 </tr>
 <tr>
-<td align="left">Undo</td>
-<td align="center">Undo last command.</td>
-<td align="left">Undo</td>
-<td align="center">Ctrl+Z</td>
+<td style="text-align: left;">Undo</td>
+<td style="text-align: center;">Undo last command.</td>
+<td style="text-align: left;">Undo</td>
+<td style="text-align: center;">Ctrl+Z</td>
 </tr>
 <tr>
-<td align="left">Redo</td>
-<td align="center">Redo last command.</td>
-<td align="left">Redo</td>
-<td align="center">Ctrl+Shift+Z</td>
+<td style="text-align: left;">Redo</td>
+<td style="text-align: center;">Redo last command.</td>
+<td style="text-align: left;">Redo</td>
+<td style="text-align: center;">Ctrl+Shift+Z</td>
 </tr>
 <tr>
-<td align="left">Layer Manager</td>
-<td align="center">Toggle the layer manager widget.</td>
-<td align="left">Layer Manager</td>
-<td align="center"></td>
+<td style="text-align: left;">Layer Manager</td>
+<td style="text-align: center;">Toggle the layer manager widget.</td>
+<td style="text-align: left;">Layer Manager</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Property Editor</td>
-<td align="center">Toggle the property editor widget.</td>
-<td align="left">Property Editor</td>
-<td align="center"></td>
+<td style="text-align: left;">Property Editor</td>
+<td style="text-align: center;">Toggle the property editor widget.</td>
+<td style="text-align: left;">Property Editor</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Code Editor</td>
-<td align="center">Toggle the code editor widget.</td>
-<td align="left">Code Editor</td>
-<td align="center"></td>
+<td style="text-align: left;">Code Editor</td>
+<td style="text-align: center;">Toggle the code editor widget.</td>
+<td style="text-align: left;">Code Editor</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">History View</td>
-<td align="center">Toggle the history view widget.</td>
-<td align="left">History View</td>
-<td align="center"></td>
+<td style="text-align: left;">History View</td>
+<td style="text-align: center;">Toggle the history view widget.</td>
+<td style="text-align: left;">History View</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Build View</td>
-<td align="center">Toggle the build view widget.</td>
-<td align="left">Build View</td>
-<td align="center"></td>
+<td style="text-align: left;">Build View</td>
+<td style="text-align: center;">Toggle the build view widget.</td>
+<td style="text-align: left;">Build View</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Output Log</td>
-<td align="center">Toggle the output log widget.</td>
-<td align="left">Output Log</td>
-<td align="center"></td>
+<td style="text-align: left;">Output Log</td>
+<td style="text-align: center;">Toggle the output log widget.</td>
+<td style="text-align: left;">Output Log</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Hotkey Editor</td>
-<td align="center">Toggle the hotkey editor widget.</td>
-<td align="left">Hotkey Editor</td>
-<td align="center"></td>
+<td style="text-align: left;">Hotkey Editor</td>
+<td style="text-align: center;">Toggle the hotkey editor widget.</td>
+<td style="text-align: left;">Hotkey Editor</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Workflow Tools</td>
-<td align="center">Workflow tools dock widget.</td>
-<td align="left">Workflow Tools</td>
-<td align="center"></td>
+<td style="text-align: left;">Workflow Tools</td>
+<td style="text-align: center;">Workflow tools dock widget.</td>
+<td style="text-align: left;">Workflow Tools</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Exit</td>
-<td align="center">Close nxt.</td>
-<td align="left">Exit</td>
-<td align="center">Alt+F4</td>
+<td style="text-align: left;">Exit</td>
+<td style="text-align: center;">Close nxt.</td>
+<td style="text-align: left;">Exit</td>
+<td style="text-align: center;">Alt+F4</td>
 </tr>
 <tr>
-<td align="left">Open Last Closed</td>
-<td align="center">Open previously closed file(s)</td>
-<td align="left">Open Last Closed</td>
-<td align="center">Ctrl+Shift+T</td>
+<td style="text-align: left;">Open Last Closed</td>
+<td style="text-align: center;">Open previously closed file(s)</td>
+<td style="text-align: left;">Open Last Closed</td>
+<td style="text-align: center;">Ctrl+Shift+T</td>
 </tr>
 <tr>
-<td align="left">Close Tab</td>
-<td align="center">Close active tab</td>
-<td align="left">Close Tab</td>
-<td align="center">Ctrl+W</td>
+<td style="text-align: left;">Close Tab</td>
+<td style="text-align: center;">Close active tab</td>
+<td style="text-align: left;">Close Tab</td>
+<td style="text-align: center;">Ctrl+W</td>
 </tr>
 <tr>
-<td align="left">Find and Open Graph</td>
-<td align="center"></td>
-<td align="left">Find and Open Graph</td>
-<td align="center">Ctrl+P</td>
+<td style="text-align: left;">Find and Open Graph</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Find and Open Graph</td>
+<td style="text-align: center;">Ctrl+P</td>
 </tr>
 </tbody>
 </table>
@@ -265,18 +318,18 @@
 <table>
 <thead>
 <tr>
-<th align="left">Name</th>
-<th align="center">What's this</th>
-<th align="left">Tool tip</th>
-<th align="center">Shortcut</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: center;">What's this</th>
+<th style="text-align: left;">Tool tip</th>
+<th style="text-align: center;">Shortcut</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">Toggle Grid Snapping</td>
-<td align="center">Toggles grid snapping while moving nodes.</td>
-<td align="left">Toggle snap to grid</td>
-<td align="center">Ctrl+G</td>
+<td style="text-align: left;">Toggle Grid Snapping</td>
+<td style="text-align: center;">Toggles grid snapping while moving nodes.</td>
+<td style="text-align: left;">Toggle snap to grid</td>
+<td style="text-align: center;">Ctrl+G</td>
 </tr>
 </tbody>
 </table>
@@ -284,30 +337,30 @@
 <table>
 <thead>
 <tr>
-<th align="left">Name</th>
-<th align="center">What's this</th>
-<th align="left">Tool tip</th>
-<th align="center">Shortcut</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: center;">What's this</th>
+<th style="text-align: left;">Tool tip</th>
+<th style="text-align: center;">Shortcut</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">Raw View</td>
-<td align="center">Displays raw editor values for this tab.</td>
-<td align="left">Toggle editor view</td>
-<td align="center">Q</td>
+<td style="text-align: left;">Raw View</td>
+<td style="text-align: center;">Displays raw editor values for this tab.</td>
+<td style="text-align: left;">Toggle editor view</td>
+<td style="text-align: center;">Q</td>
 </tr>
 <tr>
-<td align="left">Resolved View</td>
-<td align="center">Displays resolved values for this tab.</td>
-<td align="left">Toggle resolved view</td>
-<td align="center">W</td>
+<td style="text-align: left;">Resolved View</td>
+<td style="text-align: center;">Displays resolved values for this tab.</td>
+<td style="text-align: left;">Toggle resolved view</td>
+<td style="text-align: center;">W</td>
 </tr>
 <tr>
-<td align="left">Cached View</td>
-<td align="center">Displays cached values for this tab.</td>
-<td align="left">Toggle cached view</td>
-<td align="center">E</td>
+<td style="text-align: left;">Cached View</td>
+<td style="text-align: center;">Displays cached values for this tab.</td>
+<td style="text-align: left;">Toggle cached view</td>
+<td style="text-align: center;">E</td>
 </tr>
 </tbody>
 </table>
@@ -315,132 +368,132 @@
 <table>
 <thead>
 <tr>
-<th align="left">Name</th>
-<th align="center">What's this</th>
-<th align="left">Tool tip</th>
-<th align="center">Shortcut</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: center;">What's this</th>
+<th style="text-align: left;">Tool tip</th>
+<th style="text-align: center;">Shortcut</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">Display Node Tooltips</td>
-<td align="center"></td>
-<td align="left">Display Node Tooltips</td>
-<td align="center"></td>
+<td style="text-align: left;">Display Node Tooltips</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Display Node Tooltips</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Frame All</td>
-<td align="center">Frames all nodes so they are visible.</td>
-<td align="left">Frame all nodes</td>
-<td align="center">A</td>
+<td style="text-align: left;">Frame All</td>
+<td style="text-align: center;">Frames all nodes so they are visible.</td>
+<td style="text-align: left;">Frame all nodes</td>
+<td style="text-align: center;">A</td>
 </tr>
 <tr>
-<td align="left">Frame Selection</td>
-<td align="center">Frames the selected node.</td>
-<td align="left">Frame selected node</td>
-<td align="center">F</td>
+<td style="text-align: left;">Frame Selection</td>
+<td style="text-align: center;">Frames the selected node.</td>
+<td style="text-align: left;">Frame selected node</td>
+<td style="text-align: center;">F</td>
 </tr>
 <tr>
-<td align="left">Display No Attrs</td>
-<td align="center">Display no attributes</td>
-<td align="left">Display No Attrs</td>
-<td align="center">0</td>
+<td style="text-align: left;">Display No Attrs</td>
+<td style="text-align: center;">Display no attributes</td>
+<td style="text-align: left;">Display No Attrs</td>
+<td style="text-align: center;">0</td>
 </tr>
 <tr>
-<td align="left">Display Local Attrs</td>
-<td align="center">Display local attributes only</td>
-<td align="left">Display Local Attrs</td>
-<td align="center">1</td>
+<td style="text-align: left;">Display Local Attrs</td>
+<td style="text-align: center;">Display local attributes only</td>
+<td style="text-align: left;">Display Local Attrs</td>
+<td style="text-align: center;">1</td>
 </tr>
 <tr>
-<td align="left">Display Local+Inst Attrs</td>
-<td align="center">Display local and instanced attributes</td>
-<td align="left">Display Local+Inst Attrs</td>
-<td align="center">2</td>
+<td style="text-align: left;">Display Local+Inst Attrs</td>
+<td style="text-align: center;">Display local and instanced attributes</td>
+<td style="text-align: left;">Display Local+Inst Attrs</td>
+<td style="text-align: center;">2</td>
 </tr>
 <tr>
-<td align="left">Display All Attrs</td>
-<td align="center">Display local, instanced, and inherited attributes</td>
-<td align="left">Display All Attrs</td>
-<td align="center">3</td>
+<td style="text-align: left;">Display All Attrs</td>
+<td style="text-align: center;">Display local, instanced, and inherited attributes</td>
+<td style="text-align: left;">Display All Attrs</td>
+<td style="text-align: center;">3</td>
 </tr>
 <tr>
-<td align="left">Toggle Grid</td>
-<td align="center">Shows or hides the grid for all tabs.</td>
-<td align="left">Show / Hide the Grid</td>
-<td align="center">Ctrl+;</td>
+<td style="text-align: left;">Toggle Grid</td>
+<td style="text-align: center;">Shows or hides the grid for all tabs.</td>
+<td style="text-align: left;">Show / Hide the Grid</td>
+<td style="text-align: center;">Ctrl+;</td>
 </tr>
 <tr>
-<td align="left">Toggle Implicit Connections</td>
-<td align="center">Shows or hides the implicit connections for this tab.</td>
-<td align="left">Show / Hide Implicit Connections</td>
-<td align="center">Ctrl+L</td>
+<td style="text-align: left;">Toggle Implicit Connections</td>
+<td style="text-align: center;">Shows or hides the implicit connections for this tab.</td>
+<td style="text-align: left;">Show / Hide Implicit Connections</td>
+<td style="text-align: center;">Ctrl+L</td>
 </tr>
 <tr>
-<td align="left">Toggle Mini Map</td>
-<td align="center">Shows or hides the mini map in the bottom right of the graph for all tabs.</td>
-<td align="left">Show / Hide the Mini Map</td>
-<td align="center">Ctrl+M</td>
+<td style="text-align: left;">Toggle Mini Map</td>
+<td style="text-align: center;">Shows or hides the mini map in the bottom right of the graph for all tabs.</td>
+<td style="text-align: left;">Show / Hide the Mini Map</td>
+<td style="text-align: center;">Ctrl+M</td>
 </tr>
 <tr>
-<td align="left">Animate Nodes</td>
-<td align="center">When on, nodes slide and fade as they open and close. Off by default.</td>
-<td align="left">Animate nodes opening and closing</td>
-<td align="center"></td>
+<td style="text-align: left;">Animate Nodes</td>
+<td style="text-align: center;">When on, nodes slide and fade as they open and close. Off by default.</td>
+<td style="text-align: left;">Animate nodes opening and closing</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Pick walk up</td>
-<td align="center"></td>
-<td align="left">Pick walk up</td>
-<td align="center">Up</td>
+<td style="text-align: left;">Pick walk up</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Pick walk up</td>
+<td style="text-align: center;">Up</td>
 </tr>
 <tr>
-<td align="left">Pick walk down</td>
-<td align="center"></td>
-<td align="left">Pick walk down</td>
-<td align="center">Down</td>
+<td style="text-align: left;">Pick walk down</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Pick walk down</td>
+<td style="text-align: center;">Down</td>
 </tr>
 <tr>
-<td align="left">Pick walk left</td>
-<td align="center"></td>
-<td align="left">Pick walk left</td>
-<td align="center">Left</td>
+<td style="text-align: left;">Pick walk left</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Pick walk left</td>
+<td style="text-align: center;">Left</td>
 </tr>
 <tr>
-<td align="left">Pick walk right</td>
-<td align="center"></td>
-<td align="left">Pick walk right</td>
-<td align="center">Right</td>
+<td style="text-align: left;">Pick walk right</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Pick walk right</td>
+<td style="text-align: center;">Right</td>
 </tr>
 <tr>
-<td align="left">Nudge up</td>
-<td align="center"></td>
-<td align="left">Nudge up</td>
-<td align="center">Shift+Up</td>
+<td style="text-align: left;">Nudge up</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Nudge up</td>
+<td style="text-align: center;">Shift+Up</td>
 </tr>
 <tr>
-<td align="left">Nudge down</td>
-<td align="center"></td>
-<td align="left">Nudge down</td>
-<td align="center">Shift+Down</td>
+<td style="text-align: left;">Nudge down</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Nudge down</td>
+<td style="text-align: center;">Shift+Down</td>
 </tr>
 <tr>
-<td align="left">Nudge up</td>
-<td align="center"></td>
-<td align="left">Nudge up</td>
-<td align="center">Shift+Up</td>
+<td style="text-align: left;">Nudge up</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Nudge up</td>
+<td style="text-align: center;">Shift+Up</td>
 </tr>
 <tr>
-<td align="left">Nudge left</td>
-<td align="center"></td>
-<td align="left">Nudge left</td>
-<td align="center">Shift+Left</td>
+<td style="text-align: left;">Nudge left</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Nudge left</td>
+<td style="text-align: center;">Shift+Left</td>
 </tr>
 <tr>
-<td align="left">Nudge right</td>
-<td align="center"></td>
-<td align="left">Nudge right</td>
-<td align="center">Shift+Right</td>
+<td style="text-align: left;">Nudge right</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Nudge right</td>
+<td style="text-align: center;">Shift+Right</td>
 </tr>
 </tbody>
 </table>
@@ -448,108 +501,108 @@
 <table>
 <thead>
 <tr>
-<th align="left">Name</th>
-<th align="center">What's this</th>
-<th align="left">Tool tip</th>
-<th align="center">Shortcut</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: center;">What's this</th>
+<th style="text-align: left;">Tool tip</th>
+<th style="text-align: center;">Shortcut</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">Save Layer</td>
-<td align="center">Saves the current layer to disc</td>
-<td align="left">Save Layer</td>
-<td align="center">Ctrl+S</td>
+<td style="text-align: left;">Save Layer</td>
+<td style="text-align: center;">Saves the current layer to disc</td>
+<td style="text-align: left;">Save Layer</td>
+<td style="text-align: center;">Ctrl+S</td>
 </tr>
 <tr>
-<td align="left">Save Layer As</td>
-<td align="center"></td>
-<td align="left">Save Layer As</td>
-<td align="center">Ctrl+Shift+S</td>
+<td style="text-align: left;">Save Layer As</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Save Layer As</td>
+<td style="text-align: center;">Ctrl+Shift+S</td>
 </tr>
 <tr>
-<td align="left">Save All Layers</td>
-<td align="center"></td>
-<td align="left">Save All Layers</td>
-<td align="center"></td>
+<td style="text-align: left;">Save All Layers</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Save All Layers</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Open Source</td>
-<td align="center">Open target layer in new tab.</td>
-<td align="left">Open Source</td>
-<td align="center">Ctrl+Shift+O</td>
+<td style="text-align: left;">Open Source</td>
+<td style="text-align: center;">Open target layer in new tab.</td>
+<td style="text-align: left;">Open Source</td>
+<td style="text-align: center;">Ctrl+Shift+O</td>
 </tr>
 <tr>
-<td align="left">Reload Source...</td>
-<td align="center">Re-read a layer, and as much of what it references as you choose, from disk, and composite the graph again.</td>
-<td align="left">Re-read this layer and what it references from disk</td>
-<td align="center"></td>
+<td style="text-align: left;">Reload Source...</td>
+<td style="text-align: center;">Re-read a layer, and as much of what it references as you choose, from disk, and composite the graph again.</td>
+<td style="text-align: left;">Re-read this layer and what it references from disk</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Edit References...</td>
-<td align="center">Change what a layer references. Applying reloads the referenced layers and recomposites; the layer is written when you save it.</td>
-<td align="left">Edit which layers this layer references</td>
-<td align="center"></td>
+<td style="text-align: left;">Edit References...</td>
+<td style="text-align: center;">Change what a layer references. Applying reloads the referenced layers and recomposites; the layer is written when you save it.</td>
+<td style="text-align: left;">Edit which layers this layer references</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Toggle Layer Mute</td>
-<td align="center"></td>
-<td align="left">Toggle Layer Mute</td>
-<td align="center">M</td>
+<td style="text-align: left;">Toggle Layer Mute</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Toggle Layer Mute</td>
+<td style="text-align: center;">M</td>
 </tr>
 <tr>
-<td align="left">Toggle Layer Solo</td>
-<td align="center"></td>
-<td align="left">Toggle Layer Solo</td>
-<td align="center">S</td>
+<td style="text-align: left;">Toggle Layer Solo</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Toggle Layer Solo</td>
+<td style="text-align: center;">S</td>
 </tr>
 <tr>
-<td align="left">Change Color</td>
-<td align="center"></td>
-<td align="left">Change Color</td>
-<td align="center"></td>
+<td style="text-align: left;">Change Color</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Change Color</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Change Alias</td>
-<td align="center"></td>
-<td align="left">Change Alias</td>
-<td align="center"></td>
+<td style="text-align: left;">Change Alias</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Change Alias</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Create Layer Above</td>
-<td align="center"></td>
-<td align="left">Create Layer Above</td>
-<td align="center"></td>
+<td style="text-align: left;">Create Layer Above</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Create Layer Above</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Create Layer Below</td>
-<td align="center"></td>
-<td align="left">Create Layer Below</td>
-<td align="center"></td>
+<td style="text-align: left;">Create Layer Below</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Create Layer Below</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Reference Layer Above</td>
-<td align="center"></td>
-<td align="left">Reference Layer Above</td>
-<td align="center"></td>
+<td style="text-align: left;">Reference Layer Above</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Reference Layer Above</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Reference Layer Below</td>
-<td align="center"></td>
-<td align="left">Reference Layer Below</td>
-<td align="center"></td>
+<td style="text-align: left;">Reference Layer Below</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Reference Layer Below</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Remove Layer</td>
-<td align="center"></td>
-<td align="left">Remove Layer</td>
-<td align="center"></td>
+<td style="text-align: left;">Remove Layer</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Remove Layer</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Layer Manager as Table</td>
-<td align="center"></td>
-<td align="left">Layer Manager as Table</td>
-<td align="center">V</td>
+<td style="text-align: left;">Layer Manager as Table</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Layer Manager as Table</td>
+<td style="text-align: center;">V</td>
 </tr>
 </tbody>
 </table>
@@ -557,138 +610,138 @@
 <table>
 <thead>
 <tr>
-<th align="left">Name</th>
-<th align="center">What's this</th>
-<th align="left">Tool tip</th>
-<th align="center">Shortcut</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: center;">What's this</th>
+<th style="text-align: left;">Tool tip</th>
+<th style="text-align: center;">Shortcut</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">Select All Nodes</td>
-<td align="center"></td>
-<td align="left">Select All Nodes</td>
-<td align="center">Ctrl+A</td>
+<td style="text-align: left;">Select All Nodes</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Select All Nodes</td>
+<td style="text-align: center;">Ctrl+A</td>
 </tr>
 <tr>
-<td align="left">Add Node</td>
-<td align="center">Add a new node to the current graph</td>
-<td align="left">Add Node</td>
-<td align="center">N</td>
+<td style="text-align: left;">Add Node</td>
+<td style="text-align: center;">Add a new node to the current graph</td>
+<td style="text-align: left;">Add Node</td>
+<td style="text-align: center;">N</td>
 </tr>
 <tr>
-<td align="left">Delete Node</td>
-<td align="center">Delete the selected node(s).</td>
-<td align="left">Delete Node</td>
-<td align="center">Del</td>
+<td style="text-align: left;">Delete Node</td>
+<td style="text-align: center;">Delete the selected node(s).</td>
+<td style="text-align: left;">Delete Node</td>
+<td style="text-align: center;">Del</td>
 </tr>
 <tr>
-<td align="left">Recursive Delete Node</td>
-<td align="center">Delete selected node and all of its descendants recursively.</td>
-<td align="left">Recursive Delete Node</td>
-<td align="center">Shift+Del</td>
+<td style="text-align: left;">Recursive Delete Node</td>
+<td style="text-align: center;">Delete selected node and all of its descendants recursively.</td>
+<td style="text-align: left;">Recursive Delete Node</td>
+<td style="text-align: center;">Shift+Del</td>
 </tr>
 <tr>
-<td align="left">Cut</td>
-<td align="center"></td>
-<td align="left">Cut</td>
-<td align="center">Ctrl+X</td>
+<td style="text-align: left;">Cut</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Cut</td>
+<td style="text-align: center;">Ctrl+X</td>
 </tr>
 <tr>
-<td align="left">Copy</td>
-<td align="center"></td>
-<td align="left">Copy</td>
-<td align="center">Ctrl+C</td>
+<td style="text-align: left;">Copy</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Copy</td>
+<td style="text-align: center;">Ctrl+C</td>
 </tr>
 <tr>
-<td align="left">Paste</td>
-<td align="center"></td>
-<td align="left">Paste</td>
-<td align="center">Ctrl+V</td>
+<td style="text-align: left;">Paste</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Paste</td>
+<td style="text-align: center;">Ctrl+V</td>
 </tr>
 <tr>
-<td align="left">Duplicate Node</td>
-<td align="center"></td>
-<td align="left">Duplicate Node</td>
-<td align="center">Ctrl+D</td>
+<td style="text-align: left;">Duplicate Node</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Duplicate Node</td>
+<td style="text-align: center;">Ctrl+D</td>
 </tr>
 <tr>
-<td align="left">Instance Node</td>
-<td align="center"></td>
-<td align="left">Instance Node</td>
-<td align="center">Ctrl+I</td>
+<td style="text-align: left;">Instance Node</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Instance Node</td>
+<td style="text-align: center;">Ctrl+I</td>
 </tr>
 <tr>
-<td align="left">Remove Instance</td>
-<td align="center">Removes instance path from node overloading weaker layer instance opinions.</td>
-<td align="left">Removes Instance</td>
-<td align="center">Ctrl+Shift+I</td>
+<td style="text-align: left;">Remove Instance</td>
+<td style="text-align: center;">Removes instance path from node overloading weaker layer instance opinions.</td>
+<td style="text-align: left;">Removes Instance</td>
+<td style="text-align: center;">Ctrl+Shift+I</td>
 </tr>
 <tr>
-<td align="left">Localize Node</td>
-<td align="center"></td>
-<td align="left">Localize Node</td>
-<td align="center"></td>
+<td style="text-align: left;">Localize Node</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Localize Node</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Revert Node</td>
-<td align="center"></td>
-<td align="left">Revert Node</td>
-<td align="center"></td>
+<td style="text-align: left;">Revert Node</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Revert Node</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Enable/Disable Node</td>
-<td align="center"></td>
-<td align="left">Enable/Disable Node</td>
-<td align="center">D</td>
+<td style="text-align: left;">Enable/Disable Node</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Enable/Disable Node</td>
+<td style="text-align: center;">D</td>
 </tr>
 <tr>
-<td align="left">Parent</td>
-<td align="center">Parent node(s).</td>
-<td align="left">Parent</td>
-<td align="center">P</td>
+<td style="text-align: left;">Parent</td>
+<td style="text-align: center;">Parent node(s).</td>
+<td style="text-align: left;">Parent</td>
+<td style="text-align: center;">P</td>
 </tr>
 <tr>
-<td align="left">Un-Parent</td>
-<td align="center">Un-parent node(s).</td>
-<td align="left">Un-Parent</td>
-<td align="center">Shift+P</td>
+<td style="text-align: left;">Un-Parent</td>
+<td style="text-align: center;">Un-parent node(s).</td>
+<td style="text-align: left;">Un-Parent</td>
+<td style="text-align: center;">Shift+P</td>
 </tr>
 <tr>
-<td align="left">Move up in child order</td>
-<td align="center"></td>
-<td align="left">Move up in child order</td>
-<td align="center">Ctrl+Up</td>
+<td style="text-align: left;">Move up in child order</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Move up in child order</td>
+<td style="text-align: center;">Ctrl+Up</td>
 </tr>
 <tr>
-<td align="left">Move down in child order</td>
-<td align="center"></td>
-<td align="left">Move down in child order</td>
-<td align="center">Ctrl+Down</td>
+<td style="text-align: left;">Move down in child order</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Move down in child order</td>
+<td style="text-align: center;">Ctrl+Down</td>
 </tr>
 <tr>
-<td align="left">Toggle Node Collapse</td>
-<td align="center">Toggle the collapse state for the selected node(s).</td>
-<td align="left">Toggle Node Collapse</td>
-<td align="center">Alt+C</td>
+<td style="text-align: left;">Toggle Node Collapse</td>
+<td style="text-align: center;">Toggle the collapse state for the selected node(s).</td>
+<td style="text-align: left;">Toggle Node Collapse</td>
+<td style="text-align: center;">Alt+C</td>
 </tr>
 <tr>
-<td align="left">Recursive Toggle Node Collapse</td>
-<td align="center">Recursively toggle the collapse state for the selected node(s).</td>
-<td align="left">Recursive Toggle Node Collapse</td>
-<td align="center">Alt+Shift+C</td>
+<td style="text-align: left;">Recursive Toggle Node Collapse</td>
+<td style="text-align: center;">Recursively toggle the collapse state for the selected node(s).</td>
+<td style="text-align: left;">Recursive Toggle Node Collapse</td>
+<td style="text-align: center;">Alt+Shift+C</td>
 </tr>
 <tr>
-<td align="left">Rename Node</td>
-<td align="center"></td>
-<td align="left">Rename Node</td>
-<td align="center"></td>
+<td style="text-align: left;">Rename Node</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Rename Node</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Revert child order</td>
-<td align="center"></td>
-<td align="left">Revert child order</td>
-<td align="center"></td>
+<td style="text-align: left;">Revert child order</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Revert child order</td>
+<td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
@@ -696,60 +749,60 @@
 <table>
 <thead>
 <tr>
-<th align="left">Name</th>
-<th align="center">What's this</th>
-<th align="left">Tool tip</th>
-<th align="center">Shortcut</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: center;">What's this</th>
+<th style="text-align: left;">Tool tip</th>
+<th style="text-align: center;">Shortcut</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">Localize Instance Path</td>
-<td align="center"></td>
-<td align="left">Localize Instance Path</td>
-<td align="center"></td>
+<td style="text-align: left;">Localize Instance Path</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Localize Instance Path</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Revert Instance Path</td>
-<td align="center"></td>
-<td align="left">Revert Instance Path</td>
-<td align="center"></td>
+<td style="text-align: left;">Revert Instance Path</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Revert Instance Path</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Localize Exec Path</td>
-<td align="center"></td>
-<td align="left">Localize Exec Path</td>
-<td align="center"></td>
+<td style="text-align: left;">Localize Exec Path</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Localize Exec Path</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Revert Exec Path</td>
-<td align="center"></td>
-<td align="left">Revert Exec Path</td>
-<td align="center"></td>
+<td style="text-align: left;">Revert Exec Path</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Revert Exec Path</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Add Attribute</td>
-<td align="center"></td>
-<td align="left">Add Attribute</td>
-<td align="center">Ctrl+A</td>
+<td style="text-align: left;">Add Attribute</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Add Attribute</td>
+<td style="text-align: center;">Ctrl+A</td>
 </tr>
 <tr>
-<td align="left">Remove Attribute</td>
-<td align="center"></td>
-<td align="left">Remove Attribute</td>
-<td align="center"></td>
+<td style="text-align: left;">Remove Attribute</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Remove Attribute</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Localize Attribute</td>
-<td align="center"></td>
-<td align="left">Localize Attribute</td>
-<td align="center"></td>
+<td style="text-align: left;">Localize Attribute</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Localize Attribute</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Revert Attribute</td>
-<td align="center"></td>
-<td align="left">Revert Attribute</td>
-<td align="center"></td>
+<td style="text-align: left;">Revert Attribute</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Revert Attribute</td>
+<td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
@@ -757,24 +810,24 @@
 <table>
 <thead>
 <tr>
-<th align="left">Name</th>
-<th align="center">What's this</th>
-<th align="left">Tool tip</th>
-<th align="center">Shortcut</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: center;">What's this</th>
+<th style="text-align: left;">Tool tip</th>
+<th style="text-align: center;">Shortcut</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">Accept Node Comment</td>
-<td align="center">Accepts the current text in the comment box as the node comment.</td>
-<td align="left">Accept Node Comment</td>
-<td align="center">Ctrl+Return</td>
+<td style="text-align: left;">Accept Node Comment</td>
+<td style="text-align: center;">Accepts the current text in the comment box as the node comment.</td>
+<td style="text-align: left;">Accept Node Comment</td>
+<td style="text-align: center;">Ctrl+Return</td>
 </tr>
 <tr>
-<td align="left">Cancel Node Comment</td>
-<td align="center">Cancels the edit of the node comment.</td>
-<td align="left">Cancel Node Comment</td>
-<td align="center">Esc</td>
+<td style="text-align: left;">Cancel Node Comment</td>
+<td style="text-align: center;">Cancels the edit of the node comment.</td>
+<td style="text-align: left;">Cancel Node Comment</td>
+<td style="text-align: center;">Esc</td>
 </tr>
 </tbody>
 </table>
@@ -782,126 +835,126 @@
 <table>
 <thead>
 <tr>
-<th align="left">Name</th>
-<th align="center">What's this</th>
-<th align="left">Tool tip</th>
-<th align="center">Shortcut</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: center;">What's this</th>
+<th style="text-align: left;">Tool tip</th>
+<th style="text-align: center;">Shortcut</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">Run Build</td>
-<td align="center">Runs build specified by the current value of build view.</td>
-<td align="left">Run Build</td>
-<td align="center"></td>
+<td style="text-align: left;">Run Build</td>
+<td style="text-align: center;">Runs build specified by the current value of build view.</td>
+<td style="text-align: left;">Run Build</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Execute Graph</td>
-<td align="center"></td>
-<td align="left">Execute Graph</td>
-<td align="center"></td>
+<td style="text-align: left;">Execute Graph</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Execute Graph</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Execute Selected</td>
-<td align="center"></td>
-<td align="left">Execute Selected</td>
-<td align="center">Enter</td>
+<td style="text-align: left;">Execute Selected</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Execute Selected</td>
+<td style="text-align: center;">Enter</td>
 </tr>
 <tr>
-<td align="left">Execute From Selected</td>
-<td align="center">Execute from the currently selected node and continue down the exec chain.</td>
-<td align="left">Execute</td>
-<td align="center"></td>
+<td style="text-align: left;">Execute From Selected</td>
+<td style="text-align: center;">Execute from the currently selected node and continue down the exec chain.</td>
+<td style="text-align: left;">Execute</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Execute Hierarchy</td>
-<td align="center"></td>
-<td align="left">Execute Hierarchy</td>
-<td align="center"></td>
+<td style="text-align: left;">Execute Hierarchy</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Execute Hierarchy</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Add Start Point</td>
-<td align="center"></td>
-<td align="left">Add Start Point</td>
-<td align="center"></td>
+<td style="text-align: left;">Add Start Point</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Add Start Point</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Remove Start Point</td>
-<td align="center"></td>
-<td align="left">Remove Start Point</td>
-<td align="center"></td>
+<td style="text-align: left;">Remove Start Point</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Remove Start Point</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Revert Start Point</td>
-<td align="center"></td>
-<td align="left">Revert Start Point</td>
-<td align="center"></td>
+<td style="text-align: left;">Revert Start Point</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Revert Start Point</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Find Startpoint</td>
-<td align="center">Cycles the node focus through all start points.</td>
-<td align="left">Find Startpoint(s)</td>
-<td align="center"></td>
+<td style="text-align: left;">Find Startpoint</td>
+<td style="text-align: center;">Cycles the node focus through all start points.</td>
+<td style="text-align: left;">Find Startpoint(s)</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Add Breakpoint</td>
-<td align="center">Adds the breakpoint on the selected node(s).</td>
-<td align="left">Add Breakpoint</td>
-<td align="center"></td>
+<td style="text-align: left;">Add Breakpoint</td>
+<td style="text-align: center;">Adds the breakpoint on the selected node(s).</td>
+<td style="text-align: left;">Add Breakpoint</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Remove Breakpoint</td>
-<td align="center">Removes the breakpoint on the selected node(s).</td>
-<td align="left">Remove Breakpoint</td>
-<td align="center"></td>
+<td style="text-align: left;">Remove Breakpoint</td>
+<td style="text-align: center;">Removes the breakpoint on the selected node(s).</td>
+<td style="text-align: left;">Remove Breakpoint</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Clear All Breakpoints</td>
-<td align="center"></td>
-<td align="left">Clear All Breakpoints</td>
-<td align="center"></td>
+<td style="text-align: left;">Clear All Breakpoints</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Clear All Breakpoints</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Clear Cache</td>
-<td align="center">Clears the Python interpreter and cached data.</td>
-<td align="left">Clear Cache Now</td>
-<td align="center"></td>
+<td style="text-align: left;">Clear Cache</td>
+<td style="text-align: center;">Clears the Python interpreter and cached data.</td>
+<td style="text-align: left;">Clear Cache Now</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Workflow Tools Always Recomp</td>
-<td align="center"></td>
-<td align="left">Workflow Tools Always Recomp</td>
-<td align="center"></td>
+<td style="text-align: left;">Workflow Tools Always Recomp</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Workflow Tools Always Recomp</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Toggle Start Point</td>
-<td align="center">Toggles a startpoint on the selected node.</td>
-<td align="left">Toggle Start Point</td>
-<td align="center">S</td>
+<td style="text-align: left;">Toggle Start Point</td>
+<td style="text-align: center;">Toggles a startpoint on the selected node.</td>
+<td style="text-align: left;">Toggle Start Point</td>
+<td style="text-align: center;">S</td>
 </tr>
 <tr>
-<td align="left">Toggle Breakpoint</td>
-<td align="center">Toggles a breakpoint on the selected node(s).</td>
-<td align="left">Toggle Breakpoint</td>
-<td align="center">B</td>
+<td style="text-align: left;">Toggle Breakpoint</td>
+<td style="text-align: center;">Toggles a breakpoint on the selected node(s).</td>
+<td style="text-align: left;">Toggle Breakpoint</td>
+<td style="text-align: center;">B</td>
 </tr>
 <tr>
-<td align="left">Stop Execution</td>
-<td align="center"></td>
-<td align="left">Stop Execution</td>
-<td align="center">Esc</td>
+<td style="text-align: left;">Stop Execution</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Stop Execution</td>
+<td style="text-align: center;">Esc</td>
 </tr>
 <tr>
-<td align="left">Pause Execution</td>
-<td align="center"></td>
-<td align="left">Pause Execution</td>
-<td align="center"></td>
+<td style="text-align: left;">Pause Execution</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Pause Execution</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Step Build</td>
-<td align="center"></td>
-<td align="left">Step Build</td>
-<td align="center"></td>
+<td style="text-align: left;">Step Build</td>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">Step Build</td>
+<td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
@@ -909,168 +962,168 @@
 <table>
 <thead>
 <tr>
-<th align="left">Name</th>
-<th align="center">What's this</th>
-<th align="left">Tool tip</th>
-<th align="center">Shortcut</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: center;">What's this</th>
+<th style="text-align: left;">Tool tip</th>
+<th style="text-align: center;">Shortcut</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">Copy Resolved Code</td>
-<td align="center">Copy the entire (resolved) contents of the code editor.</td>
-<td align="left">Copy Resolved Code</td>
-<td align="center">Ctrl+Shift+C</td>
+<td style="text-align: left;">Copy Resolved Code</td>
+<td style="text-align: center;">Copy the entire (resolved) contents of the code editor.</td>
+<td style="text-align: left;">Copy Resolved Code</td>
+<td style="text-align: center;">Ctrl+Shift+C</td>
 </tr>
 <tr>
-<td align="left">Localize Code</td>
-<td align="center">Localize the code to the target layer's node.</td>
-<td align="left">Localize Code</td>
-<td align="center"></td>
+<td style="text-align: left;">Localize Code</td>
+<td style="text-align: center;">Localize the code to the target layer's node.</td>
+<td style="text-align: left;">Localize Code</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Revert Code</td>
-<td align="center">Revert the code to the next strongest opinion.</td>
-<td align="left">Revert Code</td>
-<td align="center"></td>
+<td style="text-align: left;">Revert Code</td>
+<td style="text-align: center;">Revert the code to the next strongest opinion.</td>
+<td style="text-align: left;">Revert Code</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr>
-<td align="left">Increase Font Size</td>
-<td align="center">Increase the code editor font size.</td>
-<td align="left">Increase Font Size</td>
-<td align="center">Ctrl+=</td>
+<td style="text-align: left;">Increase Font Size</td>
+<td style="text-align: center;">Increase the code editor font size.</td>
+<td style="text-align: left;">Increase Font Size</td>
+<td style="text-align: center;">Ctrl+=</td>
 </tr>
 <tr>
-<td align="left">Decrease Font Size</td>
-<td align="center">Decrease the code editor font size.</td>
-<td align="left">Decrease Font Size</td>
-<td align="center">Ctrl+-</td>
+<td style="text-align: left;">Decrease Font Size</td>
+<td style="text-align: center;">Decrease the code editor font size.</td>
+<td style="text-align: left;">Decrease Font Size</td>
+<td style="text-align: center;">Ctrl+-</td>
 </tr>
 <tr>
-<td align="left">Revert Font Size</td>
-<td align="center">Revert the code editor font size to default.</td>
-<td align="left">Revert Font Size</td>
-<td align="center">Ctrl+0</td>
+<td style="text-align: left;">Revert Font Size</td>
+<td style="text-align: center;">Revert the code editor font size to default.</td>
+<td style="text-align: left;">Revert Font Size</td>
+<td style="text-align: center;">Ctrl+0</td>
 </tr>
 <tr>
-<td align="left">New Line</td>
-<td align="center">Insert a new line.</td>
-<td align="left">New Line</td>
-<td align="center">Return</td>
+<td style="text-align: left;">New Line</td>
+<td style="text-align: center;">Insert a new line.</td>
+<td style="text-align: left;">New Line</td>
+<td style="text-align: center;">Return</td>
 </tr>
 <tr>
-<td align="left">Indent Line</td>
-<td align="center">Indent selected line(s).</td>
-<td align="left">Indent Line</td>
-<td align="center">Tab</td>
+<td style="text-align: left;">Indent Line</td>
+<td style="text-align: center;">Indent selected line(s).</td>
+<td style="text-align: left;">Indent Line</td>
+<td style="text-align: center;">Tab</td>
 </tr>
 <tr>
-<td align="left">Un-Indent Line</td>
-<td align="center">Un-indent selected line(s).</td>
-<td align="left">Un-Indent Line</td>
-<td align="center">Shift+Tab</td>
+<td style="text-align: left;">Un-Indent Line</td>
+<td style="text-align: center;">Un-indent selected line(s).</td>
+<td style="text-align: left;">Un-Indent Line</td>
+<td style="text-align: center;">Shift+Tab</td>
 </tr>
 <tr>
-<td align="left">Execute Selection Globally</td>
-<td align="center">Execute selected line(s)All declared variable will be globally available.</td>
-<td align="left">Execute Selection Globally</td>
-<td align="center">Ctrl+Shift+Return</td>
+<td style="text-align: left;">Execute Selection Globally</td>
+<td style="text-align: center;">Execute selected line(s)All declared variable will be globally available.</td>
+<td style="text-align: left;">Execute Selection Globally</td>
+<td style="text-align: center;">Ctrl+Shift+Return</td>
 </tr>
 <tr>
-<td align="left">Execute Selection Locally</td>
-<td align="center">Execute selected line(s) Locally declared variables fall out of scope after execution.</td>
-<td align="left">Execute Selection Locally</td>
-<td align="center">Shift+Return</td>
+<td style="text-align: left;">Execute Selection Locally</td>
+<td style="text-align: center;">Execute selected line(s) Locally declared variables fall out of scope after execution.</td>
+<td style="text-align: left;">Execute Selection Locally</td>
+<td style="text-align: center;">Shift+Return</td>
 </tr>
 <tr>
-<td align="left">Comment Line</td>
-<td align="center">Comment the selected line(s).</td>
-<td align="left">Comment Line</td>
-<td align="center">Ctrl+/</td>
+<td style="text-align: left;">Comment Line</td>
+<td style="text-align: center;">Comment the selected line(s).</td>
+<td style="text-align: left;">Comment Line</td>
+<td style="text-align: center;">Ctrl+/</td>
 </tr>
 <tr>
-<td align="left">Accept Code Edit</td>
-<td align="center">Accept changes and commit them to the node.</td>
-<td align="left">Accept Code Edit</td>
-<td align="center">Enter</td>
+<td style="text-align: left;">Accept Code Edit</td>
+<td style="text-align: center;">Accept changes and commit them to the node.</td>
+<td style="text-align: left;">Accept Code Edit</td>
+<td style="text-align: center;">Enter</td>
 </tr>
 <tr>
-<td align="left">Cancel Code Edit</td>
-<td align="center">Discard changes to the code.</td>
-<td align="left">Cancel Code Edit</td>
-<td align="center">Esc</td>
+<td style="text-align: left;">Cancel Code Edit</td>
+<td style="text-align: center;">Discard changes to the code.</td>
+<td style="text-align: left;">Cancel Code Edit</td>
+<td style="text-align: center;">Esc</td>
 </tr>
 <tr>
-<td align="left">Find In Code</td>
-<td align="center">Search the code in this editor.</td>
-<td align="left">Find In Code</td>
-<td align="center">Ctrl+F</td>
+<td style="text-align: left;">Find In Code</td>
+<td style="text-align: center;">Search the code in this editor.</td>
+<td style="text-align: left;">Find In Code</td>
+<td style="text-align: center;">Ctrl+F</td>
 </tr>
 <tr>
-<td align="left">Replace In Code</td>
-<td align="center">Search and replace in the code in this editor.</td>
-<td align="left">Replace In Code</td>
-<td align="center">Ctrl+H</td>
+<td style="text-align: left;">Replace In Code</td>
+<td style="text-align: center;">Search and replace in the code in this editor.</td>
+<td style="text-align: left;">Replace In Code</td>
+<td style="text-align: center;">Ctrl+H</td>
 </tr>
 <tr>
-<td align="left">Find Next</td>
-<td align="center">Jump to the next match.</td>
-<td align="left">Find Next</td>
-<td align="center">F3</td>
+<td style="text-align: left;">Find Next</td>
+<td style="text-align: center;">Jump to the next match.</td>
+<td style="text-align: left;">Find Next</td>
+<td style="text-align: center;">F3</td>
 </tr>
 <tr>
-<td align="left">Find Previous</td>
-<td align="center">Jump to the previous match.</td>
-<td align="left">Find Previous</td>
-<td align="center">Shift+F3</td>
+<td style="text-align: left;">Find Previous</td>
+<td style="text-align: center;">Jump to the previous match.</td>
+<td style="text-align: left;">Find Previous</td>
+<td style="text-align: center;">Shift+F3</td>
 </tr>
 <tr>
-<td align="left">Go To Line</td>
-<td align="center">Jump to a line number.</td>
-<td align="left">Go To Line</td>
-<td align="center">Ctrl+G</td>
+<td style="text-align: left;">Go To Line</td>
+<td style="text-align: center;">Jump to a line number.</td>
+<td style="text-align: left;">Go To Line</td>
+<td style="text-align: center;">Ctrl+G</td>
 </tr>
 <tr>
-<td align="left">Duplicate Line</td>
-<td align="center">Copy the selected line(s) below.</td>
-<td align="left">Duplicate Line</td>
-<td align="center">Ctrl+Shift+D</td>
+<td style="text-align: left;">Duplicate Line</td>
+<td style="text-align: center;">Copy the selected line(s) below.</td>
+<td style="text-align: left;">Duplicate Line</td>
+<td style="text-align: center;">Ctrl+Shift+D</td>
 </tr>
 <tr>
-<td align="left">Move Line Up</td>
-<td align="center">Swap the selected line(s) with the line above.</td>
-<td align="left">Move Line Up</td>
-<td align="center">Alt+Up</td>
+<td style="text-align: left;">Move Line Up</td>
+<td style="text-align: center;">Swap the selected line(s) with the line above.</td>
+<td style="text-align: left;">Move Line Up</td>
+<td style="text-align: center;">Alt+Up</td>
 </tr>
 <tr>
-<td align="left">Move Line Down</td>
-<td align="center">Swap the selected line(s) with the line below.</td>
-<td align="left">Move Line Down</td>
-<td align="center">Alt+Down</td>
+<td style="text-align: left;">Move Line Down</td>
+<td style="text-align: center;">Swap the selected line(s) with the line below.</td>
+<td style="text-align: left;">Move Line Down</td>
+<td style="text-align: center;">Alt+Down</td>
 </tr>
 <tr>
-<td align="left">Delete Line</td>
-<td align="center">Delete the selected line(s).</td>
-<td align="left">Delete Line</td>
-<td align="center">Ctrl+Shift+K</td>
+<td style="text-align: left;">Delete Line</td>
+<td style="text-align: center;">Delete the selected line(s).</td>
+<td style="text-align: left;">Delete Line</td>
+<td style="text-align: center;">Ctrl+Shift+K</td>
 </tr>
 <tr>
-<td align="left">Expand Selection</td>
-<td align="center">Grow the selection from the word under the cursor, to the line, to everything.</td>
-<td align="left">Expand Selection</td>
-<td align="center">Ctrl+D</td>
+<td style="text-align: left;">Expand Selection</td>
+<td style="text-align: center;">Grow the selection from the word under the cursor, to the line, to everything.</td>
+<td style="text-align: left;">Expand Selection</td>
+<td style="text-align: center;">Ctrl+D</td>
 </tr>
 <tr>
-<td align="left">Complete Word</td>
-<td align="center">Offer completions for the word being typed.</td>
-<td align="left">Complete Word</td>
-<td align="center">Ctrl+Space</td>
+<td style="text-align: left;">Complete Word</td>
+<td style="text-align: center;">Offer completions for the word being typed.</td>
+<td style="text-align: left;">Complete Word</td>
+<td style="text-align: center;">Ctrl+Space</td>
 </tr>
 <tr>
-<td align="left">Code Editor Autocomplete</td>
-<td align="center">When on, completions are offered as you type. Ctrl+Space always offers them either way.</td>
-<td align="left">Code Editor Autocomplete</td>
-<td align="center"></td>
+<td style="text-align: left;">Code Editor Autocomplete</td>
+<td style="text-align: center;">When on, completions are offered as you type. Ctrl+Space always offers them either way.</td>
+<td style="text-align: left;">Code Editor Autocomplete</td>
+<td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
@@ -1080,10 +1133,10 @@
 precedence: <code>Ctrl+F</code>, <code>Ctrl+G</code> and <code>Ctrl+D</code> find in code, go to a line and expand the selection there,
 and open the graph wide find, toggle grid snapping and duplicate nodes everywhere else.
 The completion sources are toggled from <strong>Options &gt; Autocomplete</strong>; see
-<a href="../reference/#completion">Completion</a>.</p>
+<a href="../editor/#completion">Completion</a>.</p>
 <p><code>Ctrl+click</code> on a <code>${}</code> token, which selects the node the token reads
 from, is a mouse action rather than a shortcut, so it is not listed here;
-see <a href="../reference/#following-tokens">Following tokens</a>.</p>
+see <a href="../editor/#following-tokens">Following tokens</a>.</p>
 </div></div>
             </div>
         </div>
@@ -1105,7 +1158,7 @@ see <a href="../reference/#following-tokens">Following tokens</a>.</p>
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="searchModalLabel">Search</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <p>From here you can search these documents. Enter your search terms below.</p>
@@ -1125,7 +1178,7 @@ see <a href="../reference/#following-tokens">Following tokens</a>.</p>
         <div class="modal-content">
             <div class="modal-header">
                 <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
-                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <table class="table">
