@@ -28,6 +28,8 @@ layer colors are shown is your own view, see
 [Layer Color View](editor.md#layer-color-view). **In your view** in Change
 Color shows how the color you are choosing will look to you.
 
+![Change Color, picking from the full spectrum](images/change_color.png)
+
 ![attribute_color.PNG](images/attribute_color.PNG)
 
 ## References

@@ -45,6 +45,8 @@ hidden, switch between open files from the bottom of the **Window** menu.
 
 ### How nodes look
 
+![Nodes in their layer colors: a node with a weaker layer's chip, striped instances, a disabled node, a selected node, and start, break and skip points](images/nodes_look.png)
+
 The editor is drawn in neutral dark greys, so the only color on screen is
 your layers'. It ships its own fonts, sized in pixels, and its own colors,
 so it looks the same on Windows, macOS and Linux, and inside Maya, Unreal
@@ -64,6 +66,8 @@ and Blender.
   triangle, an orange bar and a red square.
 
 ### Layer Color View
+
+![The Layer Color View dialog in the Even view](images/layer_color_view.png)
 
 **View > Options > Layer Color View...** sets how layer and backdrop colors
 are shown to you. It is a view preference, yours alone and remembered with
@@ -92,6 +96,8 @@ view, so a teammate sees the same file in their own view.
 
 ### Running nodes
 
+![The run buttons on the toolbar](images/toolbar_run.png)
+
 Besides **Execute Graph** (the play button) and stop, the toolbar has a
 button for each way of running part of the graph. Hover a button to see
 what it runs.
@@ -104,6 +110,8 @@ what it runs.
   runs the selected node and every node under it.
 
 ### Find Node
+
+![Find Node listing the nodes arm* finds](images/find_node.png)
 
 Press `/` over the graph to find nodes. Type any part of a node's name, and
 the nodes that match are listed once you stop typing, ignoring case.
@@ -132,6 +140,8 @@ nodes, and a rectangle for the part of the graph the view is showing.
   remembered between sessions.
 
 ### Backdrops
+
+![A backdrop titled Arms behind two nodes](images/backdrop.png)
 
 A backdrop is a colored box with a title and a note, drawn behind a group of
 nodes to label what that part of the graph does. It only changes how the
@@ -167,6 +177,8 @@ saves the change on the top layer and leaves the referenced layer as it
 was.
 
 ### Lines between nodes
+
+![Curved lines, one routed through a point](images/lines_curved.png)
 
 - **Straight or curved**: **View > Curved Connections** draws the graph's
   lines as curves that leave and meet each plug going across. The choice
@@ -519,7 +531,11 @@ restart it.
   the build was running or being stepped, and puts the start point and the
   build list back.
 
+![The Build View with the selected node outlined in amber and the hovered one in white](images/build_view_outline.png)
+
 ## Outliner
+
+![The Outliner, grouped into a build and the nodes in no build](images/outliner.png)
 
 The Outliner lists the graph's nodes as a tree. It is off until you turn it
 on from **Window > Outliner**.
@@ -565,6 +581,8 @@ on from **Window > Outliner**.
   search box to find a node.
 
 ## Instance View
+
+![The Instance View showing what arm instances from and what instances it](images/instance_view.png)
 
 The Instance View shows a node's instance connections and nothing else.
 Turn it on from **Window > Instance View**.
@@ -701,6 +719,8 @@ Folder...** add your own.
 See the [tutorial videos](tutorials.md) for a tour of these. The History
 View lists every step on the undo stack, including reference edits and
 reloads.
+
+![The Property Editor with Neutral Property Text on](images/property_editor_neutral.png)
 
 In the Property Editor's attribute table, each row is in the color of the
 layer its value comes from, lighter where the selected node sets the value
