@@ -64,7 +64,10 @@
             <div class="container">
 
                 {%- block site_name %}
-                <a class="navbar-brand" href="{{ nav.homepage.url|url }}">{{ config.site_name }}</a>
+                <a class="navbar-brand" href="{{ nav.homepage.url|url }}" aria-label="{{ config.site_name }}, home">
+                    <img class="navbar-logo" src="{{ 'img/nxt_white.svg'|url }}" alt="" height="24">
+                    <span>User Docs</span>
+                </a>
                 {%- endblock %}
 
                 {%- if nav|length>1 or (page and (page.next_page or page.previous_page)) or config.repo_url %}
@@ -104,8 +107,8 @@
                       {%- block search_button %}
                         {%- if 'search' in config['plugins'] %}
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal" title="Search" aria-label="Search">
+                                <i class="fa fa-search"></i><span class="nav-label"> Search</span>
                             </a>
                         </li>
                         {%- endif %}
@@ -157,6 +160,13 @@
                             </li>
                         {%- endif %}
                       {%- endblock %}
+
+                        <li class="nav-item nav-divider" aria-hidden="true"></li>
+                        <li class="nav-item">
+                            <a href="https://github.com/nxt-dev" class="nav-link nav-github" target="_blank" rel="noopener" title="NXT on GitHub" aria-label="NXT on GitHub (opens in new tab)">
+                                <i class="fa-brands fa-github"></i><span class="nav-github-label"> GitHub</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
