@@ -160,6 +160,10 @@
             
             <li class="nav-item" data-bs-level="1"><a href="#whats-new" class="nav-link">What's New</a>
               <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#nxt_editor-461" class="nav-link">nxt_editor 4.6.1</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
             <li class="nav-item" data-bs-level="2"><a href="#nxt_editor-460" class="nav-link">nxt_editor 4.6.0</a>
               <ul class="nav flex-column">
               </ul>
@@ -203,12 +207,19 @@
 <p>This page summarises what is new in <strong>nxt_editor 4.6</strong>, <strong>nxt_editor 4.5</strong>,
 <strong>nxt_editor 4.4</strong> and <strong>nxt_core 0.21</strong>. Each item links to the part of the docs that explains
 it in full.</p>
+<h2 id="nxt_editor-461">nxt_editor 4.6.1</h2>
+<ul>
+<li>Only proxy nodes are striped again, as before 4.6.0: nodes made by an
+  instance that have nothing of their own yet. An instance, or a node that
+  overrides anything its instance gives it, looks like any other node, in
+  the graph and the Outliner. See <a href="../editor/#how-nodes-look">How nodes look</a>.</li>
+</ul>
 <h2 id="nxt_editor-460">nxt_editor 4.6.0</h2>
 <h3 id="a-new-look-the-same-everywhere">A new look, the same everywhere</h3>
 <p>The editor is drawn in neutral dark greys, so the only color on screen is
 your layers'. Nodes are rounded cards in their layer's color with white
-names, a selected node has an amber outline, and instanced nodes are
-striped. It ships its own fonts and colors, so it looks the same on every
+names, a selected node has an amber outline, and proxy nodes, made by an
+instance and not yet changed, are striped. It ships its own fonts and colors, so it looks the same on every
 platform and in every host. See <a href="../editor/#how-nodes-look">How nodes look</a>.</p>
 <h3 id="outliner">Outliner</h3>
 <p><strong>Window &gt; Outliner</strong> lists the graph's nodes as a tree, grouped by the

@@ -240,7 +240,7 @@ so switching back to a tab is instant.</p>
 and shows it again. The editor remembers your choice. With the graph
 hidden, switch between open files from the bottom of the <strong>Window</strong> menu.</p>
 <h3 id="how-nodes-look">How nodes look</h3>
-<p><img alt="Nodes in their layer colors: a node with a weaker layer's chip, striped instances, a disabled node, a selected node, and start, break and skip points" src="../images/nodes_look.png" /></p>
+<p><img alt="Nodes in their layer colors: a node with a weaker layer's chip, striped proxy nodes, a disabled node, a selected node, and start, break and skip points" src="../images/nodes_look.png" /></p>
 <p>The editor is drawn in neutral dark greys, so the only color on screen is
 your layers'. It ships its own fonts, sized in pixels, and its own colors,
 so it looks the same on Windows, macOS and Linux, and inside Maya, Unreal
@@ -252,8 +252,10 @@ and Blender.</p>
   changed for you alone, see <a href="#layer-color-view">Layer Color View</a>
   below.</li>
 <li>Names are white. A disabled node's title is faded and struck through, and
-  a node that is an instance, or was made by one, has its name in italics
-  and diagonal stripes across its title.</li>
+  an instance has its name in italics. A proxy node, one made by an
+  instance that has nothing of its own yet, has diagonal stripes across its
+  title. Change anything on it and it becomes a node of its own, drawn like
+  any other.</li>
 <li>A selected node has an amber outline, and the node under the mouse a thin
   white one.</li>
 <li>Start, skip and break points sit on the node's exec input: a green
@@ -774,8 +776,8 @@ on from <strong>Window &gt; Outliner</strong>.</p>
   above them stay so you can see where they are, and <code>Enter</code> frames the
   first match.</li>
 <li>Text is white, as on the node in the graph, and a disabled node's is
-  faded and in italics. An instanced node's row is striped, as its title
-  is in the graph. Hovering a row outlines it in white and selecting
+  faded and in italics. A proxy node's row is striped, as its title is
+  in the graph. Hovering a row outlines it in white and selecting
   it outlines it in amber, the row's color staying as it is.</li>
 <li>Start, break and skip points show before the name as they do on the
   node in the graph: the start icon, a red square for a breakpoint and an
