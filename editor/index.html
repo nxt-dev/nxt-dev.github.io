@@ -27,7 +27,10 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">NXT User Docs</a>
+                <a class="navbar-brand" href=".." aria-label="NXT User Docs, home">
+                    <img class="navbar-logo" src="../img/nxt_white.svg" alt="" height="24">
+                    <span>User Docs</span>
+                </a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -93,7 +96,7 @@
                                 <a href="../extensions/" class="nav-link">Extensions</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../api/" class="nav-link">API</a>
+                                <a href="../api/index.html" class="nav-link">API</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
@@ -116,8 +119,8 @@
 
                     <ul class="nav navbar-nav navbar-tools">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal" title="Search" aria-label="Search">
+                                <i class="fa fa-search"></i><span class="nav-label"> Search</span>
                             </a>
                         </li>
                             <li class="nav-item">
@@ -130,6 +133,13 @@
                                     <span class="nav-label">Next </span><i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
+
+                        <li class="nav-item nav-divider" aria-hidden="true"></li>
+                        <li class="nav-item">
+                            <a href="https://github.com/nxt-dev" class="nav-link nav-github" target="_blank" rel="noopener" title="NXT on GitHub" aria-label="NXT on GitHub (opens in new tab)">
+                                <i class="fa-brands fa-github"></i><span class="nav-github-label"> GitHub</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -167,6 +177,14 @@
               </ul>
             </li>
             <li class="nav-item" data-bs-level="2"><a href="#build-view" class="nav-link">Build View</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#outliner" class="nav-link">Outliner</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#instance-view" class="nav-link">Instance View</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -211,11 +229,91 @@ Output Log and <a href="../hotkeys/">Hotkey Editor</a>. Closed docks come back f
   it, with its default size. It resets to the editor's own layout, not to
   the one you left at the end of your last session. The layout you leave the
   editor in is still remembered for next time.</li>
+<li>The <a href="#outliner">Outliner</a> and the <a href="#instance-view">Instance View</a> are off
+  until you turn them on from the <strong>Window</strong> menu.</li>
 </ul>
 <h2 id="stage-view">Stage View</h2>
 <p>The stage view draws the composited graph for the open tab. Each tab is
 composited and drawn the first time it is selected, and kept from then on,
 so switching back to a tab is instant.</p>
+<p><strong>Window &gt; Stage View</strong> hides the graph, leaving the space to the docks,
+and shows it again. The editor remembers your choice. With the graph
+hidden, switch between open files from the bottom of the <strong>Window</strong> menu.</p>
+<h3 id="how-nodes-look">How nodes look</h3>
+<p><img alt="Nodes in their layer colors: a node with a weaker layer's chip, striped instances, a disabled node, a selected node, and start, break and skip points" src="../images/nodes_look.png" /></p>
+<p>The editor is drawn in neutral dark greys, so the only color on screen is
+your layers'. It ships its own fonts, sized in pixels, and its own colors,
+so it looks the same on Windows, macOS and Linux, and inside Maya, Unreal
+and Blender.</p>
+<ul>
+<li>A node is a rounded card. Its title bar is the color of the layer with
+  the strongest opinion on it, and each weaker layer with an opinion adds a
+  chip of its color at the right end. How layer colors are shown can be
+  changed for you alone, see <a href="#layer-color-view">Layer Color View</a>
+  below.</li>
+<li>Names are white. A disabled node's title is faded and struck through, and
+  a node that is an instance, or was made by one, has its name in italics
+  and diagonal stripes across its title.</li>
+<li>A selected node has an amber outline, and the node under the mouse a thin
+  white one.</li>
+<li>Start, skip and break points sit on the node's exec input: a green
+  triangle, an orange bar and a red square.</li>
+</ul>
+<h3 id="layer-color-view">Layer Color View</h3>
+<p><img alt="The Layer Color View dialog in the Even view" src="../images/layer_color_view.png" /></p>
+<p><strong>View &gt; Options &gt; Layer Color View...</strong> sets how layer and backdrop colors
+are shown to you. It is a view preference, yours alone and remembered with
+your preferences. It never changes the color a layer or backdrop is given:
+that is chosen with <strong>Change Color</strong>, and is the same whatever anyone's
+view, so a teammate sees the same file in their own view.</p>
+<ul>
+<li><strong>Raw (default)</strong> shows every color exactly as it is.</li>
+<li><strong>White-text safe</strong> shows a color too light for the white names on it
+  darker, only as far as it takes for them to read at 4.5:1, keeping its
+  hue.</li>
+<li><strong>Even (OKLCH)</strong> shows every color at one lightness and chroma, keeping
+  its hue, so no layer stands out from another. Set them with the sliders.
+  Hues the screen can not show that colorful get as close as it can, and a
+  grey stays grey.</li>
+<li>Example colors and three sample nodes show the view as you set it, with
+  how well white text reads on the color it reads worst on: green when it reads
+  at 4.5:1, amber when weaker, red below 3:1. A tick on the lightness
+  slider marks where white text stops reading at 4.5:1 on every hue.</li>
+<li>While you drag a slider only the dialog follows it, and the editor is
+  redrawn when you let go, or just after a typed value. <strong>OK</strong> keeps it,
+  <strong>Cancel</strong> puts back the view you had, and <strong>Reset to Default</strong> goes back
+  to raw.</li>
+<li><strong>In your view</strong> in <strong>Change Color</strong> shows how the color you are choosing
+  will look to you in this view.</li>
+</ul>
+<h3 id="running-nodes">Running nodes</h3>
+<p><img alt="The run buttons on the toolbar" src="../images/toolbar_run.png" /></p>
+<p>Besides <strong>Execute Graph</strong> (the play button) and stop, the toolbar has a
+button for each way of running part of the graph. Hover a button to see
+what it runs.</p>
+<ul>
+<li><strong>Execute Selected</strong> (<code>Enter</code>), the play button with a node: runs only
+  the selected nodes.</li>
+<li><strong>Execute From Selected</strong>, the play button with a node and an arrow down:
+  runs the selected node, then on down its exec chain.</li>
+<li><strong>Execute Hierarchy</strong>, the play button with a parent and its children:
+  runs the selected node and every node under it.</li>
+</ul>
+<h3 id="find-node">Find Node</h3>
+<p><img alt="Find Node listing the nodes arm* finds" src="../images/find_node.png" /></p>
+<p>Press <code>/</code> over the graph to find nodes. Type any part of a node's name, and
+the nodes that match are listed once you stop typing, ignoring case.</p>
+<ul>
+<li><code>*</code> stands for anything: <code>arm*ctrl</code> finds <code>arm_L_ctrl</code> and <code>arm_R_ctrl</code>.</li>
+<li>Commas separate names: <code>arm, leg</code> finds either.</li>
+<li>A name with a <code>/</code> in it matches the whole path: <code>rig/*ctrl</code> finds the
+  controls under <code>rig</code>.</li>
+<li>Nothing else is special. Dots, brackets and the like are matched as they
+  are typed.</li>
+</ul>
+<p>Pick a node in the list to select and frame it, or press <code>Enter</code> to select
+and frame every node that matches. The Outliner's search box works the same
+way.</p>
 <h3 id="mini-map">Mini map</h3>
 <p><img alt="The mini map" src="../images/mini_map.png" /></p>
 <p>The mini map in the bottom right corner shows the whole graph, the selected
@@ -226,6 +324,74 @@ nodes, and a rectangle for the part of the graph the view is showing.</p>
 <li>Toggle it with <strong>View &gt; Toggle Mini Map</strong> or <code>Ctrl+M</code>. The choice is
   remembered between sessions.</li>
 </ul>
+<h3 id="backdrops">Backdrops</h3>
+<p><img alt="A backdrop titled Arms behind two nodes" src="../images/backdrop.png" /></p>
+<p>A backdrop is a colored box with a title and a note, drawn behind a group of
+nodes to label what that part of the graph does. It only changes how the
+graph looks: it is not a node and it never runs.</p>
+<ul>
+<li><strong>Add one</strong> with <code>C</code> or <strong>Add Backdrop</strong> in the right click menu. With
+  nodes selected the backdrop is drawn around them, otherwise an empty one
+  is added under the mouse.</li>
+<li><strong>Move it</strong> by dragging its header, the title and note at the top. Every
+  node inside it, and every backdrop wholly inside it, moves with it, and
+  the whole move is one undo. Hold <code>Ctrl</code> while dragging to move the
+  backdrop on its own. Hold <code>Shift</code>, or turn on grid snapping, to snap to
+  the grid.</li>
+<li><strong>Put nodes in it or take them out</strong> by dragging the nodes. A node
+  belongs to a backdrop when its middle is inside it, so nothing has to be
+  kept up to date when nodes are renamed, deleted or pasted.</li>
+<li><strong>Resize it</strong> by dragging the bottom right corner.</li>
+<li><strong>Edit the title, note and color</strong> by double clicking the header, or
+  with <strong>Edit Backdrop...</strong> in its right click menu. The note is shown under
+  the title at the top left, wrapped to the backdrop's width, and grows the
+  header to fit. The right click menu also has a <strong>Color</strong> submenu, <strong>Select
+  Nodes Inside</strong> and <strong>Fit to Nodes Inside</strong>. Backdrops take the same
+  colors as layers: any color, shown in your Layer Color View.</li>
+<li><strong>Delete it</strong> with <code>Del</code> while it is selected, or <strong>Delete Backdrop</strong> in
+  its right click menu. The nodes inside it stay where they are.</li>
+</ul>
+<p>Only the header and the resize corner take the mouse, so you can still
+start a rubber band selection inside a backdrop.</p>
+<p>Backdrops are saved in the top layer's meta data, next to the node
+positions. Backdrops from referenced layers are shown too. Changing one
+saves the change on the top layer and leaves the referenced layer as it
+was.</p>
+<h3 id="lines-between-nodes">Lines between nodes</h3>
+<p><img alt="Curved lines, one routed through a point" src="../images/lines_curved.png" /></p>
+<ul>
+<li><strong>Straight or curved</strong>: <strong>View &gt; Curved Connections</strong> draws the graph's
+  lines as curves that leave and meet each plug going across. The choice
+  is saved with the graph, so everyone who opens it sees the same lines.
+  It is also remembered in your preferences, and a graph that has not
+  saved a choice of its own is drawn the way you last picked. With no
+  preference, lines are straight.</li>
+<li><strong>Route a line through points</strong>: double click a line to add a point
+  there, then drag the point to bend the line around other nodes. A line
+  can have as many points as you like, and the line passes through them in
+  order. Hold <code>Shift</code>, or turn on grid snapping, to snap a point to the
+  grid.</li>
+<li><strong>Remove a point</strong> by double clicking it, or select it and press <code>Del</code>.
+  <code>Shift</code> click adds points to or takes them out of the selection.</li>
+<li><strong>Select points with a box</strong>: dragging a selection box picks up the
+  points inside it along with the nodes, with the same keys as nodes
+  (<code>Ctrl+Shift</code> adds, <code>Shift</code> toggles, <code>Ctrl</code> takes away). <code>Del</code> then
+  removes the points and nodes together, as one undo.</li>
+<li><strong>Break a connection</strong> by right clicking its line, a point on it, or a
+  plug, and picking <strong>Break Connection</strong>. On a plug it breaks every line
+  on that plug. What the line came from is taken out and nothing is left
+  in its place: an exec input or instance is cleared, and an attribute is
+  left empty, keeping any other text it held around the reference. A
+  connection made on a weaker layer is broken by making that layer the
+  target first. Lines into a node's code come from its code, and are
+  changed in the code editor.</li>
+</ul>
+<p>Points are the same size on screen at any zoom, so they can still be told
+apart from their line when you zoom out.</p>
+<p>Points stay where you put them when nodes move. Like backdrops, they are
+saved in the top layer's meta data, and points from referenced layers are
+shown too. A line's points belong to that one connection, so if the
+connection is removed and made again its points come back.</p>
 <h3 id="animate-nodes">Animate Nodes</h3>
 <p>Nodes no longer slide open when a parent is expanded. Every child is
 animated separately, so a node with hundreds of children opens noticeably
@@ -572,6 +738,10 @@ restart it.</p>
   selected node is not always part of the build: it may be disabled,
   outside the start point's branch, or not executable at all. In that case
   the Output Log says the node is not in the build, and the editor dings.</li>
+<li>The node selected, here or anywhere else, has an amber edge, and the
+  node under the mouse a white one. Only the node's name is outlined, not
+  the break and skip boxes beside it, and the node that runs next stays
+  red.</li>
 <li>The build stays current as you edit. Enabling or disabling a node,
   changing a start point, exec input, child order, instance path or parent,
   and renaming or deleting a node all update the list straight away.</li>
@@ -582,6 +752,74 @@ restart it.</p>
 <li><strong>Stop</strong> ends the build once the node that is running finishes, whether
   the build was running or being stepped, and puts the start point and the
   build list back.</li>
+</ul>
+<p><img alt="The Build View with the selected node outlined in amber and the hovered one in white" src="../images/build_view_outline.png" /></p>
+<h2 id="outliner">Outliner</h2>
+<p><img alt="The Outliner, grouped into a build and the nodes in no build" src="../images/outliner.png" /></p>
+<p>The Outliner lists the graph's nodes as a tree. It is off until you turn it
+on from <strong>Window &gt; Outliner</strong>.</p>
+<ul>
+<li>Root nodes are grouped by the build that runs them. Each start point
+  has a <strong>Build from</strong> section listing the roots that run from it, in
+  order, following exec connections. A root two builds reach is listed
+  under the first. Everything no start point leads to is under <strong>Not in a
+  build</strong>.</li>
+<li>Each node's children sit under it in their child order. Closed branches
+  stay closed as you edit.</li>
+<li>A row is filled with the color of the layer with the strongest opinion
+  on the node, and each weaker layer with an opinion adds a chip of its
+  color at the right end, as on the node in the graph.</li>
+<li>The search box at the top finds nodes at any depth by their name, the
+  same way as <a href="#find-node">Find Node</a>. Matching rows are bold, the nodes
+  above them stay so you can see where they are, and <code>Enter</code> frames the
+  first match.</li>
+<li>Text is white, as on the node in the graph, and a disabled node's is
+  faded and in italics. An instanced node's row is striped, as its title
+  is in the graph. Hovering a row outlines it in white and selecting
+  it outlines it in amber, the row's color staying as it is.</li>
+<li>Start, break and skip points show before the name as they do on the
+  node in the graph: the start icon, a red square for a breakpoint and an
+  orange bar for a skip point.</li>
+<li>Selecting rows selects the nodes in the graph, and selecting nodes in the
+  graph selects their rows.</li>
+<li>Rows work like their nodes in the graph. The node hotkeys work while
+  the Outliner has focus (<code>D</code> to disable, <code>N</code> to add, <code>Del</code> to delete, <code>S</code>
+  for a start point, <code>F</code> to frame and so on), and a right click gives the
+  graph's node menu, with <strong>Frame in Graph</strong> at the top. Double click a
+  row, or click its arrow, to collapse or expand its node, hold <code>Shift</code> to
+  do the same to everything below it, and <code>Ctrl</code> double click, or <code>F2</code>, to rename it
+  right there in the row.</li>
+<li><code>Shift</code> click a group's arrow, or <code>Shift</code> double click its heading, to
+  collapse every node in that build, or in <strong>Not in a build</strong>. When they
+  all are, it expands them all. A plain click on the arrow only opens or
+  closes the group.</li>
+<li>Right click below the rows for the graph's menu for empty space, to add
+  or paste a node at the top of the hierarchy. It lands in the middle of
+  the graph's view.</li>
+<li>Letters are hotkeys here, so typing does not jump between rows. Use the
+  search box to find a node.</li>
+</ul>
+<h2 id="instance-view">Instance View</h2>
+<p><img alt="The Instance View showing what arm instances from and what instances it" src="../images/instance_view.png" /></p>
+<p>The Instance View shows a node's instance connections and nothing else.
+Turn it on from <strong>Window &gt; Instance View</strong>.</p>
+<ul>
+<li>It shows what the node instances from, back to the first source, on the
+  left, and every node that instances it, and those that instance them, on
+  the right, joined by the graph's instance lines. Nodes that only share a
+  source with it are left out.</li>
+<li>Nodes are grey cards so they can be told from the graph at a glance. The
+  layer colors are in a strip along the top: the strongest layer's across
+  it, and a chip for each weaker one at its right end, as on the node in
+  the graph. Each card shows the node's name and path, and the node shown
+  has a light edge.</li>
+<li><strong>Follow Selection</strong> shows whichever node is selected in the graph or the
+  Outliner. With it off, select a node and press <strong>Show Selected</strong>. Double
+  click a node in the view to show its connections instead.</li>
+<li><strong>Sync Selection</strong> selects the nodes you pick in the Instance View in the
+  graph and the Outliner too. Both toggles are remembered.</li>
+<li>Scroll to zoom, drag with the middle mouse button to pan, drag to box
+  select, and press <code>F</code> to frame everything.</li>
 </ul>
 <h2 id="ai-assistant">AI Assistant</h2>
 <p><img alt="The AI Assistant docked beside the graph, after adding attributes to two controls and running them" src="../images/ai_assistant.png" /></p>
@@ -681,7 +919,18 @@ Folder...</strong> add your own.</p>
 <h2 id="property-editor-history-view-output-log-and-workflow-tools">Property Editor, History View, Output Log and Workflow Tools</h2>
 <p>See the <a href="../tutorials/">tutorial videos</a> for a tour of these. The History
 View lists every step on the undo stack, including reference edits and
-reloads.</p></div>
+reloads.</p>
+<p><img alt="The Property Editor with Neutral Property Text on" src="../images/property_editor_neutral.png" /></p>
+<p>In the Property Editor's attribute table, each row is in the color of the
+layer its value comes from, lighter where the selected node sets the value
+itself and darker where it inherits it. Instanced values are in italics.</p>
+<p>Darker layer colors can be hard to read as text, so <strong>View &gt; Options &gt;
+Neutral Property Text</strong> shows the rows in neutral text instead: bright,
+in bold across the row, where the node sets the value, and a softer grey where it
+inherits it. The row header on the left is filled with the layer's color,
+and stays in view however far you scroll the table. The source looks like a
+button only under the mouse; click it to go to that node. It is off by
+default and remembered with your preferences.</p></div>
             </div>
         </div>
 

@@ -369,6 +369,41 @@ h1:hover .headerlink, h2:hover .headerlink, h3:hover .headerlink, h4:hover .head
     padding-right: 0.6rem;
 }
 
+/* The NXT mark beside the name, which says the rest. */
+.navbar .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.navbar .navbar-logo {
+    height: 24px;
+    width: auto;
+}
+
+/* A thin line between the page controls and the link out to GitHub. */
+.navbar-tools .nav-divider {
+    width: 1px;
+    height: 20px;
+    margin: 0 0.6rem;
+    align-self: center;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.navbar-tools .nav-github {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 32px;
+    min-height: 32px;
+    font-size: 18px;
+}
+
+.navbar-tools .nav-github-label {
+    display: none;
+    font-size: 1rem;
+}
+
 /* Previous and Next keep only their arrows until there is room. */
 @media (max-width: 1199.98px) {
     .navbar-tools .nav-label {
@@ -390,6 +425,20 @@ h1:hover .headerlink, h2:hover .headerlink, h3:hover .headerlink, h4:hover .head
     }
 
     .navbar-tools .nav-label {
+        display: inline;
+    }
+
+    /* GitHub on a line of its own at the bottom, with its name. */
+    .navbar-tools .nav-divider {
+        display: none;
+    }
+
+    .navbar-tools .nav-github {
+        justify-content: flex-start;
+        font-size: 1rem;
+    }
+
+    .navbar-tools .nav-github-label {
         display: inline;
     }
 

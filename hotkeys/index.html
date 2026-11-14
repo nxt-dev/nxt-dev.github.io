@@ -27,7 +27,10 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="..">NXT User Docs</a>
+                <a class="navbar-brand" href=".." aria-label="NXT User Docs, home">
+                    <img class="navbar-logo" src="../img/nxt_white.svg" alt="" height="24">
+                    <span>User Docs</span>
+                </a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -93,7 +96,7 @@
                                 <a href="../extensions/" class="nav-link">Extensions</a>
                             </li>
                             <li class="nav-item">
-                                <a href="../api/" class="nav-link">API</a>
+                                <a href="../api/index.html" class="nav-link">API</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
@@ -116,8 +119,8 @@
 
                     <ul class="nav navbar-nav navbar-tools">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal" title="Search" aria-label="Search">
+                                <i class="fa fa-search"></i><span class="nav-label"> Search</span>
                             </a>
                         </li>
                             <li class="nav-item">
@@ -130,6 +133,13 @@
                                     <span class="nav-label">Next </span><i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
+
+                        <li class="nav-item nav-divider" aria-hidden="true"></li>
+                        <li class="nav-item">
+                            <a href="https://github.com/nxt-dev" class="nav-link nav-github" target="_blank" rel="noopener" title="NXT on GitHub" aria-label="NXT on GitHub (opens in new tab)">
+                                <i class="fa-brands fa-github"></i><span class="nav-github-label"> GitHub</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -212,7 +222,7 @@
 <tbody>
 <tr>
 <td style="text-align: left;">Find Node</td>
-<td style="text-align: center;">Search for, select, and focus nodes in the view</td>
+<td style="text-align: center;">Find nodes by name (<code>*</code> for anything, commas between names), then select and frame them</td>
 <td style="text-align: left;">Find Node</td>
 <td style="text-align: center;">/</td>
 </tr>
@@ -630,6 +640,12 @@
 <td style="text-align: center;">N</td>
 </tr>
 <tr>
+<td style="text-align: left;">Add Backdrop</td>
+<td style="text-align: center;">Add a backdrop around the selected nodes, or an empty one when none are selected.</td>
+<td style="text-align: left;">Add Backdrop</td>
+<td style="text-align: center;">C</td>
+</tr>
+<tr>
 <td style="text-align: left;">Delete Node</td>
 <td style="text-align: center;">Delete the selected node(s).</td>
 <td style="text-align: left;">Delete Node</td>
@@ -727,15 +743,15 @@
 </tr>
 <tr>
 <td style="text-align: left;">Recursive Toggle Node Collapse</td>
-<td style="text-align: center;">Recursively toggle the collapse state for the selected node(s).</td>
+<td style="text-align: center;">Collapse or expand the selected node(s) and everything below, together.</td>
 <td style="text-align: left;">Recursive Toggle Node Collapse</td>
 <td style="text-align: center;">Alt+Shift+C</td>
 </tr>
 <tr>
 <td style="text-align: left;">Rename Node</td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">Rename the selected node, where you are working.</td>
 <td style="text-align: left;">Rename Node</td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">F2</td>
 </tr>
 <tr>
 <td style="text-align: left;">Revert child order</td>
@@ -856,19 +872,19 @@
 </tr>
 <tr>
 <td style="text-align: left;">Execute Selected</td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">Run only the selected nodes.</td>
 <td style="text-align: left;">Execute Selected</td>
 <td style="text-align: center;">Enter</td>
 </tr>
 <tr>
 <td style="text-align: left;">Execute From Selected</td>
 <td style="text-align: center;">Execute from the currently selected node and continue down the exec chain.</td>
-<td style="text-align: left;">Execute</td>
+<td style="text-align: left;">Execute From Selected</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr>
 <td style="text-align: left;">Execute Hierarchy</td>
-<td style="text-align: center;"></td>
+<td style="text-align: center;">Run the selected node and every node under it.</td>
 <td style="text-align: left;">Execute Hierarchy</td>
 <td style="text-align: center;"></td>
 </tr>

@@ -27,7 +27,10 @@
     <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href="/.">NXT User Docs</a>
+                <a class="navbar-brand" href="/." aria-label="NXT User Docs, home">
+                    <img class="navbar-logo" src="/img/nxt_white.svg" alt="" height="24">
+                    <span>User Docs</span>
+                </a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -93,7 +96,7 @@
                                 <a href="/extensions/" class="nav-link">Extensions</a>
                             </li>
                             <li class="nav-item">
-                                <a href="/api/" class="nav-link">API</a>
+                                <a href="/api/index.html" class="nav-link">API</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
@@ -116,8 +119,15 @@
 
                     <ul class="nav navbar-nav navbar-tools">
                         <li class="nav-item">
-                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
-                                <i class="fa fa-search"></i> Search
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal" title="Search" aria-label="Search">
+                                <i class="fa fa-search"></i><span class="nav-label"> Search</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item nav-divider" aria-hidden="true"></li>
+                        <li class="nav-item">
+                            <a href="https://github.com/nxt-dev" class="nav-link nav-github" target="_blank" rel="noopener" title="NXT on GitHub" aria-label="NXT on GitHub (opens in new tab)">
+                                <i class="fa-brands fa-github"></i><span class="nav-github-label"> GitHub</span>
                             </a>
                         </li>
                     </ul>
