@@ -20,6 +20,16 @@ All of the layers in your file are composited together to produce final code to 
 
 Layer color propagates into nodes an also attributes.
 
+A layer can be any color. **Change Color** picks from the full spectrum: the
+layer palette, a field of every hue and saturation, a shade bar from black
+to the hue at its brightest, and a hex field. The layer is given exactly the
+color picked, and by default every color is shown exactly as it is. How
+layer colors are shown is your own view, see
+[Layer Color View](editor.md#layer-color-view). **In your view** in Change
+Color shows how the color you are choosing will look to you.
+
+![Change Color, picking from the full spectrum](images/change_color.png)
+
 ![attribute_color.PNG](images/attribute_color.PNG)
 
 ## References
