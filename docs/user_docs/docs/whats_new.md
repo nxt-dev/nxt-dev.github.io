@@ -4,7 +4,7 @@ This page summarises what is new in **nxt_editor 4.6**, **nxt_editor 4.5**,
 **nxt_editor 4.4** and **nxt_core 0.21**. Each item links to the part of the docs that explains
 it in full.
 
-## nxt_editor 4.6
+## nxt_editor 4.6.0
 
 ### A new look, the same everywhere
 
