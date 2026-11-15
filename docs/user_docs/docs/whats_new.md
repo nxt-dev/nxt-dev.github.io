@@ -1,8 +1,15 @@
 # What's New
 
-This page summarises what is new in **nxt_editor 4.6**, **nxt_editor 4.5**,
+This page summarises what is new in **nxt_editor 4.7**, **nxt_editor 4.6**, **nxt_editor 4.5**,
 **nxt_editor 4.4** and **nxt_core 0.21**. Each item links to the part of the docs that explains
 it in full.
+
+## nxt_editor 4.7.0
+
+- The [Instance View](editor.md#instance-view) marks the node it is drawn
+  from with a target at the end of its name, the same target as on
+  **Follow Selection**. It moves to whichever node you show, from the
+  graph, the Outliner, **Show Selected** or a double click in the view.
 
 ## nxt_editor 4.6.1
 
