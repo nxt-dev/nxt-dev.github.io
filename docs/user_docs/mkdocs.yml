@@ -7,6 +7,7 @@ nav:
     - What's New: whats_new.md
     - Getting Started:
         - Installation: install.md
+        - Optional Components: optional_components.md
         - Concepts: concepts.md
         - Tutorials: tutorials.md
     - Reference:

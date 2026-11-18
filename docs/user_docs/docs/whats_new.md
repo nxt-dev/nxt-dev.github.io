@@ -1,8 +1,148 @@
 # What's New
 
-This page summarises what is new in **nxt_editor 4.8**, **nxt_editor 4.7**, **nxt_editor 4.6**, **nxt_editor 4.5**,
-**nxt_editor 4.4** and **nxt_core 0.21**. Each item links to the part of the docs that explains
-it in full.
+This page summarises what is new in the next release, which is in review
+now, and in **nxt_editor 4.8**, **nxt_editor 4.7**, **nxt_editor 4.6**,
+**nxt_editor 4.5**, **nxt_editor 4.4** and **nxt_core 0.21**. Each item
+links to the part of the docs that explains it in full.
+
+## Unreleased
+
+These are in review for the next release, in
+[nxt_editor#323](https://github.com/nxt-dev/nxt_editor/pull/323) and
+[nxt#133](https://github.com/nxt-dev/nxt/pull/133). To try them now, in a
+Python 3.11 to 3.13 environment:
+
+```
+pip install "git+https://github.com/nxt-dev/nxt.git@next" "git+https://github.com/nxt-dev/nxt_editor.git@next"
+```
+
+### The graph
+
+- **New graph from the tabs**: a **+** after the last tab, or a double
+  click on the empty bar beside the tabs, makes a new graph. See
+  [Tabs](editor.md#tabs).
+- **Bookmarks** save a view of the graph under a name, with `Ctrl+B`, and
+  `Ctrl+1` to `Ctrl+4` go back to the first four. They are saved with the
+  graph. See [Moving around](editor.md#moving-around).
+- **Pan with `Space`** and a left drag, for a trackpad or a mouse without a
+  middle button, and a graph is **framed when it opens** (**View > Frame
+  All on Open**). See [Moving around](editor.md#moving-around).
+- **Layout Nodes** (`Shift+L`) lays nodes out by the order they run in. See
+  [Laying out nodes](editor.md#laying-out-nodes).
+- **Snapping**: a dropped line snaps to the nearest plug that can take it,
+  and grid snapping goes to the nearest grid line. See
+  [Lines between nodes](editor.md#lines-between-nodes).
+- **Push Positions to Target Layer** gives a lower layer the layout you
+  see. See
+  [Pushing positions to a lower layer](editor.md#pushing-positions-to-a-lower-layer).
+- The **world node** can be copied and pasted onto another graph or layer.
+  See [Deleting and pasting nodes](editor.md#deleting-and-pasting-nodes).
+- **Ignore Breakpoints**, in the Execute menu and on the toolbar, lets runs
+  go straight through breakpoints without removing them. While it is on,
+  breakpoints are drawn as a red outline in the graph, the Outliner and the
+  Build View. See [Running nodes](editor.md#running-nodes).
+- When a build fails, the editor **dings and flashes** in the taskbar or
+  Dock if it is behind another window. See
+  [Running nodes](editor.md#running-nodes).
+
+### Layers and files
+
+- **Layer toggles are icons** with tooltips: display layer, mute, solo,
+  lock and the new eye. See [Layer toggles](editor.md#layer-toggles).
+- **Hide a layer in the graph** with the eye, or **Hide In Graph** on its
+  menu. Its nodes, lines and backdrops leave the graph a node at a time,
+  while the layer still composites and runs. See
+  [Hiding a layer in the graph](editor.md#hiding-a-layer-in-the-graph).
+- Shift click a layer's arrow to open or close every layer under it. See
+  [Layer Manager](editor.md#layer-manager).
+- **Files changed on disk**: saving over a file something else changed
+  asks first, and coming back to the editor offers to reload. See
+  [Files changed on disk](editor.md#files-changed-on-disk).
+- **References that cannot be found** are listed in a notice with **Edit
+  References...**, and a graph saved by a **newer nxt** asks before it
+  opens. See [Reference Editor](editor.md#reference-editor).
+- **Env files** set environment variables as nxt starts, in the editor, in
+  a host and in a headless run, and **Options > Environment Variables...**
+  edits them. See [Env files](extensions.md#env-files).
+- A file you pick under one of your `NXT_FILE_ROOTS` is stored relative to
+  that root, and one in a folder an env file variable names is stored from
+  that variable. See
+  [How references are found](composition.md#how-references-are-found).
+- **Any language**: graphs, logs and every other file nxt reads or writes
+  are UTF-8, so names, comments and code can be in any language on any
+  system. See [NXT file spec](file_format.md#nxt-file-spec).
+
+### Outliner, Build View and Property Editor
+
+- **Drag rows in the Outliner** to parent their nodes. See
+  [Outliner](editor.md#outliner).
+- In the **Build View**, a selected node's name stays readable when its
+  breakpoint is set. See [Build View](editor.md#build-view).
+- The Property Editor can **filter attributes**, **copy and paste
+  attributes** between nodes, **complete node paths and tokens** as you
+  type, and shows where **running changed an attribute's type**. The
+  **Position** fields move every selected node. See
+  [Filtering attributes](editor.md#filtering-attributes),
+  [Copying and pasting attributes](editor.md#copying-and-pasting-attributes),
+  [Completing paths and tokens](editor.md#completing-paths-and-tokens),
+  [Types changed by running](editor.md#types-changed-by-running) and
+  [Position](editor.md#position).
+- Typing in the Property Editor's or Hotkey Editor's table jumps to the
+  row starting with what you typed. See [Hotkeys](hotkeys.md).
+
+### Code Editor and completion
+
+- **Fold** indented blocks from the gutter or with `Ctrl+Shift+[` and
+  `Ctrl+Shift+]`. See [Folding](editor.md#folding).
+- **Drop files** into the code to write a `${contents::}` token for them.
+  See [Dropping files](editor.md#dropping-files).
+- **Completion keeps up with typing**, offers a node's inherited and
+  instanced attributes after `self.`, and after a build completes
+  `STAGE.` and `self.` on what the build left there. See
+  [Completion](editor.md#completion) and
+  [STAGE and self after a build](editor.md#stage-and-self-after-a-build).
+- **Optional Components** (**Options > Optional Components**) installs Qt
+  and jedi in any host, with no restart. See
+  [Optional Components](optional_components.md).
+- A `#` inside a string is no longer coloured as a comment, the Code Editor
+  keeps its scroll when the same node is shown again, and the Output Log
+  keeps following new text, with a **Wrap Lines** option. See
+  [Highlighting](editor.md#highlighting) and
+  [Property Editor, History View, Output Log and Workflow Tools](editor.md#property-editor-history-view-output-log-and-workflow-tools).
+
+### Hosts
+
+- `NXT_NO_MENU=1` leaves nxt's own menu out of Maya, Blender and Unreal.
+  See [Leaving the nxt menu out](install.md#leaving-the-nxt-menu-out).
+- The Maya module ships jedi, so Python Analysis works from the zip.
+
+### Fixes and speed
+
+- **Save** saves the graph you are looking at, not a layer right clicked
+  earlier.
+- A big value stored by a build no longer stalls the editor afterwards,
+  and during a build only the nodes whose state changes are redrawn.
+
+### nxt_core
+
+- Graphs and the files they read are **UTF-8**, so they open in any
+  language on any system. Older files that are not UTF-8 still open.
+- An **instance path that loops** back to the node or its ancestors is
+  logged and ignored rather than hanging the comp, and an exec chain that
+  loops is stopped. See [Instancing](composition.md#instancing).
+- Running a node no longer copies the world node's attributes for every
+  node, so a big value on the world node no longer slows every node after
+  it.
+- `${/node._code}` gives a node's code as text. See
+  [Tokens](graphs.md#tokens).
+- Loading a file warns about a **node path written twice**. See
+  [NXT file spec](file_format.md#nxt-file-spec).
+- A node's enabled state shows straight away, without a recomp.
+- For tools: `rename_node_attr(refactor=True)` updates the tokens that use
+  a renamed attribute, `retarget_instance_paths` keeps instance paths on
+  nodes that were parented elsewhere, env files are read as nxt starts, and
+  a file saved by a newer nxt raises `NewerFileError` unless it is opened
+  inside `nxt_io.allow_newer_files()`.
 
 ## nxt_editor 4.8.0
 

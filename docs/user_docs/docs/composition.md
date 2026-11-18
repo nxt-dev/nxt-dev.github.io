@@ -89,6 +89,19 @@ machine, or for another project, with different roots.
     To always use one particular file, reference it by an absolute path, or
     by a path built from an environment variable.
 
+!!! note "Picked files under a root are stored short"
+    Once `NXT_FILE_ROOTS` is set, by an [env file](extensions.md#env-files)
+    or any other way, a file you pick in a file browser that sits under one
+    of the roots is stored relative to that root, as `lib/shared_steps.nxt`,
+    not as its full path. This is so for everyone with `NXT_FILE_ROOTS` set,
+    whether or not they use env files: before, a picked file was always
+    stored whole. A file in a folder that an env file variable names is
+    stored from that variable, as `$PROJECT_GRAPHS/rig.nxt`. The short path
+    is only used when it resolves back to the file you picked, and it keeps
+    the folders you picked it through: picked as `current/rig.nxt`, with
+    `current` a link to `v12`, it stays `current/rig.nxt`. Type the full
+    path in the Reference Editor to store that instead.
+
 The [Reference Editor](editor.md#reference-editor) shows where each reference
 resolves on this machine with its resolved toggle, and the tooltip on a row
 says where nxt looked.
@@ -148,4 +161,10 @@ Most instance attributes are carried over. Execution input is never inherited. C
 Data comes from the hierarchical parent as well as the instance source, with hierarchical parent  having final word. Instance execution order is defined by the hierarchical parent.
 
 !!! danger
-    If a node instances itself, or any ancestor or descendants, it will crash. It's best (because that's all thats possible) to only instance from other hierarchies or sibling nodes
+    A node cannot instance itself, or any of its ancestors or descendants. When an instance path leads back round like that, nxt logs the loop and ignores that instance path, keeping what is saved, rather than hanging. It's best to only instance from other hierarchies or sibling nodes.
+
+When you parent a node somewhere else, its path changes. nxt_core can
+update the instance paths on the target layer that pointed at it, or at
+anything under it, so they land on the same nodes
+(`retarget_instance_paths`). Absolute paths follow the move, and relative
+paths stay relative.
