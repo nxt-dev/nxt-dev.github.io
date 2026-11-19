@@ -37,7 +37,8 @@ pip install "git+https://github.com/nxt-dev/nxt.git@next" "git+https://github.co
 - **Three looks to choose from**, in **Edit > Preferences > Panels >
   Look**: Modern, Classic (how the editor looked before) and Host
   application, which looks like Maya, Blender or Unreal when the editor
-  runs in them, and a **Stylesheet** of your own to lay over it. See
+  runs in them, and a **Stylesheet** of your own to lay over it. **Reopen Now** shows a new look
+  straight away, with the same graphs and no restart of the host. See
   [The editor's look](editor.md#the-editors-look).
 - **AI Assistant settings** open one provider at a time: each is a section
   whose header says how it is set up, the provider asked first starts open,
