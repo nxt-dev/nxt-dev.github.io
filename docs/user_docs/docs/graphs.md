@@ -65,6 +65,15 @@ While executing, the [Stage](#stage) can have arbitrary attributes add/set/retri
 !!! note "Attribute connections"
     It is best practice to display inter-node dependencies via hierarchy or connections of attributes, rather than hide that dependency in the code. This will make your layers more portable and friendly to other users. Despite this best practice, other nodes and their attributes can be accessed inside a code `block using STAGE.lookup('path/to/node')` and `STAGE.lookup('path/to/node.otherattr')`.
 
+### Renaming an attribute
+
+Renaming an attribute also renames the [tokens](#tokens) in its layer
+that use it, `${attr}` on its own node and `${/path/to/node.attr}`
+anywhere, in attribute values and code, so they keep working. An
+attribute of the same name on another node is left alone. Undo puts the
+tokens back with the name. To rename only the attribute, turn off
+**Update Tokens on Attr Rename** in **Edit > Preferences > Editing**.
+
 ## Tokens
 
 A token is like a [reference or pointer](workflows.md#transition-map) to another token or value. [OS ](workflows.md#transition-map)style pathing is used to resolve attribute and file tokens.
