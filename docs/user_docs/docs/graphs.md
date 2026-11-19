@@ -78,6 +78,10 @@ Attribute token syntax is `${}`: if it can resolve, it substitutes the attribute
         ${../relative_nodepath.attribute}
 ```
 
+`${/node._code}` gives that node's code as text, its lines joined with
+newlines and its own tokens resolved, the same way an attribute from another
+node is.
+
 File validation syntax `${file::}`: this will always resolve to a real file, and will return an empty string if the file doesn't exist. Used to validate files for reading.
 
 ```
@@ -160,7 +164,9 @@ Nodes have execution plugs on their left and right to determine execution order.
 ![graph_intro.PNG](images/graph_intro.PNG)
 
 !!! danger
-    We don't have checks for circular dependencies yet. So don't setup loops.
+    Don't set up loops. Exec inputs that lead back round to a node already in
+    the chain are stopped rather than followed forever, but the order such a
+    loop gives is not something to build on.
 
 ### Hierarchies/Stacks
 

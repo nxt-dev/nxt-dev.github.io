@@ -35,7 +35,7 @@ external debugger.
 - Encourage collaboration though [layering](composition.md#layers) and multi context graphs. 
 With our layering system it is easy for departments to share base workflows and
 utility nodes. Since layering is non-destructive graphs can referenced built on 
-without worrying about breaking someone else's graph. With [multi context](extensions.md#creating-custom-contexts) 
+without worrying about breaking someone else's graph. With [multi context](extensions.md#creating-custom-contexts-automatically) 
 graphs a Maya user, for example, can directly call a Houdini graph from inside Maya. 
 Alternatively, graphs can call other graphs in the same context, allowing 
 interdependent graphs to be developed simultaneously.

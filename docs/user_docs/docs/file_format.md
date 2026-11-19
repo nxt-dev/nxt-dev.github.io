@@ -4,6 +4,17 @@
 
 NXT files follow standard `.json` file specifications with a few specific keys in the root dictionary.  
 
+Files are read and written as UTF-8, so names, comments, code and values can
+be in any language, on any system. Graphs are still saved with non-English
+characters escaped, so any version of nxt can open them, and an older file
+that is not UTF-8 still opens. The files a `${contents::}` token pulls in,
+parameter files and the session log are UTF-8 too.
+
+A `.json` file keeps only the last of a key written twice, so a node left in
+a file twice, by a hand edit or a merge, would lose its first copy. nxt warns
+about each repeated node path or key when it loads the file, naming the file,
+and keeps the last as before.
+
 - Required:  
     `version` - str, graph version number
 - Optional:  
