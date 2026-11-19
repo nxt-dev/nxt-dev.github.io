@@ -7,17 +7,57 @@ links to the part of the docs that explains it in full.
 
 ## Unreleased
 
-These are in review for the next release, in
+These are in review for the next release, starting with
 [nxt_editor#323](https://github.com/nxt-dev/nxt_editor/pull/323) and
-[nxt#133](https://github.com/nxt-dev/nxt/pull/133). To try them now, in a
-Python 3.11 to 3.13 environment:
+[nxt#133](https://github.com/nxt-dev/nxt/pull/133), and the pull requests
+merged after them. To try them now, in a Python 3.11 to 3.13 environment:
 
 ```
 pip install "git+https://github.com/nxt-dev/nxt.git@next" "git+https://github.com/nxt-dev/nxt_editor.git@next"
 ```
 
+### Preferences, hotkeys and looks
+
+- **Edit > Preferences...** (`Ctrl+,`) has every preference you can set,
+  with what each does, including ones that had no menu, like drag zoom
+  speed and how the graph follows a run. Sections are listed on the left,
+  one page each, and a search at the top looks through all of them. It
+  stays open beside the editor while you work. See
+  [Preferences](editor.md#preferences).
+- **The Options menu is gone.** Everything it held is in Preferences: the
+  error sound and the other toggles in their sections, and the AI
+  Assistant, Environment Variables and Optional Components as pages of
+  their own. **Layer Color View** is in the **Window** menu, and
+  **Autocomplete** in the code editor's right-click menu.
+- **Hotkeys are a page of Preferences**, in the same style: each action
+  with what it does, its hotkey, **Clear** and **Reset**, and **Global** on
+  the ones that work anywhere in the window. The search finds hotkeys by
+  name or by their keys. **Window > Hotkey Editor** opens it. See
+  [Hotkeys](hotkeys.md).
+- **Three looks to choose from**, in **Edit > Preferences > Panels >
+  Look**: Modern, Classic (how the editor looked before) and Host
+  application, which looks like Maya, Blender or Unreal when the editor
+  runs in them, and a **Stylesheet** of your own to lay over it. See
+  [The editor's look](editor.md#the-editors-look).
+- **AI Assistant settings** open one provider at a time: each is a section
+  whose header says how it is set up, the provider asked first starts open,
+  and the list scrolls so everything can be reached on a small screen. See
+  [Signing in](editor.md#signing-in).
+
 ### The graph
 
+- **The graph has no edge.** Pan, frame and go to nodes as far out as you
+  like; the canvas grows as you go.
+- **Renaming an attribute renames the tokens that use it**, and
+  **parenting a node keeps its instances pointed at it**, both undoable.
+  **Update Tokens on Attr Rename** and **Update Instance Paths on Parent**,
+  in **Edit > Preferences > Editing**, turn them off. See
+  [Renaming an attribute](graphs.md#renaming-an-attribute) and
+  [Parenting an instanced node](composition.md#parenting-an-instanced-node).
+- **Sub-graphs**: **Open Sub-graph** (`Ctrl+Shift+G`) opens the graph a
+  sub-graph node runs, and the Property Editor lists that graph's world
+  attributes the node does not set yet. See
+  [Sub-graph nodes](composition.md#sub-graph-nodes).
 - **New graph from the tabs**: a **+** after the last tab, or a double
   click on the empty bar beside the tabs, makes a new graph. See
   [Tabs](editor.md#tabs).
@@ -62,8 +102,8 @@ pip install "git+https://github.com/nxt-dev/nxt.git@next" "git+https://github.co
   References...**, and a graph saved by a **newer nxt** asks before it
   opens. See [Reference Editor](editor.md#reference-editor).
 - **Env files** set environment variables as nxt starts, in the editor, in
-  a host and in a headless run, and **Options > Environment Variables...**
-  edits them. See [Env files](extensions.md#env-files).
+  a host and in a headless run, and **Edit > Preferences > Environment
+  Variables** edits them. See [Env files](extensions.md#env-files).
 - A file you pick under one of your `NXT_FILE_ROOTS` is stored relative to
   that root, and one in a folder an env file variable names is stored from
   that variable. See
@@ -87,8 +127,8 @@ pip install "git+https://github.com/nxt-dev/nxt.git@next" "git+https://github.co
   [Completing paths and tokens](editor.md#completing-paths-and-tokens),
   [Types changed by running](editor.md#types-changed-by-running) and
   [Position](editor.md#position).
-- Typing in the Property Editor's or Hotkey Editor's table jumps to the
-  row starting with what you typed. See [Hotkeys](hotkeys.md).
+- Typing in the Property Editor's table jumps to the row starting with
+  what you typed. See [Hotkeys](hotkeys.md).
 
 ### Code Editor and completion
 
@@ -101,7 +141,7 @@ pip install "git+https://github.com/nxt-dev/nxt.git@next" "git+https://github.co
   `STAGE.` and `self.` on what the build left there. See
   [Completion](editor.md#completion) and
   [STAGE and self after a build](editor.md#stage-and-self-after-a-build).
-- **Optional Components** (**Options > Optional Components**) installs Qt
+- **Optional Components** (**Edit > Preferences > Optional Components**) installs Qt
   and jedi in any host, with no restart. See
   [Optional Components](optional_components.md).
 - A `#` inside a string is no longer coloured as a comment, the Code Editor
@@ -115,6 +155,14 @@ pip install "git+https://github.com/nxt-dev/nxt.git@next" "git+https://github.co
 - `NXT_NO_MENU=1` leaves nxt's own menu out of Maya, Blender and Unreal.
   See [Leaving the nxt menu out](install.md#leaving-the-nxt-menu-out).
 - The Maya module ships jedi, so Python Analysis works from the zip.
+- **Run a graph headless** in Maya, Blender or Unreal, from a shell or a
+  farm, with one runner for each host that takes the same arguments, or
+  from a graph with the builtin sub-graph nodes that start the host. See
+  [Running Graphs Headless](headless.md).
+- The editor's title shows the name of the Maya scene or `.blend` file its
+  host has open, `nxt maya [rig_v012.ma]`, so the editors of two sessions
+  of the same host can be told apart in the taskbar. See
+  [Installation](install.md).
 
 ### Fixes and speed
 
@@ -122,6 +170,17 @@ pip install "git+https://github.com/nxt-dev/nxt.git@next" "git+https://github.co
   earlier.
 - A big value stored by a build no longer stalls the editor afterwards,
   and during a build only the nodes whose state changes are redrawn.
+- The code editor's completion list opens under the line, with its names
+  starting where the word being completed starts.
+- Clicking into a node's code and away without typing no longer adds an
+  undo step, marks the layer as unsaved, or copies inherited code onto the
+  target layer.
+- The mini map leaves out the backdrops of a layer hidden in the graph, as
+  it does that layer's nodes.
+- Two quick clicks on a Layer Manager toggle count as two: the second was
+  taken for a double click and did nothing.
+- The Environment Variables page shows its Name and List column titles
+  whole in an empty table, and a long file path no longer makes it wide.
 
 ### nxt_core
 
@@ -138,6 +197,12 @@ pip install "git+https://github.com/nxt-dev/nxt.git@next" "git+https://github.co
 - Loading a file warns about a **node path written twice**. See
   [NXT file spec](file_format.md#nxt-file-spec).
 - A node's enabled state shows straight away, without a recomp.
+- `nxt.execute_graph` closes its session's log when the graph is done, so
+  running graphs one after another no longer keeps a log file open per run
+  or writes each line several times. Sessions made in the same second get
+  a log file each.
+- The builtin `sub_graphs.nxt` graph has nodes that run a graph headless
+  in Maya, Blender or Unreal. See [Running Graphs Headless](headless.md).
 - For tools: `rename_node_attr(refactor=True)` updates the tokens that use
   a renamed attribute, `retarget_instance_paths` keeps instance paths on
   nodes that were parented elsewhere, env files are read as nxt starts, and

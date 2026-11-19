@@ -1,6 +1,13 @@
 # Hotkeys
 
-Every action below can be given a new shortcut in the Hotkey Editor (**Window > Hotkey Editor**).
+Every action below can be given a new shortcut in **Edit > Preferences >
+Hotkeys** (**Window > Hotkey Editor** opens it there). Click an action's
+hotkey and press the keys you want; **Clear** takes it off and **Reset**
+puts back the default. A **Global** hotkey works anywhere in the window,
+so no other hotkey can be the same as one. The search at the top of
+Preferences finds a hotkey by its name or its keys.
+
+![Hotkeys in Preferences](images/preferences_hotkeys.png)
 
 ## Application Actions
 |        Name         |                   What's this                   |      Tool tip       |   Shortcut   |
@@ -16,12 +23,15 @@ Every action below can be given a new shortcut in the Hotkey Editor (**Window > 
 | History View        |         Toggle the history view widget.         | History View        |              |
 | Build View          |          Toggle the build view widget.          | Build View          |              |
 | Output Log          |          Toggle the output log widget.          | Output Log          |              |
-| Hotkey Editor       |        Toggle the hotkey editor widget.         | Hotkey Editor       |              |
+| Hotkey Editor       | Open Preferences at Hotkeys, every action's keyboard shortcut. | Hotkey Editor |  |
 | Workflow Tools      |           Workflow tools dock widget.           | Workflow Tools      |              |
 | Exit                |                   Close nxt.                    | Exit                |    Alt+F4    |
 | Open Last Closed    |         Open previously closed file(s)          | Open Last Closed    | Ctrl+Shift+T |
 | Close Tab           |                Close active tab                 | Close Tab           |    Ctrl+W    |
 | Find and Open Graph |                                                 | Find and Open Graph |    Ctrl+P    |
+| Preferences... | Every preference you can set, by section, with what each does. Changes are made straight away. | Preferences... | Ctrl+, |
+| Update Tokens on Attr Rename | When on, renaming an attribute also renames the tokens in its layer that use it, such as ${attr} and ${/node.attr}, so they keep working. Attributes of the same name on other nodes are left alone. | Update Tokens on Attr Rename |  |
+| Update Instance Paths on Parent | When on, parenting nodes also updates the instance paths in the layer that point at them, or at anything under them, so their instances follow. Relative paths stay relative. | Update Instance Paths on Parent |  |
 
 !!! note "New Graph from the tabs"
     The **+** after the open graphs' tabs, or a double click on the empty
@@ -51,8 +61,8 @@ Every action below can be given a new shortcut in the Hotkey Editor (**Window > 
 
 !!! note "Typing in a list finds rows"
     Q, W and E work from anywhere in the window, except while you are
-    typing. In a text field, the Property Editor's attribute table or the
-    Hotkey Editor's table, letters go to what has focus: in a table, typing
+    typing. In a text field or the Property Editor's attribute table,
+    letters go to what has focus: in a table, typing
     jumps to the row starting with what you typed. Shortcuts with `Ctrl` or
     `Alt`, and any you give the Property Editor's own actions, still work
     there.
@@ -89,7 +99,7 @@ Every action below can be given a new shortcut in the Hotkey Editor (**Window > 
 
 Hold `Space` and drag with the left mouse button to pan the graph, as a
 middle button drag does. It is a mouse action rather than a shortcut, so it
-is not in the Hotkey Editor; see [Moving around](editor.md#moving-around).
+is not in Hotkeys; see [Moving around](editor.md#moving-around).
 
 ## Layers
 |          Name          |           What's this           |        Tool tip        |   Shortcut   |
@@ -127,6 +137,7 @@ is not in the Hotkey Editor; see [Moving around](editor.md#moving-around).
 | Remove Instance                | Removes instance path from node overloading weaker layer instance opinions. | Removes Instance               | Ctrl+Shift+I |
 | Localize Node                  |                                                                             | Localize Node                  |              |
 | Revert Node                    |                                                                             | Revert Node                    |              |
+| Open Sub-graph | Open the graph the selected sub-graph node runs, named in its _graph_path, in a new tab. | Open Sub-graph | Ctrl+Shift+G |
 | Push Positions to Target Layer | Write where the selected nodes are now onto the target layer, so it keeps this layout without the layers above it. | Push Positions to Target Layer | |
 | Enable/Disable Node            |                                                                             | Enable/Disable Node            |      D       |
 | Parent                         |                               Parent node(s).                               | Parent                         |      P       |
@@ -225,7 +236,8 @@ is not in the Hotkey Editor; see [Moving around](editor.md#moving-around).
     The code editor's shortcuts only apply while the code editor has focus, and while it does they take
     precedence: `Ctrl+F`, `Ctrl+G` and `Ctrl+D` find in code, go to a line and expand the selection there,
     and open the graph wide find, toggle grid snapping and duplicate nodes everywhere else.
-    The completion sources are toggled from **Options > Autocomplete**; see
+    The completion sources are toggled from **Autocomplete** in the code
+    editor's right-click menu, or in Preferences; see
     [Completion](editor.md#completion).
 
     `Ctrl+click` on a `${}` token, which selects the node the token reads
